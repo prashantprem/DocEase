@@ -5,4 +5,5 @@
     <string name="word">Word</string>
     <string name="excel">Excel</string>
     <string name="ppt">PPoint</string>
+    <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
 </resources>
