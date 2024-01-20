@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DocEase</string>
+    <string name="home">Home</string>
+    <string name="pdf">PDF</string>
+    <string name="word">Word</string>
+    <string name="excel">Excel</string>
+    <string name="ppt">PPoint</string>
 </resources>
