@@ -1,6 +1,7 @@
 package com.document.docease.ui.module.main.bottomnav
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
 import com.document.docease.ui.theme.DocEaseTheme
@@ -35,13 +38,16 @@ fun CustomBottomNavigation(
     Row(
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = Modifier.fillMaxWidth()
-    ){
-        var currentRoute = navController.currentBackStackEntry?.destination?.route
-        currentRoute ="home"
+    ) {
+        val currentBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = currentBackStackEntry?.destination?.route
+        Log.d("Testing", currentRoute.toString())
         items.forEach { screen ->
             val isSelected = currentRoute == screen.route
             IconButton(
-                onClick = { navController.navigate(screen.route) },
+                onClick = {
+                    navController.navigate(screen.route)
+                },
                 modifier = Modifier.size(70.dp)
             ) {
                 Column(
@@ -51,12 +57,16 @@ fun CustomBottomNavigation(
                     Icon(
                         painter = painterResource(id = screen.icon),
                         contentDescription = stringResource(id = screen.label),
-                        tint = if(isSelected) colorResource(id = R.color.purple_700 ) else Color.Gray,
+                        tint = if (isSelected) colorResource(id = R.color.purple_700) else Color.Gray,
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
-                    Text(modifier = Modifier.padding(top = 2.dp).align(Alignment.CenterHorizontally),text = stringResource(id = screen.label),
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 2.dp)
+                            .align(Alignment.CenterHorizontally),
+                        text = stringResource(id = screen.label),
                         style = TextStyle(
-                            color = if(isSelected) colorResource(id = R.color.purple_700 ) else Color.Gray,
+                            color = if (isSelected) colorResource(id = R.color.purple_700) else Color.Gray,
                             fontSize = 12.sp,
                         ),
                         textAlign = TextAlign.Center
@@ -66,7 +76,6 @@ fun CustomBottomNavigation(
         }
     }
 }
-
 
 
 @Preview(showBackground = true)
@@ -82,6 +91,9 @@ fun previewHomeScreen() {
             BottomNavigationScreens.PPT
 
         )
-        CustomBottomNavigation(navController = rememberNavController(), items = bottomNavigationItems )
+        CustomBottomNavigation(
+            navController = rememberNavController(),
+            items = bottomNavigationItems
+        )
     }
 }

@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.document.docease.ui.module.home.HomeScreen
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
+import com.document.docease.ui.module.pdf.PdfScreen
 
 @Composable
 fun LandingScreenNavigationConfigurations(
@@ -15,7 +16,8 @@ fun LandingScreenNavigationConfigurations(
         composable(BottomNavigationScreens.HOME.route) {
             HomeScreen()
         }
-        composable(BottomNavigationScreens.WORD.route) {
+        composable(BottomNavigationScreens.PDF.route) {
+            PdfScreen()
         }
         composable(BottomNavigationScreens.EXCEL.route) {
         }
