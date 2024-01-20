@@ -1,4 +1,4 @@
-package com.document.docease.ui.module.home.bottomnav
+package com.document.docease.ui.module.main.bottomnav
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

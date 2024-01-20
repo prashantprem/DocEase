@@ -1,4 +1,4 @@
-package com.document.docease.ui.module.home.bottomnav
+package com.document.docease.ui.module.main.bottomnav
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement

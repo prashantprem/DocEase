@@ -24,8 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
-import com.document.docease.ui.module.home.bottomnav.BottomNavigationScreens
-import com.document.docease.ui.module.home.bottomnav.CustomBottomNavigation
+import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
+import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
 import com.document.docease.ui.navigation.LandingScreenNavigationConfigurations
 import com.document.docease.ui.theme.DocEaseTheme
 
