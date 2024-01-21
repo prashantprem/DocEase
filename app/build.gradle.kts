@@ -88,6 +88,11 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
+    implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
+
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
+
+
 
 }
 

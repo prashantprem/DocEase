@@ -21,6 +21,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
@@ -33,6 +34,7 @@ import com.document.docease.ui.theme.DocEaseTheme
 @Composable
 fun LandingScreen(
     navController: NavHostController,
+    viewModel: MainViewModel
 ) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.HOME,
@@ -79,7 +81,7 @@ fun LandingScreen(
         },
         content = {
             Column(modifier = Modifier.padding(it)) {
-                LandingScreenNavigationConfigurations(navController)
+                LandingScreenNavigationConfigurations(navController,viewModel)
             }
         },
         bottomBar = {
@@ -103,7 +105,8 @@ fun LandingScreen(
 @Composable
 fun previewLandingSCreen2() {
     DocEaseTheme {
-        LandingScreen(rememberNavController())
+        val viewModel: MainViewModel = hiltViewModel()
+        LandingScreen(rememberNavController(), viewModel = viewModel )
     }
 }
 

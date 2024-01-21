@@ -5,19 +5,21 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.document.docease.ui.module.home.HomeScreen
+import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
 import com.document.docease.ui.module.pdf.PdfScreen
 
 @Composable
 fun LandingScreenNavigationConfigurations(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: MainViewModel
 ) {
     NavHost(navController, startDestination = BottomNavigationScreens.HOME.route) {
         composable(BottomNavigationScreens.HOME.route) {
             HomeScreen()
         }
         composable(BottomNavigationScreens.PDF.route) {
-            PdfScreen()
+            PdfScreen(viewModel)
         }
         composable(BottomNavigationScreens.EXCEL.route) {
         }

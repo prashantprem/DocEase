@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,11 +15,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
 import com.document.docease.ui.theme.DocEaseTheme
@@ -33,11 +34,11 @@ class MainActivity : ComponentActivity() {
     private val PERMISSION_EXTERNAL = 0x111111
 
 
-    val requestPermissionResultLauncher =
+    private val requestPermissionResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 if (Environment.isExternalStorageManager()) {
-//                    queryDataFile()
+                    viewModel.getAllFiles()
                 } else {
                     Toast.makeText(
                         this,
@@ -49,18 +50,30 @@ class MainActivity : ComponentActivity() {
         }
 
 
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
             viewModel.showSplash
         }
-        PermissionUtils.isPermission(PERMISSION_EXTERNAL,this@MainActivity,requestPermissionResultLauncher)
+        PermissionUtils.isPermission(
+            PERMISSION_EXTERNAL,
+            this@MainActivity,
+            requestPermissionResultLauncher
+        ).let { hasPermission ->
+            if (hasPermission) {
+                viewModel.getAllFiles()
+            }
+        }
+
+
+        viewModel.allFiles.observe(this) {
+            Log.d("TestingFiles", "$it")
+        }
         setContent {
             DocEaseTheme {
                 val navController = rememberNavController()
                 Box(Modifier.safeDrawingPadding()) {
-                    LandingScreen(navController)
+                    LandingScreen(navController,viewModel)
                 }
             }
 
@@ -76,7 +89,7 @@ class MainActivity : ComponentActivity() {
         if (requestCode == PERMISSION_EXTERNAL) {
             if (grantResults.isNotEmpty() && permissions[0] == Manifest.permission.WRITE_EXTERNAL_STORAGE) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    queryDataFile()
+                    viewModel.getAllFiles()
                 } else {
 
                     PermissionUtils.isPermission(
@@ -97,6 +110,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun previewLandingScreen() {
     DocEaseTheme {
-        LandingScreen(rememberNavController())
+        val viewModel: MainViewModel = hiltViewModel()
+        LandingScreen(rememberNavController(),viewModel)
     }
 }
