@@ -1,5 +1,7 @@
 package com.document.docease.utils
 
+import com.document.docease.R
+import com.document.docease.ui.module.filescreen.FileType
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -26,6 +28,15 @@ object Extensions {
             val f = this.toFloat() / kb
             String.format(if (f > 100) "%.0f KB" else "%.1f KB", f)
         } else String.format("%d B", this)
+    }
+
+    fun FileType.fileIcon(): Int {
+        return when (this) {
+            FileType.PDF -> R.drawable.ic_large_pdf
+            FileType.WORD -> R.drawable.ic_large_word
+            FileType.EXCEL -> R.drawable.ic_large_excel
+            FileType.P_POINT -> R.drawable.ic_excel
+        }
     }
 
 }

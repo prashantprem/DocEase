@@ -1,5 +1,6 @@
 package com.document.docease.ui.common
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,17 +33,18 @@ import java.util.Locale
 
 @Composable
 fun FileList(
-    files: List<File>
+    files: List<File>,
+    @DrawableRes imageId: Int
 ) {
     LazyColumn() {
         items(files.size) { index ->
-            FileListItem(file = files[index])
+            FileListItem(file = files[index], imageId)
         }
     }
 }
 
 @Composable
-fun FileListItem(file: File) {
+fun FileListItem(file: File, imageId: Int) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -52,14 +54,16 @@ fun FileListItem(file: File) {
         horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_large_pdf),
+            painter = painterResource(id = imageId),
             contentDescription = "File icon",
             modifier = Modifier.size(30.dp)
         )
-        Column(modifier = Modifier
-            .padding(start = 16.dp)
-            .fillMaxWidth()
-            .weight(1f)) {
+        Column(
+            modifier = Modifier
+                .padding(start = 16.dp)
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
             Text(
                 text = file.name.lowercase(Locale.getDefault()),
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),

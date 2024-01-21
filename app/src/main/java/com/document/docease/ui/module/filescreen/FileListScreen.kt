@@ -1,4 +1,4 @@
-package com.document.docease.ui.module.reader
+package com.document.docease.ui.module.filescreen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileList
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.DocEaseTheme
+import com.document.docease.utils.Extensions.fileIcon
 
 @Composable
 fun FileListScreen(
@@ -45,7 +46,7 @@ fun FileListScreen(
 
         is Resource.Success -> {
             Column {
-                FileList(files = fileLoadingState.value?.data!!)
+                FileList(files = fileLoadingState.value?.data!!, fileType.fileIcon())
             }
         }
         else -> {}

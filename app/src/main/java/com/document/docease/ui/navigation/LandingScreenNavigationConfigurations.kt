@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.document.docease.ui.module.filescreen.FileListScreen
+import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.ui.module.home.HomeScreen
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
-import com.document.docease.ui.module.reader.FileListScreen
-import com.document.docease.ui.module.reader.FileType
 
 @Composable
 fun LandingScreenNavigationConfigurations(
