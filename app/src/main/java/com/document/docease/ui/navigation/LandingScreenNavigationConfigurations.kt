@@ -7,7 +7,8 @@ import androidx.navigation.compose.composable
 import com.document.docease.ui.module.home.HomeScreen
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
-import com.document.docease.ui.module.pdf.PdfScreen
+import com.document.docease.ui.module.reader.FileListScreen
+import com.document.docease.ui.module.reader.FileType
 
 @Composable
 fun LandingScreenNavigationConfigurations(
@@ -19,13 +20,16 @@ fun LandingScreenNavigationConfigurations(
             HomeScreen()
         }
         composable(BottomNavigationScreens.PDF.route) {
-            PdfScreen(viewModel)
+            FileListScreen(viewModel, FileType.PDF)
+        }
+        composable(BottomNavigationScreens.WORD.route) {
+            FileListScreen(viewModel, FileType.WORD)
         }
         composable(BottomNavigationScreens.EXCEL.route) {
+            FileListScreen(viewModel, FileType.EXCEL)
         }
         composable(BottomNavigationScreens.PPT.route) {
+            FileListScreen(viewModel, FileType.P_POINT)
         }
     }
-
-
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.document.docease.data.Resource
 import com.document.docease.utils.Constants
 import com.document.docease.utils.Utility.isSupportedFileType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,11 +27,28 @@ class MainViewModel @Inject constructor() : ViewModel() {
         private set
 
 
-    private val _allFiles = MutableLiveData<List<File>>()
-    val allFiles: LiveData<List<File>> get() = _allFiles
+    private val _allFiles = MutableLiveData<Resource<List<File>>>()
+    val allFiles: LiveData<Resource<List<File>>> get() = _allFiles
+
+    private val _pdfFiles = MutableLiveData<Resource<List<File>>>()
+    val pdfFiles: LiveData<Resource<List<File>>> get() = _pdfFiles
+
+    private val _wordFiles = MutableLiveData<Resource<List<File>>>()
+    val wordFiles: LiveData<Resource<List<File>>> get() = _wordFiles
+
+    private val _excelFiles = MutableLiveData<Resource<List<File>>>()
+    val excelFiles: LiveData<Resource<List<File>>> get() = _excelFiles
+
+    private val _pptFiles = MutableLiveData<Resource<List<File>>>()
+    val pptFiles: LiveData<Resource<List<File>>> get() = _pptFiles
+
 
     private var allOfficeFile: MutableList<File> = mutableListOf()
-
+    private var allPdfFiles: MutableList<File> = mutableListOf()
+    private var allWordFiles: MutableList<File> = mutableListOf()
+    private var allExcelFiles: MutableList<File> = mutableListOf()
+    private var allPptFiles: MutableList<File> = mutableListOf()
+    private var allTextFiles: MutableList<File> = mutableListOf()
 
 
     init {
@@ -43,13 +61,22 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
     fun getAllFiles() {
         CoroutineScope(Dispatchers.IO).launch {
-             async {
+            _allFiles.postValue(Resource.Loading())
+            _pdfFiles.postValue(Resource.Loading())
+            _wordFiles.postValue(Resource.Loading())
+            _excelFiles.postValue(Resource.Loading())
+            _pptFiles.postValue(Resource.Loading())
+            async {
                 getAllFiles(Constants.dir)
             }.await()
-            _allFiles.postValue(allOfficeFile)
+            _allFiles.postValue(Resource.Success(allOfficeFile))
+            _pdfFiles.postValue(Resource.Success(allPdfFiles))
+            _wordFiles.postValue(Resource.Success(allWordFiles))
+            _excelFiles.postValue(Resource.Success(allExcelFiles))
+            _pptFiles.postValue(Resource.Success(allPptFiles))
+
         }
     }
-
 
 
     private fun getAllFiles(dir: File) {
@@ -71,38 +98,27 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
     private fun handleSupportedFile(file: File) {
         allOfficeFile.add(file)
-//        _allFiles.postValue(allOfficeFile)
         when {
             file.name.endsWith(".pdf") -> {
-                // Handle PDF file
-                // mPdfFiles.add(file)
-                // pdfFilesUpdated.postValue(true)
+                allPdfFiles.add(file)
             }
 
             file.name.endsWith(".xls") || file.name.endsWith(".xlsx") -> {
-                // Handle Excel file
-                // mExcelFiles.add(file)
-                // excelFilesUpdated.postValue(true)
+                allExcelFiles.add(file)
             }
 
             file.name.endsWith(".ppt") || file.name.endsWith(".pptx") -> {
-                // Handle PowerPoint file
-                // mPowerPointFiles.add(file)
-                // powerPointFilesUpdated.postValue(true)
+                allPptFiles.add(file)
             }
 
             file.name.endsWith(".docb") || file.name.endsWith(".docx") || file.name.endsWith(".doc") || file.name.endsWith(
                 ".dotx"
             ) -> {
-                // Handle Word file
-                // mWordFiles.add(file)
-                // wordFilesUpdated.postValue(true)
+                allWordFiles.add(file)
             }
 
             file.name.endsWith(".txt") -> {
-                // Handle Text file
-                // mListTxtFile.add(file)
-                // textFilesUpdated.postValue(true)
+                allTextFiles.add(file)
             }
         }
     }

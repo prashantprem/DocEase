@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +28,7 @@ import com.document.docease.R
 import com.document.docease.utils.Extensions.convertToFileSize
 import com.document.docease.utils.Extensions.formatTimeStamp
 import java.io.File
+import java.util.Locale
 
 @Composable
 fun FileList(
@@ -46,18 +46,22 @@ fun FileListItem(file: File) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp).padding(horizontal = 8.dp),
+            .height(60.dp)
+            .padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_pdf),
+            painter = painterResource(id = R.drawable.ic_large_pdf),
             contentDescription = "File icon",
             modifier = Modifier.size(30.dp)
         )
-        Column(modifier = Modifier.padding(start = 16.dp).fillMaxWidth().weight(1f)) {
+        Column(modifier = Modifier
+            .padding(start = 16.dp)
+            .fillMaxWidth()
+            .weight(1f)) {
             Text(
-                text = file.name,
+                text = file.name.lowercase(Locale.getDefault()),
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1
@@ -76,10 +80,10 @@ fun FileListItem(file: File) {
         }
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
-                imageVector = Icons.Filled.Star,
+                painter = painterResource(id = R.drawable.ic_star_unfilled),
                 contentDescription = "BookMark Button",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.size(20.dp)
             )
         }
 
@@ -88,7 +92,7 @@ fun FileListItem(file: File) {
                 imageVector = Icons.Filled.MoreVert,
                 contentDescription = "More Options",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier.size(20.dp)
             )
         }
     }
