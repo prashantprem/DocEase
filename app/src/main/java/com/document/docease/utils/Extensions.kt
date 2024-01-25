@@ -1,5 +1,10 @@
 package com.document.docease.utils
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import com.document.docease.R
 import com.document.docease.ui.module.filescreen.FileType
 import java.text.SimpleDateFormat
@@ -36,6 +41,14 @@ object Extensions {
             FileType.WORD -> R.drawable.ic_large_word
             FileType.EXCEL -> R.drawable.ic_large_excel
             FileType.P_POINT -> R.drawable.ic_excel
+        }
+    }
+
+
+    fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
+        clickable(indication = null,
+            interactionSource = remember { MutableInteractionSource() }) {
+            onClick()
         }
     }
 

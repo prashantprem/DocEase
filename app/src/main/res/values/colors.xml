@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_bg">#FBF9F9</color>
+    <color name="primary">#003EC9</color>
+    <color name="app_bar">#ffffff</color>
 </resources>
     
