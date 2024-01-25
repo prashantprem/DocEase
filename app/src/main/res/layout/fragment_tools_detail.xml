@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.component.tools.ToolsDetailActivity"
+    android:background="@color/tools_bg_color"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/rll_activity_main__app_menu"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_file_back_btn"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="13dp"
+            android:contentDescription="@string/todo"
+            android:padding="9.10dp"
+            android:tint="@color/black"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/tools_fragment_toolbar_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6.5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/pdf_to_png"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:id="@+id/error_layout_container"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="52dp"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_tool_error"/>
+        <TextView
+            android:id="@+id/tv_process_failed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/nunito"
+            android:textSize="23.40sp"
+            android:textColor="@color/app_color"
+            android:layout_marginTop="2.60dp"
+            android:text="@string/process_failed"/>
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/nunito"
+            android:textSize="14.30sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#66E2581B"
+            android:layout_marginTop="2.60dp"
+            android:text="@string/error_message"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_marginBottom="65dp"
+        android:layout_below="@+id/rll_activity_main__app_menu"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/upload_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20.80dp"
+                android:layout_marginTop="20.80dp"
+                android:layout_marginEnd="20.80dp"
+                android:layout_marginBottom="20.80dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/tools_upload_file" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_upload_file1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/tools_bg_circle"
+                        android:padding="10.40dp"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_upload_gallery" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_upload_cloud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/tools_bg_circle"
+                        android:padding="10.40dp"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_new_upload_cloud" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btn_upload_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/tools_bg_circle"
+                        android:padding="10.40dp"
+                        app:srcCompat="@drawable/ic_new_select_file" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/file_list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20.80dp"
+                android:layout_marginTop="20.80dp"
+                android:layout_marginEnd="20.80dp"
+                android:layout_marginBottom="20.80dp"
+                android:background="@drawable/tools_rv_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_file_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10.40dp"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/no_file_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10.40dp"
+                    app:srcCompat="@drawable/ic_placeholder_doc" />
+
+                <TextView
+                    android:id="@+id/tv_no_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10.40dp"
+                    android:layout_marginBottom="10.40dp"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="14sp"
+                    android:text="@string/tools_no_file_added" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ads_layout"
+                android:orientation="vertical"
+                android:layout_marginStart="20.80dp"
+                android:layout_marginEnd="20.80dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/split_range_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20.80dp"
+                android:layout_marginEnd="20.80dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/nunito"
+                    android:text="Select Range"
+                    android:textSize="16.90sp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/rv_split_range_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/btn_add_range"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5.20dp"
+                    android:paddingLeft="10.40dp"
+                    android:paddingRight="10.40dp"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:clickable="false"
+                        android:layout_width="28.60dp"
+                        android:layout_height="28.60dp"
+                        app:srcCompat="@drawable/main_create_file"/>
+                    <TextView
+                        android:clickable="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/app_color"
+                        android:fontFamily="@font/nunito"
+                        android:textSize="13sp"
+                        android:layout_marginStart="5.20dp"
+                        android:text="@string/add_range"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/password_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20.80dp"
+                android:layout_marginEnd="20.80dp"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:visibility="gone"
+                android:layout_marginTop="10.40dp"
+                android:orientation="vertical">
+                <TextView
+                    android:text="@string/enter_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="11sp"/>
+                <EditText
+                    android:id="@+id/edit_text_enter_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:hint="@string/hint"
+                    android:inputType="textPassword"
+                    android:backgroundTint="@color/app_color"/>
+                <TextView
+                    android:id="@+id/tv_confirm_password"
+                    android:text="@string/confirm_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="10.40dp"
+                    android:textSize="11sp"/>
+                <EditText
+                    android:id="@+id/edit_text_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:hint="@string/hint"
+                    android:inputType="textPassword"
+                    android:backgroundTint="@color/app_color"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_set_save_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:textSize="13sp"
+                android:text="@string/tools_set_save_location" />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/set_save_location"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10.40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/tools_rv_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                android:padding="5.20dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:srcCompat="@drawable/ic_new_select_file" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="@string/tools_location_path" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/btn_convert"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/home_toolbar_gradient">
+        <TextView
+            android:id="@+id/tv_btn_convert"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/convert"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/colorWhite_ffffff"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/progress_container"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+        <ProgressBar
+            android:id="@+id/tools_progress_bar"
+            android:layout_width="26dp"
+            android:indeterminateTint="@color/app_color"
+            android:layout_height="26dp"/>
+        <TextView
+            android:id="@+id/tv_progress_text"
+            android:layout_marginStart="5.20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/nunito"
+            android:text="@string/processing"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

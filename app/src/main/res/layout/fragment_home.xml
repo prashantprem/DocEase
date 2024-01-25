@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/tools_bg_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/home_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="21dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_all"
+                    android:layout_width="46dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_all" />
+
+                <TextView
+                    android:id="@+id/tv_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/all"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_all"
+                    app:layout_constraintHorizontal_bias="0.375"
+                    app:layout_constraintStart_toStartOf="@+id/btn_all"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_all" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_favourite"
+                    android:layout_width="40dp"
+                    android:layout_height="41dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_screenshots"
+                    app:layout_constraintStart_toEndOf="@+id/btn_all"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_favourite" />
+
+                <TextView
+                    android:id="@+id/tv_favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/favourite"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_favourite"
+                    app:layout_constraintStart_toStartOf="@+id/btn_favourite"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_favourite" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_screenshots"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_screen_shot" />
+
+                <TextView
+                    android:id="@+id/tv_screenshots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/screenshots"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_screenshots"
+                    app:layout_constraintStart_toStartOf="@+id/btn_screenshots"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_screenshots" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_ppt"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_ppt" />
+
+                <TextView
+                    android:id="@+id/tv_ppt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/ppt"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_ppt"
+                    app:layout_constraintStart_toStartOf="@+id/btn_ppt"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_ppt" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_excel"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_text"
+                    app:layout_constraintStart_toEndOf="@+id/btn_ppt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_excel" />
+
+                <TextView
+                    android:id="@+id/tv_excel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/excel"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_excel"
+                    app:layout_constraintStart_toStartOf="@+id/btn_excel"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_excel" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_text"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_text" />
+
+                <TextView
+                    android:id="@+id/tv_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/text"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_text"
+                    app:layout_constraintStart_toStartOf="@+id/btn_text"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_text" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_pdf"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_pdf" />
+
+                <TextView
+                    android:id="@+id/tv_pdf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/pdf"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_pdf"
+                    app:layout_constraintStart_toStartOf="@+id/btn_pdf"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_pdf" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_recent"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_word"
+                    app:layout_constraintStart_toEndOf="@+id/btn_pdf"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_recent" />
+
+                <TextView
+                    android:id="@+id/tv_recent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/recent"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_recent"
+                    app:layout_constraintStart_toStartOf="@+id/btn_recent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_recent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_word"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_word" />
+
+                <TextView
+                    android:id="@+id/tv_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:paddingTop="5dp"
+                    android:text="@string/word"
+                    android:textColor="@color/text_color_home_screen"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_word"
+                    app:layout_constraintStart_toStartOf="@+id/btn_word"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_word" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ad_view"
+                android:padding="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+                android:orientation="vertical"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--        List View-->
+
+        <RelativeLayout
+            android:id="@+id/home_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:visibility="gone"
+            >
+
+
+
+            <RelativeLayout
+                android:id="@+id/linearlayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:visibility="gone"
+                >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_google_drive_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_google_drive"
+                    />
+
+                <TextView
+                    android:layout_toEndOf="@id/img_google_drive_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/google_drive"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="6dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginStart="12dp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_google_drive_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_marginTop="6dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_favoutite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearlayout1"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_favourite_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_favourite" />
+
+                <TextView
+                    android:id="@+id/tv_favourite_lv"
+                    android:layout_toEndOf="@id/img_favourite_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/favourite"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_favourite_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="180dp"
+                    android:padding="8dp"
+                    android:layout_marginTop="6dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_ppt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_favoutite"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_ppt_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_ppt" />
+
+                <TextView
+                    android:id="@+id/tv_ppt_lv"
+                    android:layout_toEndOf="@id/img_ppt_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/ppt"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="6dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_ppt_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_excel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_ppt"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_excel_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_excel" />
+
+                <TextView
+                    android:id="@+id/tv_excel_lv"
+                    android:layout_toEndOf="@id/img_excel_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/excel"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_excel_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ad_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_excel"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/layout_screenshots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ad_view_2"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_screenshot_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_screen_shot" />
+
+                <TextView
+                    android:id="@+id/tv_screenshots_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@id/img_screenshot_lv"
+                    android:text="@string/screenshots"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_screenshots_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_screenshots"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_all_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_all" />
+
+                <TextView
+                    android:id="@+id/tv_all_lv"
+                    android:layout_toEndOf="@id/img_all_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/all"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_all_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_all"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_word_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_word" />
+
+                <TextView
+                    android:id="@+id/tv_word_lv"
+                    android:layout_toEndOf="@id/img_word_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/word"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_word_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_recent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_word"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_recent_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_recent" />
+
+                <TextView
+                    android:id="@+id/tv_recent_lv"
+                    android:layout_toEndOf="@id/img_recent_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/recent"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_recent_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_recent"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_text_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_text" />
+
+                <TextView
+                    android:id="@+id/tv_text_lv"
+                    android:layout_toEndOf="@id/img_text_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/text"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_text_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_text"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_pdf_lv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_pdf" />
+
+                <TextView
+                    android:id="@+id/tv_pdf_lv"
+                    android:layout_toEndOf="@id/img_pdf_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/pdf"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_pdf_lv"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_next" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/zui_contact_option_name"
+    style="@style/ZendeskSdkTheme.Light.Cell.Text.Response"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zui_background_cell_articles_response_footer"
+    android:gravity="center"
+    android:importantForAccessibility="no"
+    android:paddingLeft="@dimen/zui_cell_contact_option_margin"
+    android:paddingTop="@dimen/zui_cell_contact_option_margin"
+    android:paddingRight="@dimen/zui_cell_contact_option_margin"
+    android:paddingBottom="@dimen/zui_cell_contact_option_margin"
+    android:textColor="?colorPrimary"
+    android:textIsSelectable="false" />

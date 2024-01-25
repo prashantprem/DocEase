@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.supportv1.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/zui_conversation_view_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.supportv1.v7.widget.RecyclerView
+            android:id="@id/zui_recycler_cell"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize"
+            android:animateLayoutChanges="false"
+            android:clipToPadding="false"
+            android:descendantFocusability="beforeDescendants"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="24.0dip"
+            app:title="" />
+
+        <zendesk.commonui.InputBox
+            android:id="@id/zui_input_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+    </FrameLayout>
+
+    <include layout="@layout/zui_layout_navbar" />
+
+    <include
+        android:id="@id/zui_lost_connection_view"
+        layout="@layout/zui_banner_lost_connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?actionBarSize"
+        android:visibility="gone" />
+</android.supportv1.design.widget.CoordinatorLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="50.0dip" android:width="50.0dip" android:viewportWidth="50.0" android:viewportHeight="50.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:pathData="M20.778,12.174 L28.059,12.174 L28.059,38 L2.232,38 L2.232,12.174 L10.053,12.174" android:strokeColor="#ff333333" android:strokeWidth="0.78" android:strokeMiterLimit="10.0" />
+    <path android:pathData="M13.044,12.174 L17.81,12.174" android:strokeColor="#ff333333" android:strokeWidth="0.78" android:strokeMiterLimit="10.0" />
+    <path android:pathData="M4.798,19.289 L25.493,19.289 L25.493,35.435 L4.798,35.435 L4.798,19.289 Z" android:strokeColor="#ff333333" android:strokeWidth="0.78" android:strokeMiterLimit="10.0" />
+    <path android:pathData="M11.44,8.598 L11.44,16.745" android:strokeColor="#ff333333" android:strokeWidth="0.78" android:strokeMiterLimit="10.0" />
+    <path android:pathData="M19.24,8.598 L19.24,16.745" android:strokeColor="#ff333333" android:strokeWidth="0.78" android:strokeMiterLimit="10.0" />
+    <path android:fillColor="#ff333333" android:pathData="M7.649,31.762 C8.118,32.063,9.204,32.53,10.345,32.53 C12.462,32.53,13.117,31.182,13.097,30.172 C13.079,28.468,11.544,27.737,9.952,27.737 L9.035,27.737 L9.035,26.503 L9.952,26.503 C11.15,26.503,12.667,25.885,12.667,24.443 C12.667,23.47,12.049,22.608,10.533,22.608 C9.559,22.608,8.623,23.039,8.098,23.413 L7.669,22.215 C8.304,21.747,9.541,21.279,10.851,21.279 C13.248,21.279,14.334,22.702,14.334,24.181 C14.334,25.435,13.585,26.503,12.087,27.046 L12.087,27.083 C13.585,27.382,14.801,28.505,14.801,30.21 C14.801,32.156,13.285,33.86,10.364,33.86 C8.998,33.86,7.799,33.429,7.2,33.036 L7.649,31.762 Z" />
+    <path android:fillColor="#ff333333" android:pathData="M19.969,23.019 L19.931,23.019 L17.816,24.161 L17.497,22.907 L20.156,21.484 L21.56,21.484 L21.56,33.653 L19.969,33.653 Z" />
+    <path android:fillColor="#ff333333" android:pathData="M41.237,19.571 L41.237,32.093 L38.118,32.093 L38.118,19.571 L34.736,19.571 L39.937,13.678 L44.963,19.571 Z" />
+</vector>

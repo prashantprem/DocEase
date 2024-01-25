@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rll_create_file_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_create_file">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imv_drawer_create_fille"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:padding="5dp"
+        app:srcCompat="@drawable/ic_create_file_down"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/lnl_imv_popup_create_file__file"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/imv_drawer_create_fille"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_border_create_file"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:weightSum="4">
+        <LinearLayout
+            android:id="@+id/ln_create_file_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_create_file_bottom"
+                android:gravity="center"
+                android:backgroundTint="@color/app_color"
+                android:text="+"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/new_file_create"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/colorBlack" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_template_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:padding="6dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_create_file_bottom"
+                android:backgroundTint="@color/app_color"
+                android:tint="@color/colorWhite"
+                app:srcCompat="@drawable/ic_reader_tab" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/template_create"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/colorBlack" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

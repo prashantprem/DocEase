@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:paddingTop="4dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tools_bg_color"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_rect"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="160dp"
+            android:layout_marginEnd="160dp"
+            app:tint="#E4E4E4"
+            app:srcCompat="@drawable/ic_rectangle_upper" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back_button_tools"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/ic_back_button_preview" />
+
+        <TextView
+            android:id="@+id/convert_PDF_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/back_button_tools"
+            android:layout_marginStart="10.40dp"
+            android:fontFamily="@font/nunito"
+            android:layout_marginTop="8dp"
+            android:text="Convert PDF to"
+            android:textColor="@color/black" />
+
+        <HorizontalScrollView
+            android:id="@+id/scroll_view1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/convert_PDF_to">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:id="@+id/pdf_to_jpg"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_tools_jpg" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pdf_to_jpg"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pdf_to_png"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_tools_png" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pdf_to_png"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pdf_to_zip"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_tools_zip" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pdf_to_zip"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_premium_pdf_word"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/ic_premium_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/pdf_to_word" />
+
+                    <LinearLayout
+                        android:id="@+id/pdf_to_word"
+                        android:layout_width="100dp"
+                        android:layout_height="90dp"
+                        android:background="@drawable/tools_item_bg"
+                        android:gravity="center"
+                        android:layout_marginStart="10.40dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            app:srcCompat="@drawable/ic_tools_word" />
+
+                        <TextView
+                            style="@style/tv_tools_grey_normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pdf_to_word"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_premium_pdf_excel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/ic_premium_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/pdf_to_excel" />
+
+                    <LinearLayout
+                        android:id="@+id/pdf_to_excel"
+                        android:layout_width="100dp"
+                        android:layout_height="90dp"
+                        android:layout_marginStart="10.40dp"
+                        android:background="@drawable/tools_item_bg"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            app:srcCompat="@drawable/ic_tools_excel" />
+
+                        <TextView
+                            style="@style/tv_tools_grey_normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pdf_to_excel"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="11dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_premium_pdf_ppt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/ic_premium_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/pdf_to_ppt" />
+
+                    <LinearLayout
+                        android:id="@+id/pdf_to_ppt"
+                        android:layout_width="100dp"
+                        android:layout_height="90dp"
+                        android:layout_marginStart="10.40dp"
+                        android:background="@drawable/tools_item_bg"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            app:srcCompat="@drawable/ic_tools_new_ppt" />
+
+                        <TextView
+                            style="@style/tv_tools_grey_normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pdf_to_ppt"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/generate_pdf_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/scroll_view1"
+            android:layout_marginStart="10.40dp"
+            android:layout_marginTop="15dp"
+            android:text="Generate PDF from"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/black" />
+
+        <HorizontalScrollView
+            android:id="@+id/scroll_view2"
+            android:scrollbars="none"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/generate_pdf_from">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/png_to_pdf"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_pdf_tools" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/png_to_pdf"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/jpg_to_pdf"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_pdf_tools" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/jpg_to_pdf"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/word_to_pdf"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_pdf_tools" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/word_to_pdf"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/excel_to_pdf"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_pdf_tools" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/excel_to_pdf"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ppt_to_pdf"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_new_pdf_tools" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ppt_to_pdf"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/file_compress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/scroll_view2"
+            android:layout_marginStart="10.40dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/file_compress"
+            android:visibility="gone"
+            android:textColor="@color/black" />
+
+        <HorizontalScrollView
+            android:id="@+id/scroll_view3"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@id/file_compress"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_premium_compress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/ic_premium_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/compress_file" />
+
+                    <LinearLayout
+                        android:id="@+id/compress_file"
+                        android:layout_width="100dp"
+                        android:layout_height="90dp"
+                        android:layout_marginStart="10.40dp"
+                        android:background="@drawable/tools_item_bg"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            app:srcCompat="@drawable/ic_compress_file" />
+
+                        <TextView
+                            style="@style/tv_tools_grey_normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/compress"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/extract_file"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10.40dp"
+                    android:background="@drawable/tools_item_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/ic_extract_file" />
+
+                    <TextView
+                        style="@style/tv_tools_grey_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/extract_file"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="16dp"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_delete"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            app:srcCompat="@drawable/ic_move_to_trash_fragment_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            />
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_delete"
+            android:text="@string/are_you_sure"
+            android:textStyle="bold"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/content_for_question"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question"
+            android:text="@string/content_for_question"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            />
+
+        <Button
+            android:layout_centerHorizontal="true"
+            android:id="@+id/confirm_button"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/content_for_question"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:text="@string/delete"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:backgroundTint="@color/app_color"
+            android:background="@drawable/bg_rating_button"
+            />
+
+        <Button
+            android:layout_centerHorizontal="true"
+            android:id="@+id/cancel_button"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/confirm_button"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="@string/cancel_button_label"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/bg_rating_button"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

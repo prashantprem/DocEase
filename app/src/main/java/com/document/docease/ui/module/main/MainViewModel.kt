@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.document.docease.data.Resource
-import com.document.docease.utils.Constants
+import com.document.docease.utils.Constant
 import com.document.docease.utils.Utility.isSupportedFileType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -67,7 +67,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
             _excelFiles.postValue(Resource.Loading())
             _pptFiles.postValue(Resource.Loading())
             async {
-                getAllFiles(Constants.dir)
+                getAllFiles(Constant.dir)
             }.await()
             _allFiles.postValue(Resource.Success(allOfficeFile))
             _pdfFiles.postValue(Resource.Success(allPdfFiles))

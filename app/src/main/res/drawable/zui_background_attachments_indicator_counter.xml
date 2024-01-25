@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/zui_color_white_100" />
+        </shape>
+    </item>
+    <item android:id="@id/inner_circle" android:left="@dimen/_1sdp" android:top="@dimen/_1sdp" android:right="@dimen/_1sdp" android:bottom="@dimen/_1sdp">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/_5sdp" />
+            <solid android:color="@color/zui_color_primary" />
+        </shape>
+    </item>
+</layer-list>

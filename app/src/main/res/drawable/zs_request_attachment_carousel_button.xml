@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/zs_request_dropshadow" />
+    <item android:left="@dimen/_1sdp" android:top="@dimen/_1sdp" android:right="@dimen/_1sdp" android:bottom="@dimen/_1sdp">
+        <shape android:shape="oval">
+            <solid android:color="#ffffffff" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/zs_request_carousel_remove_button" android:left="@dimen/_3sdp" android:top="@dimen/_3sdp" android:right="@dimen/_3sdp" android:bottom="@dimen/_3sdp" />
+</layer-list>

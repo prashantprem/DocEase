@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@id/edit_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sodk_editor_search_input_wrapper"
+                android:orientation="horizontal">
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/font_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:minWidth="100dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="3dp"
+                    android:text="@string/sodk_editor_my_font_name"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@drawable/sodk_editor_font_ui_text"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nunito" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sodk_editor_font_box_border"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/fontdown_button"
+                    android:layout_height="match_parent"
+                    style="@style/sodk_editor_toolbar_font_button_no_text"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/sodk_editor_icon_font_down" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/font_size_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="30dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@drawable/sodk_editor_font_ui_text" />
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/fontup_button"
+                    style="@style/sodk_editor_toolbar_font_button_no_text"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableTop="@drawable/sodk_editor_icon_font_up" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/bold_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_bold" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/italic_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_italic" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/underline_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_underline" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/striketrough_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_strikethru"
+                android:visibility="gone" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/font_color_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_text_color" />
+
+            <LinearLayout
+                android:id="@id/font_background_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:src="@drawable/sodk_editor_icon_text_background_color" />
+            </LinearLayout>
+
+            <View style="@style/sodk_editor_toolbar_divider" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/align_left_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_align_text_left" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/align_center_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_align_text_center" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/align_right_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_align_text_right" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/align_justify_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_align_text_full" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/list_bullets_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_list_bullet" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/list_numbers_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_list_numbers" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/indent_decrease_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_indent_text_left" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/indent_increase_button"
+                style="@style/sodk_editor_toolbar_button_no_text"
+                android:background="?attr/selectableItemBackground"
+                android:drawableTop="@drawable/sodk_editor_icon_indent_text_right" />
+
+            <View style="@style/sodk_editor_toolbar_divider" />
+
+            <LinearLayout
+                android:id="@id/cut_button"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:src="@drawable/sodk_editor_icon_cut" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/copy_button"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:src="@drawable/sodk_editor_icon_copy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/paste_button"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/sodk_editor_icon_paste" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+</merge>

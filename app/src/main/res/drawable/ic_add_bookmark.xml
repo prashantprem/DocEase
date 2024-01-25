@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/ic_bookmark_border"
+        android:maxLevel="1" />
+
+    <item
+        android:drawable="@drawable/ic_bookmark"
+        android:maxLevel="2" />
+
+</level-list>

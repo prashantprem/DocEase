@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/tools_bg_color"
+    android:orientation="vertical"
+    tools:context=".ui.component.settings.SettingsFragment">
+
+    <LinearLayout
+        android:id="@+id/invite_friends"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20.80dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="21dp"
+            android:layout_height="20.05dp"
+            android:layout_marginStart="19dp"
+            app:srcCompat="@drawable/ic_invite_friend_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito"
+            android:layout_marginStart="11dp"
+            android:gravity="center_vertical"
+            android:text="@string/invite_your_friends" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rate_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20.80dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="21dp"
+            android:layout_height="20.05dp"
+            android:layout_marginStart="19dp"
+            app:srcCompat="@drawable/ic_star_bookmark"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:textSize="14sp"
+            android:layout_marginStart="11dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito"
+            android:gravity="center_vertical"
+            android:text="@string/rate_us" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/more_apps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20.80dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="21dp"
+            android:layout_height="20.05dp"
+            android:layout_marginStart="19dp"
+            app:srcCompat="@drawable/ic_grid_layout" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:textSize="14sp"
+            android:layout_marginStart="11dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito"
+            android:gravity="center_vertical"
+            android:text="@string/more_apps" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/ad_layout"
+        android:orientation="vertical"
+        android:layout_marginStart="10.40dp"
+        android:layout_marginEnd="10.40dp"
+        android:layout_marginTop="7.80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

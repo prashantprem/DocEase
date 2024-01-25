@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:filterTouchesWhenObscured="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@id/username_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24.0dip"
+        android:layout_marginRight="24.0dip"
+        android:gravity="start"
+        android:text="@string/boxsdk_alert_dialog_username"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <EditText
+        android:id="@id/username_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24.0dip"
+        android:layout_marginRight="24.0dip"
+        android:gravity="fill_horizontal"
+        android:hint="@string/boxsdk_alert_dialog_username"
+        android:inputType="textNoSuggestions"
+        android:scrollHorizontally="true"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <TextView
+        android:id="@id/password_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24.0dip"
+        android:layout_marginRight="24.0dip"
+        android:gravity="start"
+        android:text="@string/boxsdk_alert_dialog_password"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <EditText
+        android:id="@id/password_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24.0dip"
+        android:layout_marginRight="24.0dip"
+        android:gravity="fill_horizontal"
+        android:hint="@string/boxsdk_alert_dialog_password"
+        android:inputType="textPassword"
+        android:scrollHorizontally="true"
+        android:textAppearance="?android:textAppearanceMedium" />
+</LinearLayout>

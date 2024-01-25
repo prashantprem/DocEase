@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:importantForAccessibility="no">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@id/zui_cell_text_field"
+            style="@style/ZendeskSdkTheme.Light.Cell.Text.Query"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:importantForAccessibility="no"
+            android:paddingLeft="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingTop="@dimen/zui_cell_text_field_padding_vertical"
+            android:paddingRight="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingBottom="@dimen/zui_cell_text_field_padding_vertical" />
+
+        <zendesk.commonui.MessageStatusView
+            android:id="@id/zui_cell_status_view"
+            android:layout_width="@dimen/zui_cell_message_status_icon_size"
+            android:layout_height="@dimen/zui_cell_message_status_icon_size"
+            android:layout_marginStart="@dimen/zui_cell_supplementary_label_spacing"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@id/zui_cell_label_message"
+        style="@style/ZendeskSdkTheme.Light.Cell.Caption.Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</merge>

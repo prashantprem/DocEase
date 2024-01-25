@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.supportv1.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/zui_view_input_box"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/zui_layout_keylines_screen_edge_margin"
+    android:layout_marginTop="@dimen/zui_layout_margin_medium"
+    android:layout_marginRight="@dimen/zui_layout_keylines_screen_edge_margin"
+    android:layout_marginBottom="@dimen/zui_layout_keylines_screen_edge_margin"
+    android:animateLayoutChanges="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:minHeight="@dimen/zui_input_box_collapsed_height"
+    android:padding="@dimen/zui_list_item_text_padding"
+    app:cardBackgroundColor="@color/zui_color_white_100"
+    app:cardCornerRadius="@dimen/zui_cell_bubble_corner_radius">
+
+    <EditText
+        android:id="@id/input_box_input_text"
+        style="@style/ZendeskSdkTheme.Light.Cell.Text.Response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zui_input_box_collapsed_side_margin"
+        android:layout_marginLeft="@dimen/zui_input_box_collapsed_side_margin"
+        android:layout_marginEnd="@dimen/zui_input_box_collapsed_side_margin"
+        android:layout_marginRight="@dimen/zui_input_box_collapsed_side_margin"
+        android:background="@color/zui_color_transparent"
+        android:gravity="start|center|top"
+        android:hint="@string/zui_hint_type_message"
+        android:imeOptions="actionDone"
+        android:inputType="textCapSentences|textMultiLine"
+        android:minHeight="@dimen/zui_input_box_collapsed_height"
+        android:paddingTop="@dimen/zui_input_box_collapsed_top_padding"
+        android:scrollbars="vertical"
+        android:textColorHint="@color/zui_input_box_hint_color" />
+
+    <zendesk.commonui.AttachmentsIndicator
+        android:id="@id/input_box_attachments_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom|center"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@id/input_box_send_btn"
+        android:layout_width="@dimen/zui_input_box_button_width"
+        android:layout_height="@dimen/zui_input_box_button_height"
+        android:layout_gravity="end|bottom|center"
+        android:background="?selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/zui_label_send"
+        android:focusable="true"
+        android:padding="@dimen/zui_input_box_send_button_padding"
+        android:scaleX="@integer/zui_rtl_support_scale_x"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/zui_ic_send" />
+</android.supportv1.v7.widget.CardView>

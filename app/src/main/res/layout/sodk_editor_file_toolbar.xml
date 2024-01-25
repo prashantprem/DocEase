@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@id/file_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:id="@id/save_as_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                app:srcCompat="@drawable/sodk_editor_icon_save_pdf" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_save_as_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                app:srcCompat="@drawable/sodk_editor_icon_save" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_save_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/share_file"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_weight="0"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:layout_width="@dimen/_25sdp"-->
+<!--                android:layout_height="@dimen/_25sdp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:padding="@dimen/_5sdp"-->
+<!--                android:src="@drawable/ic_share_icon" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="SHARE"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/text"-->
+<!--                android:textSize="9sp" />-->
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@id/save_pdf_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                app:srcCompat="@drawable/sodk_editor_icon_save_pdf" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_save_pdf_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/print_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                app:srcCompat="@drawable/sodk_editor_icon_print" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_print_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@id/file_divider"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+        <com.artifex.sonui.editor.ToolbarButton
+            android:id="@id/share_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/sodk_editor_icon_share"
+            android:text="@string/sodk_editor_share_upper"
+            android:visibility="gone" />
+
+        <com.artifex.sonui.editor.ToolbarButton
+            android:id="@id/open_in_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/sodk_editor_icon_open_in"
+            android:text="@string/sodk_editor_open_in_upper"
+            android:visibility="gone" />
+
+        <com.artifex.sonui.editor.ToolbarButton
+            android:id="@id/open_pdf_in_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/sodk_editor_icon_open_pdf_in"
+            android:text="@string/sodk_editor_open_pdf_in_upper"
+            android:visibility="gone" />
+
+        <com.artifex.sonui.editor.ToolbarButton
+            android:id="@id/protect_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:drawableTop="@drawable/sodk_editor_icon_protect"
+            android:text="@string/sodk_editor_protect_upper" />
+    </LinearLayout>
+</merge>

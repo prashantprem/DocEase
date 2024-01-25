@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@id/preview_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sodk_preview_background"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="0.0dip"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@id/box1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/sodk_transparent"
+                android:contentDescription="@string/sodk_editor_nav_back"
+                android:onClick="onClickPreviewGoBack"
+                android:src="@drawable/sodk_icon_back" />
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_weight="1.0" />
+
+            <ImageView
+                android:id="@id/preview_last_viewed_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/sodk_editor_last_viewed"
+                android:minWidth="@dimen/_20sdp"
+                android:minHeight="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sodk_icon_metadata_last_edited" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_5sdp" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sodk_editor_last_viewed"
+                    android:textColor="@color/sodk_so_ui_default_text_color"
+                    android:textSize="14.0sp"
+                    android:textStyle="bold" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/preview_last_viewed_string"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/sodk_so_ui_default_text_color_light"
+                    android:textSize="14.0sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="24.0dip"
+                android:layout_height="@dimen/_1sdp" />
+
+            <ImageView
+                android:id="@id/preview_file_size_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/sodk_editor_file_size"
+                android:minWidth="@dimen/_20sdp"
+                android:minHeight="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sodk_icon_metadata_filesize" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="0.0dip"
+                    android:layout_height="@dimen/_5sdp" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sodk_editor_file_size"
+                    android:textColor="@color/sodk_so_ui_default_text_color"
+                    android:textSize="14.0sp"
+                    android:textStyle="bold" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/preview_file_size_string"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/sodk_so_ui_default_text_color_light"
+                    android:textSize="14.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/box2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/box1"
+            android:background="@color/sodk_so_ui_menu_color"
+            android:orientation="horizontal"
+            android:padding="@dimen/_7sdp">
+
+            <ImageView
+                android:id="@id/preview_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/sodk_editor_preview_icon"
+                android:paddingEnd="@dimen/_7sdp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/preview_short_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18.0sp" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/preview_long_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/preview_pager_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/box4"
+            android:layout_below="@id/box2"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_7sdp">
+
+            <android.supportv1.v7.widget.RecyclerView
+                android:id="@id/preview_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/box4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/box5parent"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" />
+
+            <com.artifex.sonui.editor.SOTextView
+                android:id="@id/preview_page_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/sodk_so_ui_menu_color"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/sodk_so_ui_default_text_color_light"
+                android:textSize="18.0sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@id/box5parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@id/box5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="6.0">
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/preview_copy_button"
+                    style="@style/sodk_editor_toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/sodk_icon_duplicate_doc"
+                    android:onClick="onPreviewCopy"
+                    android:text="@string/sodk_editor_copy_upper"
+                    android:textColor="@color/sodk_explorer_preview_text_color"
+                    android:textSize="14.0sp" />
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/preview_rename_button"
+                    style="@style/sodk_editor_toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/sodk_icon_rename_doc"
+                    android:onClick="onPreviewRename"
+                    android:text="@string/sodk_editor_rename_upper"
+                    android:textColor="@color/sodk_explorer_preview_text_color"
+                    android:textSize="14.0sp" />
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/preview_share_button"
+                    style="@style/sodk_editor_toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/sodk_icon_share"
+                    android:onClick="onPreviewShare"
+                    android:text="@string/sodk_editor_share_upper"
+                    android:textColor="@color/sodk_explorer_preview_text_color"
+                    android:textSize="14.0sp" />
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/preview_print_button"
+                    style="@style/sodk_editor_toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/sodk_icon_print"
+                    android:onClick="onPreviewPrint"
+                    android:text="@string/sodk_editor_print_upper"
+                    android:textColor="@color/sodk_explorer_preview_text_color"
+                    android:textSize="14.0sp" />
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/preview_delete_button"
+                    style="@style/sodk_editor_toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/sodk_icon_delete_doc"
+                    android:onClick="onPreviewDelete"
+                    android:text="@string/sodk_editor_delete_upper"
+                    android:textColor="@color/sodk_explorer_preview_text_color"
+                    android:textSize="14.0sp" />
+
+                <com.artifex.sonui.editor.ToolbarButton
+                    android:id="@id/preview_present_button"
+                    style="@style/sodk_editor_toolbar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/sodk_icon_play_slideshow"
+                    android:onClick="onPreviewSlideshow"
+                    android:text="@string/sodk_editor_present_upper"
+                    android:textColor="@color/sodk_explorer_preview_text_color"
+                    android:textSize="14.0sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</merge>

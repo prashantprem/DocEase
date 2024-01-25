@@ -1,5 +1,8 @@
 package com.document.docease.utils
 
+import android.content.Context
+import android.content.ContextWrapper
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.remember
@@ -52,4 +55,9 @@ object Extensions {
         }
     }
 
+    fun Context.findActivity(): ComponentActivity? = when (this) {
+        is ComponentActivity -> this
+        is ContextWrapper -> baseContext.findActivity()
+        else -> null
+    }
 }

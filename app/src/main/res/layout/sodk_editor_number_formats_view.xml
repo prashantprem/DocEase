@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:orientation="horizontal">
+
+        <com.artifex.sonui.editor.SOTextView
+            android:id="@id/name"
+            style="@style/sodk_editor_font_formula_text_box_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="@dimen/_3sdp"
+            android:textSize="18.0sp"
+            android:textStyle="bold" />
+
+        <com.artifex.sonui.editor.SOTextView
+            android:id="@id/arrow"
+            style="@style/sodk_editor_font_formula_text_box_style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_7sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text=">"
+            android:textSize="18.0sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

@@ -6,4 +6,1081 @@
     <string name="excel">Excel</string>
     <string name="ppt">PPoint</string>
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
+
+<!--    //Legacy Strings-->
+    <string name="no_data">No Data</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="search_error">there is no such recipe name</string>
+    <string name="recipe_details_preview">This is the recipes details, some text to test the appearance of the view. It\'s time for a truly uncompromising smartphone. One that was designed and manufactured by technical enthusiasts - in close coordination with the future users. A smartphone that perfectly combines fascinating technology, groundbreaking design and breakthrough innovation. It is time for the OnePlus 3. But do not rely on our word. Convince yourself.</string>
+    <string name="recipe_title_preview">This is the recipe name</string>
+    <string name="recipe">Recipes</string>
+    <string name="no_internet">Please check your internet connection</string>
+    <string name="network_error">Network error, could get data,please try again!</string>
+    <string name="refresh">refresh</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_recipes">Recipes</string>
+    <string name="title_activity_recipe_details">Recipe Details</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >4 characters</string>
+    <string name="invalid_username_and_password">please check your username and password</string>
+    <string name="add_to_favorite">Add to favorite</string>
+    <string name="test_password">chauhan</string>
+    <string name="test_email">chauhan@example.com</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="firebase_project_id">all-document-viewer-781b3</string>
+    <string name="premium_footer">The subscription automatically renews when the\nsubscription\'s initial term comes to an end</string>
+    <string name="premium_header">You are a Office\nDocs <font color="#E35F2F">PRO</font> </string>
+    <string name="premium_validity">Your Pro Membership valid till %1$s</string>
+    <string name="cancel_subscription"><u>CANCEL SUBSCRIPTION</u></string>
+    <string name="pro">PRO</string>
+    <string name="unlimited_access_to_all">Unlimited access to all</string>
+    <string name="no_ads">No ads</string>
+    <string name="unlimited_files">Unlimited files</string>
+    <string name="premium_tools">Premium tools</string>
+    <string name="doc_pro">Office Docs <font color="#E35F2F">PRO</font></string>
+    <string name="mb_convert">Convert Up to 15MB</string>
+    <string name="conversion_files">Conversion files\nrewarded ads</string>
+    <string name="privacy"><a href="https://sites.google.com/view/office-docs-terms-of-use/home">Terms of Use</a> | <a href="https://sites.google.com/view/officedocs/home">Privacy Policy</a> </string>
+    <string name="privacy_login">By creating an account, you agree to our\n<font color="#E35F2F"><a href="https://sites.google.com/view/office-docs-terms-of-use/home">Terms of Use</a> </font>&amp; <font color="#E35F2F"><a href="https://sites.google.com/view/officedocs/home">Privacy Policy</a></font> </string>
+    <string name="premium_cta">Subscribe Now</string>
+    <string name="cancel_premium">Auto billing  •  Cancel anytime</string>
+    <string name="premium_count">1049 people went PRO this Week</string>
+    <string name="ad_attribution">Ads</string>
+    <string name="search_hint">Search</string>
+    <string name="all">All</string>
+    <string name="recent">Recent</string>
+    <string name="google_drive">Google Drive</string>
+    <string name="allow_storage_permission">Allow storage permission to view the files!</string>
+    <string name="lost_internet_connection">Lost Internet Connection. Please try again!</string>
+    <string name="choose_correct_file">Choose correct file type!</string>
+    <string name="maximum_one_file_added">Maximum one file can be added</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="please_select_file">Please select a file</string>
+    <string name="password_mismatch">Password mismatch</string>
+    <string name="please_enter_password">Please enter password</string>
+    <string name="the_password_is_incorrect">The password is incorrect</string>
+    <string name="invalid_range">Invalid range! Range should be between 1 and</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="share_document">Share Document!</string>
+    <string name="view_horizontal">View horizontal</string>
+    <string name="view_vertical">View vertical</string>
+    <string name="share_view">Send as attachment</string>
+    <string name="your_launcher_not_support">Your Launcher does not support</string>
+    <string name="cannot_open_this_file">Can\'t open this file</string>
+    <string name="updating_file">Updating files..</string>
+    <string name="update_app">Please use the application in the latest version to get a great experience from the application. \n\n Thank you very much!</string>
+    <string name="no_file_found">No Files Found</string>
+    <string name="no_file_hint">No Files Found</string>
+    <string name="no_file_recent_hint">Open file to add recent view.</string>
+    <string name="tutorial">You can swipe from left to right to view next page</string>
+    <string name="could_not_open_file">Could not open file!</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="color">Color</string>
+    <string name="update">Update</string>
+    <string name="later">Later</string>
+    <string name="plz_enter_content">Please enter the content to search</string>
+    <string name="press_again">Press again to exit!</string>
+    <string name="no_file_bookmark">No Files</string>
+    <string name="no_file_bookmark_hint">Add new file to bookmark.</string>
+    <string name="mn_open">Open</string>
+    <string name="mn_share_file">Share file</string>
+    <string name="toast_added_bookmark">Added file to favourite!</string>
+    <string name="toast_file_added">File added!</string>
+    <string name="toast_removed_file">Removed file from favourite!</string>
+    <string name="file_reader_tab">Reader</string>
+    <string name="recent_tab">Recent</string>
+    <string name="book_mark_tab">Bookmark</string>
+    <string name="file_manager_tab">Store</string>
+    <string name="gift_tab">Gift</string>
+    <string name="slide">Slide</string>
+    <string name="todo">Todo</string>
+    <string name="update_nav">New Update</string>
+    <string name="version_navi">Version</string>
+    <string name="feedback_navi">Feedback</string>
+    <string name="share_app_navi">Share app</string>
+    <string name="rate_app_navi">Rate app</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="choose_button_label">Open</string>
+    <string name="default_dir" translatable="false">/sdcard</string>
+    <string name="label_parent_directory">Parent Directory</string>
+    <string name="last_edit">Edited: </string>
+    <string name="error_dir_access">Directory cannot be accessed</string>
+    <string name="cont_find_your_file">Can\'t Find Your File</string>
+    <string name="please_choose_rating">Please choose a rating!</string>
+    <string name="playstore_market_id">market://details?id=</string>
+    <string name="playstore_app_link">https://play.google.com/store/apps/details?id=</string>
+    <string name="favourites">Favourites</string>
+    <string name="recent_files">Recent Files</string>
+    <string name="label_parent_dir" translatable="false">...</string>
+    <string name="reading_mode">Reading mode</string>
+    <string name="this_last_version">This version is the latest version for you. Thank you for using the application.</string>
+    <string name="rate_do_you_like_this_app">Do you like this App?</string>
+    <string name="rate_content_rate_app">Please! Take a moment to rate 5 stars for Document. Thanks for your support!</string>
+    <string name="rate_title">[Rate Dialog] All Document</string>
+    <string name="rate_feedback">Please send feedback to us</string>
+    <string name="rate_content_feedback">Let us better upgrade the functionality and experience for this application.</string>
+    <string name="rate_feedback_hint">Suggest us what went wrong and we\'ll work on it</string>
+    <string name="thank_share">Thank you for sharing your feedback</string>
+    <string name="rate_content_sign">\n Version Code:</string>
+    <string name="fill_feedback">Please write something</string>
+    <string name="toast_rating">You have not yet rated us! Please press the star to evaluate title.</string>
+    <string name="intro1_content">Dominate the software to read the office \n document file.</string>
+    <string name="intro1_title">Enjoy reading \n all document file</string>
+    <string name="intro2_title">Powerful reader \n application</string>
+    <string name="intro2_content">The most powerful file reader application \n have ever used. \n Recommend to use by senior developer.</string>
+    <string name="intro3_title">Free cool Reader</string>
+    <string name="intro3_content">Sometimes images like the image above will appear in the app because it will give the community free apps.</string>
+    <string name="intro3_permission">Get started</string>
+    <string name="permisson_need_permission">Need permission</string>
+    <string name="permisson_need_permission_message">You can turn on permission in setting</string>
+    <string name="permisson_go_to_setting">Setting</string>
+    <string name="permisson_cancel">Cancel</string>
+    <string name="gift_remove_ads">Remove ads</string>
+    <string name="gift_remove_ads_detail">Remove ads to have good experience</string>
+    <string name="gift_install">Install</string>
+    <string name="gift_full_ads_title">Watch ads</string>
+    <string name="gift_watch_ads_detail">Click to watch video ads to support us improve apps</string>
+    <string name="gift_rate">4.6</string>
+    <string name="gift_count_install">100,000+</string>
+    <string name="loading_ads">Loading ads</string>
+    <string name="ads_title">Thank you for using the app! This video is to help you experience a better and free application for the community.</string>
+    <string name="setting_nav">Setting</string>
+    <string name="get_version_app">Version:</string>
+    <string name="dialog_enable_internet">Enable Internet</string>
+    <string name="dialog_message_internet">Please enable the internet for a better functional experience!</string>
+    <string name="internet_cancel">Cancel</string>
+    <string name="internet_try_again">Try again</string>
+    <string name="tap_to_refresh">Tap to turn on internet</string>
+    <string name="intro_next">Next</string>
+    <string name="intro1_enjoy">Enjoy</string>
+    <string name="intro_great">Great !</string>
+    <string name="just_only">Just only one final step left</string>
+    <string name="gift_full_ads">Full ads</string>
+    <string name="gift_full_ads_detail">Click to see ads for better apps every day</string>
+    <string name="gift_watch_ads_content">Watch ads to earn more your score</string>
+    <string name="gift_watch_ads_title">Reward Points</string>
+    <string name="dialog_suggest_bill_title">Try now</string>
+    <string name="dialog_suggest_bill_content">Do you want to remove ads and experience smoother apps? Please! Use our service to contribute a portion of your developer spend to create many new experiences and function for yourself.</string>
+    <string name="suggest_ok">OK</string>
+    <string name="mn_short_cut">Create shortcut</string>
+
+    <string name="tx_0">0</string>
+    <string name="tab_gift_title">It\'s big honor for us to continue contributing free apps for interested users as long as you feel free to experience my apps.</string>
+    <string name="loading_file">Loading file…</string>
+    <string name="text_error_title">Oh, Snap!</string>
+    <string name="text_error_content">So sorry! Please, feedback for better improvement. Thank you so much!</string>
+    <string name="try_again">Try again</string>
+    <string name="send_feedback">Send</string>
+    <string name="content_fake_title">This app gives you a great experience when you can read all the files you desire. Please use it immediately.</string>
+    <string name="rate_check_do_not_show">Don\'t show again</string>
+    <string name="thank_you_dialog">Thank you for using our application. Hope the application makes you satisfied. Please join us to improve the quality and experience of the application. Thanks very much!</string>
+    <string name="thank_you_dialog_title">Letter from developer</string>
+    <string name="dear_user">Dear user</string>
+    <string name="dialog_enable_new_update">Upgrade now !</string>
+    <string name="last_update">You are using the latest version. Thank you!</string>
+    <string name="donate_title">Give us a gift to motivate us to develop a free app for the community!</string>
+    <string name="donate_content">We will remove all ads while you use the app.</string>
+    <string name="donate_button">Donate</string>
+    <string name="donate_price_hotdog">0.99 $</string>
+    <string name="donate_name_hotdog">Hot dog</string>
+    <string name="donate_name_bread">Bread</string>
+    <string name="donate_price_bread">1.99 $</string>
+    <string name="donate_name_coffee">Coffee</string>
+    <string name="donate_price_coffee">2.99 $</string>
+    <string name="donate_name_hamburger">Hamburger</string>
+    <string name="donate_price_hamburger">3.99 $</string>
+    <string name="donate_name_pizza">Pizza</string>
+    <string name="donate_price_pizza">9.99 $</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="remove_all_ads">remove all ads</string>
+    <string name="intro1_title_enjoy">Enjoy</string>
+    <string name="intro1_title_powerfull">Powerful</string>
+    <string name="thank_you">Thank \nYou</string>
+    <string name="thanks">Thank</string>
+    <string name="you">You</string>
+    <string name="donate_success">You\'ve donate us a gift</string>
+    <string name="donate_success_give">To thank you, we give you:</string>
+    <string name="donate_success_coins">100 coins</string>
+    <string name="donate_success_remove_ads">Permanently remove ads</string>
+
+    <string name="firebase_database_url">https://office-reader-d3bce.firebaseio.com</string>
+    <!--    <string name="gcm_defaultSenderId">850249410431</string>-->
+    <!--    <string name="google_api_key">AIzaSyBRkWQwqmWIJhEB9vGa9eWOby_Q15BVvsk</string>-->
+    <!--    <string name="google_app_id">1:850249410431:android:3041ae5ccf0f9c2a461c4a</string>-->
+    <!--    <string name="google_storage_bucket">office-reader-d3bce.appspot.com</string>-->
+    <string name="common_google_play_services_unknown_issue">common_google_play_services_unknown_issue</string>
+    <string name="common_google_play_services_update_title">common_google_play_services_update_title</string>
+    <string name="remove_ads_success">Success! Now, the app does not have ads. Thank you so much!</string>
+    <string name="coin_50">50 coins</string>
+    <string name="coin_150">150 coins</string>
+    <string name="coin_300">300 coins</string>
+    <string name="coin_500">500 coins</string>
+    <string name="coin_1000">1000</string>
+    <string name="rate_toast">Sorry you have rated this app. Please enter the store to rate the app. Thank you</string>
+
+    <string name="create_new_word">New word</string>
+    <string name="create_new_slide">New Slide</string>
+    <string name="create_new_excel">New excel</string>
+    <string name="create_new_ads">View ads</string>
+
+    <!--Libs-->
+    <string name="GETTING_STARTED">Getting Started.pdf</string>
+    <string name="USER_GUIDE">User Guide.pdf</string>
+    <string name="abc_action_bar_home_description">Navigate home</string>
+    <string name="abc_action_bar_up_description">Navigate up</string>
+    <string name="abc_action_menu_overflow_description">More options</string>
+    <string name="abc_action_mode_done">Done</string>
+    <string name="abc_activity_chooser_view_see_all">See all</string>
+    <string name="abc_activitychooserview_choose_application">Choose an app</string>
+    <string name="abc_capital_off">OFF</string>
+    <string name="abc_capital_on">ON</string>
+    <string name="abc_font_family_body_1_material">sans-serif</string>
+    <string name="abc_font_family_body_2_material">sans-serif-medium</string>
+    <string name="abc_font_family_button_material">sans-serif-medium</string>
+    <string name="abc_font_family_caption_material">sans-serif</string>
+    <string name="abc_font_family_display_1_material">sans-serif</string>
+    <string name="abc_font_family_display_2_material">sans-serif</string>
+    <string name="abc_font_family_display_3_material">sans-serif</string>
+    <string name="abc_font_family_display_4_material">sans-serif-light</string>
+    <string name="abc_font_family_headline_material">sans-serif</string>
+    <string name="abc_font_family_menu_material">sans-serif</string>
+    <string name="abc_font_family_subhead_material">sans-serif</string>
+    <string name="abc_font_family_title_material">sans-serif-medium</string>
+    <string name="abc_menu_alt_shortcut_label">Alt+</string>
+    <string name="abc_menu_ctrl_shortcut_label">Ctrl+</string>
+    <string name="abc_menu_delete_shortcut_label">delete</string>
+    <string name="abc_menu_enter_shortcut_label">enter</string>
+    <string name="abc_menu_function_shortcut_label">Function+</string>
+    <string name="abc_menu_meta_shortcut_label">Meta+</string>
+    <string name="abc_menu_shift_shortcut_label">Shift+</string>
+    <string name="abc_menu_space_shortcut_label">space</string>
+    <string name="abc_menu_sym_shortcut_label">Sym+</string>
+    <string name="abc_prepend_shortcut_label">Menu+</string>
+    <string name="abc_search_hint">Search…</string>
+    <string name="abc_searchview_description_clear">Clear query</string>
+    <string name="abc_searchview_description_query">Search query</string>
+    <string name="abc_searchview_description_search">Search</string>
+    <string name="abc_searchview_description_submit">Submit query</string>
+    <string name="abc_searchview_description_voice">Voice search</string>
+    <string name="abc_shareactionprovider_share_with">Share with</string>
+    <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
+    <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="appbar_scrolling_view_behavior">android.supportv1.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="articles_list_fragment_error_message">Failed to get articles</string>
+    <string name="articles_list_fragment_no_articles_found">No articles found</string>
+    <string name="ask_request_list_failed_request_message">Message failed</string>
+    <string name="belvedere_dialog_camera">Camera</string>
+    <string name="belvedere_dialog_gallery">Gallery</string>
+    <string name="belvedere_fam_desc_collapse_fam">Collapse Floating Action Menu</string>
+    <string name="belvedere_fam_desc_expand_fam">Expand Floating Action Menu</string>
+    <string name="belvedere_fam_desc_open_gallery">Import file from gallery</string>
+    <string name="belvedere_fam_desc_open_google_photos">Import image from Google Photos</string>
+    <string name="belvedere_image_stream_file_too_large">File too large</string>
+    <string name="belvedere_image_stream_title">Photo library</string>
+    <string name="belvedere_image_stream_unknown_app">@string/request_attachment_generic_unknown_app</string>
+    <string name="belvedere_permissions_denied">Permissions denied</string>
+    <string name="belvedere_sdk_fpa_suffix_v2">.belvedere2.attachments</string>
+    <string name="belvedere_stream_item_camera_tile_desc">Import image from camera</string>
+    <string name="belvedere_stream_item_select_file_desc">Select file %s</string>
+    <string name="belvedere_stream_item_select_image_desc">Select image %s</string>
+    <string name="belvedere_stream_item_unselect_file_desc">Unselect file %s</string>
+    <string name="belvedere_stream_item_unselect_image_desc">Unselect image %s</string>
+    <string name="belvedere_toolbar_desc_collapse">Close image picker</string>
+    <string name="blocked_ip_error_message">You are attempting to log in to Box from a location that has not been approved by your admin. Please talk to your admin to resolve this issue.</string>
+    <string name="boxsdk_Authenticating">Authenticating</string>
+    <string name="boxsdk_Authentication_cancelled">Authentication Cancelled</string>
+    <string name="boxsdk_Authentication_fail">Authentication Failed</string>
+    <string name="boxsdk_Authentication_fail_forbidden">Contact your administrator to authorize this device.</string>
+    <string name="boxsdk_Authentication_fail_url_mismatch">The redirect url is not valid</string>
+    <string name="boxsdk_Cancel">Cancel</string>
+    <string name="boxsdk_Continue">Continue</string>
+    <string name="boxsdk_Create_folder">Create folder</string>
+    <string name="boxsdk_Go_back">Go back</string>
+    <string name="boxsdk_Please_wait">Please wait…</string>
+    <string name="boxsdk_Security_Warning">Security Warning</string>
+    <string name="boxsdk_Select">Select</string>
+    <string name="boxsdk_Select_an_account_to_use">Select an account to use</string>
+    <string name="boxsdk_There_are_problems_with_the_security_certificate_for_this_site">There are problems with the security certificate for this site.</string>
+    <string name="boxsdk_Use_a_different_account">Use a different account</string>
+    <string name="boxsdk_alert_dialog_cancel">Cancel</string>
+    <string name="boxsdk_alert_dialog_ok">Submit</string>
+    <string name="boxsdk_alert_dialog_password">Password</string>
+    <string name="boxsdk_alert_dialog_text_entry">This website or application is requesting authentication.</string>
+    <string name="boxsdk_alert_dialog_username">Username</string>
+    <string name="boxsdk_box_app_signature">308201fd30820166a00302010202044c8a3289300d06092a864886f70d01010505003043310b3009060355040613024341310b3009060355040813024f6e310f300d060355040713064f747461776131163014060355040a130d426974686561647320496e632e301e170d3130303931303133323834315a170d3335303930343133323834315a3043310b3009060355040613024341310b3009060355040813024f6e310f300d060355040713064f747461776131163014060355040a130d426974686561647320496e632e30819f300d06092a864886f70d010101050003818d0030818902818100926a2f83b01d88c31614e8b398b40606aa098949d97922332cee24e7362b77bc8dfd3b3556f0f787042cf1d17ff5fb0dd8672d5d2bfc903a2b1ef330d7323a00b8b6187e000a0d1a34fe0e6dcfdd1bbd021718a5fed5249348f24626b7b2c5d35d70b8c6a1436be8006c8843bcf1b5dea829c9d48aa77d06ebc0eeac294388b70203010001300d06092a864886f70d0101050500038181009170b46b82a7e5529d7e8c9ce45d1ad6ba539a0808c278923e5d8740686f1069f744d2bf18ce239f1f082a3c3c810947c42f972464f1cc9c4e5f39b7eee4282d6a617d4cea94677154d5f58629dcad04fae7540936838d466cd0c08831dba6b4989459a460cccc741f5fe2affffb42ef47943cc2fa7017fecfbf3dfd6cfb07d0</string>
+    <string name="boxsdk_button_ok">OK</string>
+    <string name="boxsdk_button_okay">OKAY</string>
+    <string name="boxsdk_common_name">common name:</string>
+    <string name="boxsdk_details">Details</string>
+    <string name="boxsdk_error_fatal_refresh">You have been logged out.</string>
+    <string name="boxsdk_error_network_connection">Unable to detect a network connection</string>
+    <string name="boxsdk_error_terms_of_service">Your administrator has changed your TOS. You must login, and accept the TOS to continue.</string>
+    <string name="boxsdk_expires_on">expires on:</string>
+    <string name="boxsdk_fingerprints">fingerprints:</string>
+    <string name="boxsdk_issued_by">issued by:</string>
+    <string name="boxsdk_issued_on">issued on:</string>
+    <string name="boxsdk_issued_to">issued to:</string>
+    <string name="boxsdk_no_offline_access">No offline access</string>
+    <string name="boxsdk_no_offline_access_detail">"We couldn't detect a network connection."</string>
+    <string name="boxsdk_no_offline_access_todo">To log in, connect to a WiFi or mobile data network.</string>
+    <string name="boxsdk_org_name">organization name:</string>
+    <string name="boxsdk_org_unit">organization unit:</string>
+    <string name="boxsdk_screen_overlay_error_message">For your security you must disable screen dimmers or brightness correction applications to continue.</string>
+    <string name="boxsdk_screen_overlay_error_title">Screen overlay detected</string>
+    <string name="boxsdk_serial_number">serial number:</string>
+    <string name="boxsdk_sha1_fingerprint">sha 1:</string>
+    <string name="boxsdk_sha256_fingerprint">sha 256:</string>
+    <string name="boxsdk_ssl_error_details">View details</string>
+    <string name="boxsdk_ssl_error_warning_DATE_INVALID">The date of the certificate is invalid.</string>
+    <string name="boxsdk_ssl_error_warning_EXPIRED">The certificate has expired.</string>
+    <string name="boxsdk_ssl_error_warning_ID_MISMATCH">Hostname mismatch.</string>
+    <string name="boxsdk_ssl_error_warning_INVALID">A generic error occurred.</string>
+    <string name="boxsdk_ssl_error_warning_NOT_YET_VALID">The certificate is not yet valid.</string>
+    <string name="boxsdk_ssl_error_warning_UNTRUSTED">The certificate authority is not trusted.</string>
+    <string name="boxsdk_ssl_should_not_proceed">You should not proceed, especially if you have never seen this warning before for this site.</string>
+    <string name="boxsdk_title_activity_oauth">OAuthActivity</string>
+    <string name="boxsdk_unable_to_connect">Unable to connect</string>
+    <string name="boxsdk_unable_to_connect_detail">We were unable to connect to your network.</string>
+    <string name="boxsdk_unable_to_connect_todo">Check your network connection and try again.</string>
+    <string name="boxsdk_validity_period">validity period:</string>
+    <string name="categories_list_fragment_error_message">Failed to get categories</string>
+    <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
+    <string name="character_counter_pattern">%1$d / %2$d</string>
+    <string name="contact_fragment_title">Contact us</string>
+    <string name="error_msg_invalid_email">Enter valid email address</string>
+    <string name="error_msg_invalid_message">Enter your message</string>
+    <string name="error_msg_invalid_name">Enter your full name</string>
+    <string name="fab_transformation_scrim_behavior">android.supportv1.design.transformation.FabTransformationScrimBehavior</string>
+    <string name="fab_transformation_sheet_behavior">android.supportv1.design.transformation.FabTransformationSheetBehavior</string>
+    <string name="help_search_no_results_label">No results for</string>
+    <string name="help_search_subtitle_format">%1$s • %2$s</string>
+    <string name="help_see_all_articles_label">See all articles</string>
+    <string name="help_see_all_n_articles_label">See all %d articles</string>
+    <string name="hide_bottom_view_on_scroll_behavior">android.supportv1.design.behavior.HideBottomViewOnScrollBehavior</string>
+    <string name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
+    <string name="network_activity_no_connectivity">No connection</string>
+    <string name="password_toggle_content_description">Show password</string>
+    <string name="path_password_eye">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
+    <string name="path_password_eye_mask_strike_through">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
+    <string name="request_activity_title">@string/contact_fragment_title</string>
+    <string name="request_attachment_generic_unknown_app">Unknown</string>
+    <string name="request_dialog_body_unsaved_changes">Going back will delete your message. Are you sure you want to delete it?</string>
+    <string name="request_dialog_button_label_cancel">Cancel</string>
+    <string name="request_dialog_button_label_delete">Delete</string>
+    <string name="request_dialog_title_unsaved_changes">Message not sent</string>
+    <string name="request_email_entry_hint">Email</string>
+    <string name="request_error_create_request">Failed to create request</string>
+    <string name="request_error_load_comments">Failed to load comments</string>
+    <string name="request_file_attachment_download_in_progress">File download in progress</string>
+    <string name="request_list_activity_title">My tickets</string>
+    <string name="request_list_empty_start_conversation">START A CONVERSATION</string>
+    <string name="request_list_empty_text">Conversations started from this app will be visible here.</string>
+    <string name="request_list_error_message">@string/request_list_fragment_error_message</string>
+    <string name="request_list_fragment_error_message">Failed to get tickets</string>
+    <string name="request_list_me">Me</string>
+    <string name="request_list_re">Re: %s</string>
+    <string name="request_list_ticket_closed">Ticket Closed</string>
+    <string name="request_menu_button_label_add_attachments">Add attachments</string>
+    <string name="request_menu_button_label_send">Send</string>
+    <string name="request_message_date_today">TODAY</string>
+    <string name="request_message_date_yesterday">YESTERDAY</string>
+    <string name="request_message_entry_hint">Message</string>
+    <string name="request_message_inline_image_title_format">[%1$s]</string>
+    <string name="request_message_status_delivered">Delivered</string>
+    <string name="request_messages_status_error">Message failed. Tap to retry</string>
+    <string name="request_name_entry_hint">Name</string>
+    <string name="request_retry_dialog_delete_message">Delete message</string>
+    <string name="request_retry_dialog_retry">Retry sending</string>
+    <string name="request_system_message_closed_ticket">This conversation has been closed.</string>
+    <string name="request_toolbar_last_reply">Last reply %s</string>
+    <string name="request_write_a_message">Write a message</string>
+    <string name="retry_view_button_label">Retry</string>
+    <string name="search_menu_title">Search</string>
+    <string name="sections_list_fragment_error_message">Failed to get sections</string>
+    <string name="sodk_IAP_PRO">PRO</string>
+    <string name="sodk_about">About</string>
+    <string name="sodk_app_chooser_title">Complete action using</string>
+    <string name="sodk_app_name">Office Editor</string>
+    <string name="sodk_auth_authenticate">Authenticate</string>
+    <string name="sodk_auth_cancelled_desc">Authentication Required. Please Authenticate.</string>
+    <string name="sodk_auth_cancelled_title">Authentication Cancelled</string>
+    <string name="sodk_auth_require_screen_lock_desc">Enter Device Screen Lock</string>
+    <string name="sodk_auth_require_screen_lock_title">Device Screen Lock Required</string>
+    <string name="sodk_auth_screen_lock_set">Set</string>
+    <string name="sodk_certificate_common_name">Common Name (CN)</string>
+    <string name="sodk_certificate_country">Country (C)</string>
+    <string name="sodk_certificate_details">Certificate Details</string>
+    <string name="sodk_certificate_email">Email</string>
+    <string name="sodk_certificate_org">Organisation (O)</string>
+    <string name="sodk_certificate_org_unit">Organizational Unit (OU)</string>
+    <string name="sodk_certificate_sign">Sign</string>
+    <string name="sodk_certificate_verify">Verify</string>
+    <string name="sodk_certificate_verify_digest_failure">Document digest failure</string>
+    <string name="sodk_certificate_verify_failed">Verification failed</string>
+    <string name="sodk_certificate_verify_has_changes">This signature is valid, but there have been changes made to the document since it was signed</string>
+    <string name="sodk_certificate_verify_no_changes">This signature is valid, and there have been no changes made to the document since it was signed</string>
+    <string name="sodk_certificate_verify_not_trusted">This signature is not trusted</string>
+    <string name="sodk_certificate_verify_ok">Signature valid</string>
+    <string name="sodk_certificate_verify_title">Document Signature Verification</string>
+    <string name="sodk_certificate_verify_warning">Signature warning</string>
+    <string name="sodk_certificates">Available Certificates</string>
+    <string name="sodk_dlp_prevents_open_message">The current data leakage policy prevents opening files from non-secure apps</string>
+    <string name="sodk_dlp_prevents_open_title">This file could not be opened</string>
+    <string name="sodk_editor_Australia">Australia</string>
+    <string name="sodk_editor_Canada">Canada</string>
+    <string name="sodk_editor_China">China</string>
+    <string name="sodk_editor_India">India</string>
+    <string name="sodk_editor_Japan">Japan</string>
+    <string name="sodk_editor_Korea">Korea</string>
+    <string name="sodk_editor_New_Zealand">New Zealand</string>
+    <string name="sodk_editor_OK">OK</string>
+    <string name="sodk_editor_Singapore">Singapore</string>
+    <string name="sodk_editor_South_Africa">South Africa</string>
+    <string name="sodk_editor_United_Kingdom">United Kingdom</string>
+    <string name="sodk_editor_United_States">United States</string>
+    <string name="sodk_editor_accept_upper">ACCEPT</string>
+    <string name="sodk_editor_all">All</string>
+    <string name="sodk_editor_arrange_upper">ARRANGE</string>
+    <string name="sodk_editor_as_eighths">As Eighths</string>
+    <string name="sodk_editor_as_halves">As Halves</string>
+    <string name="sodk_editor_as_hundredths">As Hundredths</string>
+    <string name="sodk_editor_as_quarters">As Quarters</string>
+    <string name="sodk_editor_as_sixteenths">As Sixteenths</string>
+    <string name="sodk_editor_as_tenths">As Tenths</string>
+    <string name="sodk_editor_author_dialog_title">Author</string>
+    <string name="sodk_editor_author_upper">AUTHOR</string>
+    <string name="sodk_editor_autosum_text">SUM(first_cell:last_cell)</string>
+    <string name="sodk_editor_background">Background</string>
+    <string name="sodk_editor_cancel">Cancel</string>
+    <string name="sodk_editor_cant_change_extension">"You can't change the extension from \"%1$s\" to \"%2$s\"."</string>
+    <string name="sodk_editor_cant_create_temp_file">"Could not create temporary file %s
+
+Have storage permissions been granted?"</string>
+    <string name="sodk_editor_cant_review_doc_body">"Review actions are not supported for Office 1997-2007 format documents.
+
+Please use Office on a desktop computer to convert the file to the newer format."</string>
+    <string name="sodk_editor_cell_height_upper">CELL HEIGHT</string>
+    <string name="sodk_editor_cell_width_upper">CELL WIDTH</string>
+    <string name="sodk_editor_cellbox_last_value">" "</string>
+    <string name="sodk_editor_changed_paragraph_properties">Changed paragraph properties</string>
+    <string name="sodk_editor_changed_run_properties">Changed run properties</string>
+    <string name="sodk_editor_changed_section_properties">Changed section properties</string>
+    <string name="sodk_editor_changed_table_cell_properties">Changed table cell properties</string>
+    <string name="sodk_editor_changed_table_grid">Changed Table Grid</string>
+    <string name="sodk_editor_changed_table_properties">Changed table properties</string>
+    <string name="sodk_editor_changed_table_row_properties">Changed table row properties</string>
+    <string name="sodk_editor_clear_text">Clear text</string>
+    <string name="sodk_editor_cm">cm</string>
+    <string name="sodk_editor_color">Colour</string>
+    <string name="sodk_editor_comment_upper">COMMENT</string>
+    <string name="sodk_editor_confirm_logout_message">Confirm log out or cancel</string>
+    <string name="sodk_editor_confirm_logout_title">Log out from %s</string>
+    <string name="sodk_editor_connection_error_body">You are not connected to the internet. Check your connection and try again.</string>
+    <string name="sodk_editor_connection_error_title">Connection Error</string>
+    <string name="sodk_editor_content_error">content:// error</string>
+    <string name="sodk_editor_continue_editing">Continue editing</string>
+    <string name="sodk_editor_copy">Copy</string>
+    <string name="sodk_editor_copy_same_file">You cannot copy a file to itself. Please choose another name or location for the copy.</string>
+    <string name="sodk_editor_copy_upper">COPY</string>
+    <string name="sodk_editor_copyright">Copyright © 2000-2019 Artifex Software Inc. All rights reserved.</string>
+    <string name="sodk_editor_create_new">Create New</string>
+    <string name="sodk_editor_cut_upper">CUT</string>
+    <string name="sodk_editor_datetime_upper">DATE/TIME</string>
+    <string name="sodk_editor_default_name_document">Document</string>
+    <string name="sodk_editor_default_name_presentation">Presentation</string>
+    <string name="sodk_editor_default_name_spreadsheet">Spreadsheet</string>
+    <string name="sodk_editor_delete">Delete</string>
+    <string name="sodk_editor_delete_comment_upper">"DELETE
+COMMENT"</string>
+    <string name="sodk_editor_delete_upper">DELETE</string>
+    <string name="sodk_editor_delete_worksheet_q">Delete Worksheet?</string>
+    <string name="sodk_editor_deleted_text">Deleted text</string>
+    <string name="sodk_editor_deleting">Deleting...</string>
+    <string name="sodk_editor_device_files">Device Files</string>
+    <string name="sodk_editor_discard">Discard</string>
+    <string name="sodk_editor_dismiss">Dismiss</string>
+    <string name="sodk_editor_do_you_really_want_to_delete">Do you really want to delete \"%s\"?</string>
+    <string name="sodk_editor_do_you_want_to_delete_the_sheet">Do you want to delete the sheet \"</string>
+    <string name="sodk_editor_doc_open_error">There was an error (%d) opening the document.</string>
+    <string name="sodk_editor_doc_uses_unsupported_enc">Document uses unsupported encryption</string>
+    <string name="sodk_editor_document_has_been_modified">There are unsaved changes</string>
+    <string name="save_before_share_body">Changes have been made to the file. Would you like to save these changes before sharing?</string>
+    <string name="sodk_editor_download">Download</string>
+    <string name="sodk_editor_downloading">Downloading...</string>
+    <string name="sodk_editor_draw_upper">DRAW</string>
+    <string name="sodk_editor_edit_font">Edit Font</string>
+    <string name="sodk_editor_edit_function">Edit Function</string>
+    <string name="sodk_editor_engineering_upper">ENGINEERING</string>
+    <string name="sodk_editor_enter_a_new_name">Enter a new name for \"%s\":</string>
+    <string name="sodk_editor_error">Error</string>
+    <string name="sodk_editor_error_copying_from_remote">Error copying from remote.</string>
+    <string name="sodk_editor_error_opening">"Error opening "</string>
+    <string name="sodk_editor_error_opening_from_other_app">Error opening document sent from another app</string>
+    <string name="sodk_editor_error_renaming_file">Error renaming file.</string>
+    <string name="sodk_editor_error_saving_document">Error saving document.</string>
+    <string name="sodk_editor_error_saving_document_code">Error saving document: SOError=%d</string>
+    <string name="sodk_editor_explore">Explore</string>
+    <string name="sodk_editor_file_already_exists">File already exits. Choose a different name.</string>
+    <string name="sodk_editor_file_already_exists2">\"%s\" already exists.</string>
+    <string name="sodk_editor_file_name">File Name</string>
+    <string name="sodk_editor_file_size">File Size</string>
+    <string name="sodk_editor_financial_upper">FINANCIAL</string>
+    <string name="sodk_editor_find">Find...</string>
+    <string name="sodk_editor_first_page_upper">FIRST PAGE</string>
+    <string name="sodk_editor_format_category_accounting">Accounting</string>
+    <string name="sodk_editor_format_category_currency">Currency</string>
+    <string name="sodk_editor_format_category_custom">Custom</string>
+    <string name="sodk_editor_format_category_date_and_time">Date and Time</string>
+    <string name="sodk_editor_format_category_fraction">Fraction</string>
+    <string name="sodk_editor_format_category_general">General</string>
+    <string name="sodk_editor_format_category_number">Number</string>
+    <string name="sodk_editor_format_category_percentage">Percentage</string>
+    <string name="sodk_editor_fullscreen_warning">"Tap the screen at any time
+to leave fullscreen mode."</string>
+    <string name="sodk_editor_fx">fx</string>
+    <string name="sodk_editor_getting_started">Getting Started</string>
+    <string name="sodk_editor_go_up">Go up</string>
+    <string name="sodk_editor_highlight_upper">Highlight</string>
+    <string name="sodk_editor_image_upper">IMAGE</string>
+    <string name="sodk_editor_ime_action_label_done">Done</string>
+    <string name="sodk_editor_information_upper">INFORMATION</string>
+    <string name="sodk_editor_insert_image_gone_body">"The selected image can't be inserted. It may have been deleted or moved."</string>
+    <string name="sodk_editor_insert_image_gone_title">Unable to insert image</string>
+    <string name="sodk_editor_inserted_paragraph">Inserted paragraph</string>
+    <string name="sodk_editor_inserted_table_cell">Inserted table cell</string>
+    <string name="sodk_editor_inserted_table_row">Inserted table row</string>
+    <string name="sodk_editor_inserted_text">Inserted text</string>
+    <string name="sodk_editor_invalid_file_name">Invalid file name.</string>
+    <string name="sodk_editor_is_a_directory">\"%s\" is a directory. Directories cannot be deleted.</string>
+    <string name="sodk_editor_keep_searching">Keep searching?</string>
+    <string name="sodk_editor_last_page_upper">LAST PAGE</string>
+    <string name="sodk_editor_last_viewed">Last Viewed</string>
+    <string name="sodk_editor_like_to_retain">Would you like to update the author name, or retain the current one?</string>
+    <string name="sodk_editor_loading_please_wait">Loading, please wait.</string>
+    <string name="sodk_editor_log_out">Log out</string>
+    <string name="sodk_editor_logical_upper">LOGICAL</string>
+    <string name="sodk_editor_lookup_upper">LOOKUP</string>
+    <string name="sodk_editor_maths_upper">MATHS</string>
+    <string name="sodk_editor_menu">Menu</string>
+    <string name="sodk_editor_merge_cells_upper">MERGE CELLS</string>
+    <string name="sodk_editor_more">More</string>
+    <string name="sodk_editor_my_documents">My Documents</string>
+    <string name="sodk_editor_my_documents2">My Documents (internal)</string>
+    <string name="sodk_editor_my_font_name">My Font Name</string>
+    <string name="sodk_editor_n_thru_n_of_n" formatted="false">%d-%d OF %d</string>
+    <string name="sodk_editor_nav_back">Go Back</string>
+    <string name="sodk_editor_new_intent_body">Opening a new document will lose changes made to another document</string>
+    <string name="sodk_editor_new_intent_no_button">Continue with previous document</string>
+    <string name="sodk_editor_new_intent_title">Edit session already in progress</string>
+    <string name="sodk_editor_new_intent_yes_button">Open a new document</string>
+    <string name="sodk_editor_new_name">new name</string>
+    <string name="sodk_editor_next_link_upper">NEXT</string>
+    <string name="sodk_editor_next_upper">NEXT</string>
+    <string name="sodk_editor_no">No</string>
+    <string name="sodk_editor_no_apps_can_perform">No apps can perform this action.</string>
+    <string name="sodk_editor_no_documents_found">No documents found</string>
+    <string name="sodk_editor_no_media_hint">Sharing the storage media with a PC can make it inaccessible</string>
+    <string name="sodk_editor_no_media_warning">Storage media not present</string>
+    <string name="sodk_editor_no_more_found">No more found</string>
+    <string name="sodk_editor_not_supported">Not supported</string>
+    <string name="sodk_editor_not_yet_supported">not yet supported</string>
+    <string name="sodk_editor_note_upper">NOTE</string>
+    <string name="sodk_editor_number_format_accounting">Number Format - Accounting</string>
+    <string name="sodk_editor_number_format_currency">Number Format - Currency</string>
+    <string name="sodk_editor_number_format_custom">Number Format - Custom</string>
+    <string name="sodk_editor_number_format_date_and_time">Number Format - Date and Time</string>
+    <string name="sodk_editor_number_format_fractions">Number Format - Fractions</string>
+    <string name="sodk_editor_number_format_number">Number Format - Number</string>
+    <string name="sodk_editor_number_format_percentage">Number Format - Percentage</string>
+    <string name="sodk_editor_number_format_upper">"NUMBER
+FORMAT"</string>
+    <string name="sodk_editor_ok">OK</string>
+    <string name="sodk_editor_open_in">Open In</string>
+    <string name="sodk_editor_open_in_upper">OPEN IN</string>
+    <string name="sodk_editor_open_pdf_in">Open PDF In</string>
+    <string name="sodk_editor_open_pdf_in_upper">OPEN PDF IN</string>
+    <string name="sodk_editor_page_d_of_d" formatted="false">PAGE %d OF %d</string>
+    <string name="sodk_editor_page_zd_of_d" formatted="false">PAGE %1$zd OF %d</string>
+    <string name="sodk_editor_pages_n_thru_n_of_n" formatted="false">PAGES %d-%d OF %d</string>
+    <string name="sodk_editor_password_for_document">Password for document:</string>
+    <string name="sodk_editor_paste_upper">PASTE</string>
+    <string name="sodk_editor_permission_denied">Permission Denied</string>
+    <string name="sodk_editor_permission_final">Office Editor will now terminate.</string>
+    <string name="sodk_editor_permission_google_final">Sorry, you cannot access Google Drive.</string>
+    <string name="sodk_editor_permission_google_why">These permissions are necessary to choose your Google account. Would you like to try again?</string>
+    <string name="sodk_editor_permission_why">These permissions are necessary for Office Editor to open and save documents. Would you like to try again?</string>
+    <string name="sodk_editor_photo_upper">PHOTO</string>
+    <string name="sodk_editor_picker_title_App_Ver_Dir">%1$s %2$s: %3$s</string>
+    <string name="sodk_editor_please_wait">Please wait...</string>
+    <string name="sodk_editor_present_upper">PRESENT</string>
+    <string name="sodk_editor_preview_icon">Preview</string>
+    <string name="sodk_editor_previous_link_upper">PREVIOUS</string>
+    <string name="sodk_editor_previous_upper">PREVIOUS</string>
+    <string name="sodk_editor_print_upper">PRINT</string>
+    <string name="sodk_editor_printing_not_supported_body">Printing is not supported for this version of Andriod.</string>
+    <string name="sodk_editor_printing_not_supported_title">Not Supported</string>
+    <string name="sodk_editor_protect_upper">PROTECT</string>
+    <string name="sodk_editor_recent">Recent</string>
+    <string name="sodk_editor_recent_documents">Recent Documents</string>
+    <string name="sodk_editor_redact_apply_upper">APPLY</string>
+    <string name="sodk_editor_redact_confirm_apply_body">Applying redactions cannot be undone. Do you want to continue?</string>
+    <string name="sodk_editor_redact_confirm_save">"This document contains redaction marks that have not yet been applied. Any content associated with these marks will still be present until they are applied.
+
+Are you sure you want to continue?"</string>
+    <string name="sodk_editor_redact_mark_upper">MARK</string>
+    <string name="sodk_editor_redact_remove_upper">REMOVE</string>
+    <string name="sodk_editor_reflow_upper">REFLOW</string>
+    <string name="sodk_editor_reject_upper">REJECT</string>
+    <string name="sodk_editor_rename">Rename</string>
+    <string name="sodk_editor_rename_error">Error renaming the file.</string>
+    <string name="sodk_editor_rename_upper">RENAME</string>
+    <string name="sodk_editor_renaming">Renaming...</string>
+    <string name="sodk_editor_replace_file_body">That file already exists. Do you want to replace it?</string>
+    <string name="sodk_editor_replace_file_title">File Exists</string>
+    <string name="sodk_editor_retain">Retain</string>
+    <string name="sodk_editor_save">Save</string>
+    <string name="sodk_editor_save_as_upper">SAVE AS</string>
+    <string name="sodk_editor_save_pdf_upper">SAVE PDF</string>
+    <string name="sodk_editor_save_upper">SAVE</string>
+    <string name="sodk_editor_saved_body">File save is complete.</string>
+    <string name="sodk_editor_saved_title">Saved</string>
+    <string name="sodk_editor_scientific">Scientific</string>
+    <string name="sodk_editor_search">Search</string>
+    <string name="sodk_editor_searching">Searching</string>
+    <string name="sodk_editor_select_image">Select Image</string>
+    <string name="sodk_editor_shape_and_line_upper">"SHAPE
+AND LINE"</string>
+    <string name="sodk_editor_shape_upper">SHAPE</string>
+    <string name="sodk_editor_shapes">Shapes</string>
+    <string name="sodk_editor_share">Share</string>
+    <string name="sodk_editor_share_error_body">Error making local copy.</string>
+    <string name="sodk_editor_share_error_title">Share Error</string>
+    <string name="sodk_editor_share_upper">SHARE</string>
+    <string name="sodk_editor_share_with">Share With</string>
+    <string name="sodk_editor_sheet_d_of_d" formatted="false">SHEET %d OF %d</string>
+    <string name="sodk_editor_show_changes_upper">"SHOW
+CHANGES"</string>
+    <string name="sodk_editor_smartoffice">Office Editor</string>
+    <string name="sodk_editor_sort_menu">Sort menu</string>
+    <string name="sodk_editor_statistical_upper">STATISTICAL</string>
+    <string name="sodk_editor_stop">Stop</string>
+    <string name="sodk_editor_storage">Storage</string>
+    <string name="sodk_editor_str_continue">Continue</string>
+    <string name="sodk_editor_sum_upper">SUM</string>
+    <string name="sodk_editor_support">Support</string>
+    <string name="sodk_editor_tab_annotate">ANNOTATE</string>
+    <string name="sodk_editor_tab_edit">EDIT</string>
+    <string name="sodk_editor_tab_file">FILE</string>
+    <string name="sodk_editor_tab_find">FIND</string>
+    <string name="sodk_editor_tab_format">FORMAT</string>
+    <string name="sodk_editor_tab_formulas">FORMULAS</string>
+    <string name="sodk_editor_tab_hidden">HIDDEN</string>
+    <string name="sodk_editor_tab_insert">INSERT</string>
+    <string name="sodk_editor_tab_pages">PAGES</string>
+    <string name="sodk_editor_tab_redact">REDACT</string>
+    <string name="sodk_editor_tab_review">REVIEW</string>
+    <string name="sodk_editor_tab_single">SINGLE</string>
+    <string name="sodk_editor_tab_slides">SLIDES</string>
+    <string name="sodk_editor_templates">Templates</string>
+    <string name="sodk_editor_text_upper">TEXT</string>
+    <string name="sodk_editor_thousand_separator">Thousand separator</string>
+    <string name="sodk_editor_title">Title</string>
+    <string name="sodk_editor_toggle_upper">TOGGLE</string>
+    <string name="sodk_editor_track_changes_upper">"TRACK
+CHANGES"</string>
+    <string name="sodk_editor_two_decimal_places">Two Decimal Places</string>
+    <string name="sodk_editor_unable_to_load_document_title">Unable to load document</string>
+    <string name="sodk_editor_unsaved_signatures">The document must be saved before the signature can be verified</string>
+    <string name="sodk_editor_up_to_one_digit">Up to One Digit</string>
+    <string name="sodk_editor_up_to_three_digits">Up to Three Digits</string>
+    <string name="sodk_editor_up_to_two_digits">Up to Two Digits</string>
+    <string name="sodk_editor_update">Update</string>
+    <string name="sodk_editor_upgrade">Upgrade</string>
+    <string name="sodk_editor_uploading">Uploading...</string>
+    <string name="sodk_editor_user_guide">User Guide</string>
+    <string name="sodk_editor_version">1.0</string>
+    <string name="sodk_editor_version_format">Office</string>
+    <string name="sodk_editor_version_title">Version</string>
+    <string name="sodk_editor_wait">Wait!</string>
+    <string name="sodk_editor_would_you_like_to_save_your_changes">You have made changes, save your changes or discard your changes?</string>
+    <string name="sodk_editor_xfa_body">This document contains an XML Forms Office not supported by Office Editor. XFA was deprecated when the PDF 2.0 specification was released in 2015. The creator of the PDF can convert it to use AcroForms, which are supported. If appropriate, please contact your IT administrator for assistance.</string>
+    <string name="sodk_editor_xfa_title">NoOfficeport</string>
+    <string name="sodk_editor_yes">YES</string>
+    <string name="sodk_empty_file">Empty file</string>
+    <string name="sodk_gd_exception_null_attacment">Null attachment</string>
+    <string name="sodk_gd_exception_num_attacments">Invalid number of attachments</string>
+    <string name="sodk_internal_error">Internal error</string>
+    <string name="sodk_invalid_file">Invalid or corrupt file</string>
+    <string name="sodk_issued_to">Issued To</string>
+    <string name="sodk_library_annot_author_mupdf">muPDF</string>
+    <string name="sodk_library_annot_author_so">Office Editor</string>
+    <string name="sodk_library_app_name">solib</string>
+    <string name="sodk_licence">License</string>
+    <string name="sodk_no_certificates">No certificates available - please contact your IT support</string>
+    <string name="sodk_password_protected_file">Password protected file</string>
+    <string name="sodk_pro_popup_button">UPGRADE OPTIONS</string>
+    <string name="sodk_pro_popup_message">Track Changes and enhanced Password Protection capabilities are features of Office Editor PRO</string>
+    <string name="sodk_pro_popup_title">PRO FEATURE</string>
+    <string name="sodk_settings">Settings</string>
+    <string name="sodk_sis">Blackberry Intelligent Security</string>
+    <string name="sodk_support_change_email">Change Email Address</string>
+    <string name="sodk_support_contact_us">Contact Us</string>
+    <string name="sodk_support_done">Done</string>
+    <string name="sodk_support_email_body">Please enter your email address so we can reply to you.</string>
+    <string name="sodk_support_email_title">Email Address</string>
+    <string name="sodk_support_faq">FAQ</string>
+    <string name="sodk_support_support">Support</string>
+    <string name="sodk_support_view_my_requests">View My Requests</string>
+    <string name="sodk_unsupported_file_type">Office file type</string>
+    <string name="sodk_upgrade_options"><u>Upgrade Options</u></string>
+    <string name="sodk_upload">Upload</string>
+    <string name="sodk_upload_logs">Upload Logs</string>
+    <string name="sodk_user_reject">User rejected request</string>
+    <string name="sodk_version">Version</string>
+    <string name="sodk_wheel_app_name">wheel</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="support_activity_title">Support</string>
+    <string name="support_articles_list_fragment_error_message">@string/articles_list_fragment_error_message</string>
+    <string name="support_articles_list_fragment_no_articles_found">@string/articles_list_fragment_no_articles_found</string>
+    <string name="support_categories_list_fragment_error_message">@string/categories_list_fragment_error_message</string>
+    <string name="support_conversations_menu">Conversations</string>
+    <string name="support_help_search_no_results_label">@string/help_search_no_results_label</string>
+    <string name="support_help_see_all_articles_label">@string/help_see_all_articles_label</string>
+    <string name="support_help_see_all_n_articles_label">@string/help_see_all_n_articles_label</string>
+    <string name="support_sections_list_fragment_error_message">Office</string>
+    <string name="view_article_attachments_error">Office</string>
+    <string name="view_article_html_body">Office</string>
+    <string name="view_article_seperator">Office</string>
+    <string name="view_article_vote_prompt">WOffice</string>
+    <string name="zendesk_no_connectivity_error">Office</string>
+    <string name="zendesk_retry_button_label">Office</string>
+    <string name="zs_general_contact_us_button_label_accessibility">Office</string>
+    <string name="zs_general_referrer_logo_label_accessibility">Zendesk</string>
+    <string name="zs_help_center_content_loaded_accessibility">Help Center loaded</string>
+    <string name="zs_help_center_search_loaded_accessibility">Search results loaded</string>
+    <string name="zs_request_announce_comment_created_accessibility">Comment with text %s sent.</string>
+    <string name="zs_request_announce_comment_failed_accessibility">Unable to create comment with text %s.</string>
+    <string name="zs_request_announce_comments_loaded_accessibility">Comments loaded.</string>
+    <string name="zs_request_attachment_carousel_attachment_accessibility">Attached file with name %s.</string>
+    <string name="zs_request_attachment_carousel_remove_attachment_accessibility">Remove attachment with name %s.</string>
+    <string name="zs_request_attachment_indicator_accessibility">Select an attachment.</string>
+    <string name="zs_request_attachment_indicator_n_attachments_selected_accessibility">There are %d attachments selected.</string>
+    <string name="zs_request_attachment_indicator_no_attachments_selected_accessibility">There are no attachments selected.</string>
+    <string name="zs_request_attachment_indicator_one_attachments_selected_accessibility">There is one attachment selected.</string>
+    <string name="zs_request_contact_option_leave_a_message">Leave a message</string>
+    <string name="zs_request_list_content_load_failed_accessibility">Support tickets failed to load</string>
+    <string name="zs_request_list_content_loaded_accessibility">Support tickets loaded</string>
+    <string name="zs_request_list_content_loaded_empty_accessibility">No support tickets</string>
+    <string name="zs_request_list_content_loading_accessibility">Loading support tickets</string>
+    <string name="zs_request_message_agent_file_accessibility">Agent file attachment with name %s.</string>
+    <string name="zs_request_message_agent_image_accessibility">Agent image attachment with name %s.</string>
+    <string name="zs_request_message_agent_sent_accessibility">Sent by %1$s at %2$s.</string>
+    <string name="zs_request_message_agent_text_accessibility">Agent message %s.</string>
+    <string name="zs_request_message_user_error_accessibility">Failed to send. Tap for options.</string>
+    <string name="zs_request_message_user_file_accessibility">File with name %s.</string>
+    <string name="zs_request_message_user_image_accessibility">Image with name %s.</string>
+    <string name="zs_request_message_user_sent_accessibility">Sent by you at %s</string>
+    <string name="zs_request_message_user_text_accessibility">Message %s.</string>
+    <string name="zs_request_toolbar_accessibility">Last reply by %1$s at %2$s.</string>
+    <string name="zs_view_article_error">Failed to fetch article</string>
+    <string name="zs_view_article_loaded_accessibility">%s article loaded</string>
+    <string name="zs_view_article_loading_title" />
+    <string name="zs_view_article_vote_no_accessibility">No vote</string>
+    <string name="zs_view_article_vote_no_remove_accessibility">Remove yes vote</string>
+    <string name="zs_view_article_vote_yes_accessibility">Yes vote</string>
+    <string name="zs_view_article_vote_yes_remove_accessibility">Remove no vote</string>
+    <string name="zs_view_article_voted_failed_accessibility_announce">Vote failed</string>
+    <string name="zs_view_article_voted_no_accessibility_announce">Voted no</string>
+    <string name="zs_view_article_voted_yes_accessibility_announce">Voted yes</string>
+    <string name="zui_attachment_indicator_accessibility">Select an attachment</string>
+    <string name="zui_attachment_indicator_n_attachments_selected_accessibility">There are %d attachments selected</string>
+    <string name="zui_attachment_indicator_no_attachments_selected_accessibility">There are no attachments selected</string>
+    <string name="zui_attachment_indicator_one_attachments_selected_accessibility">There is one attachment selected</string>
+    <string name="zui_bot_label">BOT</string>
+    <string name="zui_button_label_no">No</string>
+    <string name="zui_button_label_yes">Yes</string>
+    <string name="zui_cell_text_suggested_article_header">"Here's an article that may help:"</string>
+    <string name="zui_cell_text_suggested_articles_header">Here are some articles that may help:</string>
+    <string name="zui_failed_message_copy">Copy</string>
+    <string name="zui_failed_message_delete">Delete</string>
+    <string name="zui_failed_message_retry">Retry</string>
+    <string name="zui_hint_type_message">Type a message…</string>
+    <string name="zui_hint_write_a_message">Write a message</string>
+    <string name="zui_label_dialog_delete_btn">Delete message</string>
+    <string name="zui_label_dialog_retry_btn">Retry sending</string>
+    <string name="zui_label_failed">Failed</string>
+    <string name="zui_label_reconnecting">Reconnecting…</string>
+    <string name="zui_label_retry_now">Retry now</string>
+    <string name="zui_label_send">Send</string>
+    <string name="zui_label_sent">Sent</string>
+    <string name="zui_label_tap_retry">Tap to retry</string>
+    <string name="zui_retry_button_label">Retry</string>
+    <string name="scan_file">Scan all files in your device</string>
+    <string name="scan_file_success">Scan file success</string>
+    <string name="thank_scan_file">Thanks for using app</string>
+    <string name="scan_file_nav">Scan file</string>
+    <string name="template_create">Template</string>
+    <string name="new_file_create">Add file</string>
+    <string name="create_document">Create Document</string>
+    <string name="ads_text_button">ADS</string>
+    <string name="txt">TXT</string>
+    <string name="confirm">Confirm</string>
+    <string name="rotate">Rotate</string>
+    <string name="reflect">Reflect</string>
+    <string name="crop">Crop</string>
+    <string name="signature">Signature</string>
+    <string name="filter">Filter</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="export_file">Export File</string>
+    <string name="cancel_dialog">Cancel</string>
+    <string name="oke_dialog">Accept</string>
+    <string name="ocr">OCR</string>
+    <string name="finish">Finish</string>
+    <string name="edit">Edit</string>
+    <string name="share">Share</string>
+    <string name="cannot_reg_text">Connot Reg Text</string>
+    <string name="gallery">Gallery</string>
+    <string name="confirm_x">Confirm</string>
+    <string name="ocr_text_file">List File OCR</string>
+    <string name="please_sign_here">Please sign here</string>
+    <string name="tab_reader">Reader</string>
+    <string name="tab_recent">Recent</string>
+    <string name="tab_boomark">Bookmark</string>
+    <string name="tab_tools">Tools</string>
+    <string name="tab_storage">File</string>
+    <string name="tab_settings">Settings</string>
+    <string name="image">Image</string>
+    <string name="album">Album</string>
+    <string name="skip">Skip</string>
+    <string name="show_slide">Show Slide</string>
+    <string name="new_file">New File</string>
+    <string name="template">Template</string>
+
+    <string name="app_provider_url" translatable="false">https://www.google.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    tools-->
+    <string name="convert" translatable="false">Convert</string>
+    <string name="pdf_to" translatable="false">PDF to</string>
+    <string name="pdf_to_png" translatable="false">PDF to PNG</string>
+    <string name="pdf_to_jpg" translatable="false">PDF to JPG</string>
+    <string name="pdf_to_zip" translatable="false">PDF to ZIP</string>
+    <string name="pdf_to_word" translatable="false">PDF to WORD</string>
+    <string name="pdf_to_excel" translatable="false">PDF to EXCEL</string>
+    <string name="pdf_to_ppt" translatable="false">PDF to PPT</string>
+    <string name="converted_file" translatable="false">Converted File</string>
+
+    <string name="generate" translatable="false">Generate</string>
+    <string name="pdf_from" translatable="false">PDF from</string>
+    <string name="png_to_pdf" translatable="false">PNG to PDF</string>
+    <string name="jpg_to_pdf" translatable="false">JPG to PDF</string>
+    <string name="zip_to_pdf" translatable="false">ZIP to PDF</string>
+    <string name="word_to_pdf" translatable="false">WORD to PDF </string>
+    <string name="excel_to_pdf" translatable="false">EXCEL to PDF</string>
+    <string name="ppt_to_pdf" translatable="false">PPT to PDF</string>
+
+    <string name="file" translatable="false">File</string>
+    <string name="optimiser_file" translatable="false">Compress File</string>
+    <string name="optimiser" translatable="false">Compress</string>
+    <string name="extract" translatable="false">Extract File</string>
+
+    <string name="other" translatable="false">Other</string>
+    <string name="pdf_tools" translatable="false">PDF Tools</string>
+    <string name="tools_split" translatable="false">Split</string>
+    <string name="tools_merge" translatable="false">Merge</string>
+    <string name="tools_add_watermark" translatable="false">Add Watermark</string>
+    <string name="tools_recorder_page" translatable="false">Recorder Page</string>
+    <string name="tools_invert_page" translatable="false">Invert PDF</string>
+
+    <string name="document" translatable="false">Document</string>
+    <string name="secure_tools" translatable="false">Secure Tools</string>
+    <string name="tools_lock" translatable="false">Lock</string>
+    <string name="tools_unlock" translatable="false">Unlock</string>
+    <string name="tools_e_sign" translatable="false">E-Sign</string>
+
+    <string name="tools_upload_file" translatable="false">Upload File</string>
+    <string name="tools_no_file_added" translatable="false">No file added</string>
+    <string name="tools_set_save_location" translatable="false">Set Save Location</string>
+    <string name="tools_location_path" translatable="false">Root/foldername/filename.zip</string>
+
+    <string name="range" translatable="false">Range</string>
+    <string name="add_range" translatable="false">Add Range</string>
+    <string name="split_file" translatable="false">Split File</string>
+    <string name="split_now" translatable="false">Split Now</string>
+    <string name="merge_file" translatable="false">Merge File</string>
+    <string name="merge" translatable="false">Merge</string>
+    <string name="lock_pdf" translatable="false">Lock File</string>
+    <string name="lock" translatable="false">Lock</string>
+    <string name="unlock_pdf" translatable="false">Unlock File</string>
+    <string name="unlock" translatable="false">Unlock</string>
+    <string name="enter_password" translatable="false">Enter Password</string>
+    <string name="confirm_password" translatable="false">Confirm Password</string>
+    <string name="hint" translatable="false">****</string>
+    <string name="process_failed" translatable="false">Process Failed!</string>
+    <string name="error_message" translatable="false">Something went terribly wrong. Would like \n to try again?</string>
+    <string name="invite_your_friends" translatable="false">Invite your friends</string>
+    <string name="rate_us" translatable="false">Rate Us</string>
+    <string name="more_apps" translatable="false">More Apps</string>
+    <string name="app_functions" translatable="false">App Functions</string>
+    <string name="uploading" translatable="false">Uploading..</string>
+    <string name="downloading" translatable="false">Downloading..</string>
+    <string name="processing" translatable="false">Processing..</string>
+    <string name="quit_process" translatable="false">File conversion in progress!\nAre you sure you want to stop it?</string>
+    <string name="exit_text" translatable="false">Exit %1$s ?</string>
+    <string name="favourite_title" translatable="false">Favourite (%1$d)</string>
+    <string name="recent_title" translatable="false">Recent (%1$d)</string>
+    <string name="loading_files" translatable="false">Loading files...</string>
+    <string name="allow_storage_access" translatable="false">Allow Storage Access</string>
+    <string name="permission_info" translatable="false">Allow storage permission to view, edit \nand save your files.</string>
+    <string name="allow" translatable="false">Allow</string>
+    <string name="not_now" translatable="false">Not Now</string>
+    <string name="camera_permission_request" translatable="false">Permission Request</string>
+    <string name="camera_permission_request_message" translatable="false">Camera permission is necessary for this function to access or take photos. You can refuse permissions under "Permissions" on the App Info screen.</string>
+    <string name="camera_permission_deny" translatable="false">Permission denied</string>
+    <string name="camera_permission_deny_message" translatable="false">Fail to obtain camera permissions. Please check if the camera is enabled</string>
+    <string name="no_thanks" translatable="false">No,thanks</string>
+    <string name="licensing_again" translatable="false">Licensing again</string>
+    <string name="word_files" translatable="false">Word Files</string>
+    <string name="excel_files" translatable="false">Excel Files</string>
+    <string name="pdf_files" translatable="false">PDF Files</string>
+    <string name="ppt_files" translatable="false">PPT Files</string>
+    <string name="text_files" translatable="false">Text Files</string>
+    <string name="all_files" translatable="false">All Files</string>
+    <string name="screenshots" translatable="false">Screenshots</string>
+    <string name="sort_by" translatable="false">Sort by</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="file_size" translatable="false">File size</string>
+    <string name="from_new_to_old" translatable="false">From new to old</string>
+    <string name="from_old_to_new" translatable="false">From old to new</string>
+    <string name="layout" translatable="false">View As</string>
+    <string name="grid" translatable="false">Grid View</string>
+    <string name="linear" translatable="false">List View</string>
+    <string name="last_modified" translatable="false">Last modified</string>
+    <string name="apply" translatable="false">Apply</string>
+    <string name="asc" translatable="false">Ascending</string>
+    <string name="des" translatable="false">Descending</string>
+
+
+    //AdMob for DocumentViewer
+    <string name="admob_app_id" translatable="false">ca-app-pub-4310459535775382~9662793489</string>
+    <string name="admob_app_open" translatable="false">ca-app-pub-4310459535775382/8305298254</string>
+    <string name="admob_splash_interstitial" translatable="false">ca-app-pub-4310459535775382/5152686924</string>
+    <string name="admob_home_native" translatable="false">ca-app-pub-4310459535775382/6164679409</string>
+    <string name="admob_exit_native" translatable="false">ca-app-pub-4310459535775382/4410466807</string>
+    <string name="admob_doc_create_interstitial" translatable="false">ca-app-pub-4310459535775382/1339728138</string>
+    <string name="admob_doc_exit_interstitial" translatable="false">  ca-app-pub-4310459535775382/6783626507</string>
+    <string name="admob_files_native" translatable="false">ca-app-pub-4310459535775382/2461238119</string>
+    <string name="admob_flow_interstitial" translatable="false">ca-app-pub-4310459535775382/4719596796</string>
+    <string name="admob_tools_page_native" translatable="false">ca-app-pub-4310459535775382/5152686924</string>
+
+    //test Ad unit ids
+    <!--    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>-->
+    <string name="test_admob_native" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="test_admob_full" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="test_admob_banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="test_admob_open_app" translatable="false">ca-app-pub-3940256099942544/3419835294</string>
+    <string name="ads_fb_full" translatable="false">2379042515473010_2392946664082595</string>
+    <string name="ads_fb_banner" translatable="false">2379042515473010_2392947067415888</string>
+    <string name="ads_fb_native" translatable="false">2379042515473010_2379043072139621</string>
+
+
+    <string name="document_reader">Document Reader</string>
+    <string name="highlight">Highlight</string>
+    <string name="make">Make</string>
+    <string name="as">as</string>
+    <string name="default_document_viewer">default document Viewer</string>
+    <string name="open_document_and_mark_it_as_default_app_on_bottom_tray">Open document and mark it as default app on bottom tray</string>
+    <string name="mark_it_as_default_app">Mark it as default app</string>
+    <string name="mark_now">Mark Now</string>
+    <string name="find">Find</string>
+    <string name="share_as_pdf">Share as PDF</string>
+    <string name="save_as_pdf">Save as PDF</string>
+    <string name="add_new_file_to_favourites">Add new file to favourites.</string>
+    <string name="edit_font">Edit Font</string>
+    <string name="exit">Exit</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="click_here_to_search">Click here to search</string>
+    <string name="favourite">Favourite</string>
+    <string name="text">Text</string>
+    <string name="order_by">Order by</string>
+    <string name="thank_you_for_rating_us">Thank you for rating us :)</string>
+    <string name="poor">Poor</string>
+    <string name="bad">Bad</string>
+    <string name="normal">Normal</string>
+    <string name="good">Good</string>
+    <string name="excellent">Excellent</string>
+    <string name="fontname">fontName</string>
+    <string name="fontName">FontName</string>
+    <string name="from">From</string>
+    <string name="agreement_copy_01_pdf">Agreement Copy 01.pdf</string>
+    <string name="font">Font</string>
+    <string name="add">Add</string>
+    <string name="bullets">Bullets</string>
+    <string name="more">More</string>
+    <string name="paste">Paste</string>
+    <string name="copy">Copy</string>
+    <string name="cut">Cut</string>
+    <string name="select_all">Select All</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="print">Print</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="log_out">Log out</string>
+    <string name="to">To</string>
+    <string name="size">Size</string>
+    <string name="Edit">Edit</string>
+    <string name="read_pdf">Read File</string>
+    <string name="rename">Rename</string>
+    <string name="comment">Comments</string>
+    <string name="move_to_trash">Move to Trash</string>
+    <string name="comments">Comments</string>
+    <string name="are_you_sure">Are you sure ?</string>
+    <string name="content_for_question">Are you sure, this action will delete all \n files from All document viewer.</string>
+    <string name="like_doc_viewer">Like Office Docs?</string>
+    <string name="rating_dialog_message">Show your love by rating us on Play Store</string>
+    <string name="remind_me_later">Remind Me Later</string>
+    <string name="alignment">Alignment</string>
+    <string name="style">Style</string>
+    <string name="convert_pdf_to">Convert PDF to</string>
+    <string name="generate_pdf_from">Generate  PDF from</string>
+    <string name="file_compress">File Compress</string>
+    <string name="compress">Compress</string>
+    <string name="extract_file">Extract file</string>
+    <string name="create_new_file">Create New File</string>
+    <string name="tools">Tools</string>
+    <string name="save_file">Save File</string>
+    <string name="log_in">Log in</string>
+    <string name="your_phone_number">Your phone number</string>
+    <string name="sign_in">Sign In</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_whatsapp">Login with WhatsApp</string>
+    <string name="enter_code">Enter code</string>
+    <string name="otp_message">We’ve sent an SMS with an OTP code\nto your phone %s</string>
+    <string name="verify">Verify</string>
+    <string name="send_code_again">Didn\'t get the code?</string>
+    <string name="resend"><u>Resend</u></string>
+    <string name="login_required">Login Required</string>
+    <string name="login_alert_message">Please login to purchase a subscription</string>
+    <string name="powered_by">Powered BY</string>
+    <string name="appyhigh">AppyHigh</string>
+    <string name="anonymous">Anonymous</string>
+    <string name="want_to_logout">Want to Logout?</string>
+    <string name="are_you_sure_logout">Are you sure you want to logout?</string>
+    <string name="have_a_coupon_code">Have a coupon code?</string>
+    <string name="enter_coupon_code">Enter code</string>
+    <string name="redeem">Redeem Code</string>
 </resources>

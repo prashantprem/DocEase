@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.document.docease.data.Resource
@@ -16,6 +17,8 @@ import com.document.docease.ui.common.FileList
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.Extensions.fileIcon
+import com.document.docease.utils.Extensions.findActivity
+import com.document.docease.utils.Utility
 
 @Composable
 fun FileListScreen(
@@ -30,6 +33,8 @@ fun FileListScreen(
         FileType.P_POINT -> viewModel.pptFiles.observeAsState()
     }
 
+    val activity = LocalContext.current.findActivity()
+
 
     when (fileLoadingState.value) {
 
@@ -41,12 +46,13 @@ fun FileListScreen(
             ) {
                 CircularProgressIndicator()
             }
-
         }
 
         is Resource.Success -> {
             Column {
-                FileList(files = fileLoadingState.value?.data!!, fileType.fileIcon())
+                FileList(files = fileLoadingState.value?.data!!, fileType.fileIcon(), onItemCLick = { file->
+                    Utility.previewFile(activity!!,file,0)
+                })
             }
         }
         else -> {}

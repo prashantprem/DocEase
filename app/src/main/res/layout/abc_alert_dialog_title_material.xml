@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/topPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@id/title_template"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center"
+        android:orientation="horizontal"
+        android:paddingLeft="?dialogPreferredPadding"
+        android:paddingTop="@dimen/abc_dialog_padding_top_material"
+        android:paddingRight="?dialogPreferredPadding">
+
+        <ImageView
+            android:id="@android:id/icon"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:scaleType="fitCenter"
+            android:src="@null" />
+
+        <android.supportv1.v7.widget.DialogTitle
+            android:id="@id/alertTitle"
+            style="?android:windowTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAlignment="viewStart" />
+    </LinearLayout>
+
+    <android.widget.Space
+        android:id="@id/titleDividerNoCustom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abc_dialog_title_divider_material"
+        android:visibility="gone" />
+</LinearLayout>

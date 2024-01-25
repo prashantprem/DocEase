@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/zui_cell_text_field_padding_vertical">
+
+    <TextView
+        android:id="@id/zui_cell_label_text_field"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:includeFontPadding="false"
+        android:paddingStart="@dimen/zui_cell_text_field_padding_horizontal" />
+
+    <TextView
+        android:id="@id/zui_cell_label_supplementary_label"
+        style="@style/ZendeskSdkTheme.Light.Cell.Label.Supplemental"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zui_cell_supplementary_label_height"
+        android:layout_marginStart="@dimen/zui_cell_supplementary_label_spacing"
+        android:background="@drawable/zui_background_supplementary_label"
+        android:gravity="center_vertical"
+        android:importantForAccessibility="no"
+        android:paddingLeft="@dimen/zui_cell_supplementary_label_spacing"
+        android:paddingRight="@dimen/zui_cell_supplementary_label_spacing"
+        android:text="@string/zui_bot_label" />
+</LinearLayout>

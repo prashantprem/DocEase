@@ -15,6 +15,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -40,6 +41,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -49,10 +51,19 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    viewBinding.isEnabled = true
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs( "libs")
+        }
+    }
+
+
 }
 
 dependencies {
-
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(files("libs/lib_office.jar"))
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -62,6 +73,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
 //    implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material3:material3:1.2.0-rc01")
+    implementation("com.google.android.material:material:1.11.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -75,8 +87,8 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     //dagger hilt
-    implementation("com.google.dagger:hilt-android:2.45")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
@@ -92,6 +104,20 @@ dependencies {
     implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
 
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
+
+    implementation("com.tom-roush:pdfbox-android:2.0.27.0")
+    val appcompat_version = "1.6.1"
+
+    implementation("androidx.appcompat:appcompat:$appcompat_version")
+    // For loading and tinting drawables on older versions of the platform
+    implementation("androidx.appcompat:appcompat-resources:$appcompat_version")
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+
+    implementation("androidx.multidex:multidex:2.0.1")
+
+
 
 
 

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10.40dp"
+    android:padding="13dp"
+    android:gravity="center"
+    android:background="@drawable/round_rect_rating"
+    android:orientation="horizontal">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/rating_after"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:layout_height="wrap_content"
+        android:text="@string/thank_you_for_rating_us"/>
+    <LinearLayout
+        android:id="@+id/ratings_layout"
+        android:visibility="visible"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rating_poor"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                app:srcCompat="@drawable/ic_rating_poor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textSize="11.70sp"
+                android:text="@string/poor"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rating_bad"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                app:srcCompat="@drawable/ic_rating_bad"
+                tools:layout_editor_absoluteX="107dp"
+                tools:layout_editor_absoluteY="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11.70sp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/bad"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rating_normal"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                app:srcCompat="@drawable/ic_rating_normal"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11.70sp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/normal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rating_good"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                app:srcCompat="@drawable/ic_rating_good" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11.70sp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/good"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rating_excellent"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                app:srcCompat="@drawable/ic_rating_excellent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textSize="11.70sp"
+                android:text="@string/excellent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:visibility="visible"
+        android:id="@+id/btn_rate_us"
+        android:layout_margin="2.60dp"
+        android:layout_width="0dp"
+        android:layout_weight="0.25"
+        android:textColor="@color/color_white"
+        android:background="@drawable/bg_round_rating_btn"
+        android:layout_height="39dp"
+        android:textAllCaps="false"
+        android:textSize="14.30sp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/rate_us"/>
+
+</LinearLayout>

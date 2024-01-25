@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.supportv1.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top">
+
+            <android.supportv1.v7.widget.Toolbar
+                android:id="@id/zui_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?colorPrimary"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                app:navigationContentDescription="@string/abc_action_bar_up_description"
+                app:navigationIcon="@drawable/zui_ic_back"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
+
+            <zendesk.commonui.AlmostRealProgressBar
+                android:id="@id/zui_progressbar"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zui_toolbar_progress_bar_height"
+                android:layout_gravity="bottom"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/zui_background_progressbar"
+                android:visibility="visible" />
+        </FrameLayout>
+    </android.supportv1.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@id/zui_container_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize">
+
+        <WebView
+            android:id="@id/zui_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/zui_window_background_color" />
+    </FrameLayout>
+</merge>

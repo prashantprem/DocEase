@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.supportv1.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/zui_response_options_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="84.50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="2.60dp"
+        android:paddingBottom="2.60dp"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:id="@+id/tab__main_activity__file_reader"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3.90dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_home_act"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:padding="5.20dp"
+                android:tint="@color/app_color"
+                app:srcCompat="@drawable/ic_home_main" />
+
+            <TextView
+                android:id="@+id/tv_home_act"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito"
+                android:duplicateParentState="true"
+                android:gravity="center|top"
+                android:text="@string/home"
+                android:textColor="@color/color_enable_tab"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab__main_activity__file_manager"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:layout_marginTop="3.90dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_storage"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:padding="5.20dp"
+                app:srcCompat="@drawable/ic_storage_tab" />
+
+            <TextView
+                android:id="@+id/tv_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito"
+                android:layout_weight="1"
+                android:duplicateParentState="true"
+                android:gravity="center|top"
+                android:text="@string/tab_storage"
+                android:textColor="@color/color_disable_tab"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ln_create_file"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/floating_main_activity__fab"
+                android:layout_width="91dp"
+                android:layout_height="91dp"
+                android:layout_margin="23.40dp"
+                android:padding="11.70dp"
+                app:srcCompat="@drawable/main_create_file" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab__main_screen_tools"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3.90dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_tools"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:padding="6.50dp"
+                app:srcCompat="@drawable/ic_tools2" />
+
+            <TextView
+                android:id="@+id/tv_tools"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/nunito"
+                android:duplicateParentState="true"
+                android:gravity="center|top"
+                android:text="@string/tab_tools"
+                android:textColor="@color/color_disable_tab"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab__main_activity__settings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3.90dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="36.40dp"
+                android:layout_height="36.40dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:tint="@color/color_disable_tab"
+                android:padding="5.20dp"
+                app:srcCompat="@drawable/ic_tab_settings" />
+
+            <TextView
+                android:id="@+id/tv_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito"
+                android:layout_weight="1"
+                android:duplicateParentState="true"
+                android:gravity="center|top"
+                android:text="@string/tab_settings"
+                android:textColor="@color/color_disable_tab"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

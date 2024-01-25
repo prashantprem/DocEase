@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zendesk.belvedere.SelectableView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/list_item_file_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_1sdp">
+
+    <android.supportv1.v7.widget.CardView
+        android:id="@id/list_item_file_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_1sdp"
+        android:importantForAccessibility="noHideDescendants"
+        app:cardBackgroundColor="#ffebebeb"
+        app:cardCornerRadius="@dimen/_3sdp"
+        app:cardElevation="@dimen/_1sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:paddingRight="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_7sdp">
+
+            <TextView
+                android:id="@id/list_item_file_title"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:lineSpacingMultiplier="1.2"
+                android:maxLines="2"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="12.0sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@id/list_item_file_icon"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:src="@android:drawable/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@id/list_item_file_label"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="?android:textColorSecondary"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.supportv1.v7.widget.CardView>
+</zendesk.belvedere.SelectableView>

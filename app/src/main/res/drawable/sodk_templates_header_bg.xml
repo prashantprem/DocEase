@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/colorGray" />
+            <corners android:topLeftRadius="0.00999999dip" android:topRightRadius="24.0dip" android:bottomLeftRadius="0.00999999dip" android:bottomRightRadius="0.00999999dip" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="@color/sodk_so_ui_template_button_backgroundcolor" />
+            <corners android:topLeftRadius="0.00999999dip" android:topRightRadius="24.0dip" android:bottomLeftRadius="0.00999999dip" android:bottomRightRadius="0.00999999dip" />
+        </shape>
+    </item>
+</selector>

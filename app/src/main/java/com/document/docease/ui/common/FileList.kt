@@ -2,6 +2,7 @@ package com.document.docease.ui.common
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,22 +35,24 @@ import java.util.Locale
 @Composable
 fun FileList(
     files: List<File>,
-    @DrawableRes imageId: Int
+    @DrawableRes imageId: Int,
+    onItemCLick: (file: File) -> Unit
 ) {
     LazyColumn() {
         items(files.size) { index ->
-            FileListItem(file = files[index], imageId)
+            FileListItem(file = files[index], imageId, onItemCLick)
         }
     }
 }
 
 @Composable
-fun FileListItem(file: File, imageId: Int) {
+fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
-            .padding(horizontal = 8.dp),
+            .padding(horizontal = 8.dp)
+            .clickable(onClick = { onItemCLick(file) }),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {

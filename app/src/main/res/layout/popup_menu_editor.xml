@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dip"
+    android:paddingBottom="5dip"
+    android:paddingStart="10dip"
+    android:gravity="center"
+    android:paddingEnd="10dip">
+
+    <ImageView
+        android:id="@+id/shoe_select_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY" />
+</LinearLayout>

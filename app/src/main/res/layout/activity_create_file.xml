@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dl_create_file"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rll_create_file_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:background="@drawable/bg_border_create_file"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:padding="5dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/imv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/sodk_editor_transparent"
+                android:contentDescription="@string/sodk_editor_nav_back"
+                app:srcCompat="@drawable/ic_back_button_preview"
+                android:layout_alignParentStart="true"
+                android:padding="8dp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/imv_back"
+                android:text="@string/create_document"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/nunito"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:paddingStart="8dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header"
+            android:background="#F4F4F4"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_round_toolbar"
+                app:tabTextColor="#99000000"
+                app:tabRippleColor="@null"
+                app:tabIndicatorHeight="0dp"
+                app:tabSelectedTextColor="#E35F2F"
+                app:tabTextAppearance="@style/tab_style"
+                app:tabBackground="@drawable/tab_selector">
+
+                <com.google.android.material.tabs.TabItem
+                    android:text="@string/new_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <com.google.android.material.tabs.TabItem
+                    android:text="@string/template"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </com.google.android.material.tabs.TabLayout>
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/lnl_imv_popup_create_file__file"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/bg_round_gray"-->
+<!--                android:backgroundTint="@color/file_gray"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/cv_new_file"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:elevation="0dp"-->
+<!--                    android:layout_marginStart="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:outlineProvider="@null"-->
+<!--                    app:cardBackgroundColor="@color/white"-->
+<!--                    app:cardCornerRadius="10dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_new_file"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:gravity="center"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="@string/new_file"-->
+<!--                        app:cardPreventCornerOverlap="true"-->
+<!--                        android:fontFamily="@font/nunito"-->
+<!--                        android:textColor="@color/app_color"-->
+<!--                        android:textSize="12sp" />-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/cv_template"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:elevation="0dp"-->
+<!--                    android:outlineProvider="@null"-->
+<!--                    android:layout_marginStart="4dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginEnd="1dp"-->
+<!--                    app:cardPreventCornerOverlap="true"-->
+<!--                    app:cardBackgroundColor="@color/white"-->
+<!--                    app:cardCornerRadius="10dp">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_template"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:gravity="center"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:elevation="0dp"-->
+<!--                        android:text="@string/template"-->
+<!--                        android:fontFamily="@font/nunito"-->
+<!--                        android:textColor="@color/colorGray"-->
+<!--                        android:textSize="12sp" />-->
+<!--                </androidx.cardview.widget.CardView>-->
+<!--            </LinearLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/vpg_popup_create_file_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F4F4F4"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

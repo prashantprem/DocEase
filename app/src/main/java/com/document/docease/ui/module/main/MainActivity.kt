@@ -33,6 +33,12 @@ class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private val PERMISSION_EXTERNAL = 0x111111
 
+    companion object {
+        const val CODE_RESULT_BOOKMARK = 2
+
+    }
+
+
 
     private val requestPermissionResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/sodk_editor_toolbar">
+
+        <LinearLayout
+            android:id="@id/redact_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/sodk_editor_toolbar"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/redact_button_mark"
+                style="@style/sodk_editor_toolbar_button"
+                android:drawableTop="@drawable/sodk_editor_icon_redact_mark"
+                android:text="@string/sodk_editor_redact_mark_upper" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/redact_button_remove"
+                style="@style/sodk_editor_toolbar_button"
+                android:drawableTop="@drawable/sodk_editor_icon_redact_remove"
+                android:text="@string/sodk_editor_redact_remove_upper" />
+
+            <View style="@style/sodk_editor_toolbar_divider" />
+
+            <com.artifex.sonui.editor.ToolbarButton
+                android:id="@id/redact_button_apply"
+                style="@style/sodk_editor_toolbar_button"
+                android:drawableTop="@drawable/sodk_editor_icon_redact_apply"
+                android:text="@string/sodk_editor_redact_apply_upper" />
+        </LinearLayout>
+    </HorizontalScrollView>
+</merge>

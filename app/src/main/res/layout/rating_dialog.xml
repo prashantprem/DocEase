@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:background="@android:color/transparent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/like_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/like_doc_viewer"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/show_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:fontFamily="@font/nunito"
+            android:text="@string/rating_dialog_message"
+            android:textColor="#777777"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/like_tv" />
+
+        <ImageView
+            android:id="@+id/img_poor"
+            android:layout_width="44dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_rating_poor_v2"
+            app:layout_constraintEnd_toStartOf="@+id/img_bad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_love" />
+
+        <ImageView
+            android:id="@+id/img_bad"
+            android:layout_width="44dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_rating_bad_v2"
+            app:layout_constraintEnd_toStartOf="@+id/img_ok"
+            app:layout_constraintStart_toEndOf="@+id/img_poor"
+            app:layout_constraintTop_toTopOf="@+id/img_poor" />
+
+        <ImageView
+            android:id="@+id/img_ok"
+            android:layout_width="44dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_rating_ok_v2"
+            app:layout_constraintEnd_toStartOf="@+id/img_good"
+            app:layout_constraintStart_toEndOf="@+id/img_bad"
+            app:layout_constraintTop_toTopOf="@+id/img_bad" />
+
+        <ImageView
+            android:id="@+id/img_good"
+            android:layout_width="44dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_rating_good_v2"
+            app:layout_constraintEnd_toStartOf="@+id/img_great"
+            app:layout_constraintStart_toEndOf="@+id/img_ok"
+            app:layout_constraintTop_toTopOf="@+id/img_ok" />
+
+        <ImageView
+            android:id="@+id/img_great"
+            android:layout_width="44dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_rating_great_v2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_good"
+            app:layout_constraintTop_toTopOf="@+id/img_good" />
+
+        <LinearLayout
+            android:id="@+id/container_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ok">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_remind_later"
+                android:layout_width="130dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_rating_button"
+                android:backgroundTint="#CBCBCB"
+                android:fontFamily="@font/nunito"
+                android:text="@string/remind_me_later"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:cornerRadius="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_poor" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_rate_us"
+                android:layout_width="130dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_rating_button"
+                android:backgroundTint="@color/app_color"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/rate_us"
+                android:fontFamily="@font/nunito"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_remind_later" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_poor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Poor"
+            android:textColor="@color/tv_rating_inactive"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_poor"
+            app:layout_constraintStart_toStartOf="@+id/img_poor"
+            app:layout_constraintTop_toBottomOf="@+id/img_poor" />
+
+        <TextView
+            android:id="@+id/tv_bad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Bad"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/tv_rating_inactive"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_bad"
+            app:layout_constraintStart_toStartOf="@+id/img_bad"
+            app:layout_constraintTop_toBottomOf="@+id/img_bad" />
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Okay"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/tv_rating_inactive"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_ok"
+            app:layout_constraintStart_toStartOf="@+id/img_ok"
+            app:layout_constraintTop_toBottomOf="@+id/img_ok" />
+
+        <TextView
+            android:id="@+id/tv_good"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Good"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/tv_rating_inactive"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_good"
+            app:layout_constraintStart_toStartOf="@+id/img_good"
+            app:layout_constraintTop_toBottomOf="@+id/img_good" />
+
+        <TextView
+            android:id="@+id/tv_great"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Great"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/tv_rating_inactive"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_great"
+            app:layout_constraintStart_toStartOf="@+id/img_great"
+            app:layout_constraintTop_toBottomOf="@+id/img_great" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
