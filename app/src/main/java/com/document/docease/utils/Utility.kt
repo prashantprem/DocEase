@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import androidx.core.content.FileProvider
 import com.document.docease.BuildConfig
@@ -116,7 +118,7 @@ object Utility {
 
     fun openFile(activity: Activity, mFile: File, pageNumber: Int) {
         val storageUtils = StorageUtils(activity)
-        storageUtils.addRecent( mFile)
+        storageUtils.addRecent(mFile)
         val fromFile = Uri.fromFile(mFile)
         val intent = Intent(activity, ViewEditorActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW
@@ -141,9 +143,9 @@ object Utility {
         activity.startActivity(intent)
     }
 
-    fun previewFile( activity: Activity, mFile: File, pageNumber: Int, isForPrint: Boolean = false) {
+    fun previewFile(activity: Activity, mFile: File, pageNumber: Int, isForPrint: Boolean = false) {
         val storageUtils = StorageUtils(activity)
-        storageUtils.addRecent( mFile)
+        storageUtils.addRecent(mFile)
         val fromFile = Uri.fromFile(mFile)
         val intent = Intent(activity, PreviewActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW
@@ -159,6 +161,10 @@ object Utility {
         }
         activity.startActivityForResult(intent, MainActivity.CODE_RESULT_BOOKMARK)
     }
+
+
+    fun getResizedDrawableUsingSpecificSize(drawable: Drawable, newWidth: Int, newHeight: Int) =
+        LayerDrawable(arrayOf(drawable)).also { it.setLayerSize(0, newWidth, newHeight) }
 
 
 }

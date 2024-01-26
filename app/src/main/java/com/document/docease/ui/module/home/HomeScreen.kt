@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +22,7 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -33,8 +35,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
-import com.document.docease.ui.common.EmptyScreen
+import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileListWrapper
+import com.document.docease.ui.components.piechart.FileDistributionChart
+import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.utils.Extensions.findActivity
 
@@ -45,6 +49,7 @@ fun HomeScreen(
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
     val activity = LocalContext.current.findActivity()
+    val documentCountState = viewModel.documentCount.observeAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -118,7 +123,46 @@ fun HomeScreen(
                 } else if (tabIndex == 1) {
                     FileListWrapper(files = viewModel.getFavouriteFiles(), activity = activity)
                 } else {
-                    EmptyScreen()
+                    when (val res = documentCountState.value) {
+                        is Resource.Loading -> {}
+                        is Resource.Success -> {
+                            res.data?.let { docCount ->
+                                val pieChartData = listOf(
+                                    PieChartData(
+                                        "pdf(${docCount.pdfCount.toInt()})",
+                                        (docCount.pdfCount / docCount.total),
+                                        R.drawable.chart_pdf
+                                    ),
+                                    PieChartData(
+                                        "word(${docCount.wordCount.toInt()})",
+                                        (docCount.wordCount / docCount.total),
+                                        R.drawable.chart_word
+                                    ),
+                                    PieChartData(
+                                        "excel(${docCount.excelCount.toInt()})",
+                                        (docCount.excelCount / docCount.total),
+                                        R.drawable.chart_excel
+                                    ),
+                                    PieChartData(
+                                        "ppt(${docCount.pptCount.toInt()})",
+                                        (docCount.pptCount / docCount.total),
+                                        R.drawable.chart_ppt
+                                    ),
+                                )
+                                Column(
+                                    modifier = Modifier.fillMaxSize(),
+                                    verticalArrangement = Arrangement.Center,
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
+                                    FileDistributionChart(pieChartData)
+                                }
+
+                            }
+
+                        }
+
+                        else -> {}
+                    }
                 }
             }
         }

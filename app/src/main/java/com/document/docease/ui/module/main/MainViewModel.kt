@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.document.docease.data.Resource
+import com.document.docease.ui.components.piechart.DocumentCount
 import com.document.docease.utils.Constant
 import com.document.docease.utils.StorageUtils
 import com.document.docease.utils.Utility.isSupportedFileType
@@ -45,8 +46,8 @@ class MainViewModel @Inject constructor(
     private val _pptFiles = MutableLiveData<Resource<List<File>>>()
     val pptFiles: LiveData<Resource<List<File>>> get() = _pptFiles
 
-    private val _recentFiles = MutableLiveData<Resource<List<File>>>()
-    val recentFiles: LiveData<Resource<List<File>>> get() = _recentFiles
+    private val _documentCount = MutableLiveData<Resource<DocumentCount>>()
+    val documentCount: LiveData<Resource<DocumentCount>> get() = _documentCount
 
 
     private var allOfficeFile: MutableList<File> = mutableListOf()
@@ -82,6 +83,7 @@ class MainViewModel @Inject constructor(
             _wordFiles.postValue(Resource.Loading())
             _excelFiles.postValue(Resource.Loading())
             _pptFiles.postValue(Resource.Loading())
+            _documentCount.postValue(Resource.Loading())
         }
     }
 
@@ -96,6 +98,17 @@ class MainViewModel @Inject constructor(
             _wordFiles.postValue(Resource.Success(allWordFiles))
             _excelFiles.postValue(Resource.Success(allExcelFiles))
             _pptFiles.postValue(Resource.Success(allPptFiles))
+            _documentCount.postValue(
+                Resource.Success(
+                    DocumentCount(
+                        total = allOfficeFile.size.toFloat(),
+                        pdfCount = allPdfFiles.size.toFloat(),
+                        wordCount = allWordFiles.size.toFloat(),
+                        excelCount = allExcelFiles.size.toFloat(),
+                        pptCount = allPptFiles.size.toFloat()
+                    )
+                )
+            )
         }
     }
 
@@ -148,7 +161,7 @@ class MainViewModel @Inject constructor(
         return storageUtils.getRecent()
     }
 
-    fun getFavouriteFiles() : List<File>? {
-        return  storageUtils.getBookmark()
+    fun getFavouriteFiles(): List<File>? {
+        return storageUtils.getBookmark()
     }
 }
