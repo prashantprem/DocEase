@@ -1,6 +1,7 @@
 package com.document.docease.utils
 
 import android.os.Environment
+import com.document.docease.BuildConfig
 import java.io.File
 
 object Constant {
@@ -255,4 +256,11 @@ object Constant {
         return mFileArrayList
     }
 
+}
+
+const val SHARED_PREFERENCES_FILE_NAME = BuildConfig.APPLICATION_ID + "_shared_pref"
+
+object PrefKeys {
+    const val keyRecent = "keyRecent"
+    const val keyBookMarks = "keyBookMarks"
 }

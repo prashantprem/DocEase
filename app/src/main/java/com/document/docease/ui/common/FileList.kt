@@ -2,6 +2,7 @@ package com.document.docease.ui.common
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Icon
@@ -22,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -41,7 +44,11 @@ fun FileList(
 ) {
     LazyColumn() {
         items(files.size) { index ->
+            if (index == 0) {
+                Spacer(modifier = Modifier.height(10.dp))
+            }
             FileListItem(file = files[index], imageId, onItemCLick)
+            Spacer(modifier = Modifier.height(10.dp))
         }
     }
 }
@@ -53,8 +60,12 @@ fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
             .fillMaxWidth()
             .height(60.dp)
             .padding(horizontal = 10.dp)
+            .background(
+                color = colorResource(id = R.color.bg_file_list_item_color_main),
+                shape = RoundedCornerShape(8.dp)
+            )
             .clickable(onClick = {
-                  onItemCLick(file)
+                onItemCLick(file)
             }),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -62,7 +73,9 @@ fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
         Image(
             painter = painterResource(id = imageId),
             contentDescription = "File icon",
-            modifier = Modifier.size(30.dp)
+            modifier = Modifier
+                .size(30.dp)
+                .padding(start = 5.dp)
         )
         Column(
             modifier = Modifier
@@ -72,7 +85,10 @@ fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
         ) {
             Text(
                 text = file.name.lowercase(Locale.getDefault()),
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold, fontSize = 14.sp),
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp
+                ),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1
             )
@@ -90,12 +106,12 @@ fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
         }
         Spacer(modifier = Modifier.width(10.dp))
 
-        Icon(
-            painter = painterResource(id = R.drawable.ic_star_unfilled),
-            contentDescription = "BookMark Button",
-            tint = Color.Unspecified,
-            modifier = Modifier.size(20.dp)
-        )
+//        Icon(
+//            painter = painterResource(id = R.drawable.ic_star_unfilled),
+//            contentDescription = "BookMark Button",
+//            tint = Color.Unspecified,
+//            modifier = Modifier.size(20.dp)
+//        )
 
         Spacer(modifier = Modifier.width(8.dp))
 
@@ -104,7 +120,7 @@ fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
             contentDescription = "More Options",
             tint = Color(0xffB8B8B8),
             modifier = Modifier
-                .size(20.dp)
+                .size(25.dp)
                 .clickable(onClick = {})
         )
 

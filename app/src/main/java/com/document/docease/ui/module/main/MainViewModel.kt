@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.document.docease.data.Resource
 import com.document.docease.utils.Constant
+import com.document.docease.utils.StorageUtils
 import com.document.docease.utils.Utility.isSupportedFileType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +21,9 @@ import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val storageUtils: StorageUtils
+) : ViewModel() {
 
 
     var showSplash by mutableStateOf(true)
@@ -69,7 +72,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    private fun initFileLoading(){
+    private fun initFileLoading() {
         CoroutineScope(Dispatchers.IO).launch {
             _allFiles.postValue(Resource.Loading())
             _pdfFiles.postValue(Resource.Loading())
@@ -79,7 +82,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    private fun updateFilesAfterLoading(){
+    private fun updateFilesAfterLoading() {
         CoroutineScope(Dispatchers.IO).launch {
             allPdfFiles.sortByDescending { it.lastModified() }
             allWordFiles.sortByDescending { it.lastModified() }

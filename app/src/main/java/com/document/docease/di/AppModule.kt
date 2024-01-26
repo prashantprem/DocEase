@@ -1,6 +1,8 @@
 package com.document.docease.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import com.document.docease.utils.SHARED_PREFERENCES_FILE_NAME
 import com.document.docease.utils.StorageUtils
 import dagger.Module
 import dagger.Provides
@@ -21,8 +23,17 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesStorageUtil(@ApplicationContext context: Context): StorageUtils {
+    fun providesStorageUtil(@ApplicationContext context: Context, sharedPreferences: SharedPreferences): StorageUtils {
         return StorageUtils(context)
+    }
+
+
+
+    @Provides
+    @Singleton
+    fun providesSharedPreferences(context: Context) : SharedPreferences {
+        return context.getSharedPreferences(SHARED_PREFERENCES_FILE_NAME,Context.MODE_PRIVATE)
+
     }
 
 

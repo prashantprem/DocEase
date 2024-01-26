@@ -8,6 +8,9 @@
     <color name="grey_bg">#FBF9F9</color>
     <color name="primary">#003EC9</color>
     <color name="app_bar">#ffffff</color>
+    <color name="bg_color_main">#F5F5F5</color>
+    <color name="bg_file_list_item_color_main">#ffffff</color>
+
 
 
     <color name="image_background">#123</color>

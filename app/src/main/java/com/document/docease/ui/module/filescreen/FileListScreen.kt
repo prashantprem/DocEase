@@ -1,6 +1,7 @@
 package com.document.docease.ui.module.filescreen
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,8 +11,10 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileList
 import com.document.docease.ui.module.main.MainViewModel
@@ -40,7 +43,9 @@ fun FileListScreen(
 
         is Resource.Loading -> {
             Column(
-                Modifier.fillMaxSize(),
+                Modifier
+                    .fillMaxSize()
+                    .background(color = colorResource(id = R.color.bg_color_main)),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -49,7 +54,7 @@ fun FileListScreen(
         }
 
         is Resource.Success -> {
-            Column {
+            Column(modifier = Modifier.background(color = colorResource(id = R.color.bg_color_main))) {
                 FileList(files = fileLoadingState.value?.data!!, fileType.fileIcon(), onItemCLick = { file->
                     Utility.previewFile(activity!!,file,0)
                 })

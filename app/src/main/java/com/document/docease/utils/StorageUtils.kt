@@ -13,17 +13,16 @@ import javax.inject.Inject
 
 
 class StorageUtils @Inject constructor(private val context: Context) {
-    private val PREFS_NAME = "docreader"
     fun saveRecent(context: Context, favorites: List<File>?) {
         try {
             val editor: SharedPreferences.Editor
-            val settings: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val settings: SharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE)
             editor = settings.edit()
             val gson: Gson = GsonBuilder()
                 .registerTypeAdapter(File::class.java, FileTypeAdapter())
                 .create()
             val jsonFavorites: String = gson.toJson(favorites)
-            editor.putString(RECENT, jsonFavorites)
+            editor.putString(PrefKeys.keyRecent, jsonFavorites)
             editor.apply()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -75,12 +74,12 @@ class StorageUtils @Inject constructor(private val context: Context) {
     fun getRecent(context: Context): ArrayList<File>? {
         var favorites: List<File>?
         val settings: SharedPreferences = context.getSharedPreferences(
-            PREFS_NAME,
+            SHARED_PREFERENCES_FILE_NAME,
             Context.MODE_PRIVATE
         )
         try {
-            if (settings.contains(RECENT)) {
-                val jsonFavorites = settings.getString(RECENT, null)
+            if (settings.contains(PrefKeys.keyRecent)) {
+                val jsonFavorites = settings.getString(PrefKeys.keyRecent, null)
                 val gson: Gson = GsonBuilder()
                     .registerTypeAdapter(File::class.java, FileTypeAdapter())
                     .create()
@@ -104,7 +103,7 @@ class StorageUtils @Inject constructor(private val context: Context) {
         try {
             val editor: SharedPreferences.Editor
             val settings: SharedPreferences = context.getSharedPreferences(
-                PREFS_NAME,
+                SHARED_PREFERENCES_FILE_NAME,
                 Context.MODE_PRIVATE
             )
             editor = settings.edit()
@@ -112,7 +111,7 @@ class StorageUtils @Inject constructor(private val context: Context) {
                 .registerTypeAdapter(File::class.java, FileTypeAdapter())
                 .create()
             val jsonFavorites: String = gson.toJson(favorites)
-            editor.putString(BOOKMARK, jsonFavorites)
+            editor.putString(PrefKeys.keyBookMarks, jsonFavorites)
             editor.apply()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -187,12 +186,12 @@ class StorageUtils @Inject constructor(private val context: Context) {
     fun getBookmark(context: Context): ArrayList<File>? {
         var favorites: List<File>?
         val settings: SharedPreferences = context.getSharedPreferences(
-            PREFS_NAME,
+            SHARED_PREFERENCES_FILE_NAME,
             Context.MODE_PRIVATE
         )
         try {
-            if (settings.contains(BOOKMARK)) {
-                val jsonFavorites = settings.getString(BOOKMARK, null)
+            if (settings.contains(PrefKeys.keyBookMarks)) {
+                val jsonFavorites = settings.getString(PrefKeys.keyBookMarks, null)
                 val gson: Gson = GsonBuilder()
                     .registerTypeAdapter(File::class.java, FileTypeAdapter())
                     .create()
@@ -210,13 +209,6 @@ class StorageUtils @Inject constructor(private val context: Context) {
             return null
         }
         return favorites
-    }
-
-    companion object {
-        var fileTypeWord = "word"
-        var fileTypePowerPoin = "powerpoin"
-        var RECENT = "last_open"
-        var BOOKMARK = "bookmark"
     }
 }
 
