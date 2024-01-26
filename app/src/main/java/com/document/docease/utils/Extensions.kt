@@ -23,7 +23,7 @@ object Extensions {
         return sdf.format(date)
     }
 
-    fun Long.convertToFileSize(): String {
+    fun Long.formatToFileSize(): String {
         val kb: Long = 1024
         val mb = kb * 1024
         val gb = mb * 1024
@@ -43,7 +43,7 @@ object Extensions {
             FileType.PDF -> R.drawable.ic_large_pdf
             FileType.WORD -> R.drawable.ic_large_word
             FileType.EXCEL -> R.drawable.ic_large_excel
-            FileType.P_POINT -> R.drawable.ic_excel
+            FileType.P_POINT -> R.drawable.ic_large_ppt
         }
     }
 

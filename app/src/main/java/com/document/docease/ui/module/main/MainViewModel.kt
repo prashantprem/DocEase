@@ -61,20 +61,35 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
     fun getAllFiles() {
         CoroutineScope(Dispatchers.IO).launch {
+            initFileLoading()
+            async {
+                getAllFiles(Constant.dir)
+            }.await()
+            updateFilesAfterLoading()
+        }
+    }
+
+    private fun initFileLoading(){
+        CoroutineScope(Dispatchers.IO).launch {
             _allFiles.postValue(Resource.Loading())
             _pdfFiles.postValue(Resource.Loading())
             _wordFiles.postValue(Resource.Loading())
             _excelFiles.postValue(Resource.Loading())
             _pptFiles.postValue(Resource.Loading())
-            async {
-                getAllFiles(Constant.dir)
-            }.await()
+        }
+    }
+
+    private fun updateFilesAfterLoading(){
+        CoroutineScope(Dispatchers.IO).launch {
+            allPdfFiles.sortByDescending { it.lastModified() }
+            allWordFiles.sortByDescending { it.lastModified() }
+            allExcelFiles.sortByDescending { it.lastModified() }
+            allPptFiles.sortByDescending { it.lastModified() }
             _allFiles.postValue(Resource.Success(allOfficeFile))
             _pdfFiles.postValue(Resource.Success(allPdfFiles))
             _wordFiles.postValue(Resource.Success(allWordFiles))
             _excelFiles.postValue(Resource.Success(allExcelFiles))
             _pptFiles.postValue(Resource.Success(allPptFiles))
-
         }
     }
 
