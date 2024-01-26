@@ -90,6 +90,7 @@ import com.artifex.sonui.editor.R.string;
 import com.artifex.sonui.editor.R.style;
 import com.artifex.sonui.editor.SODocSession.SODocSessionLoadListener;
 
+import com.document.docease.BuildConfig;
 import com.document.docease.ui.module.editors.HomeViewModel;
 import com.document.docease.ui.module.editors.ViewEditorActivity;
 

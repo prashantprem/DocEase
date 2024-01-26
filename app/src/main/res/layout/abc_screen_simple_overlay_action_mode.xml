@@ -7,7 +7,7 @@
 
     <include layout="@layout/abc_screen_content_include" />
 
-    <android.supportv1.v7.widget.ViewStubCompat
+    <ViewStub
         android:id="@id/action_mode_bar_stub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
