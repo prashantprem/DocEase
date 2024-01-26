@@ -37,7 +37,7 @@ class ViewEditorViewModel @Inject constructor(
 
     fun addFilesToRecent(context: Context, mFile: File) {
         viewModelScope.launch {
-            storageUtils.addRecent(context,mFile)
+            storageUtils.addRecent(mFile)
         }
     }
 

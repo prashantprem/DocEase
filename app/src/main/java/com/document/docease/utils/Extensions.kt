@@ -49,6 +49,16 @@ object Extensions {
         }
     }
 
+    fun File.FileType(): FileType {
+        return when (this.name.substring(this.name.lastIndexOf(".") + 1)) {
+            "pdf" -> FileType.PDF
+            "ppt", "pptx" -> FileType.P_POINT
+            "doc", "docx" -> FileType.WORD
+            "xlsx", "xls" -> FileType.EXCEL
+            else -> FileType.PDF
+        }
+    }
+
 
     fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
         clickable(indication = null,

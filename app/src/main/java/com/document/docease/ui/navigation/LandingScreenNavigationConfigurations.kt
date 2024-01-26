@@ -17,7 +17,7 @@ fun LandingScreenNavigationConfigurations(
 ) {
     NavHost(navController, startDestination = BottomNavigationScreens.HOME.route) {
         composable(BottomNavigationScreens.HOME.route) {
-            HomeScreen()
+            HomeScreen(viewModel)
         }
         composable(BottomNavigationScreens.PDF.route) {
             FileListScreen(viewModel, FileType.PDF)

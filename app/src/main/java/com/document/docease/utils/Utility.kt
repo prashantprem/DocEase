@@ -116,7 +116,7 @@ object Utility {
 
     fun openFile(activity: Activity, mFile: File, pageNumber: Int) {
         val storageUtils = StorageUtils(activity)
-        storageUtils.addRecent(activity, mFile)
+        storageUtils.addRecent( mFile)
         val fromFile = Uri.fromFile(mFile)
         val intent = Intent(activity, ViewEditorActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW
@@ -143,7 +143,7 @@ object Utility {
 
     fun previewFile( activity: Activity, mFile: File, pageNumber: Int, isForPrint: Boolean = false) {
         val storageUtils = StorageUtils(activity)
-        storageUtils.addRecent(activity, mFile)
+        storageUtils.addRecent( mFile)
         val fromFile = Uri.fromFile(mFile)
         val intent = Intent(activity, PreviewActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW

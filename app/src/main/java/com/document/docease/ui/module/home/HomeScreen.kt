@@ -1,6 +1,5 @@
 package com.document.docease.ui.module.home
 
-import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -19,7 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -30,31 +28,37 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
-import com.document.docease.ui.theme.DocEaseTheme
+import com.document.docease.ui.common.EmptyScreen
+import com.document.docease.ui.common.FileListWrapper
+import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.Extensions.findActivity
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    viewModel: MainViewModel
+) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
+    val activity = LocalContext.current.findActivity()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         var tabIndex by remember { mutableIntStateOf(0) }
-        val pagerState = rememberPagerState(initialPage = 0,pageCount = {
+        val pagerState = rememberPagerState(initialPage = 0, pageCount = {
             tabs.size
         })
-        LaunchedEffect(tabIndex){
-            Log.d("Testing",tabIndex.toString())
+        LaunchedEffect(tabIndex) {
+            Log.d("Testing", tabIndex.toString())
             pagerState.scrollToPage(tabIndex)
         }
-        LaunchedEffect(pagerState.currentPage){
+        LaunchedEffect(pagerState.currentPage) {
             tabIndex = pagerState.currentPage
         }
         Image(
@@ -76,9 +80,11 @@ fun HomeScreen() {
 
             },
             divider = {}) {
-            tabs.forEachIndexed{ index,item ->
+            tabs.forEachIndexed { index, item ->
                 Tab(
-                    selected = tabIndex == index, onClick = { tabIndex = index }, modifier = Modifier
+                    selected = tabIndex == index,
+                    onClick = { tabIndex = index },
+                    modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .height(30.dp)
                         .background(
@@ -107,20 +113,27 @@ fun HomeScreen() {
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = tabIndex.toString())
+                if (tabIndex == 0) {
+                    FileListWrapper(files = viewModel.getRecentFiles(), activity = activity)
+                } else if (tabIndex == 1) {
+                    FileListWrapper(files = viewModel.getFavouriteFiles(), activity = activity)
+                } else {
+                    EmptyScreen()
+                }
             }
         }
     }
 }
 
 
-@Preview(showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-@Composable
-fun previewHomeScreen() {
-    DocEaseTheme {
-        HomeScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+//@Composable
+//fun previewHomeScreen() {
+//    DocEaseTheme {
+//        val viewModel: MainViewModel = hiltViewModel()
+//        HomeScreen(viewModel = viewModel)
+//    }
+//}
 
 

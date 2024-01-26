@@ -16,12 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.document.docease.R
 import com.document.docease.data.Resource
-import com.document.docease.ui.common.FileList
+import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.Extensions.fileIcon
 import com.document.docease.utils.Extensions.findActivity
-import com.document.docease.utils.Utility
 
 @Composable
 fun FileListScreen(
@@ -54,12 +53,9 @@ fun FileListScreen(
         }
 
         is Resource.Success -> {
-            Column(modifier = Modifier.background(color = colorResource(id = R.color.bg_color_main))) {
-                FileList(files = fileLoadingState.value?.data!!, fileType.fileIcon(), onItemCLick = { file->
-                    Utility.previewFile(activity!!,file,0)
-                })
-            }
+            FileListWrapper(files = fileLoadingState.value?.data!!, fileType.fileIcon(), activity)
         }
+
         else -> {}
     }
 

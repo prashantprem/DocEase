@@ -45,6 +45,9 @@ class MainViewModel @Inject constructor(
     private val _pptFiles = MutableLiveData<Resource<List<File>>>()
     val pptFiles: LiveData<Resource<List<File>>> get() = _pptFiles
 
+    private val _recentFiles = MutableLiveData<Resource<List<File>>>()
+    val recentFiles: LiveData<Resource<List<File>>> get() = _recentFiles
+
 
     private var allOfficeFile: MutableList<File> = mutableListOf()
     private var allPdfFiles: MutableList<File> = mutableListOf()
@@ -141,5 +144,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun getRecentFiles(): List<File>? {
+        return storageUtils.getRecent()
+    }
 
+    fun getFavouriteFiles() : List<File>? {
+        return  storageUtils.getBookmark()
+    }
 }

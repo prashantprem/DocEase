@@ -72,13 +72,13 @@ class HomeViewModel @Inject constructor(
     fun addFilesToBookMarks(context: Context, file: File) {
         viewModelScope.launch {
             bookMarkUpdated.postValue(true)
-            storageUtils.addBookmark(context, file)
+            storageUtils.addBookmark( file)
         }
     }
 
     fun getFileBookMarks(context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
-            mutableBookMarksFilesList.postValue(storageUtils.getBookmark(context))
+            mutableBookMarksFilesList.postValue(storageUtils.getBookmark())
         }
     }
 
@@ -86,14 +86,14 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             bookMarkUpdated.postValue(true)
             Log.d("testingFavourite", "called here-4")
-            storageUtils.removeBookmark(context, file)
+            storageUtils.removeBookmark( file)
             getFileBookMarks(context)
         }
     }
 
     fun getRecentFiles(context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
-            recentFilesMutableLiveData.postValue(storageUtils.getRecent(context))
+            recentFilesMutableLiveData.postValue(storageUtils.getRecent())
         }
     }
 
@@ -213,7 +213,7 @@ class HomeViewModel @Inject constructor(
     private val triggerFontSize: MutableLiveData<Double> = MediatorLiveData()
 
     fun previewFile(activity: Activity, file: File, pageNumber: Int) {
-        storageUtils.addRecent(activity, file)
+        storageUtils.addRecent( file)
         val fromFile = Uri.fromFile(file)
         val intent = Intent(activity, PreviewActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW

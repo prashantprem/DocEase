@@ -13,10 +13,11 @@ import javax.inject.Inject
 
 
 class StorageUtils @Inject constructor(private val context: Context) {
-    fun saveRecent(context: Context, favorites: List<File>?) {
+    fun saveRecent(favorites: List<File>?) {
         try {
             val editor: SharedPreferences.Editor
-            val settings: SharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE)
+            val settings: SharedPreferences =
+                context.getSharedPreferences(SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE)
             editor = settings.edit()
             val gson: Gson = GsonBuilder()
                 .registerTypeAdapter(File::class.java, FileTypeAdapter())
@@ -29,17 +30,17 @@ class StorageUtils @Inject constructor(private val context: Context) {
         }
     }
 
-    fun addRecent(context: Context, product: File) {
+    fun addRecent(product: File) {
         var isExistFile = false
         var favorites: MutableList<File>?
-        favorites = getRecent(context)
+        favorites = getRecent()
         if (favorites == null) {
             favorites = ArrayList()
             favorites.add(product)
-            saveRecent(context, favorites)
+            saveRecent(favorites)
         } else if (favorites.size == 0) {
             favorites.add(product)
-            saveRecent(context, favorites)
+            saveRecent(favorites)
         } else if (favorites.size > 0) {
             for (i in favorites.indices) {
                 if (product.absolutePath == favorites[i].absolutePath) {
@@ -48,30 +49,30 @@ class StorageUtils @Inject constructor(private val context: Context) {
             }
             if (!isExistFile) {
                 favorites.add(0, product)
-                saveRecent(context, favorites)
+                saveRecent(favorites)
                 Log.e("xxx", "addRecent: ")
             } else {
                 favorites.remove(product)
                 favorites.add(0, product)
-                saveRecent(context, favorites)
+                saveRecent(favorites)
                 Log.e("xxx", "addRecent:exist ")
             }
         }
     }
 
-    fun removeRecent(context: Context, product: File) {
-        val favorites = getRecent(context)
+    fun removeRecent(product: File) {
+        val favorites = getRecent()
         if (favorites != null) {
             for (i in favorites.indices) {
                 if (product.absolutePath == favorites[i].absolutePath) {
                     favorites.removeAt(i)
                 }
             }
-            saveRecent(context, favorites)
+            saveRecent(favorites)
         }
     }
 
-    fun getRecent(context: Context): ArrayList<File>? {
+    fun getRecent(): ArrayList<File>? {
         var favorites: List<File>?
         val settings: SharedPreferences = context.getSharedPreferences(
             SHARED_PREFERENCES_FILE_NAME,
@@ -99,7 +100,7 @@ class StorageUtils @Inject constructor(private val context: Context) {
         return favorites
     }
 
-    private fun saveBookmark(context: Context, favorites: List<File>) {
+    private fun saveBookmark(favorites: List<File>) {
         try {
             val editor: SharedPreferences.Editor
             val settings: SharedPreferences = context.getSharedPreferences(
@@ -118,14 +119,14 @@ class StorageUtils @Inject constructor(private val context: Context) {
         }
     }
 
-    fun addBookmark(context: Context, product: File) {
+    fun addBookmark(product: File) {
         var isExistFile = false
         var favorites: MutableList<File>?
-        favorites = getBookmark(context)
+        favorites = getBookmark()
         if (favorites == null) {
             favorites = ArrayList()
             favorites.add(product)
-            saveBookmark(context, favorites)
+            saveBookmark(favorites)
             Toast.makeText(
                 context,
                 context.resources.getString(R.string.toast_added_bookmark),
@@ -133,7 +134,7 @@ class StorageUtils @Inject constructor(private val context: Context) {
             ).show()
         } else if (favorites.size == 0) {
             favorites.add(product)
-            saveBookmark(context, favorites)
+            saveBookmark(favorites)
             Toast.makeText(
                 context,
                 context.resources.getString(R.string.toast_added_bookmark),
@@ -147,7 +148,7 @@ class StorageUtils @Inject constructor(private val context: Context) {
             }
             if (!isExistFile) {
                 favorites.add(0, product)
-                saveBookmark(context, favorites)
+                saveBookmark(favorites)
                 Log.e("xxx", "addBookmark: ")
                 Toast.makeText(
                     context,
@@ -164,8 +165,8 @@ class StorageUtils @Inject constructor(private val context: Context) {
         }
     }
 
-    fun removeBookmark(context: Context, product: File) {
-        val favorites = getBookmark(context)
+    fun removeBookmark(product: File) {
+        val favorites = getBookmark()
         if (favorites != null) {
             val iterator = favorites.iterator()
             while (iterator.hasNext()) {
@@ -179,11 +180,11 @@ class StorageUtils @Inject constructor(private val context: Context) {
                     ).show()
                 }
             }
-            saveBookmark(context, favorites)
+            saveBookmark(favorites)
         }
     }
 
-    fun getBookmark(context: Context): ArrayList<File>? {
+    fun getBookmark(): ArrayList<File>? {
         var favorites: List<File>?
         val settings: SharedPreferences = context.getSharedPreferences(
             SHARED_PREFERENCES_FILE_NAME,

@@ -31,6 +31,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.document.docease.R
+import com.document.docease.utils.Extensions.FileType
+import com.document.docease.utils.Extensions.fileIcon
 import com.document.docease.utils.Extensions.formatTimeStamp
 import com.document.docease.utils.Extensions.formatToFileSize
 import java.io.File
@@ -39,7 +41,7 @@ import java.util.Locale
 @Composable
 fun FileList(
     files: List<File>,
-    @DrawableRes imageId: Int,
+    @DrawableRes imageId: Int?= null,
     onItemCLick: (file: File) -> Unit
 ) {
     LazyColumn() {
@@ -54,7 +56,9 @@ fun FileList(
 }
 
 @Composable
-fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
+fun FileListItem(
+    file: File, imageId: Int?, onItemCLick: (file: File) -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,7 +75,9 @@ fun FileListItem(file: File, imageId: Int, onItemCLick: (file: File) -> Unit) {
         horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = imageId),
+            painter = painterResource(
+                id = imageId ?: file.FileType().fileIcon()
+            ),
             contentDescription = "File icon",
             modifier = Modifier
                 .size(30.dp)
