@@ -177,6 +177,7 @@ fun updatePieChartWithData(
     // pie data in chart data.
     chart.data = d
     chart.setDrawEntryLabels(false)
+    chart.legend.isEnabled = false
 
     // on below line we are
     // calling invalidate in chart.

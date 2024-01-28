@@ -36,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
 import com.document.docease.data.Resource
+import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
@@ -129,32 +130,33 @@ fun HomeScreen(
                             res.data?.let { docCount ->
                                 val pieChartData = listOf(
                                     PieChartData(
-                                        "pdf(${docCount.pdfCount.toInt()})",
+                                        "PDF(${docCount.pdfCount.toInt()})",
                                         (docCount.pdfCount / docCount.total),
-                                        R.drawable.chart_pdf
+                                        R.drawable.ic_large_pdf
                                     ),
                                     PieChartData(
-                                        "word(${docCount.wordCount.toInt()})",
+                                        "WORD(${docCount.wordCount.toInt()})",
                                         (docCount.wordCount / docCount.total),
-                                        R.drawable.chart_word
+                                        R.drawable.ic_large_word
                                     ),
                                     PieChartData(
-                                        "excel(${docCount.excelCount.toInt()})",
+                                        "EXCEL(${docCount.excelCount.toInt()})",
                                         (docCount.excelCount / docCount.total),
-                                        R.drawable.chart_excel
+                                        R.drawable.ic_large_excel
                                     ),
                                     PieChartData(
-                                        "ppt(${docCount.pptCount.toInt()})",
+                                        "PPT(${docCount.pptCount.toInt()})",
                                         (docCount.pptCount / docCount.total),
-                                        R.drawable.chart_ppt
+                                        R.drawable.ic_large_ppt
                                     ),
                                 )
                                 Column(
-                                    modifier = Modifier.fillMaxSize(),
+                                    modifier = Modifier.fillMaxSize().background(color = colorResource(id = R.color.bg_color_main)),
                                     verticalArrangement = Arrangement.Center,
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
                                     FileDistributionChart(pieChartData)
+                                    FileCountScreen(pieChartData)
                                 }
 
                             }
@@ -174,10 +176,9 @@ fun HomeScreen(
 //@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 //@Composable
 //fun previewHomeScreen() {
-//    DocEaseTheme {
-//        val viewModel: MainViewModel = hiltViewModel()
-//        HomeScreen(viewModel = viewModel)
-//    }
+//    val viewModel: MainViewModel = hiltViewModel()
+//    HomeScreen(viewModel = viewModel)
+//
 //}
 
 
