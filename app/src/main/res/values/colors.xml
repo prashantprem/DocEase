@@ -10,6 +10,10 @@
     <color name="app_bar">#ffffff</color>
     <color name="bg_color_main">#F5F5F5</color>
     <color name="bg_file_list_item_color_main">#ffffff</color>
+    <color name="na_button_default">#FFffca2c</color>
+    <color name="na_button_pressed">#FFff9e02</color>
+
+
 
 
 

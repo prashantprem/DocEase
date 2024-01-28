@@ -119,6 +119,16 @@ dependencies {
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
+    implementation("com.google.android.gms:play-services-ads:22.6.0")
+//    implementation("io.github.farimarwat:admobnative-compose:1.2")
+//    implementation("com.facebook.shimmer:shimmer:0.5.0")
+    implementation("androidx.compose.ui:ui-viewbinding:1.6.0")
+
+
+
+
+
+
 
 }
 

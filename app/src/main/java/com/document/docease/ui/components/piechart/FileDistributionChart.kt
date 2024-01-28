@@ -42,7 +42,7 @@ fun FileDistributionChart(
     val context = LocalContext.current
     Column(
         modifier = Modifier
-            .size(200.dp),
+            .size(150.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,6 +39,8 @@ import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
+import com.document.docease.ui.components.ads.BannerAdAdmobMedium
+import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.main.MainViewModel
@@ -51,10 +54,14 @@ fun HomeScreen(
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
     val activity = LocalContext.current.findActivity()
     val documentCountState = viewModel.documentCount.observeAsState()
+    val adstate = rememberNativeAdState(
+        context = LocalContext.current, adUnitId = "ca-app-pub-3940256099942544/2247696110",
+        refreshInterval = 30000
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
     ) {
         var tabIndex by remember { mutableIntStateOf(0) }
         val pagerState = rememberPagerState(initialPage = 0, pageCount = {
@@ -67,9 +74,10 @@ fun HomeScreen(
         LaunchedEffect(pagerState.currentPage) {
             tabIndex = pagerState.currentPage
         }
-        Image(
-            painter = painterResource(id = R.drawable.ad_placeholder),
-            contentDescription = "Native ad"
+        BannerAdAdmobMedium(
+            context = LocalContext.current,
+            loadedAd = adstate,
+            isDarkTheme = isSystemInDarkTheme()
         )
         TabRow(selectedTabIndex = tabIndex, modifier = Modifier.padding(vertical = 16.dp),
             indicator = { tabPositions ->
@@ -151,7 +159,9 @@ fun HomeScreen(
                                     ),
                                 )
                                 Column(
-                                    modifier = Modifier.fillMaxSize().background(color = colorResource(id = R.color.bg_color_main)),
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(color = colorResource(id = R.color.bg_color_main)),
                                     verticalArrangement = Arrangement.Center,
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
