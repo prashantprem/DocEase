@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,7 +40,6 @@ import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
-import com.document.docease.ui.components.ads.NativeAdAdmobMedium
 import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
@@ -77,11 +75,11 @@ fun HomeScreen(
         LaunchedEffect(pagerState.currentPage) {
             tabIndex = pagerState.currentPage
         }
-        NativeAdAdmobMedium(
-            context = LocalContext.current,
-            loadedAd = adstate,
-            isDarkTheme = isSystemInDarkTheme()
-        )
+//        NativeAdAdmobMedium(
+//            context = LocalContext.current,
+//            loadedAd = adstate,
+//            isDarkTheme = isSystemInDarkTheme()
+//        )
         TabRow(selectedTabIndex = tabIndex, modifier = Modifier
             .padding(vertical = 8.dp)
             .fillMaxWidth(),

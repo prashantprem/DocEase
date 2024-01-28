@@ -22,7 +22,7 @@ fun FileListWrapper(
             .background(color = colorResource(id = R.color.bg_color_main))
             .fillMaxSize()
     ) {
-        if (files != null) {
+        if (!files.isNullOrEmpty()) {
             FileList(files = files, imageId, fileClickListener)
         } else {
             EmptyScreen()

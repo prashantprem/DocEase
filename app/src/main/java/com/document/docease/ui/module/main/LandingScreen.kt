@@ -1,6 +1,5 @@
 package com.document.docease.ui.module.main
 
-import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -29,9 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
@@ -40,9 +38,8 @@ import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListene
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
 import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
-import com.document.docease.ui.navigation.LandingScreenNavigationConfigurations
-import com.document.docease.ui.theme.DocEaseTheme
-import com.document.docease.utils.Extensions.findActivity
+import com.document.docease.ui.navigation.BottomNavigationScreenConfigurations
+import com.document.docease.ui.navigation.Routes
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
@@ -51,8 +48,8 @@ import java.io.File
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandingScreen(
-    navController: NavHostController,
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
+    navigationController: NavHostController
 ) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.HOME,
@@ -63,9 +60,12 @@ fun LandingScreen(
     )
     val fileInfoBottomSheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
-    var showBottomSheet by remember { mutableStateOf(false) }
+    var showFileActionBottomSheet by remember { mutableStateOf(false) }
     var mFile: File? = null
     val mContext = LocalContext.current
+    val bottomNavigationController = rememberNavController()
+    var queryText by remember { mutableStateOf("") }
+    var active by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -95,6 +95,13 @@ fun LandingScreen(
                         tint = colorResource(id = R.color.primary),
                         modifier = Modifier
                             .noRippleClickable {
+                                navigationController.navigate(Routes.SEARCH) {
+                                    popUpTo(navigationController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
                                 Log.d("TestingCLick", "CLicked")
                             }
                             .size(80.dp)
@@ -105,10 +112,10 @@ fun LandingScreen(
             )
         },
         content = {
-            if (showBottomSheet) {
+            if (showFileActionBottomSheet) {
                 ModalBottomSheet(
                     onDismissRequest = {
-                        showBottomSheet = false
+                        showFileActionBottomSheet = false
                         mFile = null
                     },
                     shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
@@ -123,9 +130,7 @@ fun LandingScreen(
                             viewModel.isFavourite(file),
                             object : FIleInfoBottomSheetClickListener {
                                 override fun onEditClick(file: File) {
-                                    mContext.findActivity()?.let { activity ->
-                                        Utility.openFile(activity, file, 0)
-                                    }
+                                    Utility.openFileWithLocalContext(mContext, file)
                                 }
 
                                 override fun onWhatsAppShare(file: File) {
@@ -137,9 +142,11 @@ fun LandingScreen(
                                 }
 
                                 override fun onPrint(file: File) {
-                                    mContext.findActivity()?.let { activity ->
-                                        Utility.previewFile(activity, file, 0, isForPrint = true)
-                                    }
+                                    Utility.previewFileWithLocalContext(
+                                        mContext,
+                                        file,
+                                        isForPrint = true
+                                    )
                                 }
 
                                 override fun onAddToFavourite(file: File) {
@@ -156,23 +163,21 @@ fun LandingScreen(
                     .padding(it)
                     .background(color = colorResource(id = R.color.bg_color_main))
             ) {
-                LandingScreenNavigationConfigurations(
-                    navController,
+                BottomNavigationScreenConfigurations(
+                    bottomNavigationController,
                     viewModel,
                     object : FileClickListener {
                         override fun onMenuClick(file: File) {
                             scope.launch {
                                 if (!fileInfoBottomSheetState.isVisible) {
                                     mFile = file
-                                    showBottomSheet = true
+                                    showFileActionBottomSheet = true
                                 }
                             }
                         }
 
                         override fun onFileClick(file: File) {
-                            mContext.findActivity()?.let { activity ->
-                                Utility.previewFile(activity, file, 0)
-                            }
+                            Utility.previewFileWithLocalContext(mContext, file)
                         }
 
                     })
@@ -180,7 +185,7 @@ fun LandingScreen(
         },
         bottomBar = {
             CustomBottomNavigation(
-                navController = navController,
+                navController = bottomNavigationController,
                 items = bottomNavigationItems
             )
         }
@@ -189,13 +194,13 @@ fun LandingScreen(
 
 }
 
-@Preview(showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-@Composable
-fun previewLandingSCreen2() {
-    DocEaseTheme {
-        val viewModel: MainViewModel = hiltViewModel()
-        LandingScreen(rememberNavController(), viewModel = viewModel)
-    }
-}
+//@Preview(showBackground = true)
+//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+//@Composable
+//fun previewLandingSCreen2() {
+//    DocEaseTheme {
+//        val viewModel: MainViewModel = hiltViewModel()
+//        LandingScreen(rememberNavController(), viewModel = viewModel)
+//    }
+//}
 

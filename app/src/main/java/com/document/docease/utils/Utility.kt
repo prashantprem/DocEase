@@ -13,6 +13,7 @@ import com.document.docease.BuildConfig
 import com.document.docease.ui.module.editors.ViewEditorActivity
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.preview.PreviewActivity
+import com.document.docease.utils.Extensions.findActivity
 import java.io.File
 
 object Utility {
@@ -102,6 +103,23 @@ object Utility {
         intent.putExtra(Constant.SHOW_DEFAULT_BS, false)
         intent.putExtra(Constant.EDITOR, true)
         activity.startActivityForResult(intent, MainActivity.CODE_RESULT_BOOKMARK)
+    }
+
+    fun openFileWithLocalContext(context: Context, mFile: File, pageNumber: Int = 0) {
+        context.findActivity()?.let { activity ->
+            openFile(activity, mFile, pageNumber)
+        }
+    }
+
+    fun previewFileWithLocalContext(
+        context: Context,
+        mFile: File,
+        pageNumber: Int = 0,
+        isForPrint: Boolean = false
+    ) {
+        context.findActivity()?.let { activity ->
+            previewFile(activity, mFile, pageNumber, isForPrint = isForPrint)
+        }
     }
 
     fun openFileFromUri(activity: Activity, uri: Uri, isForPrint: Boolean = false) {

@@ -42,6 +42,7 @@ import com.document.docease.utils.Extensions.formatToFileSize
 import com.document.docease.utils.Extensions.useNonBreakingSpace
 import java.io.File
 
+
 @Composable
 fun FileInfoBottomSheetUI(
     file: File,
@@ -167,9 +168,13 @@ fun FileInfoBottomSheetUI(
                         .padding(start = 5.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
-                Text(text = item.title, style = MaterialTheme.typography.bodyMedium.copy(color = colorResource(
-                    id = R.color.text_grey
-                )))
+                Text(
+                    text = item.title, style = MaterialTheme.typography.bodyMedium.copy(
+                        color = colorResource(
+                            id = R.color.text_grey
+                        )
+                    )
+                )
             }
 
         }

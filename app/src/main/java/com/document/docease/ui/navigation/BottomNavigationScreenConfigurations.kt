@@ -12,7 +12,7 @@ import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
 
 @Composable
-fun LandingScreenNavigationConfigurations(
+fun BottomNavigationScreenConfigurations(
     navController: NavHostController,
     viewModel: MainViewModel,
     fileClickListener: FileClickListener

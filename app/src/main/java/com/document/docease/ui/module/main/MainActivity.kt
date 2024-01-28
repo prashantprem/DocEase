@@ -3,7 +3,6 @@ package com.document.docease.ui.module.main
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -15,13 +14,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
+import com.document.docease.ui.navigation.MainNavigationConfiguration
 import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.PermissionUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +34,6 @@ class MainActivity : ComponentActivity() {
         const val CODE_RESULT_BOOKMARK = 2
 
     }
-
 
 
     private val requestPermissionResultLauncher =
@@ -79,7 +75,10 @@ class MainActivity : ComponentActivity() {
             DocEaseTheme {
                 val navController = rememberNavController()
                 Box(Modifier.safeDrawingPadding()) {
-                    LandingScreen(navController,viewModel)
+                    MainNavigationConfiguration(
+                        navController = navController,
+                        viewModel = viewModel
+                    )
                 }
             }
 
@@ -110,13 +109,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-@Preview(showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-@Composable
-fun previewLandingScreen() {
-    DocEaseTheme {
-        val viewModel: MainViewModel = hiltViewModel()
-        LandingScreen(rememberNavController(),viewModel)
-    }
-}
+//
+//@Preview(showBackground = true)
+//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+//@Composable
+//fun previewLandingScreen() {
+//    DocEaseTheme {
+//        val viewModel: MainViewModel = hiltViewModel()
+//        LandingScreen(rememberNavController(), viewModel)
+//    }
+//}

@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.document.docease.data.BaseViewModel
 import com.document.docease.data.Resource
 import com.document.docease.ui.components.piechart.DocumentCount
 import com.document.docease.utils.Constant
@@ -19,12 +19,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val storageUtils: StorageUtils
-) : ViewModel() {
+) : BaseViewModel() {
 
 
     var showSplash by mutableStateOf(true)
@@ -48,6 +49,10 @@ class MainViewModel @Inject constructor(
 
     private val _documentCount = MutableLiveData<Resource<DocumentCount>>()
     val documentCount: LiveData<Resource<DocumentCount>> get() = _documentCount
+
+
+    private val _filteredFiles = MutableLiveData<List<File>>()
+    val filteredFiles: LiveData<List<File>> get() = _filteredFiles
 
 
     private var allOfficeFile: MutableList<File> = mutableListOf()
@@ -172,6 +177,23 @@ class MainViewModel @Inject constructor(
     fun isFavourite(file: File): Boolean {
         val allFavourites = getFavouriteFiles() ?: return false
         return allFavourites.contains(file)
+    }
 
+    fun searchFile(query: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val filteredList = mutableListOf<File>()
+            try {
+                for (item in allOfficeFile) {
+                    if (item.name.lowercase(Locale.getDefault())
+                            .contains(query.lowercase(Locale.getDefault()))
+                    ) {
+                        filteredList.add(item)
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            _filteredFiles.postValue(filteredList)
+        }
     }
 }
