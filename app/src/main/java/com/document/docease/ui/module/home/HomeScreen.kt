@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
@@ -44,17 +45,17 @@ import com.document.docease.ui.components.ads.NativeAdAdmobMedium
 import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
+import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.primaryBlue
-import com.document.docease.utils.Extensions.findActivity
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
+    fileClickListener: FileClickListener
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
-    val activity = LocalContext.current.findActivity()
     val documentCountState = viewModel.documentCount.observeAsState()
     val adstate = rememberNativeAdState(
         context = LocalContext.current, adUnitId = "ca-app-pub-3940256099942544/2247696110",
@@ -134,9 +135,15 @@ fun HomeScreen(
                 contentAlignment = Alignment.Center
             ) {
                 if (tabIndex == 0) {
-                    FileListWrapper(files = viewModel.getRecentFiles(), activity = activity)
+                    FileListWrapper(
+                        files = viewModel.getRecentFiles(),
+                        fileClickListener = fileClickListener
+                    )
                 } else if (tabIndex == 1) {
-                    FileListWrapper(files = viewModel.getFavouriteFiles(), activity = activity)
+                    FileListWrapper(
+                        files = viewModel.getFavouriteFiles(),
+                        fileClickListener = fileClickListener
+                    )
                 } else {
                     when (val res = documentCountState.value) {
                         is Resource.Loading -> {}

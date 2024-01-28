@@ -8,8 +8,13 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.graphics.Color
 import com.document.docease.R
 import com.document.docease.ui.module.filescreen.FileType
+import com.document.docease.ui.theme.excelSelected
+import com.document.docease.ui.theme.pdfSelected
+import com.document.docease.ui.theme.pptSelected
+import com.document.docease.ui.theme.wordSelected
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -59,6 +64,16 @@ object Extensions {
         }
     }
 
+    fun FileType.favouriteTintColor(): Color {
+        return when (this) {
+            FileType.PDF -> pdfSelected
+            FileType.WORD -> wordSelected
+            FileType.EXCEL -> excelSelected
+            FileType.P_POINT -> pptSelected
+        }
+    }
+
+
 
     fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
         clickable(indication = null,
@@ -72,4 +87,10 @@ object Extensions {
         is ContextWrapper -> baseContext.findActivity()
         else -> null
     }
+
+    fun String?.useNonBreakingSpace() = this.orEmpty()
+        .replace(
+            Constant.REGULAR_SPACE_CHARACTER,
+            Constant.NON_BREAKABLE_SPACE_UNICODE
+        )
 }

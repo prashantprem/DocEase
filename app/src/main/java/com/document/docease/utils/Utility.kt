@@ -74,33 +74,6 @@ object Utility {
         }
     }
 
-    fun shareDocument(file: File?, context: Context) {
-        try {
-            val shareIntent = Intent()
-            shareIntent.action = Intent.ACTION_SEND
-            shareIntent.type = "application/*"
-            val uri = FileProvider.getUriForFile(
-                context, BuildConfig.APPLICATION_ID + ".fileprovider",
-                file!!
-            )
-            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-            val resInfoList: List<ResolveInfo> = context.packageManager
-                .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
-            for (resolveInfo in resInfoList) {
-                val packageName = resolveInfo.activityInfo.packageName
-                context.grantUriPermission(
-                    packageName,
-                    uri,
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            }
-            context.startActivity(Intent.createChooser(shareIntent, "Share"))
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-
     fun isDefaultReaderSet(mFile: Uri?, context: Context): Boolean {
         val defaultReaderPackageName = getDefaultReader(mFile, context)
         return defaultReaderPackageName != Constant.ANDROID
@@ -165,6 +138,54 @@ object Utility {
 
     fun getResizedDrawableUsingSpecificSize(drawable: Drawable, newWidth: Int, newHeight: Int) =
         LayerDrawable(arrayOf(drawable)).also { it.setLayerSize(0, newWidth, newHeight) }
+
+
+    fun shareToWhatsApp(file: File, context: Context) {
+        try {
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "file/*"
+            val uri: Uri? = try {
+                FileProvider.getUriForFile(
+                    context,
+                    BuildConfig.APPLICATION_ID + ".provider",
+                    file
+                )
+            } catch (e: Exception) {
+                Uri.fromFile(file)
+            }
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
+            sharingIntent.setPackage("com.whatsapp")
+            context.startActivity(sharingIntent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun shareToAny(file: File, context: Context) {
+        try {
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.type = "application/*"
+            val uri = FileProvider.getUriForFile(
+                context, BuildConfig.APPLICATION_ID + ".fileprovider",
+                file
+            )
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+            val resInfoList: List<ResolveInfo> = context.packageManager
+                .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
+            for (resolveInfo in resInfoList) {
+                val packageName = resolveInfo.activityInfo.packageName
+                context.grantUriPermission(
+                    packageName,
+                    uri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+            context.startActivity(Intent.createChooser(shareIntent, "Share"))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
 
 }

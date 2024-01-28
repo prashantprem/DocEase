@@ -12,6 +12,7 @@
     <color name="bg_file_list_item_color_main">#ffffff</color>
     <color name="na_button_default">#FFffca2c</color>
     <color name="na_button_pressed">#FFff9e02</color>
+    <color name="text_grey">#938B8B</color>
 
 
 

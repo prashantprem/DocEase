@@ -65,57 +65,23 @@ object Constant {
     const val READY = "Ready!"
     const val ERROR = "Error!"
     const val ANDROID = "android"
-    const val FILE_ERROR = "File error"
     const val FILE = "file"
     const val PRINT = "print"
     const val FILE_PATH = "file_path"
     const val IS_IMAGE_FILE = "isImageFile"
-    const val EVENT_NAME = "eventName"
-    const val TYPE = "type"
-    const val FILE_PATH_TOOLS = "filePath"
-    const val PERMISSION_DIALOG = "permissionDialog"
-    const val TOOLS_DETAIL_FRAGMENT = "toolsDetailFragment"
-    const val EXIT_TOOLS_BOTTOM_SHEET_FRAGMENT = "exitToolsBottomSheetFragment"
-    const val CUSTOM_PERMISSION_DIALOG = "customPermissionDialog"
     const val STARTED_FROM_EXPLORER = "STARTED_FROM_EXPLORER"
     const val START_PAGE = "START_PAGE"
     const val FILE_NAME = "FILE_NAME"
     const val PREVIEW = "preview"
     const val EDITOR = "editor"
     const val INTENT_ACTION_VIEW = "android.intent.action.VIEW"
-    const val UPLOAD_TO_CLOUD = "uploadToCloud"
-    const val PASSWORD = "password"
-    const val SIZE = "size"
-    const val IS_ICLOUD_FILE = "isCloudFile"
-    const val RANGE = "range"
-    const val BODY = "body"
-    const val DATA = "data"
-    const val DUMMY = "dummy"
-    const val URL = "Url"
-    const val ORIGINAL_FILE_NAME = "originalFileName"
-    const val RES_ARRAY = "resArray"
+
     const val PACKAGE = "package"
-    const val APK = "apk"
-    const val ZIP = "zip"
-    const val SHOW_DEFAULT_CHOOSER = "showDefaultChooser"
-    const val MAKE_DEFULT_VIEWER = "makeDefaultViewer"
-    const val LINK = "link"
-    const val FILE_READER_ALL_FRAGMENT = "FILE_READER_ALL_FRAGMENT"
-    const val RATING_CARD = "RatingCard"
+
+    const val REGULAR_SPACE_CHARACTER = ' '
+    const val NON_BREAKABLE_SPACE_UNICODE = '\u00A0'
 
 
-    //SecureTools
-    const val TOOLS_LOCK_PDF = "tools_secure_encrypt_pdf"
-    const val TOOLS_UNLOCK_PDF = "tools_secure_decrypt_pdf"
-    const val TYPE_PDF = 1
-    const val TYPE_PNG = 2
-    const val TYPE_JPG = 3
-    const val TYPE_ZIP = 4
-    const val TYPE_WORD = 5
-    const val TYPE_EXCEL = 6
-    const val TYPE_PPT = 7
-    const val TYPE_MULTIPLE_PDF = 8
-    const val TYPE_ALL = 9
 
     fun getFileAssetList(): ArrayList<FileAssetModel> {
         val mFileArrayList = ArrayList<FileAssetModel>()

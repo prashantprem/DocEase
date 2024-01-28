@@ -133,7 +133,7 @@ class PreviewActivity
         }
         if (shareToAny != null) {
             shareToAny!!.setOnClickListener {
-                Utility.shareDocument(mFile, this@PreviewActivity)
+                Utility.shareToAny(mFile!!, this@PreviewActivity)
             }
         }
         if (imvEditorShare != null) {
@@ -141,7 +141,7 @@ class PreviewActivity
                 if (isFromOutside) {
                     homeViewModel.getTriggerShare().value = true
                 } else {
-                    Utility.shareDocument(mFile, this@PreviewActivity)
+                    Utility.shareToAny(mFile!!, this@PreviewActivity)
                 }
             }
         }

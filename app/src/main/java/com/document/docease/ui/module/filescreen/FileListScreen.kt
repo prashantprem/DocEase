@@ -1,6 +1,5 @@
 package com.document.docease.ui.module.filescreen
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,22 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.module.main.MainViewModel
-import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.Extensions.fileIcon
-import com.document.docease.utils.Extensions.findActivity
 
 @Composable
 fun FileListScreen(
     viewModel: MainViewModel,
-    fileType: FileType
+    fileType: FileType,
+    fileClickListener: FileClickListener
 ) {
 
     val fileLoadingState = when (fileType) {
@@ -34,9 +29,6 @@ fun FileListScreen(
         FileType.EXCEL -> viewModel.excelFiles.observeAsState()
         FileType.P_POINT -> viewModel.pptFiles.observeAsState()
     }
-
-    val activity = LocalContext.current.findActivity()
-
 
     when (fileLoadingState.value) {
 
@@ -53,7 +45,7 @@ fun FileListScreen(
         }
 
         is Resource.Success -> {
-            FileListWrapper(files = fileLoadingState.value?.data!!, fileType.fileIcon(), activity)
+            FileListWrapper(files = fileLoadingState.value?.data!!, fileType.fileIcon(), fileClickListener)
         }
 
         else -> {}
@@ -61,12 +53,12 @@ fun FileListScreen(
 
 }
 
-@Preview(showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-@Composable
-fun previewPddfSCreen() {
-    DocEaseTheme {
-        val viewModel: MainViewModel = hiltViewModel()
-        FileListScreen(viewModel, FileType.PDF)
-    }
-}
+//@Preview(showBackground = true)
+//@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+//@Composable
+//fun previewPddfSCreen() {
+//    DocEaseTheme {
+//        val viewModel: MainViewModel = hiltViewModel()
+//        FileListScreen(viewModel, FileType.PDF)
+//    }
+//}

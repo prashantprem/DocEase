@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.document.docease.R
+import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.utils.Extensions.FileType
 import com.document.docease.utils.Extensions.fileIcon
 import com.document.docease.utils.Extensions.formatTimeStamp
@@ -41,15 +42,16 @@ import java.util.Locale
 @Composable
 fun FileList(
     files: List<File>,
-    @DrawableRes imageId: Int?= null,
-    onItemCLick: (file: File) -> Unit
+    @DrawableRes imageId: Int? = null,
+    fileClickListener: FileClickListener
+
 ) {
     LazyColumn() {
         items(files.size) { index ->
             if (index == 0) {
                 Spacer(modifier = Modifier.height(10.dp))
             }
-            FileListItem(file = files[index], imageId, onItemCLick)
+            FileListItem(file = files[index], imageId, fileClickListener)
             Spacer(modifier = Modifier.height(10.dp))
         }
     }
@@ -57,7 +59,7 @@ fun FileList(
 
 @Composable
 fun FileListItem(
-    file: File, imageId: Int?, onItemCLick: (file: File) -> Unit
+    file: File, imageId: Int?, fileClickListener: FileClickListener
 ) {
     Row(
         modifier = Modifier
@@ -69,7 +71,7 @@ fun FileListItem(
                 shape = RoundedCornerShape(8.dp)
             )
             .clickable(onClick = {
-                onItemCLick(file)
+                fileClickListener.onFileClick(file = file)
             }),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -127,7 +129,9 @@ fun FileListItem(
             tint = Color(0xffB8B8B8),
             modifier = Modifier
                 .size(25.dp)
-                .clickable(onClick = {})
+                .clickable(onClick = {
+                    fileClickListener.onMenuClick(file = file)
+                })
         )
 
     }

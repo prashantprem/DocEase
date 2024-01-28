@@ -164,4 +164,14 @@ class MainViewModel @Inject constructor(
     fun getFavouriteFiles(): List<File>? {
         return storageUtils.getBookmark()
     }
+
+    fun addToFavourites(file: File) {
+        storageUtils.addBookmark(file)
+    }
+
+    fun isFavourite(file: File): Boolean {
+        val allFavourites = getFavouriteFiles() ?: return false
+        return allFavourites.contains(file)
+
+    }
 }
