@@ -182,16 +182,18 @@ class MainViewModel @Inject constructor(
     fun searchFile(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val filteredList = mutableListOf<File>()
-            try {
-                for (item in allOfficeFile) {
-                    if (item.name.lowercase(Locale.getDefault())
-                            .contains(query.lowercase(Locale.getDefault()))
-                    ) {
-                        filteredList.add(item)
+            if (query.isNotEmpty()) {
+                try {
+                    for (item in allOfficeFile) {
+                        if (item.name.lowercase(Locale.getDefault())
+                                .contains(query.lowercase(Locale.getDefault()))
+                        ) {
+                            filteredList.add(item)
+                        }
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
             _filteredFiles.postValue(filteredList)
         }

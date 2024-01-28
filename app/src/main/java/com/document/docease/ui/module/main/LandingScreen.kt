@@ -1,6 +1,7 @@
 package com.document.docease.ui.module.main
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,6 +34,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
+import com.document.docease.ui.common.ExitBottomSheet
 import com.document.docease.ui.common.FileInfoBottomSheetUI
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
 import com.document.docease.ui.module.filescreen.FileClickListener
@@ -40,6 +42,7 @@ import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
 import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
 import com.document.docease.ui.navigation.BottomNavigationScreenConfigurations
 import com.document.docease.ui.navigation.Routes
+import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
@@ -61,11 +64,11 @@ fun LandingScreen(
     val fileInfoBottomSheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
     var showFileActionBottomSheet by remember { mutableStateOf(false) }
+    var showExitBottomSheet by remember { mutableStateOf(false) }
+    val exitBottomSheetState = rememberModalBottomSheetState()
     var mFile: File? = null
     val mContext = LocalContext.current
     val bottomNavigationController = rememberNavController()
-    var queryText by remember { mutableStateOf("") }
-    var active by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -156,7 +159,19 @@ fun LandingScreen(
                             })
                     }
                 }
+            } else if (showExitBottomSheet) {
+                ExitBottomSheet(onExit = {
+                    showExitBottomSheet = false
+                    mContext.findActivity()?.finish()
+                }, onDismiss = {
+                    showExitBottomSheet = false
+                }, exitBottomSheetState)
             }
+            BackHandler(enabled = true, onBack = {
+                if (navigationController.currentBackStackEntry?.destination?.route == Routes.LANDING) {
+                    showExitBottomSheet = true
+                }
+            })
 
             Column(
                 modifier = Modifier
