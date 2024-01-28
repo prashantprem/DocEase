@@ -2,14 +2,12 @@ package com.document.docease.ui.module.main
 
 import android.content.res.Configuration
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -78,15 +76,19 @@ fun LandingScreen(
                             .noRippleClickable {
                                 Log.d("TestingCLick", "CLicked")
                             }
-                            .size(100.dp)
+                            .size(80.dp)
                             .fillMaxWidth(0.2f)
                             .padding(end = 8.dp)
-                        )
+                    )
                 }
             )
         },
         content = {
-            Column(modifier = Modifier.padding(it)) {
+            Column(
+                modifier = Modifier
+                    .padding(it)
+                    .background(color = colorResource(id = R.color.bg_color_main))
+            ) {
                 LandingScreenNavigationConfigurations(navController, viewModel)
             }
         },
@@ -96,11 +98,11 @@ fun LandingScreen(
                 items = bottomNavigationItems
             )
         },
-        floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
-                Icon(Icons.Filled.Add, "Create File")
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(onClick = { /*TODO*/ }) {
+//                Icon(Icons.Filled.Add, "Create File")
+//            }
+//        }
     )
 
 

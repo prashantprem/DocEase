@@ -15,7 +15,7 @@ import com.document.docease.databinding.NativeAdSmallBinding
 import com.google.android.gms.ads.nativead.NativeAd
 
 @Composable
-fun BannerAdAdmobSmall(context: Context, loadedAd: NativeAd?, isDarkTheme: Boolean = false) {
+fun NativeAdAdmobSmall(context: Context, loadedAd: NativeAd?, isDarkTheme: Boolean = false) {
     if(loadedAd != null){
         AndroidViewBinding(
             modifier = Modifier.padding(start = 4.dp, top = 8.dp, end = 4.dp, bottom = 4.dp),
@@ -54,7 +54,7 @@ fun BannerAdAdmobSmall(context: Context, loadedAd: NativeAd?, isDarkTheme: Boole
 }
 
 @Composable
-fun BannerAdAdmobMedium(context: Context, loadedAd: NativeAd?, isDarkTheme: Boolean = false) {
+fun NativeAdAdmobMedium(context: Context, loadedAd: NativeAd?, isDarkTheme: Boolean = false) {
     if (loadedAd != null) {
         AndroidViewBinding(
             modifier = Modifier.padding(start = 4.dp, top = 4.dp, end = 4.dp, bottom = 4.dp),

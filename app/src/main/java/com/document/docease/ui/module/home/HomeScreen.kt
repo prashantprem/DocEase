@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -39,11 +40,12 @@ import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
-import com.document.docease.ui.components.ads.BannerAdAdmobMedium
+import com.document.docease.ui.components.ads.NativeAdAdmobMedium
 import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.ui.theme.primaryBlue
 import com.document.docease.utils.Extensions.findActivity
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -56,7 +58,7 @@ fun HomeScreen(
     val documentCountState = viewModel.documentCount.observeAsState()
     val adstate = rememberNativeAdState(
         context = LocalContext.current, adUnitId = "ca-app-pub-3940256099942544/2247696110",
-        refreshInterval = 30000
+        refreshInterval = 300000
     )
     Column(
         modifier = Modifier
@@ -74,12 +76,14 @@ fun HomeScreen(
         LaunchedEffect(pagerState.currentPage) {
             tabIndex = pagerState.currentPage
         }
-        BannerAdAdmobMedium(
+        NativeAdAdmobMedium(
             context = LocalContext.current,
             loadedAd = adstate,
             isDarkTheme = isSystemInDarkTheme()
         )
-        TabRow(selectedTabIndex = tabIndex, modifier = Modifier.padding(vertical = 16.dp),
+        TabRow(selectedTabIndex = tabIndex, modifier = Modifier
+            .padding(vertical = 8.dp)
+            .fillMaxWidth(),
             indicator = { tabPositions ->
                 Box(
                     modifier = Modifier
@@ -87,8 +91,8 @@ fun HomeScreen(
                         .height(3.dp)
                         .width(8.dp)
                         .clip(RoundedCornerShape(30.dp)) // clip modifier not working
-                        .padding(horizontal = 50.dp)
-                        .background(color = Color.Gray)
+                        .padding(horizontal = 40.dp)
+                        .background(color = primaryBlue)
 
                 )
 
@@ -111,7 +115,9 @@ fun HomeScreen(
                         painter = painterResource(id = tabs[index]), contentDescription = "Recent",
                         modifier = Modifier
                             .size(30.dp)
-                            .padding(6.dp)
+                            .padding(6.dp),
+                        colorFilter = ColorFilter.tint(color = if (tabIndex == index) primaryBlue else Color.LightGray)
+
                     )
                 }
             }
