@@ -79,16 +79,16 @@ class MainViewModel @Inject constructor(
     }
 
 
-    fun getAllFiles(context: Context, useMediaStore: Boolean = true) {
+    fun getAllFiles(context: Context? = null) {
         CoroutineScope(Dispatchers.IO).launch {
             initFileLoading()
-            if (useMediaStore) {
+            if (context != null) {
                 async {
                     getAllFilesUsingMediaStore(context)
                 }.await()
             } else {
                 async {
-                    getAllFiles(Constant.dir)
+                    getAllFilesLegacy(Constant.dir)
                 }.await()
             }
             updateFilesAfterLoading()
@@ -139,12 +139,12 @@ class MainViewModel @Inject constructor(
     }
 
 
-    private fun getAllFiles(dir: File) {
+    private fun getAllFilesLegacy(dir: File) {
         val listFile = dir.listFiles()
         if (listFile != null && listFile.isNotEmpty()) {
             for (file in listFile) {
                 if (file.isDirectory) {
-                    getAllFiles(file)
+                    getAllFilesLegacy(file)
                 } else {
                     val name = file.name
                     if (isSupportedFileType(name)) {
@@ -221,97 +221,102 @@ class MainViewModel @Inject constructor(
     }
 
     private fun fetchFilesUsingMediaStore(context: Context, fileType: FileType) {
-        val fileList = mutableListOf<File>()
-        val projection =
-            arrayOf(
-                MediaStore.Files.FileColumns._ID,
-                MediaStore.Files.FileColumns.DATA,
-                MediaStore.Files.FileColumns.DISPLAY_NAME,
-                MediaStore.Files.FileColumns.DATE_MODIFIED,
-                MediaStore.Files.FileColumns.MIME_TYPE,
-                MediaStore.Files.FileColumns.SIZE
-            )
-        val sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC"
-        val selectionArgs = when (fileType) {
-            FileType.PDF -> arrayOf(MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"))
-            FileType.WORD -> {
+        try {
+            val fileList = mutableListOf<File>()
+            val projection =
                 arrayOf(
-                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"),
-                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"),
+                    MediaStore.Files.FileColumns._ID,
+                    MediaStore.Files.FileColumns.DATA,
+                    MediaStore.Files.FileColumns.DISPLAY_NAME,
+                    MediaStore.Files.FileColumns.DATE_MODIFIED,
+                    MediaStore.Files.FileColumns.MIME_TYPE,
+                    MediaStore.Files.FileColumns.SIZE
                 )
-            }
+            val sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC"
+            val selectionArgs = when (fileType) {
+                FileType.PDF -> arrayOf(MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"))
+                FileType.WORD -> {
+                    arrayOf(
+                        MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"),
+                        MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"),
+                    )
+                }
 
-            FileType.EXCEL -> {
-                arrayOf(
-                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"),
-                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"),
-                )
-            }
+                FileType.EXCEL -> {
+                    arrayOf(
+                        MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"),
+                        MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"),
+                    )
+                }
 
-            FileType.P_POINT -> {
-                arrayOf(
-                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"),
-                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"),
-                )
-            }
-        }
-
-        val selection =
-            MediaStore.Files.FileColumns.MIME_TYPE + " IN (" + selectionArgs.joinToString { "?" } + ")"
-        val collection: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL)
-        } else {
-            MediaStore.Files.getContentUri("external")
-        }
-
-        context.contentResolver.query(
-            collection,
-            projection,
-            selection,
-            selectionArgs,
-            sortOrder
-        )
-            .use { cursor ->
-                if (cursor != null) {
-                    if (cursor.moveToFirst()) {
-                        val columnData: Int =
-                            cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA)
-                        val columnName: Int =
-                            cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME)
-                        do {
-                            fileList.add(File(cursor.getString(columnData)))
-                            Log.d(
-                                "LoadingFile",
-                                "${fileType.name}: " + cursor.getString(columnData)
-                            )
-                        } while (cursor.moveToNext())
-                    }
+                FileType.P_POINT -> {
+                    arrayOf(
+                        MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"),
+                        MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"),
+                    )
                 }
             }
-        when (fileType) {
-            FileType.PDF -> {
-                allPdfFiles = fileList
-                allOfficeFile.addAll(fileList)
 
+            val selection =
+                MediaStore.Files.FileColumns.MIME_TYPE + " IN (" + selectionArgs.joinToString { "?" } + ")"
+            val collection: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL)
+            } else {
+                MediaStore.Files.getContentUri("external")
             }
 
-            FileType.WORD -> {
-                allWordFiles = fileList
-                allOfficeFile.addAll(fileList)
+            context.contentResolver.query(
+                collection,
+                projection,
+                selection,
+                selectionArgs,
+                sortOrder
+            )
+                .use { cursor ->
+                    if (cursor != null) {
+                        if (cursor.moveToFirst()) {
+                            val columnData: Int =
+                                cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA)
+                            val columnName: Int =
+                                cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME)
+                            do {
+                                fileList.add(File(cursor.getString(columnData)))
+                                Log.d(
+                                    "LoadingFile",
+                                    "${fileType.name}: " + cursor.getString(columnData)
+                                )
+                            } while (cursor.moveToNext())
+                        }
+                    }
+                }
+            when (fileType) {
+                FileType.PDF -> {
+                    allPdfFiles = fileList
+                    allOfficeFile.addAll(fileList)
 
+                }
+
+                FileType.WORD -> {
+                    allWordFiles = fileList
+                    allOfficeFile.addAll(fileList)
+
+                }
+
+                FileType.EXCEL -> {
+                    allExcelFiles = fileList
+                    allOfficeFile.addAll(fileList)
+
+                }
+
+                FileType.P_POINT -> {
+                    allPptFiles = fileList
+                    allOfficeFile.addAll(fileList)
+                }
             }
-
-            FileType.EXCEL -> {
-                allExcelFiles = fileList
-                allOfficeFile.addAll(fileList)
-
-            }
-
-            FileType.P_POINT -> {
-                allPptFiles = fileList
-                allOfficeFile.addAll(fileList)
-            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
     }
 
 }
