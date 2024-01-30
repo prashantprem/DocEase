@@ -1,5 +1,11 @@
 package com.document.docease.ui.module.main
 
+import android.content.Context
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
+import android.util.Log
+import android.webkit.MimeTypeMap
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,6 +15,7 @@ import androidx.lifecycle.viewModelScope
 import com.document.docease.data.BaseViewModel
 import com.document.docease.data.Resource
 import com.document.docease.ui.components.piechart.DocumentCount
+import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.utils.Constant
 import com.document.docease.utils.StorageUtils
 import com.document.docease.utils.Utility.isSupportedFileType
@@ -21,6 +28,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Locale
 import javax.inject.Inject
+
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
@@ -71,13 +79,26 @@ class MainViewModel @Inject constructor(
     }
 
 
-    fun getAllFiles() {
+    fun getAllFiles(context: Context, useMediaStore: Boolean = true) {
         CoroutineScope(Dispatchers.IO).launch {
             initFileLoading()
-            async {
-                getAllFiles(Constant.dir)
-            }.await()
+            if (useMediaStore) {
+                async {
+                    getAllFilesUsingMediaStore(context)
+                }.await()
+            } else {
+                async {
+                    getAllFiles(Constant.dir)
+                }.await()
+            }
             updateFilesAfterLoading()
+        }
+    }
+
+    private fun getAllFilesUsingMediaStore(context: Context) {
+        val filesToLoad = arrayOf(FileType.PDF, FileType.WORD, FileType.EXCEL, FileType.P_POINT)
+        for (fileType in filesToLoad) {
+            fetchFilesUsingMediaStore(context, fileType)
         }
     }
 
@@ -198,4 +219,99 @@ class MainViewModel @Inject constructor(
             _filteredFiles.postValue(filteredList)
         }
     }
+
+    private fun fetchFilesUsingMediaStore(context: Context, fileType: FileType) {
+        val fileList = mutableListOf<File>()
+        val projection =
+            arrayOf(
+                MediaStore.Files.FileColumns._ID,
+                MediaStore.Files.FileColumns.DATA,
+                MediaStore.Files.FileColumns.DISPLAY_NAME,
+                MediaStore.Files.FileColumns.DATE_MODIFIED,
+                MediaStore.Files.FileColumns.MIME_TYPE,
+                MediaStore.Files.FileColumns.SIZE
+            )
+        val sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC"
+        val selectionArgs = when (fileType) {
+            FileType.PDF -> arrayOf(MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"))
+            FileType.WORD -> {
+                arrayOf(
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"),
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"),
+                )
+            }
+
+            FileType.EXCEL -> {
+                arrayOf(
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"),
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"),
+                )
+            }
+
+            FileType.P_POINT -> {
+                arrayOf(
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"),
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"),
+                )
+            }
+        }
+
+        val selection =
+            MediaStore.Files.FileColumns.MIME_TYPE + " IN (" + selectionArgs.joinToString { "?" } + ")"
+        val collection: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL)
+        } else {
+            MediaStore.Files.getContentUri("external")
+        }
+
+        context.contentResolver.query(
+            collection,
+            projection,
+            selection,
+            selectionArgs,
+            sortOrder
+        )
+            .use { cursor ->
+                if (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        val columnData: Int =
+                            cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA)
+                        val columnName: Int =
+                            cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME)
+                        do {
+                            fileList.add(File(cursor.getString(columnData)))
+                            Log.d(
+                                "LoadingFile",
+                                "${fileType.name}: " + cursor.getString(columnData)
+                            )
+                        } while (cursor.moveToNext())
+                    }
+                }
+            }
+        when (fileType) {
+            FileType.PDF -> {
+                allPdfFiles = fileList
+                allOfficeFile.addAll(fileList)
+
+            }
+
+            FileType.WORD -> {
+                allWordFiles = fileList
+                allOfficeFile.addAll(fileList)
+
+            }
+
+            FileType.EXCEL -> {
+                allExcelFiles = fileList
+                allOfficeFile.addAll(fileList)
+
+            }
+
+            FileType.P_POINT -> {
+                allPptFiles = fileList
+                allOfficeFile.addAll(fileList)
+            }
+        }
+    }
+
 }

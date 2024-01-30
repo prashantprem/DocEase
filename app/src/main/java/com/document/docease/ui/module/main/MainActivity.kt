@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 if (Environment.isExternalStorageManager()) {
-                    viewModel.getAllFiles()
+                    viewModel.getAllFiles(this@MainActivity)
                 } else {
                     Toast.makeText(
                         this,
@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
             requestPermissionResultLauncher
         ).let { hasPermission ->
             if (hasPermission) {
-                viewModel.getAllFiles()
+                viewModel.getAllFiles(this@MainActivity)
             }
         }
 
@@ -94,7 +94,7 @@ class MainActivity : ComponentActivity() {
         if (requestCode == PERMISSION_EXTERNAL) {
             if (grantResults.isNotEmpty() && permissions[0] == Manifest.permission.WRITE_EXTERNAL_STORAGE) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    viewModel.getAllFiles()
+                    viewModel.getAllFiles(this@MainActivity)
                 } else {
 
                     PermissionUtils.isPermission(
