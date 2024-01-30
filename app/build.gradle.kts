@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -10,7 +12,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.document.docease"
+        applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -54,7 +56,7 @@ android {
     viewBinding.isEnabled = true
     sourceSets {
         getByName("main") {
-            jniLibs.srcDirs( "libs")
+            jniLibs.srcDirs("libs")
         }
     }
 
@@ -101,7 +103,7 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
-    implementation ("androidx.compose.runtime:runtime-livedata:1.5.4")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
 
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
 
@@ -124,9 +126,10 @@ dependencies {
 //    implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("androidx.compose.ui:ui-viewbinding:1.6.0")
 
-
-
-
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-crashlytics")
 
 
 

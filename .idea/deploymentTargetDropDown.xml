@@ -5,7 +5,13 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="previewFileList">
+        <State />
+      </entry>
       <entry key="previewLandingSCreen2">
+        <State />
+      </entry>
+      <entry key="previewSearchScreen">
         <State />
       </entry>
     </value>
