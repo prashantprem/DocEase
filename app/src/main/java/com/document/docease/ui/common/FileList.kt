@@ -43,10 +43,11 @@ import java.util.Locale
 fun FileList(
     files: List<File>,
     @DrawableRes imageId: Int? = null,
-    fileClickListener: FileClickListener
+    fileClickListener: FileClickListener,
+    modifier: Modifier
 
 ) {
-    LazyColumn() {
+    LazyColumn(modifier = modifier) {
         items(files.size) { index ->
             if (index == 0) {
                 Spacer(modifier = Modifier.height(10.dp))

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +17,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
@@ -40,14 +40,16 @@ import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
+import com.document.docease.ui.components.ads.NativeAdAdmobMedium
 import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.primaryBlue
+import com.document.docease.utils.AdUnits
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     viewModel: MainViewModel,
@@ -56,7 +58,7 @@ fun HomeScreen(
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
     val documentCountState = viewModel.documentCount.observeAsState()
     val adstate = rememberNativeAdState(
-        context = LocalContext.current, adUnitId = "ca-app-pub-3940256099942544/2247696110",
+        context = LocalContext.current, adUnitId = AdUnits.homeNative,
         refreshInterval = 300000
     )
     Column(
@@ -75,11 +77,11 @@ fun HomeScreen(
         LaunchedEffect(pagerState.currentPage) {
             tabIndex = pagerState.currentPage
         }
-//        NativeAdAdmobMedium(
-//            context = LocalContext.current,
-//            loadedAd = adstate,
-//            isDarkTheme = isSystemInDarkTheme()
-//        )
+        NativeAdAdmobMedium(
+            context = LocalContext.current,
+            loadedAd = adstate,
+            isDarkTheme = isSystemInDarkTheme()
+        )
         TabRow(selectedTabIndex = tabIndex, modifier = Modifier
             .padding(vertical = 8.dp)
             .fillMaxWidth(),

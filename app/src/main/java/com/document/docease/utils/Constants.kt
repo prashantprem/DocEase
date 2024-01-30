@@ -5,6 +5,8 @@ import com.document.docease.BuildConfig
 import java.io.File
 
 object Constant {
+    var showAds = true
+    var adPerClickCount = 2
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
@@ -80,7 +82,6 @@ object Constant {
 
     const val REGULAR_SPACE_CHARACTER = ' '
     const val NON_BREAKABLE_SPACE_UNICODE = '\u00A0'
-
 
 
     fun getFileAssetList(): ArrayList<FileAssetModel> {
@@ -229,4 +230,12 @@ const val SHARED_PREFERENCES_FILE_NAME = BuildConfig.APPLICATION_ID + "_shared_p
 object PrefKeys {
     const val keyRecent = "keyRecent"
     const val keyBookMarks = "keyBookMarks"
+}
+
+
+object AdUnits {
+    const val homeNative = "ca-app-pub-3940256099942544/2247696110"
+    const val filesNative = "ca-app-pub-3940256099942544/2247696110"
+    const val exitNative = "ca-app-pub-3940256099942544/2247696110"
+    const val splashInterstitial = "ca-app-pub-3940256099942544/8691691433"
 }

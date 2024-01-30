@@ -36,12 +36,14 @@ import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
 import com.document.docease.ui.common.ExitBottomSheet
 import com.document.docease.ui.common.FileInfoBottomSheetUI
+import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
 import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
 import com.document.docease.ui.navigation.BottomNavigationScreenConfigurations
 import com.document.docease.ui.navigation.Routes
+import com.document.docease.utils.AdUnits
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
@@ -65,10 +67,21 @@ fun LandingScreen(
     val scope = rememberCoroutineScope()
     var showFileActionBottomSheet by remember { mutableStateOf(false) }
     var showExitBottomSheet by remember { mutableStateOf(false) }
-    val exitBottomSheetState = rememberModalBottomSheetState()
+    val exitBottomSheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true
+    )
     var mFile: File? = null
     val mContext = LocalContext.current
     val bottomNavigationController = rememberNavController()
+
+    val exitAdState = rememberNativeAdState(
+        context = LocalContext.current, adUnitId = AdUnits.exitNative,
+        refreshInterval = 300000
+    )
+    val bottomBarNativeState = rememberNativeAdState(
+        context = LocalContext.current, adUnitId = AdUnits.filesNative,
+        refreshInterval = 300000
+    )
     Scaffold(
         topBar = {
             TopAppBar(
@@ -165,7 +178,7 @@ fun LandingScreen(
                     mContext.findActivity()?.finish()
                 }, onDismiss = {
                     showExitBottomSheet = false
-                }, exitBottomSheetState)
+                }, exitBottomSheetState, exitAdState)
             }
             BackHandler(enabled = true, onBack = {
                 if (navigationController.currentBackStackEntry?.destination?.route == Routes.LANDING) {
@@ -195,7 +208,8 @@ fun LandingScreen(
                             Utility.previewFileWithLocalContext(mContext, file)
                         }
 
-                    })
+                    }, bottomBarNativeState
+                )
             }
         },
         bottomBar = {

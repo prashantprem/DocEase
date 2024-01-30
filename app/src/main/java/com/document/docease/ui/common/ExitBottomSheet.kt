@@ -19,16 +19,24 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
+import com.document.docease.ui.components.ads.NativeAdAdmobMedium
 import com.document.docease.ui.theme.primaryBlue
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExitBottomSheet(onExit: () -> Unit, onDismiss: () -> Unit, exitBottomSheetState: SheetState) {
+fun ExitBottomSheet(
+    onExit: () -> Unit,
+    onDismiss: () -> Unit,
+    exitBottomSheetState: SheetState,
+    adState: NativeAd?
+) {
     val scope = rememberCoroutineScope()
     ModalBottomSheet(
         onDismissRequest = {
@@ -48,6 +56,7 @@ fun ExitBottomSheet(onExit: () -> Unit, onDismiss: () -> Unit, exitBottomSheetSt
         ) {
             Text(text = "Exit ${stringResource(id = R.string.app_name)}?")
             Spacer(modifier = Modifier.height(32.dp))
+            NativeAdAdmobMedium(context = LocalContext.current, loadedAd = adState)
             Row {
                 Button(
                     modifier = Modifier

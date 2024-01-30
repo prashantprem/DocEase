@@ -15,13 +15,16 @@ import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.utils.Extensions.fileIcon
+import com.google.android.gms.ads.nativead.NativeAd
 
 @Composable
 fun FileListScreen(
     viewModel: MainViewModel,
     fileType: FileType,
-    fileClickListener: FileClickListener
+    fileClickListener: FileClickListener,
+    nativeAd: NativeAd? = null
 ) {
+
 
     val fileLoadingState = when (fileType) {
         FileType.PDF -> viewModel.pdfFiles.observeAsState()
@@ -45,7 +48,12 @@ fun FileListScreen(
         }
 
         is Resource.Success -> {
-            FileListWrapper(files = fileLoadingState.value?.data!!, fileType.fileIcon(), fileClickListener)
+            FileListWrapper(
+                files = fileLoadingState.value?.data!!,
+                fileType.fileIcon(),
+                fileClickListener,
+                nativeAd
+            )
         }
 
         else -> {}

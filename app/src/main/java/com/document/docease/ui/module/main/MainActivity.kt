@@ -18,10 +18,18 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
+import com.document.docease.ui.components.ads.loadInterstitial
+import com.document.docease.ui.components.ads.showInterstitial
 import com.document.docease.ui.navigation.MainNavigationConfiguration
 import com.document.docease.ui.theme.DocEaseTheme
+import com.document.docease.utils.AdUnits
+import com.document.docease.utils.Constant
 import com.document.docease.utils.PermissionUtils
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -55,8 +63,26 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
-            viewModel.showSplash
+            this.setKeepOnScreenCondition {
+                viewModel.showSplash
+            }
         }
+        if (Constant.showAds) {
+            loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
+                showInterstitial(this@MainActivity, onAdDismissed = {
+                    viewModel.showSplash = false
+                })
+
+            }, onAdFailed = {
+                viewModel.showSplash = false
+            })
+        } else {
+            CoroutineScope(Dispatchers.IO).launch {
+                delay(3000)
+                viewModel.showSplash = false
+            }
+        }
+
         PermissionUtils.isPermission(
             PERMISSION_EXTERNAL,
             this@MainActivity,

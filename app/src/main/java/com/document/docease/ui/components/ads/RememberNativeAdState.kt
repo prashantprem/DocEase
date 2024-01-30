@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.document.docease.utils.Constant
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -18,10 +19,13 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun rememberNativeAdState(
-    context:Context,
+    context: Context,
     adUnitId: String,
-    refreshInterval:Long = 60000L
+    refreshInterval: Long = 60000L
 ): NativeAd? {
+    if (!Constant.showAds) {
+        return null;
+    }
     var state by remember {
         mutableStateOf<NativeAd?>(null)
     }
@@ -32,7 +36,7 @@ fun rememberNativeAdState(
                 .forNativeAd { ad ->
                     state = ad
                 }
-                .withAdListener(object:AdListener(){
+                .withAdListener(object : AdListener() {
                     override fun onAdLoaded() {
                         super.onAdLoaded()
 
@@ -47,18 +51,18 @@ fun rememberNativeAdState(
             adLoader.loadAd(AdRequest.Builder().build())
         }
     }
-    if(refreshInterval > 0){
-        LaunchedEffect(Unit){
-            while(true){
+    if (refreshInterval > 0) {
+        LaunchedEffect(Unit) {
+            while (true) {
                 delay(refreshInterval)
                 state = null
 
-                withContext(Dispatchers.IO){
-                    val adLoader = AdLoader.Builder(context,adUnitId)
+                withContext(Dispatchers.IO) {
+                    val adLoader = AdLoader.Builder(context, adUnitId)
                         .forNativeAd { ad ->
                             state = ad
                         }
-                        .withAdListener(object: AdListener(){
+                        .withAdListener(object : AdListener() {
                             override fun onAdLoaded() {
                                 super.onAdLoaded()
 

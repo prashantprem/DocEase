@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.document.docease.data.BaseViewModel
 import com.document.docease.data.Resource
 import com.document.docease.ui.components.piechart.DocumentCount
@@ -23,7 +22,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Locale
@@ -37,7 +35,6 @@ class MainViewModel @Inject constructor(
 
 
     var showSplash by mutableStateOf(true)
-        private set
 
 
     private val _allFiles = MutableLiveData<Resource<List<File>>>()
@@ -69,14 +66,6 @@ class MainViewModel @Inject constructor(
     private var allExcelFiles: MutableList<File> = mutableListOf()
     private var allPptFiles: MutableList<File> = mutableListOf()
     private var allTextFiles: MutableList<File> = mutableListOf()
-
-
-    init {
-        viewModelScope.launch {
-            delay(3000)
-            showSplash = false
-        }
-    }
 
 
     fun getAllFiles(context: Context? = null) {
