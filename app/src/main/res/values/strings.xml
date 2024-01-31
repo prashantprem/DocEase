@@ -6,6 +6,7 @@
     <string name="excel">Excel</string>
     <string name="ppt">PPoint</string>
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
+    <string name="save_cta">Save</string>
 
 <!--    //Legacy Strings-->
     <string name="no_data">No Data</string>
