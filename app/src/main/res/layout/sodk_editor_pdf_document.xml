@@ -18,6 +18,7 @@
 
         <RelativeLayout
             android:id="@+id/header"
+            android:background="@color/bg_color_main"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="5dp">
@@ -49,13 +50,13 @@
                 android:id="@+id/toolbar_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color"
                 android:fontFamily="@font/nunito"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="4dp"
                 android:padding="4dp"
                 android:textSize="16sp"
-                android:text="Done"/>
+                android:text="Save"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="30dp"
@@ -137,6 +138,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
+                app:tint="@color/text_color"
                 android:layout_toStartOf="@+id/toolbar_share"
                 android:layout_marginEnd="8dp"
                 android:padding="4dp"
@@ -150,6 +152,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
                 android:padding="4dp"
+                app:tint="@color/text_color"
                 android:layout_alignParentEnd="true"
                 app:srcCompat="@drawable/ic_share_preview"
                 />

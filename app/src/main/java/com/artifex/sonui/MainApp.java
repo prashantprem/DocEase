@@ -46,7 +46,7 @@ public class MainApp extends MultiDexApplication {
         Executors.newSingleThreadExecutor().execute(this::a);
         super.onCreate();
         context = this;
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 }
 

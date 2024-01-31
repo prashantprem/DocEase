@@ -89,7 +89,6 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="colorAccent">@color/app_color</item>
         <item name="popupMenuBackground">@drawable/bg_popmenu_round</item>
-        <item name="android:forceDarkAllowed">false</item>
 
     </style>
 
@@ -3280,8 +3279,8 @@
 
     <style name="sodk_editor_toolbar_button">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/text</item>
-        <item name="android:background">@color/colorWhite</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:background">@color/bg_color_main</item>
         <item name="android:paddingLeft">@dimen/_5sdp</item>
         <item name="android:paddingRight">@dimen/_5sdp</item>
         <item name="android:paddingTop">@dimen/_8sdp</item>

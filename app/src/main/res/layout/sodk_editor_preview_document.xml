@@ -26,7 +26,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
+                android:background="@color/bg_color_main"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -45,6 +45,7 @@
                         android:contentDescription="@string/sodk_editor_nav_back"
                         android:gravity="center_vertical"
                         android:padding="5dp"
+                        app:tint="@color/text_color"
                         app:srcCompat="@drawable/ic_back_button_preview" />
 
                     <com.artifex.sonui.editor.SOTextView
@@ -58,13 +59,14 @@
                         android:paddingEnd="5dp"
                         android:singleLine="true"
                         android:fontFamily="@font/nunito"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp" />
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/toolbar_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
+                        android:visibility="gone"
                         android:layout_marginEnd="18dp"
                         app:srcCompat="@drawable/ic_search_black"/>
                     <ImageView
@@ -73,6 +75,7 @@
                         android:layout_width="28dp"
                         android:layout_marginEnd="16dp"
                         android:layout_height="22dp"
+                        app:tint="@color/text_color"
                         android:src="@drawable/ic_share_preview"/>
 
                     <ImageView
@@ -80,6 +83,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_centerVertical="true"
+                        app:tint="@color/text_color"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/ic_menu_reading_file" />
                 </LinearLayout>

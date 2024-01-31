@@ -5,13 +5,13 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tools_bg_color">
+        android:background="@color/bg_color_main">
 
         <LinearLayout
             android:id="@id/annotate_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/tools_bg_color"
+            android:background="@color/bg_color_main"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="10dp"
@@ -33,6 +33,7 @@
                     android:background="@drawable/pdf_selector"
                     android:drawableTop="@drawable/ic_comment_pdf"
                     android:text="Comment"
+                    android:drawableTint="@color/text_color"
                     android:fontFamily="@font/nunito"
                     android:drawablePadding="4dp"
                     android:textAllCaps="false"/>
@@ -46,6 +47,7 @@
                 android:drawableTop="@drawable/ic_higlight_pdf"
                 android:drawablePadding="4dp"
                 android:fontFamily="@font/nunito"
+                android:drawableTint="@color/text_color"
                 android:textAllCaps="false"
                 android:text="Highlight" />
 
@@ -63,6 +65,7 @@
                     android:drawableTop="@drawable/ic_draw_pdf"
                     android:drawablePadding="4dp"
                     android:textAllCaps="false"
+                    android:drawableTint="@color/text_color"
                     android:fontFamily="@font/nunito"
                     android:text="Draw" />
 
@@ -107,6 +110,7 @@
                 android:background="@drawable/sodk_editor_toolbar_button2"
                 android:drawableTop="@drawable/ic_author_new"
                 android:fontFamily="@font/nunito"
+                android:drawableTint="@color/text_color"
                 android:text="@string/sodk_editor_author_upper" />
 
             <com.artifex.sonui.editor.ToolbarButton
@@ -115,6 +119,7 @@
                 android:background="@drawable/sodk_editor_toolbar_button2"
                 android:fontFamily="@font/nunito"
                 android:drawableTop="@drawable/ic_delete_new"
+                android:drawableTint="@color/text_color"
                 android:text="@string/sodk_editor_delete_upper" />
 
             <com.artifex.sonui.editor.ToolbarButton
@@ -122,6 +127,7 @@
                 style="@style/sodk_editor_toolbar_button"
                 android:background="@drawable/sodk_editor_toolbar_button2"
                 android:fontFamily="@font/nunito"
+                android:visibility="gone"
                 android:drawableTop="@drawable/ic_toolbar_tools"
                 android:text="Tools" />
 
