@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,56 +40,68 @@ fun CustomBottomNavigation(
     items: List<BottomNavigationScreens>,
     onNavigate: () -> Unit
 ) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceAround,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        val currentBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = currentBackStackEntry?.destination?.route
-        Log.d("Testing", currentRoute.toString())
-        items.forEach { screen ->
-            val isSelected = currentRoute == screen.route
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .noRippleClickable {
-                        onNavigate()
-                        navController.navigate(screen.route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            // Avoid multiple copies of the same destination when
-                            // reselecting the same item
-                            launchSingleTop = true
-                            // Restore state when reselecting a previously selected item
-                            restoreState = true
-                        }
-                    }
-                    .size(70.dp)
-                    .background(color = colorResource(id = R.color.bg_color_main))
-            ) {
-                Icon(
-                    painter = painterResource(id = screen.icon),
-                    contentDescription = stringResource(id = screen.label),
-                    tint = if (isSelected) screen.selectedColor else Color.Gray,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-                Text(
-                    modifier = Modifier
-                        .padding(top = 2.dp)
-                        .align(Alignment.CenterHorizontally),
-                    text = stringResource(id = screen.label),
-                    style = TextStyle(
-                        color = if (isSelected) screen.selectedColor else Color.Gray,
-                        fontSize = 12.sp,
-                    ),
-                    textAlign = TextAlign.Center
-                )
-            }
+    Column {
+        HorizontalDivider(
+            color = Color(0xff7B7B7B),
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+        )
 
+        Row(
+            horizontalArrangement = Arrangement.SpaceAround,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = colorResource(id = R.color.bg_color_main))
+        ) {
+            val currentBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentRoute = currentBackStackEntry?.destination?.route
+            Log.d("Testing", currentRoute.toString())
+            items.forEach { screen ->
+                val isSelected = currentRoute == screen.route
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .noRippleClickable {
+                            onNavigate()
+                            navController.navigate(screen.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination when
+                                // reselecting the same item
+                                launchSingleTop = true
+                                // Restore state when reselecting a previously selected item
+                                restoreState = true
+                            }
+                        }
+                        .size(70.dp)
+                        .background(color = colorResource(id = R.color.bg_color_main))
+                ) {
+                    Icon(
+                        painter = painterResource(id = screen.icon),
+                        contentDescription = stringResource(id = screen.label),
+                        tint = if (isSelected) screen.selectedColor else Color.Gray,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 2.dp)
+                            .align(Alignment.CenterHorizontally),
+                        text = stringResource(id = screen.label),
+                        style = TextStyle(
+                            color = if (isSelected) screen.selectedColor else Color.Gray,
+                            fontSize = 12.sp,
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+            }
         }
     }
+
 }
 
 
