@@ -7,6 +7,7 @@ import java.io.File
 object Constant {
     var showAds = true
     var adPerClickCount = 2
+    var appOpenTime = 5000L
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
@@ -238,4 +239,5 @@ object AdUnits {
     const val filesNative = "ca-app-pub-3940256099942544/2247696110"
     const val exitNative = "ca-app-pub-3940256099942544/2247696110"
     const val splashInterstitial = "ca-app-pub-3940256099942544/8691691433"
+    const val appOpen = "ca-app-pub-3940256099942544/9257395921"
 }
