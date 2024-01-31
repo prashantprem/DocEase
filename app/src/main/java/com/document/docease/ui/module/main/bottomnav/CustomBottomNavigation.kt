@@ -2,6 +2,7 @@ package com.document.docease.ui.module.main.bottomnav
 
 import android.content.res.Configuration
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,13 +10,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -27,12 +28,15 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.document.docease.R
 import com.document.docease.ui.theme.DocEaseTheme
+import com.document.docease.utils.Extensions.noRippleClickable
 
 @Composable
 fun CustomBottomNavigation(
     navController: NavHostController,
-    items: List<BottomNavigationScreens>
+    items: List<BottomNavigationScreens>,
+    onNavigate: () -> Unit
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceAround,
@@ -43,44 +47,45 @@ fun CustomBottomNavigation(
         Log.d("Testing", currentRoute.toString())
         items.forEach { screen ->
             val isSelected = currentRoute == screen.route
-            IconButton(
-                onClick = {
-                    navController.navigate(screen.route){
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .noRippleClickable {
+                        onNavigate()
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            // Avoid multiple copies of the same destination when
+                            // reselecting the same item
+                            launchSingleTop = true
+                            // Restore state when reselecting a previously selected item
+                            restoreState = true
                         }
-                        // Avoid multiple copies of the same destination when
-                        // reselecting the same item
-                        launchSingleTop = true
-                        // Restore state when reselecting a previously selected item
-                        restoreState = true
                     }
-                },
-                modifier = Modifier.size(70.dp)
+                    .size(70.dp)
+                    .background(color = colorResource(id = R.color.bg_color_main))
             ) {
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Icon(
-                        painter = painterResource(id = screen.icon),
-                        contentDescription = stringResource(id = screen.label),
-                        tint = if (isSelected) screen.selectedColor else Color.Gray,
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 2.dp)
-                            .align(Alignment.CenterHorizontally),
-                        text = stringResource(id = screen.label),
-                        style = TextStyle(
-                            color = if (isSelected) screen.selectedColor else Color.Gray,
-                            fontSize = 12.sp,
-                        ),
-                        textAlign = TextAlign.Center
-                    )
-                }
+                Icon(
+                    painter = painterResource(id = screen.icon),
+                    contentDescription = stringResource(id = screen.label),
+                    tint = if (isSelected) screen.selectedColor else Color.Gray,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Text(
+                    modifier = Modifier
+                        .padding(top = 2.dp)
+                        .align(Alignment.CenterHorizontally),
+                    text = stringResource(id = screen.label),
+                    style = TextStyle(
+                        color = if (isSelected) screen.selectedColor else Color.Gray,
+                        fontSize = 12.sp,
+                    ),
+                    textAlign = TextAlign.Center
+                )
             }
+
         }
     }
 }
@@ -101,7 +106,8 @@ fun previewHomeScreen() {
         )
         CustomBottomNavigation(
             navController = rememberNavController(),
-            items = bottomNavigationItems
+            items = bottomNavigationItems,
+            onNavigate = {}
         )
     }
 }

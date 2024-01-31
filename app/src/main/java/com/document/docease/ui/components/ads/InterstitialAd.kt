@@ -1,6 +1,7 @@
 package com.document.docease.ui.components.ads
 
 import android.content.Context
+import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.findActivity
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -17,44 +18,49 @@ fun loadInterstitial(
     onAdLoaded: (() -> Unit)? = null,
     onAdFailed: (() -> Unit)? = null
 ) {
-    InterstitialAd.load(
-        context,
-        adUnit,
-        AdRequest.Builder().build(),
-        object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                mInterstitialAd = null
-                if (onAdFailed != null) {
-                    onAdFailed()
+    if (Constant.showAds) {
+        InterstitialAd.load(
+            context,
+            adUnit,
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                    if (onAdFailed != null) {
+                        onAdFailed()
+                    }
                 }
-            }
 
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                mInterstitialAd = interstitialAd
-                if (onAdLoaded != null) {
-                    onAdLoaded()
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                    if (onAdLoaded != null) {
+                        onAdLoaded()
+                    }
                 }
             }
-        }
-    )
+        )
+    }
+
 }
 
 fun showInterstitial(context: Context, onAdDismissed: () -> Unit) {
-    val activity = context.findActivity()
+    if (Constant.showAds) {
+        val activity = context.findActivity()
+        if (mInterstitialAd != null && activity != null) {
+            mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdFailedToShowFullScreenContent(e: AdError) {
+                    mInterstitialAd = null
+                }
 
-    if (mInterstitialAd != null && activity != null) {
-        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdFailedToShowFullScreenContent(e: AdError) {
-                mInterstitialAd = null
+                override fun onAdDismissedFullScreenContent() {
+                    mInterstitialAd = null
+                    onAdDismissed()
+                }
             }
-
-            override fun onAdDismissedFullScreenContent() {
-                mInterstitialAd = null
-                onAdDismissed()
-            }
+            mInterstitialAd?.show(activity)
         }
-        mInterstitialAd?.show(activity)
     }
+
 }
 
 fun removeInterstitial() {

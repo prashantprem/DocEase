@@ -108,7 +108,7 @@ fun HomeScreen(
                         .height(30.dp)
                         .background(
                             color = colorResource(
-                                id = R.color.grey_bg
+                                id = R.color.bg_color_main
                             )
                         )
                 ) {

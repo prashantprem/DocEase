@@ -7,15 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="grey_bg">#FBF9F9</color>
     <color name="primary">#003EC9</color>
-    <color name="app_bar">#ffffff</color>
     <color name="bg_color_main">#F5F5F5</color>
     <color name="bg_file_list_item_color_main">#ffffff</color>
     <color name="na_button_default">#FFffca2c</color>
     <color name="na_button_pressed">#FFff9e02</color>
     <color name="text_grey">#938B8B</color>
-
-
-
 
 
     <color name="image_background">#123</color>
@@ -653,10 +649,6 @@
     <color name="tv_rating_active">#FF7D40</color>
     <color name="border_login_grey">#D8DADC</color>
     <color name="stocke_card">#5E58595A</color>
-
-
-
-
 
 
 </resources>

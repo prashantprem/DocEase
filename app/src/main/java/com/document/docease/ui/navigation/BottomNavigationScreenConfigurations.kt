@@ -1,5 +1,7 @@
 package com.document.docease.ui.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -16,10 +18,16 @@ import com.google.android.gms.ads.nativead.NativeAd
 fun BottomNavigationScreenConfigurations(
     navController: NavHostController,
     viewModel: MainViewModel,
-    fileClickListener: FileClickListener, bottomBarNativeAd: NativeAd?
+    fileClickListener: FileClickListener, bottomBarNativeAd: NativeAd?,
 ) {
-    NavHost(navController, startDestination = BottomNavigationScreens.HOME.route) {
+    NavHost(navController, startDestination = BottomNavigationScreens.HOME.route,
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
+        popEnterTransition = { EnterTransition.None },
+        popExitTransition = { ExitTransition.None }
+    ) {
         composable(BottomNavigationScreens.HOME.route) {
+
             HomeScreen(viewModel, fileClickListener)
         }
         composable(BottomNavigationScreens.PDF.route) {

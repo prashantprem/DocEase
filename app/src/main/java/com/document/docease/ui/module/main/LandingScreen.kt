@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
@@ -36,7 +35,9 @@ import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
 import com.document.docease.ui.common.ExitBottomSheet
 import com.document.docease.ui.common.FileInfoBottomSheetUI
+import com.document.docease.ui.components.ads.loadInterstitial
 import com.document.docease.ui.components.ads.rememberNativeAdState
+import com.document.docease.ui.components.ads.showInterstitial
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
@@ -82,11 +83,12 @@ fun LandingScreen(
         context = LocalContext.current, adUnitId = AdUnits.filesNative,
         refreshInterval = 300000
     )
+    var clickCount = 0
     Scaffold(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = colorResource(id = R.color.app_bar)
+                    containerColor = colorResource(id = R.color.bg_color_main)
                 ),
                 title = {
                     Text(
@@ -95,14 +97,14 @@ fun LandingScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_hamburger),
-                            contentDescription = "App Logo",
-                            tint = colorResource(id = R.color.primary),
-                            modifier = Modifier.size(30.dp),
-                        )
-                    }
+//                    IconButton(onClick = { /*TODO*/ }) {
+//                        Icon(
+//                            painter = painterResource(id = R.drawable.ic_hamburger),
+//                            contentDescription = "App Logo",
+//                            tint = colorResource(id = R.color.primary),
+//                            modifier = Modifier.size(30.dp),
+//                        )
+//                    }
                 },
                 actions = {
                     Icon(
@@ -216,7 +218,16 @@ fun LandingScreen(
             CustomBottomNavigation(
                 navController = bottomNavigationController,
                 items = bottomNavigationItems
-            )
+            ) {
+                clickCount += 1
+                Log.d("TestingCount", "$clickCount")
+                if (clickCount >= 2) {
+                    showInterstitial(mContext, onAdDismissed = {})
+                    clickCount = 0
+                } else {
+                    loadInterstitial(context = mContext, AdUnits.splashInterstitial)
+                }
+            }
         }
     )
 
