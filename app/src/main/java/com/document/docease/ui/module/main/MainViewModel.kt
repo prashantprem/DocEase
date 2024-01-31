@@ -181,7 +181,11 @@ class MainViewModel @Inject constructor(
     }
 
     fun addToFavourites(file: File) {
-        storageUtils.addBookmark(file)
+        if (isFavourite(file)) {
+            storageUtils.removeBookmark(file)
+        } else {
+            storageUtils.addBookmark(file)
+        }
     }
 
     fun isFavourite(file: File): Boolean {

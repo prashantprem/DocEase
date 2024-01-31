@@ -135,61 +135,67 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                if (tabIndex == 0) {
-                    FileListWrapper(
-                        files = viewModel.getRecentFiles(),
-                        fileClickListener = fileClickListener,
-                        screenType = ScreenType.HISTORY
-                    )
-                } else if (tabIndex == 1) {
-                    FileListWrapper(
-                        files = viewModel.getFavouriteFiles(),
-                        fileClickListener = fileClickListener,
-                        screenType = ScreenType.FAVOURITES
-                    )
-                } else {
-                    when (val res = documentCountState.value) {
-                        is Resource.Loading -> {}
-                        is Resource.Success -> {
-                            res.data?.let { docCount ->
-                                val pieChartData = listOf(
-                                    PieChartData(
-                                        "PDF(${docCount.pdfCount.toInt()})",
-                                        (docCount.pdfCount / docCount.total),
-                                        R.drawable.ic_large_pdf
-                                    ),
-                                    PieChartData(
-                                        "WORD(${docCount.wordCount.toInt()})",
-                                        (docCount.wordCount / docCount.total),
-                                        R.drawable.ic_large_word
-                                    ),
-                                    PieChartData(
-                                        "EXCEL(${docCount.excelCount.toInt()})",
-                                        (docCount.excelCount / docCount.total),
-                                        R.drawable.ic_large_excel
-                                    ),
-                                    PieChartData(
-                                        "PPT(${docCount.pptCount.toInt()})",
-                                        (docCount.pptCount / docCount.total),
-                                        R.drawable.ic_large_ppt
-                                    ),
-                                )
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(color = colorResource(id = R.color.bg_color_main)),
-                                    verticalArrangement = Arrangement.Center,
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    FileDistributionChart(pieChartData)
-                                    FileCountScreen(pieChartData)
+                when (tabIndex) {
+                    0 -> {
+                        FileListWrapper(
+                            files = viewModel.getRecentFiles(),
+                            fileClickListener = fileClickListener,
+                            screenType = ScreenType.HISTORY
+                        )
+                    }
+
+                    1 -> {
+                        FileListWrapper(
+                            files = viewModel.getFavouriteFiles(),
+                            fileClickListener = fileClickListener,
+                            screenType = ScreenType.FAVOURITES
+                        )
+                    }
+
+                    else -> {
+                        when (val res = documentCountState.value) {
+                            is Resource.Loading -> {}
+                            is Resource.Success -> {
+                                res.data?.let { docCount ->
+                                    val pieChartData = listOf(
+                                        PieChartData(
+                                            "PDF(${docCount.pdfCount.toInt()})",
+                                            (docCount.pdfCount / docCount.total),
+                                            R.drawable.ic_large_pdf
+                                        ),
+                                        PieChartData(
+                                            "WORD(${docCount.wordCount.toInt()})",
+                                            (docCount.wordCount / docCount.total),
+                                            R.drawable.ic_large_word
+                                        ),
+                                        PieChartData(
+                                            "EXCEL(${docCount.excelCount.toInt()})",
+                                            (docCount.excelCount / docCount.total),
+                                            R.drawable.ic_large_excel
+                                        ),
+                                        PieChartData(
+                                            "PPT(${docCount.pptCount.toInt()})",
+                                            (docCount.pptCount / docCount.total),
+                                            R.drawable.ic_large_ppt
+                                        ),
+                                    )
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .background(color = colorResource(id = R.color.bg_color_main)),
+                                        verticalArrangement = Arrangement.Center,
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        FileDistributionChart(pieChartData)
+                                        FileCountScreen(pieChartData)
+                                    }
+
                                 }
 
                             }
 
+                            else -> {}
                         }
-
-                        else -> {}
                     }
                 }
             }
