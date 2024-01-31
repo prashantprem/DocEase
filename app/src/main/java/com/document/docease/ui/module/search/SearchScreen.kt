@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -22,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
@@ -32,6 +34,7 @@ import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
 import java.io.File
@@ -55,24 +58,37 @@ fun SearchScreen(
             .fillMaxSize()
             .background(color = colorResource(id = R.color.bg_color_main))
     ) {
-        SearchBar(query = queryText, onQueryChange = {
-            queryText = it
-            viewModel.searchFile(it)
-        }, onSearch = {
-            active = false
-        },
+        SearchBar(query = queryText,
+            onQueryChange = {
+                queryText = it
+                viewModel.searchFile(it)
+            }, onSearch = {
+                active = false
+            },
             active = active,
             onActiveChange = {
                 active = it
-                if(!it){
+                if (!it) {
                     navController.popBackStack()
                 }
-                Log.d("Testing","calcjhgdsghjds")
+                Log.d("Testing", "calcjhgdsghjds")
             },
             trailingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Clear,
+                    contentDescription = null,
+                    modifier = Modifier.noRippleClickable {
+                        queryText = ""
+                        viewModel.searchFile("")
+                    })
+            },
+            leadingIcon = {
                 Icon(imageVector = Icons.Default.Search, contentDescription = null)
             },
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .padding(16.dp)
+                .clip(RoundedCornerShape(16.dp)),
+
             content = {
                 if (showFileActionBottomSheet) {
                     ModalBottomSheet(

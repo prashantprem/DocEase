@@ -48,6 +48,7 @@ import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.primaryBlue
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.ScreenType
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -137,12 +138,14 @@ fun HomeScreen(
                 if (tabIndex == 0) {
                     FileListWrapper(
                         files = viewModel.getRecentFiles(),
-                        fileClickListener = fileClickListener
+                        fileClickListener = fileClickListener,
+                        screenType = ScreenType.HISTORY
                     )
                 } else if (tabIndex == 1) {
                     FileListWrapper(
                         files = viewModel.getFavouriteFiles(),
-                        fileClickListener = fileClickListener
+                        fileClickListener = fileClickListener,
+                        screenType = ScreenType.FAVOURITES
                     )
                 } else {
                     when (val res = documentCountState.value) {

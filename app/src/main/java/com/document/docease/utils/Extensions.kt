@@ -74,7 +74,6 @@ object Extensions {
     }
 
 
-
     fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
         clickable(indication = null,
             interactionSource = remember { MutableInteractionSource() }) {
@@ -93,4 +92,13 @@ object Extensions {
             Constant.REGULAR_SPACE_CHARACTER,
             Constant.NON_BREAKABLE_SPACE_UNICODE
         )
+
+
+    fun ScreenType.emptyMessage(): String {
+        return when (this) {
+            ScreenType.FILE, ScreenType.SEARCH -> "No files found!"
+            ScreenType.FAVOURITES -> "No file added to favourites!"
+            ScreenType.HISTORY -> "Open a file to add in history!"
+        }
+    }
 }

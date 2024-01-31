@@ -12,6 +12,7 @@ import androidx.compose.ui.res.colorResource
 import com.document.docease.R
 import com.document.docease.ui.components.ads.NativeAdAdmobSmall
 import com.document.docease.ui.module.filescreen.FileClickListener
+import com.document.docease.utils.ScreenType
 import com.google.android.gms.ads.nativead.NativeAd
 import java.io.File
 
@@ -20,7 +21,8 @@ fun FileListWrapper(
     files: List<File>? = null,
     @DrawableRes imageId: Int? = null,
     fileClickListener: FileClickListener,
-    nativeAd: NativeAd? = null
+    nativeAd: NativeAd? = null,
+    screenType: ScreenType = ScreenType.FILE
 ) {
     Column(
         modifier = Modifier
@@ -38,7 +40,7 @@ fun FileListWrapper(
                     .weight(1f)
             )
         } else {
-            EmptyScreen()
+            EmptyScreen(screenType)
         }
     }
 }
