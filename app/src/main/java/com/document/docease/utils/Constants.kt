@@ -5,7 +5,7 @@ import com.document.docease.BuildConfig
 import java.io.File
 
 object Constant {
-    var showAds = false
+    var showAds = true
     var adPerClickCount = 2
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(

@@ -37,7 +37,7 @@ import com.document.docease.ui.common.ExitBottomSheet
 import com.document.docease.ui.common.FileInfoBottomSheetUI
 import com.document.docease.ui.components.ads.loadInterstitial
 import com.document.docease.ui.components.ads.rememberNativeAdState
-import com.document.docease.ui.components.ads.showInterstitial
+import com.document.docease.ui.components.ads.showInterstitialOnClick
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
@@ -130,6 +130,7 @@ fun LandingScreen(
             )
         },
         content = {
+            loadInterstitial(context = mContext, AdUnits.splashInterstitial)
             if (showFileActionBottomSheet) {
                 ModalBottomSheet(
                     onDismissRequest = {
@@ -209,7 +210,18 @@ fun LandingScreen(
                         }
 
                         override fun onFileClick(file: File) {
-                            Utility.previewFileWithLocalContext(mContext, file)
+                            clickCount += 1
+                            Log.d("TestingCount", "$clickCount")
+                            showInterstitialOnClick(
+                                mContext,
+                                AdUnits.splashInterstitial,
+                                clickCount,
+                                onAdDismissed = {
+                                    clickCount = 0
+                                }
+                            ) {
+                                Utility.previewFileWithLocalContext(mContext, file)
+                            }
                         }
 
                     }, bottomBarNativeState
@@ -222,13 +234,13 @@ fun LandingScreen(
                 items = bottomNavigationItems
             ) {
                 clickCount += 1
-                Log.d("TestingCount", "$clickCount")
-                if (clickCount >= 2) {
-                    showInterstitial(mContext, onAdDismissed = {})
-                    clickCount = 0
-                } else {
-                    loadInterstitial(context = mContext, AdUnits.splashInterstitial)
-                }
+                showInterstitialOnClick(
+                    mContext,
+                    adUnit = AdUnits.splashInterstitial,
+                    clickCount, onAdDismissed = {
+                        clickCount = 0
+                    }
+                ) {}
             }
         }
     )
