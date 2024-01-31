@@ -149,6 +149,7 @@ fun LandingScreen(
                             object : FIleInfoBottomSheetClickListener {
                                 override fun onEditClick(file: File) {
                                     Utility.openFileWithLocalContext(mContext, file)
+                                    showFileActionBottomSheet = false
                                 }
 
                                 override fun onWhatsAppShare(file: File) {
@@ -165,6 +166,7 @@ fun LandingScreen(
                                         file,
                                         isForPrint = true
                                     )
+                                    showFileActionBottomSheet = false
                                 }
 
                                 override fun onAddToFavourite(file: File) {
@@ -199,7 +201,7 @@ fun LandingScreen(
                     object : FileClickListener {
                         override fun onMenuClick(file: File) {
                             scope.launch {
-                                if (!fileInfoBottomSheetState.isVisible) {
+                                if (!fileInfoBottomSheetState.isVisible || !showFileActionBottomSheet) {
                                     mFile = file
                                     showFileActionBottomSheet = true
                                 }
