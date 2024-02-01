@@ -607,11 +607,11 @@ public class NUIDocViewXls extends NUIDocView {
         //ToolbarButton.setAllSameSize(new ToolbarButton[]{this.t, this.k, this.l, this.m, this.n, this.o, this.p, this.q, this.r, var1});
         this.u = (SOTextView)this.createToolbarButton(id.fx_button);
         this.a();
-        this.editorExpandAdd = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("editor_expand_add"));
-        this.editorExpandAdd.setVisibility(GONE);
-
-        this.editorExpandBullets = (LinearLayout) this.findViewById(MainR.getMainAppInt("editor_expand_bullets"));
-        this.editorExpandBullets.setVisibility(GONE);
+//        this.editorExpandAdd = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("editor_expand_add"));
+//        this.editorExpandAdd.setVisibility(GONE);
+//
+//        this.editorExpandBullets = (LinearLayout) this.findViewById(MainR.getMainAppInt("editor_expand_bullets"));
+//        this.editorExpandBullets.setVisibility(GONE);
 
     }
 

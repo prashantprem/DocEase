@@ -3295,7 +3295,25 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="sodk_editor_toolbar_button_no_text" parent="@style/sodk_editor_toolbar_button">
+    <style name="sodk_editor_toolbar_button_excel">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:background">@color/bg_file_list_item_color_main</item>
+        <item name="android:paddingLeft">@dimen/_5sdp</item>
+        <item name="android:paddingRight">@dimen/_5sdp</item>
+        <item name="android:paddingTop">@dimen/_8sdp</item>
+        <item name="android:paddingBottom">@dimen/_8sdp</item>
+        <item name="android:layout_marginRight">@dimen/_5sdp</item>
+        <item name="android:layout_marginLeft">@dimen/_5sdp</item>
+        <item name="android:layout_width">@dimen/_60sdp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">0.0dip</item>
+        <item name="android:minHeight">0.0dip</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="sodk_editor_toolbar_button_no_text" parent="@style/sodk_editor_toolbar_button_excel">
         <item name="android:textSize">0.0sp</item>
     </style>
 

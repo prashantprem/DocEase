@@ -10,184 +10,7 @@
         android:layout_above="@+id/ln_banner"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/bg_color_main"
-            android:padding="5dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imv_back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:background="@color/sodk_editor_transparent"
-                android:contentDescription="@string/todo"
-                android:padding="7dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_cancel"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="4dp"
-                android:padding="4dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_toolbar_cancel"
-                app:tint="@color/material_blue_grey_900" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:layout_toEndOf="@+id/toolbar_cancel"
-                android:padding="2dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_toolbar_done"
-                app:tint="@color/material_blue_grey_900" />
-
-            <TextView
-                android:id="@+id/toolbar_done"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/nunito"
-                android:padding="4dp"
-                android:text="@string/save_cta"
-                android:textColor="@color/text_color"
-                android:textSize="16sp" />
-
-
-            <ImageButton
-                android:id="@+id/back_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/imv_back"
-                android:adjustViewBounds="true"
-                android:background="@color/sodk_editor_transparent"
-                android:contentDescription="@string/todo"
-                android:scaleType="fitCenter"
-                android:src="@drawable/sodk_editor_icon_back"
-                android:visibility="gone"
-                app:tint="@color/black_light" />
-
-            <com.artifex.sonui.editor.SOTextView
-                android:id="@+id/footer_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
-                android:layout_toStartOf="@+id/imv_activity_editor_bookmark"
-                android:layout_toEndOf="@+id/imv_back"
-                android:ellipsize="end"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="@string/create_document"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <!--            <com.airbnb.lottie.LottieAnimationView-->
-            <!--                android:id="@+id/imv_activity_editor__ads"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="0dp"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_centerVertical="true"-->
-            <!--                android:layout_toStartOf="@+id/imv_activity_editor_bookmark"-->
-            <!--                android:contentDescription="@string/todo"-->
-            <!--                android:padding="2dp" />-->
-
-            <!--            <ImageView-->
-            <!--                android:visibility="gone"-->
-            <!--                android:id="@+id/imv_activity_editor_bookmark"-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_centerVertical="true"-->
-            <!--                android:layout_marginEnd="5dp"-->
-            <!--                android:contentDescription="@string/todo"-->
-            <!--                android:padding="5dp"-->
-            <!--                android:src="@drawable/ic_bookmark_file_normal" />-->
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_copy"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="6dp"
-                android:layout_toStartOf="@+id/toolbar_search"
-                android:padding="4dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_toolbar_copy"
-                app:tint="@color/black" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_search"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="6dp"
-                android:layout_toStartOf="@+id/toolbar_share"
-                android:padding="2dp"
-                app:srcCompat="@drawable/ic_search_black"
-                app:tint="@color/text_color" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_paste"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="6dp"
-                android:layout_toStartOf="@+id/toolbar_search"
-                android:padding="4dp"
-                app:srcCompat="@drawable/ic_new_paste"
-                app:tint="@color/text_color" />
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_share"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="8dp"
-                android:padding="4dp"
-                app:srcCompat="@drawable/ic_share_preview"
-                app:tint="@color/text_color" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_undo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="6dp"
-                android:layout_toStartOf="@+id/toolbar_redo"
-                android:padding="4dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/sodk_editor_icon_undo"
-                app:tint="@color/material_blue_grey_900" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_redo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="6dp"
-                android:padding="4dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/sodk_editor_icon_redo"
-                app:tint="@color/material_blue_grey_900" />
-        </RelativeLayout>
+        <include layout="@layout/editor_header_layout" />
 
         <LinearLayout
             android:id="@+id/editor_search_layout"
@@ -242,7 +65,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <Space
+                    <android.supportv1.v4.widget.Space
                         android:id="@id/back_button_after"
                         android:layout_width="25dp"
                         android:layout_height="1dp" />
@@ -257,7 +80,7 @@
                             android:layout_height="wrap_content" />
                     </HorizontalScrollView>
 
-                    <Space
+                    <android.supportv1.v4.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="1dp" />
 
@@ -391,12 +214,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="0.0dip"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="85"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -445,24 +268,19 @@
                             android:text="" />
                     </LinearLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <com.artifex.sonui.editor.SOTextView
+                        android:id="@id/footer_page_text"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="5dp"
-                        android:gravity="center">
-
-                        <com.artifex.sonui.editor.SOTextView
-                            android:id="@id/footer_page_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:background="@drawable/bg_round_word"
-                            android:gravity="center"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:textColor="@color/colorWhite_ffffff" />
-                    </RelativeLayout>
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_round_word"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/colorWhite_ffffff" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -470,459 +288,19 @@
                 android:id="@id/pages_container"
                 android:layout_width="0.0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="15"
                 android:orientation="vertical"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:visibility="gone" />
         </LinearLayout>
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/imv_activity_editor_tool"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/bg_color_main"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:layout_margin="8dp"
-                    android:gravity="center">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/editor_expand_font_up"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/icon_plus"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:id="@+id/editor_expand_font_tv"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/nunito"
-                        android:gravity="center"
-                        android:text="9"
-                        android:textColor="@color/text_color"
-                        android:textSize="18sp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/editor_expand_font_down"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/icon_minus"
-                        app:tint="@color/text_color" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/editor_expand_size"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <!--                    <androidx.appcompat.widget.AppCompatImageView-->
-                    <!--                        android:id="@+id/editor_expand_font_up"-->
-                    <!--                        android:layout_width="0dp"-->
-                    <!--                        android:layout_weight="0.2"-->
-                    <!--                        android:padding="8dp"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        app:srcCompat="@drawable/ic_editor_arrow_up"/>-->
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_undo"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/ic_undo_new"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Undo"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_redo"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/ic_redo_new"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Redo"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/insert_image_container"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/editor_expand_insert_image"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_editor_insert_img"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Image"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/insert_image_container_camera"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/editor_expand_insert_photo"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:scaleType="fitXY"
-                        app:tint="@color/text_color"
-                        app:srcCompat="@drawable/sodk_editor_icon_insert_photo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Camera"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_font_family"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_font_family_icon"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/text"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_fonts"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_editor_font"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/font"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_highlight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_editor_highlight_new"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/highlight"
-                        android:textColor="@color/text_color"
-
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_insert_image"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_editor_insert_img"
-                        app:tint="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_history"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp"
-                    android:visibility="gone">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/ic_history"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="History"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_editor_style"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/style"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_align"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_editor_allign"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/alignment"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/imv_container_bullet_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/editor_expand_bullets_number"
-                            android:layout_width="25dp"
-                            android:layout_height="20dp"
-                            android:layout_marginEnd="8dp"
-                            app:tint="@color/text_color"
-                            app:srcCompat="@drawable/icon_numbered" />
-
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/editor_expand_bullets_dots"
-                            android:layout_width="25dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="8dp"
-                            app:tint="@color/text_color"
-                            app:srcCompat="@drawable/ic_editor_bullets_dot" />
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Bullets"
-                        android:textSize="14sp"
-                        android:textColor="@color/text_color" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/imv_tools_fragments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp"
-                    android:visibility="gone">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_toolbar_tools"
-                        app:tint="@color/text_color" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/tools"
-                        android:textColor="@color/text_color" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/imv_activity_editor_expand"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <View
-                        android:layout_width="1dp"
-                        android:visibility="gone"
-                        android:layout_height="match_parent"
-                        android:background="#a7a7a7" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="More"
-                            android:textColor="#454746"
-                            android:textSize="9sp" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_editor_expand" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-
         <LinearLayout
-            android:id="@+id/editor_expand_options"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/layout_editor_expand" />
+            <include layout="@layout/editor_tools_layout" />
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

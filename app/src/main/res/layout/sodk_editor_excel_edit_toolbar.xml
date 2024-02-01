@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
-
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/_60sdp">
 
         <LinearLayout
             android:id="@id/excel_edit_toolbar"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:background="@color/colorWhite"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color_main"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Space
+            <android.supportv1.v4.widget.Space
                 android:layout_width="8dp"
                 android:layout_height="match_parent" />
 
@@ -28,30 +27,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/nunito"
                     android:minWidth="100dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/sodk_editor_my_font_name"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/nunito"
-                    android:textColor="@drawable/sodk_editor_font_ui_text" />
+                    android:textColor="@drawable/sodk_editor_font_ui_text"
+                    android:textSize="16sp" />
             </LinearLayout>
 
-            <Space
+            <android.supportv1.v4.widget.Space
                 android:layout_width="10dp"
                 android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/sodk_editor_font_box_border"
+                android:background="@color/bg_color_main"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <com.artifex.sonui.editor.ToolbarButton
                     android:id="@id/fontdown_button"
                     style="@style/sodk_editor_toolbar_button_no_text"
-                    android:drawableTop="@drawable/sodk_editor_icon_font_down" />
+                    android:drawableTop="@drawable/sodk_editor_icon_font_down"
+                    android:drawableTint="@color/text_color" />
 
                 <com.artifex.sonui.editor.SOTextView
                     android:id="@id/font_size_text"
@@ -66,10 +66,11 @@
                 <com.artifex.sonui.editor.ToolbarButton
                     android:id="@id/fontup_button"
                     style="@style/sodk_editor_toolbar_button_no_text"
-                    android:drawableTop="@drawable/sodk_editor_icon_font_up" />
+                    android:drawableTop="@drawable/sodk_editor_icon_font_up"
+                    android:drawableTint="@color/text_color" />
             </LinearLayout>
 
-            <Space
+            <android.supportv1.v4.widget.Space
                 android:layout_width="10dp"
                 android:layout_height="match_parent" />
 
@@ -116,18 +117,17 @@
                     android:src="@drawable/sodk_editor_icon_text_background_color" />
             </LinearLayout>
 
-<!--            <View style="@style/sodk_editor_toolbar_divider" />-->
+            <!--            <View style="@style/sodk_editor_toolbar_divider" />-->
 
             <com.artifex.sonui.editor.ToolbarButton
                 android:id="@id/align_options_button"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:gravity="center"
                 style="@style/sodk_editor_toolbar_button_no_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:drawableStart="@drawable/sodk_editor_icon_alignment"
-                />
+                android:gravity="center" />
 
-<!--            <View style="@style/sodk_editor_toolbar_divider" />-->
+            <!--            <View style="@style/sodk_editor_toolbar_divider" />-->
 
             <LinearLayout
                 android:id="@id/cut_button"
