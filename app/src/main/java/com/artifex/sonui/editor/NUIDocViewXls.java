@@ -19,6 +19,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
@@ -44,13 +45,13 @@ public class NUIDocViewXls extends NUIDocView {
     private ListPopupWindow I = null;
     private String J = null;
     private boolean K = false;
-    private LinearLayout b;
-    private LinearLayout c;
-    private LinearLayout d;
-    private LinearLayout e;
-    private LinearLayout f;
-    private LinearLayout g;
-    private ToolbarButton h;
+    private ImageView b;
+    private ImageView c;
+    private ImageView d;
+    private ImageView e;
+    private ImageView f;
+    private ImageView g;
+    //    private ToolbarButton h;
     private LinearLayout i;
     private LinearLayout j;
     private LinearLayout k;
@@ -71,6 +72,7 @@ public class NUIDocViewXls extends NUIDocView {
     private LinearLayout z;
     private LinearLayout editorExpandAdd;
     private LinearLayout editorExpandBullets;
+
 
     public NUIDocViewXls(Context var1) {
         super(var1);
@@ -97,7 +99,7 @@ public class NUIDocViewXls extends NUIDocView {
         int var8 = 0;
 
         FrameLayout var12;
-        for(int var9 = 0; var2 < var5; var6 = var12) {
+        for (int var9 = 0; var2 < var5; var6 = var12) {
             int var10 = var1.getItemViewType(var2);
             int var11 = var9;
             if (var10 != var9) {
@@ -110,9 +112,9 @@ public class NUIDocViewXls extends NUIDocView {
                 var12 = new FrameLayout(this.getContext());
             }
 
-            var7 = var1.getView(var2, (View)var7, var12);
-            ((View)var7).measure(var3, var4);
-            var8 += ((View)var7).getMeasuredHeight();
+            var7 = var1.getView(var2, (View) var7, var12);
+            ((View) var7).measure(var3, var4);
+            var8 += ((View) var7).getMeasuredHeight();
             ++var2;
             var9 = var11;
         }
@@ -121,12 +123,12 @@ public class NUIDocViewXls extends NUIDocView {
     }
 
     private void a() {
-        SOEditText var1 = (SOEditText)this.findViewById(id.cell_width_box);
+        SOEditText var1 = (SOEditText) this.findViewById(id.cell_width_box);
         this.B = var1;
         var1.setImeActionLabel(this.getContext().getString(string.sodk_editor_ime_action_label_done), 66);
         this.B.setOnClickListener(new OnClickListener() {
             public void onClick(View var1) {
-                SOEditText var2 = (SOEditText)var1;
+                SOEditText var2 = (SOEditText) var1;
                 var2.selectAll();
                 String var3 = var2.getText().toString();
                 var1.setTag(string.sodk_editor_cellbox_last_value, var3);
@@ -137,8 +139,8 @@ public class NUIDocViewXls extends NUIDocView {
                 if (var2) {
                     var1.callOnClick();
                 } else {
-                    String var3 = (String)var1.getTag(string.sodk_editor_cellbox_last_value);
-                    ((SOEditText)var1).setText(var3);
+                    String var3 = (String) var1.getTag(string.sodk_editor_cellbox_last_value);
+                    ((SOEditText) var1).setText(var3);
                 }
 
             }
@@ -150,7 +152,8 @@ public class NUIDocViewXls extends NUIDocView {
                     float var4 = 0.0F;
 
                     boolean var8;
-                    label25: {
+                    label25:
+                    {
                         float var5;
                         try {
                             var5 = Float.parseFloat(var9);
@@ -167,7 +170,7 @@ public class NUIDocViewXls extends NUIDocView {
                         var1.setTag(string.sodk_editor_cellbox_last_value, var9);
                         NUIDocViewXls.this.getDoc().setSelectedColumnWidth(var4 / 2.54F);
                     } else {
-                        var1.setText((String)var1.getTag(string.sodk_editor_cellbox_last_value));
+                        var1.setText((String) var1.getTag(string.sodk_editor_cellbox_last_value));
                     }
                 }
 
@@ -185,12 +188,12 @@ public class NUIDocViewXls extends NUIDocView {
                 NUIDocViewXls.this.a(-0.5F);
             }
         });
-        var1 = (SOEditText)this.findViewById(id.cell_height_box);
+        var1 = (SOEditText) this.findViewById(id.cell_height_box);
         this.C = var1;
         var1.setImeActionLabel(this.getContext().getString(string.sodk_editor_ime_action_label_done), 66);
         this.C.setOnClickListener(new OnClickListener() {
             public void onClick(View var1) {
-                SOEditText var2 = (SOEditText)var1;
+                SOEditText var2 = (SOEditText) var1;
                 var2.selectAll();
                 String var3 = var2.getText().toString();
                 var1.setTag(string.sodk_editor_cellbox_last_value, var3);
@@ -201,8 +204,8 @@ public class NUIDocViewXls extends NUIDocView {
                 if (var2) {
                     var1.callOnClick();
                 } else {
-                    String var3 = (String)var1.getTag(string.sodk_editor_cellbox_last_value);
-                    ((SOEditText)var1).setText(var3);
+                    String var3 = (String) var1.getTag(string.sodk_editor_cellbox_last_value);
+                    ((SOEditText) var1).setText(var3);
                 }
 
             }
@@ -216,7 +219,7 @@ public class NUIDocViewXls extends NUIDocView {
                         var1.setTag(string.sodk_editor_cellbox_last_value, var5);
                         NUIDocViewXls.this.getDoc().setSelectedRowHeight(var4 / 2.54F);
                     } else {
-                        var1.setText((String)var1.getTag(string.sodk_editor_cellbox_last_value));
+                        var1.setText((String) var1.getTag(string.sodk_editor_cellbox_last_value));
                     }
                 }
 
@@ -237,7 +240,7 @@ public class NUIDocViewXls extends NUIDocView {
     }
 
     private void a(float var1) {
-        var1 = Math.min(Math.max((float)Math.round(this.getDoc().getSelectedColumnWidth() * 2.54F * 2.0F) / 2.0F + var1, 0.15F), 30.0F);
+        var1 = Math.min(Math.max((float) Math.round(this.getDoc().getSelectedColumnWidth() * 2.54F * 2.0F) / 2.0F + var1, 0.15F), 30.0F);
         this.getDoc().setSelectedColumnWidth(var1 / 2.54F);
         this.a(this.B, var1);
     }
@@ -261,7 +264,7 @@ public class NUIDocViewXls extends NUIDocView {
             var3 = -4473925;
         }
 
-        var1.setTextColor(var3);
+//        var1.setTextColor(var3);
     }
 
     private void a(final String var1) {
@@ -292,7 +295,7 @@ public class NUIDocViewXls extends NUIDocView {
     }
 
     private void b(float var1) {
-        var1 = Math.min(Math.max((float)Math.round(this.getDoc().getSelectedRowHeight() * 2.54F * 2.0F) / 2.0F + var1, 0.15F), 30.0F);
+        var1 = Math.min(Math.max((float) Math.round(this.getDoc().getSelectedRowHeight() * 2.54F * 2.0F) / 2.0F + var1, 0.15F), 30.0F);
         this.getDoc().setSelectedRowHeight(var1 / 2.54F);
         this.a(this.C, var1);
     }
@@ -311,14 +314,15 @@ public class NUIDocViewXls extends NUIDocView {
         int[] var5 = new int[2];
         this.u.getLocationOnScreen(var5);
         var5 = Utilities.screenToWindow(var5, this.getContext());
-        var2.setHeight(Math.min(var4.y - var5[1] - this.u.getHeight() - 60, this.a((ListAdapter)var3)));
+        var2.setHeight(Math.min(var4.y - var5[1] - this.u.getHeight() - 60, this.a((ListAdapter) var3)));
         var2.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> var1, View var2x, int var3x, long var4) {
                 DocExcelView var6;
                 String var8;
-                label11: {
+                label11:
+                {
                     var2.dismiss();
-                    var6 = (DocExcelView)NUIDocViewXls.this.getDocView();
+                    var6 = (DocExcelView) NUIDocViewXls.this.getDocView();
                     String var7 = var6.getEditText();
                     String var10 = var3.getItem(var3x);
                     if (var7 != null) {
@@ -347,23 +351,23 @@ public class NUIDocViewXls extends NUIDocView {
         var2.show();
         this.I = var2;
         this.J = var1;
-        var2.getListView().setDivider((Drawable)null);
+        var2.getListView().setDivider((Drawable) null);
         var2.getListView().setVerticalScrollBarEnabled(true);
     }
 
     private void c() {
-        final LinearLayout var1 = (LinearLayout)this.findViewById(id.excel_sheets_bar);
+        final LinearLayout var1 = (LinearLayout) this.findViewById(id.excel_sheets_bar);
         var1.removeAllViews();
         SheetTab.setEditingEbabled(this.mConfigOptions.c());
         int var2 = this.getDoc().r();
         final Activity var3 = this.activity();
         int var4 = 1;
 
-        while(true) {
+        while (true) {
             boolean var5 = false;
             if (var4 > var2) {
                 if (this.mConfigOptions.c()) {
-                    Button var9 = (Button)this.activity().getLayoutInflater().inflate(layout.sodk_editor_sheet_tab_plus, var1, false);
+                    Button var9 = (Button) this.activity().getLayoutInflater().inflate(layout.sodk_editor_sheet_tab_plus, var1, false);
                     var9.setText("+");
                     var9.setOnClickListener(new OnClickListener() {
                         public void onClick(View var1) {
@@ -378,7 +382,7 @@ public class NUIDocViewXls extends NUIDocView {
                 return;
             }
 
-            DocExcelView var6 = (DocExcelView)this.getDocView();
+            DocExcelView var6 = (DocExcelView) this.getDocView();
             int var7 = var4 - 1;
             final String var10 = var6.getPageTitle(var7);
             SheetTab var8 = new SheetTab(var3);
@@ -386,22 +390,22 @@ public class NUIDocViewXls extends NUIDocView {
             var8.setSheetNumber(var7);
             var8.setOnClickTab(new OnClickListener() {
                 public void onClick(View var1) {
-                    int var2 = ((SheetTab)var1).getSheetNumber();
+                    int var2 = ((SheetTab) var1).getSheetNumber();
                     NUIDocViewXls.this.a(var2);
                 }
             });
             var8.setOnLongClickTab(new OnLongClickListener() {
                 public boolean onLongClick(View var1x) {
-                    int var2 = ((SheetTab)var1x).getSheetNumber();
+                    int var2 = ((SheetTab) var1x).getSheetNumber();
                     View var3 = var1.getChildAt(var2);
                     NUIDocViewXls.this.E = var2;
                     String var4 = var10;
                     ClipData var6 = ClipData.newPlainText(var4, var4);
                     DragShadowBuilder var5 = new DragShadowBuilder(var3);
                     if (VERSION.SDK_INT >= 24) {
-                        var1x.startDragAndDrop(var6, var5, (Object)null, 0);
+                        var1x.startDragAndDrop(var6, var5, (Object) null, 0);
                     } else {
-                        var1x.startDrag(var6, var5, (Object)null, 0);
+                        var1x.startDrag(var6, var5, (Object) null, 0);
                     }
 
                     return true;
@@ -414,14 +418,14 @@ public class NUIDocViewXls extends NUIDocView {
                     this.c = var1x;
                     var1x = 0;
 
-                    while(true) {
+                    while (true) {
                         int var2 = var1.getChildCount();
                         boolean var3 = true;
                         if (var1x >= var2 - 1) {
                             return;
                         }
 
-                        SheetTab var4 = (SheetTab)var1.getChildAt(var1x);
+                        SheetTab var4 = (SheetTab) var1.getChildAt(var1x);
                         if (var1x != this.c || var1x == NUIDocViewXls.this.E) {
                             var3 = false;
                         }
@@ -437,21 +441,21 @@ public class NUIDocViewXls extends NUIDocView {
                     byte var4 = -1;
                     var5 = var4;
                     label29:
-                    switch(var3) {
+                    switch (var3) {
                         case 1:
                         default:
                             return true;
                         case 2:
                             var3 = 0;
 
-                            while(true) {
+                            while (true) {
                                 var5 = var4;
                                 if (var3 >= var1.getChildCount() - 1) {
                                     break label29;
                                 }
 
-                                SheetTab var6 = (SheetTab)var1.getChildAt(var3);
-                                if (var2.getX() > (float)var6.getLeft() && var2.getX() < (float)var6.getRight()) {
+                                SheetTab var6 = (SheetTab) var1.getChildAt(var3);
+                                if (var2.getX() > (float) var6.getLeft() && var2.getX() < (float) var6.getRight()) {
                                     var5 = var3;
                                     break label29;
                                 }
@@ -480,7 +484,7 @@ public class NUIDocViewXls extends NUIDocView {
             if (this.mConfigOptions.c()) {
                 var8.setOnClickDelete(new OnClickListener() {
                     public void onClick(View var1) {
-                        SheetTab var2 = (SheetTab)var1;
+                        SheetTab var2 = (SheetTab) var1;
                         String var6 = var2.getText();
                         final int var3x = var2.getSheetNumber();
                         Activity var7 = var3;
@@ -495,7 +499,7 @@ public class NUIDocViewXls extends NUIDocView {
                                 NUIDocViewXls.this.getDoc().clearSelection();
                                 NUIDocViewXls.this.getDoc().deletePage(var3x);
                             }
-                        }, (Runnable)null);
+                        }, (Runnable) null);
                     }
                 });
             }
@@ -525,33 +529,33 @@ public class NUIDocViewXls extends NUIDocView {
             SOSelectionTableRange var1 = this.getDoc().selectionTableRange();
             if (var1 != null && var1.rowCount() == 1 && var1.columnCount() == 1) {
                 String var2 = this.getDoc().getSelectionAsText();
-                ((DocExcelView)this.getDocView()).setEditText(var2);
+                ((DocExcelView) this.getDocView()).setEditText(var2);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private int getCurrentSheet() {
-        DocExcelView var1 = (DocExcelView)this.getDocView();
+        DocExcelView var1 = (DocExcelView) this.getDocView();
         return var1 != null ? var1.getCurrentSheet() : 0;
     }
 
     private void setCurrentSheet(int var1) {
         try {
             if (var1 != this.getCurrentSheet()) {
-                DocExcelView var2 = (DocExcelView)this.getDocView();
-                if(var2 != null){
+                DocExcelView var2 = (DocExcelView) this.getDocView();
+                if (var2 != null) {
                     var2.copyEditTextToCell();
                     this.getDoc().clearSelection();
                     var2.setEditText("");
                 }
             }
 
-            LinearLayout var7 = (LinearLayout)this.findViewById(id.excel_sheets_bar);
+            LinearLayout var7 = (LinearLayout) this.findViewById(id.excel_sheets_bar);
             int var3 = this.getDoc().r();
 
-            for(int var4 = 0; var4 < var3; ++var4) {
+            for (int var4 = 0; var4 < var3; ++var4) {
                 View var5 = var7.getChildAt(var4);
                 if (var5 != null) {
                     boolean var6;
@@ -563,49 +567,49 @@ public class NUIDocViewXls extends NUIDocView {
 
                     var5.setSelected(var6);
                     if (var3 == 1) {
-                        ((SheetTab)var5).showXView(false);
+                        ((SheetTab) var5).showXView(false);
                     }
                 }
             }
 
-            ((DocExcelView)this.getDocView()).setCurrentSheet(var1);
+            ((DocExcelView) this.getDocView()).setCurrentSheet(var1);
             this.onSelectionChanged();
             this.setPageNumberText();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     protected void afterFirstLayoutComplete() {
         super.afterFirstLayoutComplete();
-        this.b = (LinearLayout)this.createToolbarButton(id.insert_row_above_button);
-        this.c = (LinearLayout)this.createToolbarButton(id.insert_row_below_button);
-        this.d = (LinearLayout)this.createToolbarButton(id.insert_column_left_button);
-        this.e = (LinearLayout)this.createToolbarButton(id.insert_column_right_button);
-        this.f = (LinearLayout)this.createToolbarButton(id.delete_row_button);
-        this.g = (LinearLayout)this.createToolbarButton(id.delete_column_button);
-        this.i = (LinearLayout)this.createToolbarButton(id.merge_cells_button);
-        this.j = (LinearLayout)this.createToolbarButton(id.number_format_button);
-        this.x = (LinearLayout)this.createToolbarButton(id.cell_width_up_button);
-        this.y = (LinearLayout)this.createToolbarButton(id.cell_width_down_button);
-        this.z = (LinearLayout)this.createToolbarButton(id.cell_height_up_button);
-        this.A = (LinearLayout)this.createToolbarButton(id.cell_height_down_button);
-        this.v = (SOTextView)this.findViewById(id.cell_width_label);
-        this.w = (SOTextView)this.findViewById(id.cell_height_label);
+        this.b = (ImageView) this.createToolbarButton(com.document.docease.R.id.insert_row_above_button);
+        this.c = (ImageView) this.createToolbarButton(id.insert_row_below_button);
+        this.d = (ImageView) this.createToolbarButton(id.insert_column_left_button);
+        this.e = (ImageView) this.createToolbarButton(id.insert_column_right_button);
+        this.f = (ImageView) this.createToolbarButton(id.delete_row_button);
+        this.g = (ImageView) this.createToolbarButton(id.delete_column_button);
+        this.i = (LinearLayout) this.createToolbarButton(id.merge_cells_button);
+        this.j = (LinearLayout) this.createToolbarButton(id.number_format_button);
+        this.x = (LinearLayout) this.createToolbarButton(id.cell_width_up_button);
+        this.y = (LinearLayout) this.createToolbarButton(id.cell_width_down_button);
+        this.z = (LinearLayout) this.createToolbarButton(id.cell_height_up_button);
+        this.A = (LinearLayout) this.createToolbarButton(id.cell_height_down_button);
+        this.v = (SOTextView) this.findViewById(id.cell_width_label);
+        this.w = (SOTextView) this.findViewById(id.cell_height_label);
         //ToolbarButton.setAllSameSize(new ToolbarButton[]{this.i, this.j});
-        this.t = (LinearLayout)this.createToolbarButton(id.formula_sum);
-        this.k = (LinearLayout)this.createToolbarButton(id.formula_datetime);
-        this.l = (LinearLayout)this.createToolbarButton(id.formula_engineering);
-        this.m = (LinearLayout)this.createToolbarButton(id.formula_financial);
-        this.n = (LinearLayout)this.createToolbarButton(id.formula_information);
-        this.o = (LinearLayout)this.createToolbarButton(id.formula_logical);
-        this.p = (LinearLayout)this.createToolbarButton(id.formula_lookup);
-        this.q = (LinearLayout)this.createToolbarButton(id.formula_maths);
-        this.r = (LinearLayout)this.createToolbarButton(id.formula_statistical);
-        LinearLayout var1 = (LinearLayout)this.createToolbarButton(id.formula_text);
+        this.t = (LinearLayout) this.createToolbarButton(id.formula_sum);
+        this.k = (LinearLayout) this.createToolbarButton(id.formula_datetime);
+        this.l = (LinearLayout) this.createToolbarButton(id.formula_engineering);
+        this.m = (LinearLayout) this.createToolbarButton(id.formula_financial);
+        this.n = (LinearLayout) this.createToolbarButton(id.formula_information);
+        this.o = (LinearLayout) this.createToolbarButton(id.formula_logical);
+        this.p = (LinearLayout) this.createToolbarButton(id.formula_lookup);
+        this.q = (LinearLayout) this.createToolbarButton(id.formula_maths);
+        this.r = (LinearLayout) this.createToolbarButton(id.formula_statistical);
+        LinearLayout var1 = (LinearLayout) this.createToolbarButton(id.formula_text);
         this.s = var1;
         //ToolbarButton.setAllSameSize(new ToolbarButton[]{this.t, this.k, this.l, this.m, this.n, this.o, this.p, this.q, this.r, var1});
-        this.u = (SOTextView)this.createToolbarButton(id.fx_button);
+        this.u = (SOTextView) this.createToolbarButton(id.fx_button);
         this.a();
 //        this.editorExpandAdd = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("editor_expand_add"));
 //        this.editorExpandAdd.setVisibility(GONE);
@@ -616,9 +620,9 @@ public class NUIDocViewXls extends NUIDocView {
     }
 
     public void clickSheetButton(int var1, boolean var2) {
-        LinearLayout var3 = (LinearLayout)this.findViewById(id.excel_sheets_bar);
+        LinearLayout var3 = (LinearLayout) this.findViewById(id.excel_sheets_bar);
         if (var3 != null) {
-            SheetTab var4 = (SheetTab)var3.getChildAt(var1);
+            SheetTab var4 = (SheetTab) var3.getChildAt(var1);
             if (var4 != null) {
                 var4.performClick();
             }
@@ -631,7 +635,7 @@ public class NUIDocViewXls extends NUIDocView {
     }
 
     protected void createEditButtons2() {
-        this.h = (ToolbarButton)this.createToolbarButton(id.align_options_button);
+//        this.h = (ToolbarButton) this.createToolbarButton(id.align_options_button);
     }
 
     protected void createInputView() {
@@ -657,13 +661,13 @@ public class NUIDocViewXls extends NUIDocView {
 
     public void doCut() {
         super.doCut();
-        ((DocExcelView)this.getDocView()).setEditText("");
+        ((DocExcelView) this.getDocView()).setEditText("");
     }
 
     public void doPaste() {
         super.doPaste();
         String var1 = this.getDoc().getSelectionAsText();
-        ((DocExcelView)this.getDocView()).setEditText(var1);
+        ((DocExcelView) this.getDocView()).setEditText(var1);
     }
 
     public void doRedo() {
@@ -776,9 +780,9 @@ public class NUIDocViewXls extends NUIDocView {
 
     public void onClick(View var1) {
         super.onClick(var1);
-        if (var1 == this.h) {
-            this.onAlignOptionsButton(var1);
-        }
+//        if (var1 == this.h) {
+//            this.onAlignOptionsButton(var1);
+//        }
 
         if (var1 == this.b) {
             this.onInsertRowAbove(var1);
@@ -860,8 +864,8 @@ public class NUIDocViewXls extends NUIDocView {
 
     public void onClickFunctionButton(View var1) {
         Utilities.hideKeyboard(this.getContext());
-        View var2 = inflate(this.getContext(), layout.sodk_editor_formula_categories, (ViewGroup)null);
-        GridView var3 = (GridView)var2.findViewById(id.grid);
+        View var2 = inflate(this.getContext(), layout.sodk_editor_formula_categories, (ViewGroup) null);
+        GridView var3 = (GridView) var2.findViewById(id.grid);
         final ChooseFormulaCategoryAdapter var4 = new ChooseFormulaCategoryAdapter(this.activity());
         var3.setAdapter(var4);
         final NUIPopupWindow var5 = new NUIPopupWindow(var2, -2, -2);
@@ -877,17 +881,19 @@ public class NUIDocViewXls extends NUIDocView {
     }
 
     public void onDeleteColumn(View var1) {
-        ((DocExcelView)this.getDocView()).deleteSelectedColumns();
+        ((DocExcelView) this.getDocView()).deleteSelectedColumns();
     }
 
     public void onDeleteRow(View var1) {
-        ((DocExcelView)this.getDocView()).deleteSelectedRows();
+        ((DocExcelView) this.getDocView()).deleteSelectedRows();
     }
 
     protected void onDocCompleted() {
-        label30: {
+        label30:
+        {
             int var1;
-            label35: {
+            label35:
+            {
                 super.onDocCompleted();
                 this.setPageCount(this.getPageCount());
                 this.c();
@@ -953,8 +959,9 @@ public class NUIDocViewXls extends NUIDocView {
     public void onFormulaSumButton(View var1) {
         DocExcelView var2;
         String var5;
-        label11: {
-            var2 = (DocExcelView)this.getDocView();
+        label11:
+        {
+            var2 = (DocExcelView) this.getDocView();
             String var3 = this.getContext().getString(string.sodk_editor_autosum_text);
             String var4 = var2.getEditText();
             if (var4 != null) {
@@ -1004,15 +1011,15 @@ public class NUIDocViewXls extends NUIDocView {
         this.getDoc().setTableCellsMerged(var2 ^ true);
         if (!var2) {
             String var3 = this.getDoc().getSelectionAsText();
-            ((DocExcelView)this.getDocView()).setEditText(var3);
+            ((DocExcelView) this.getDocView()).setEditText(var3);
         }
 
     }
 
     public void onNumberFormatButton(View var1) {
         Utilities.hideKeyboard(this.getContext());
-        View var2 = inflate(this.getContext(), layout.sodk_editor_number_formats, (ViewGroup)null);
-        GridView var3 = (GridView)var2.findViewById(id.grid);
+        View var2 = inflate(this.getContext(), layout.sodk_editor_number_formats, (ViewGroup) null);
+        GridView var3 = (GridView) var2.findViewById(id.grid);
         byte var4;
         if (Utilities.isPhoneDevice(this.getContext()) && !Utilities.isLandscapePhone(this.getContext())) {
             var4 = 1;
@@ -1028,7 +1035,7 @@ public class NUIDocViewXls extends NUIDocView {
             public void onItemClick(AdapterView<?> var1, View var2, int var3, long var4) {
                 var5.dismiss();
                 Utilities.hideKeyboard(NUIDocViewXls.this.getContext());
-                switch(var3) {
+                switch (var3) {
                     case 0:
                         NUIDocViewXls.this.getDoc().setSelectedCellFormat("General");
                         break;
@@ -1077,7 +1084,7 @@ public class NUIDocViewXls extends NUIDocView {
                 this.c();
                 this.K = false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -1126,9 +1133,9 @@ public class NUIDocViewXls extends NUIDocView {
 
     public void preSave() {
         try {
-            ((DocExcelView)this.getDocView()).copyEditTextToCell();
+            ((DocExcelView) this.getDocView()).copyEditTextToCell();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -1137,8 +1144,8 @@ public class NUIDocViewXls extends NUIDocView {
         DocView var1 = this.getDocView();
         //fix for Attempt to invoke virtual method 'java.lang.String com.artifex.solib.SODoc.getSelectionAsText()
         SODoc soDoc = this.getDoc();
-        if(soDoc != null){
-            if (var1 != null && ((DocExcelView)var1).copyEditTextToCell()) {
+        if (soDoc != null) {
+            if (var1 != null && ((DocExcelView) var1).copyEditTextToCell()) {
                 SODocSession var2 = this.getSession();
                 if (var2 != null) {
                     SOFileState var3 = var2.getFileState();
@@ -1200,43 +1207,43 @@ public class NUIDocViewXls extends NUIDocView {
         }
 
         SODoc var8 = this.mSession.getDoc();
-        this.mStyleBoldButton.setEnabled(var6);
-        ToolbarButton var7 = this.mStyleBoldButton;
+//        this.mStyleBoldButton.setEnabled(var6);
+//        ToolbarButton var7 = this.mStyleBoldButton;
         if (var6 && var8.getSelectionIsBold()) {
             var4 = true;
         } else {
             var4 = false;
         }
 
-        var7.setSelected(var4);
-        this.mStyleItalicButton.setEnabled(var6);
-        var7 = this.mStyleItalicButton;
+//        var7.setSelected(var4);
+//        this.mStyleItalicButton.setEnabled(var6);
+//        var7 = this.mStyleItalicButton;
         if (var6 && var8.getSelectionIsItalic()) {
             var4 = true;
         } else {
             var4 = false;
         }
 
-        var7.setSelected(var4);
-        this.mStyleUnderlineButton.setEnabled(var6);
-        var7 = this.mStyleUnderlineButton;
-        if (var6 && var8.getSelectionIsUnderlined()) {
-            var4 = true;
-        } else {
-            var4 = false;
-        }
+//        var7.setSelected(var4);
+//        this.mStyleUnderlineButton.setEnabled(var6);
+//        var7 = this.mStyleUnderlineButton;
+//        if (var6 && var8.getSelectionIsUnderlined()) {
+//            var4 = true;
+//        } else {
+//            var4 = false;
+//        }
 
-        var7.setSelected(var4);
-        this.mStyleLinethroughButton.setEnabled(var6);
-        var7 = this.mStyleLinethroughButton;
-        if (var6 && var8.getSelectionIsLinethrough()) {
-            var4 = var2;
-        } else {
-            var4 = false;
-        }
+//        var7.setSelected(var4);
+//        this.mStyleLinethroughButton.setEnabled(var6);
+//        var7 = this.mStyleLinethroughButton;
+//        if (var6 && var8.getSelectionIsLinethrough()) {
+//            var4 = var2;
+//        } else {
+//            var4 = false;
+//        }
 
-        var7.setSelected(var4);
-        this.h.setEnabled(var5);
+//        var7.setSelected(var4);
+//        this.h.setEnabled(var5);
     }
 
     protected void updateReviewUIAppearance() {
@@ -1266,7 +1273,7 @@ public class NUIDocViewXls extends NUIDocView {
             var3 = false;
         }
 
-        LinearLayout var6 = this.b;
+        ImageView var6 = this.b;
         if (!var4 && !var3) {
             var2 = false;
         } else {
@@ -1320,7 +1327,7 @@ public class NUIDocViewXls extends NUIDocView {
             var2 = true;
         }
 
-        this.h.setEnabled(var2);
+//        this.h.setEnabled(var2);
         if (!var4 && !var3) {
             var2 = false;
         } else {
@@ -1398,7 +1405,7 @@ public class NUIDocViewXls extends NUIDocView {
         }
 
         this.s.setEnabled(var2);
-        ((DocExcelView)this.getDocView()).onSelectionChanged();
+        ((DocExcelView) this.getDocView()).onSelectionChanged();
         float var5 = this.getDoc().getSelectedColumnWidth();
         if (var5 > 0.0F) {
             this.a(this.B, var5 * 2.54F);

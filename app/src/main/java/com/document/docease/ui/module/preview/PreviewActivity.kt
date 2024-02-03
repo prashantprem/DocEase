@@ -66,7 +66,7 @@ class PreviewActivity
         shareToWhatsapp = findViewById(R.id.imv_activity_preview_whatsapp)
         imvMenuOption = findViewById(R.id.imv_menu_option)
         toolbarSearch = findViewById(R.id.toolbar_search)
-        imvActivityEditorBookmark = findViewById(R.id.imv_activity_editor_bookmark)
+//        imvActivityEditorBookmark = findViewById(R.id.imv_activity_editor_bookmark)
         imvBack = findViewById(R.id.imv_back)
         popupMenu = PopupMenu(this@PreviewActivity, imvMenuOption, Gravity.END)
         popupMenu!!.menuInflater.inflate(R.menu.menu_reading_file_actions, popupMenu!!.menu)

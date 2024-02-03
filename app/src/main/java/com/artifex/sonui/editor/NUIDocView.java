@@ -56,6 +56,7 @@ import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -103,6 +104,7 @@ import com.tom_roush.pdfbox.text.PDFTextStripperByArea;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -110,20 +112,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import kotlin.jvm.internal.markers.KMutableList;
+
 public class NUIDocView extends FrameLayout implements OnClickListener, OnTabChangeListener, DocViewHost {
     public static int OVERSIZE_MARGIN;
     public static final int OVERSIZE_PERCENT = 20;
     private static NUIDocView ak;
     private SOTextView A;
-    private SOTextView C;
-    private ToolbarButton D;
-    private ToolbarButton E;
-    private SOTextView F;
-    private ToolbarButton G;
-    private LinearLayout H;
-    private LinearLayout I;
-    private LinearLayout J;
-    private LinearLayout K;
+    private TextView C;
+    //    private ToolbarButton D;
+//    private ToolbarButton E;
+//    private SOTextView F;
+//    private ToolbarButton G;
+//    private LinearLayout H;
+//    private LinearLayout I;
+//    private LinearLayout J;
+//    private LinearLayout K;
     private SOTextView L;
     private int M = 0;
     private long N = 0L;
@@ -214,13 +218,16 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
 
     //toolbar options
-    private TextView editorToolbarDone;
+    private LinearLayout editorToolbarDone;
 
-    private ImageView editorToolbarShare;
-    private ImageView editorToolbarCopy;
-    private ImageView editorToolbarUndo;
-    private ImageView editorToolbarRedo;
-    private ImageView editorToolbarSearch;
+    private LinearLayout editorToolbarShare;
+    private LinearLayout editorToolbarCopy;
+
+    private LinearLayout editorToolbarPaste;
+
+    private LinearLayout editorToolbarUndo;
+    private LinearLayout editorToolbarRedo;
+    private LinearLayout editorToolbarSearch;
     private LinearLayout editorSearchLayout;
     private ImageView editorCloseSearch;
     private LinearLayout previewSearch;
@@ -234,10 +241,10 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     protected SODocSession mSession;
     protected Uri mStartUri = null;
     protected SOFileState mState = null;
-    protected ToolbarButton mStyleBoldButton;
-    protected ToolbarButton mStyleItalicButton;
-    protected ToolbarButton mStyleLinethroughButton;
-    protected ToolbarButton mStyleUnderlineButton;
+    //    protected ToolbarButton mStyleBoldButton;
+//    protected ToolbarButton mStyleItalicButton;
+//    protected ToolbarButton mStyleLinethroughButton;
+//    protected ToolbarButton mStyleUnderlineButton;
     protected ImageView mUndoButton;
     private SODataLeakHandlers n;
     private ToolbarButton o;
@@ -269,6 +276,9 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     private TextView pasteView;
     private View lineView;
     private boolean isBeingSelected = false;
+
+    private ImageView menuOptions;
+    private PopupWindow menuOptionsPopup;
 
 
     public NUIDocView(Context var1) {
@@ -586,7 +596,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 }
             });
             this.addView(var1);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -1009,6 +1019,9 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     private void setFooterText(String var1) {
+        if (this.L == null) {
+            return;
+        }
         if (var1 != null && !var1.isEmpty()) {
             String var2 = (new File(var1)).getName();
             if (var2 != null && !var2.isEmpty()) {
@@ -1259,12 +1272,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         this.layoutUndo = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("imv_activity_editor_undo"));
         this.layoutRedo = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("imv_activity_editor_redo"));
 
-        this.editorToolbarDone = (TextView) this.createToolbarButton(MainR.getMainAppInt("toolbar_done"));
-        this.editorToolbarShare = (ImageView) this.createToolbarButton(MainR.getMainAppInt("toolbar_share"));
-        this.editorToolbarCopy = (ImageView) this.createToolbarButton(MainR.getMainAppInt("toolbar_copy"));
-        this.editorToolbarUndo = (ImageView) this.createToolbarButton(MainR.getMainAppInt("toolbar_undo"));
-        this.editorToolbarRedo = (ImageView) this.createToolbarButton(MainR.getMainAppInt("toolbar_redo"));
-        this.editorToolbarSearch = (ImageView) this.createToolbarButton(MainR.getMainAppInt("toolbar_search"));
+        this.editorToolbarDone = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("toolbar_done"));
+        this.editorToolbarShare = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("toolbar_share"));
+        this.editorToolbarCopy = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("toolbar_copy"));
+        this.editorToolbarPaste = (LinearLayout) this.createToolbarButton(com.document.docease.R.id.toolbar_paste);
+        this.editorToolbarUndo = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("toolbar_undo"));
+        this.editorToolbarRedo = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("toolbar_redo"));
+        this.editorToolbarSearch = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("toolbar_search"));
         this.editorSearchLayout = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("editor_search_layout"));
         this.editorCloseSearch = (ImageView) this.createToolbarButton(MainR.getMainAppInt("editor_toolbar_close"));
 //        this.previewSearch = (LinearLayout) this.createToolbarButton(MainR.getMainAppInt("other_doc_search_tool"));
@@ -1290,6 +1304,9 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             }
         }
         context = this;
+
+        this.menuOptions = (ImageView) this.createToolbarButton(MainR.getMainAppInt("editor_menu_options"));
+
 
         //using viewmodel and live data to observe clicks
         homeViewModel = new ViewModelProvider((ViewModelStoreOwner) activity()).get(HomeViewModel.class);
@@ -1869,21 +1886,21 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     protected void createEditButtons() {
-        this.C = (SOTextView) this.createToolbarButton(id.font_size_text);
-        this.D = (ToolbarButton) this.createToolbarButton(id.fontup_button);
-        this.E = (ToolbarButton) this.createToolbarButton(id.fontdown_button);
-        this.F = (SOTextView) this.createToolbarButton(id.font_name_text);
-        this.G = (ToolbarButton) this.createToolbarButton(id.font_color_button);
-        this.H = (LinearLayout) this.createToolbarButton(id.font_background_button);
+        this.C = (TextView) this.createToolbarButton(id.font_size_text);
+//        this.D = (ToolbarButton) this.createToolbarButton(id.fontup_button);
+//        this.E = (ToolbarButton) this.createToolbarButton(id.fontdown_button);
+//        this.F = (SOTextView) this.createToolbarButton(id.font_name_text);
+//        this.G = (ToolbarButton) this.createToolbarButton(id.font_color_button);
+//        this.H = (LinearLayout) this.createToolbarButton(id.font_background_button);
+//
+//        this.I = (LinearLayout) this.createToolbarButton(id.cut_button);
+//        this.J = (LinearLayout) this.createToolbarButton(id.copy_button);
+//        this.K = (LinearLayout) this.createToolbarButton(id.paste_button);
 
-        this.I = (LinearLayout) this.createToolbarButton(id.cut_button);
-        this.J = (LinearLayout) this.createToolbarButton(id.copy_button);
-        this.K = (LinearLayout) this.createToolbarButton(id.paste_button);
-
-        this.mStyleBoldButton = (ToolbarButton) this.createToolbarButton(id.bold_button);
-        this.mStyleItalicButton = (ToolbarButton) this.createToolbarButton(id.italic_button);
-        this.mStyleUnderlineButton = (ToolbarButton) this.createToolbarButton(id.underline_button);
-        this.mStyleLinethroughButton = (ToolbarButton) this.createToolbarButton(id.striketrough_button);
+//        this.mStyleBoldButton = (ToolbarButton) this.createToolbarButton(id.bold_button);
+//        this.mStyleItalicButton = (ToolbarButton) this.createToolbarButton(id.italic_button);
+//        this.mStyleUnderlineButton = (ToolbarButton) this.createToolbarButton(id.underline_button);
+//        this.mStyleLinethroughButton = (ToolbarButton) this.createToolbarButton(id.striketrough_button);
     }
 
     protected void createEditButtons2() {
@@ -2046,7 +2063,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             if (this.mSession != null) {
                 SODoc var1 = this.mSession.getDoc();
                 boolean var2 = var1.getSelectionIsBold() ^ true;
-                this.mStyleBoldButton.setSelected(var2);
+//                this.mStyleBoldButton.setSelected(var2);
                 var1.setSelectionIsBold(var2);
             }
         } catch (Exception e) {
@@ -2111,7 +2128,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             if (this.mSession != null) {
                 SODoc var1 = this.mSession.getDoc();
                 boolean var2 = var1.getSelectionIsItalic() ^ true;
-                this.mStyleItalicButton.setSelected(var2);
+//                this.mStyleItalicButton.setSelected(var2);
                 var1.setSelectionIsItalic(var2);
             }
         } catch (Exception e) {
@@ -2334,7 +2351,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             if (this.mSession != null) {
                 SODoc var1 = this.mSession.getDoc();
                 boolean var2 = var1.getSelectionIsLinethrough() ^ true;
-                this.mStyleLinethroughButton.setSelected(var2);
+//                this.mStyleLinethroughButton.setSelected(var2);
                 var1.setSelectionIsLinethrough(var2);
             }
         } catch (Exception e) {
@@ -2347,7 +2364,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             if (this.mSession != null) {
                 SODoc var1 = this.mSession.getDoc();
                 boolean var2 = var1.getSelectionIsUnderlined() ^ true;
-                this.mStyleUnderlineButton.setSelected(var2);
+//                this.mStyleUnderlineButton.setSelected(var2);
                 var1.setSelectionIsUnderlined(var2);
             }
         } catch (Exception e) {
@@ -2355,11 +2372,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         }
     }
 
-    public void deleteSelection(){
-        if(this.mSession != null){
+    public void deleteSelection() {
+        if (this.mSession != null) {
             if (this.getDocView() != null) {
                 SOSelectionLimits var1 = this.getDocView().getSelectionLimits();
-                if(var1 != null){
+                if (var1 != null) {
                     this.mSession.getDoc().selectionDelete();
                 }
             }
@@ -2868,12 +2885,78 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         }, var2.getAuthor());
     }
 
+    private void onMenuOptionButton(View view) {
+        if (this.activity() != null && !this.activity().isFinishing()) {
+            View popupView = LayoutInflater.from(this.activity()).inflate(com.document.docease.R.layout.menu_popup_option_items, null, false);
+            menuOptionsPopup = new PopupWindow(popupView, 500, 500, true);
+
+            popupView.findViewById(com.document.docease.R.id.edit_menu).setOnClickListener(view1 -> {
+                onExcelMenuOptions(MenuOptions.EDIT);
+                menuOptionsPopup.dismiss();
+            });
+
+            popupView.findViewById(com.document.docease.R.id.insert_menu).setOnClickListener(view1 -> {
+                onExcelMenuOptions(MenuOptions.INSERT);
+                menuOptionsPopup.dismiss();
+            });
+
+            popupView.findViewById(com.document.docease.R.id.format_menu).setOnClickListener(view1 -> {
+                onExcelMenuOptions(MenuOptions.FORMAT);
+                menuOptionsPopup.dismiss();
+            });
+
+            popupView.findViewById(com.document.docease.R.id.formula_menu).setOnClickListener(view1 -> {
+                onExcelMenuOptions(MenuOptions.FORMULAS);
+                menuOptionsPopup.dismiss();
+            });
+
+            menuOptionsPopup.showAsDropDown(view, 0, -70);
+        }
+
+    }
+
+    private void onExcelMenuOptions(MenuOptions option) {
+        switch (option) {
+            case EDIT:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.GONE);
+                break;
+            case INSERT:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.GONE);
+                break;
+            case FORMAT:
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.GONE);
+                break;
+            case FORMULAS:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.VISIBLE);
+                break;
+        }
+
+    }
+
+
     public void onBackPressed() {
         this.goBack();
     }
 
     public void onClick(View var1) {
         if (var1 != null) {
+
+            if (var1 == this.menuOptions) {
+                onMenuOptionButton(var1);
+            }
+
             if (var1 == this.mSaveAsButton) {
                 this.onSaveAsButton(var1);
             }
@@ -2940,9 +3023,9 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 this.onProtectButton(var1);
             }
 
-            if (var1 == this.D) {
-                this.onFontUpButton(var1);
-            }
+//            if (var1 == this.D) {
+//                this.onFontUpButton(var1);
+//            }
 
             if (var1 == this.editorExpandFontUp) {
                 this.onFontUpButton(var1);
@@ -2952,9 +3035,9 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 this.onFontDownButton(var1);
             }
 
-            if (var1 == this.E) {
-                this.onFontDownButton(var1);
-            }
+//            if (var1 == this.E) {
+//                this.onFontDownButton(var1);
+//            }
             if (var1 == this.editorExpandFontNameTv || var1 == this.editorFontFamily) {
                 this.onTapFontName(var1);
             }
@@ -2963,55 +3046,59 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 this.onTapFontName(var1);
             }
 
-            if (var1 == this.F) {
-                this.onTapFontName(var1);
-            }
+//            if (var1 == this.F) {
+//                this.onTapFontName(var1);
+//            }
 
-            if (var1 == this.G) {
-                this.onFontColorButton(var1);
-            }
+//            if (var1 == this.G) {
+//                this.onFontColorButton(var1);
+//            }
 
-            if (var1 == this.H) {
-                this.onFontBackgroundButton(var1);
-            }
+//            if (var1 == this.H) {
+//                this.onFontBackgroundButton(var1);
+//            }
 
 //            if(var1 == this.editorHighlight){
 //                this.onEditorFontBackgroundButton(var1);
 //
 //            }
 
-            if (var1 == this.I) {
-                this.onCutButton(var1);
-            }
-
-            if (var1 == this.J) {
-                this.onCopyButton(var1);
-            }
+//            if (var1 == this.I) {
+//                this.onCutButton(var1);
+//            }
+//
+//            if (var1 == this.J) {
+//                this.onCopyButton(var1);
+//            }
 
             if (var1 == this.editorToolbarCopy) {
                 this.onCopyButton(var1);
                 Toast.makeText(activity(), "Copied", Toast.LENGTH_SHORT).show();
             }
-
-            if (var1 == this.K) {
+            if (var1 == this.editorToolbarPaste) {
                 this.onPasteButton(var1);
+                Toast.makeText(activity(), "Pasted", Toast.LENGTH_SHORT).show();
             }
 
-            if (var1 == this.mStyleBoldButton) {
-                this.doBold();
-            }
+//            if (var1 == this.K) {
+//                this.onPasteButton(var1);
+//            }
 
-            if (var1 == this.mStyleItalicButton) {
-                this.doItalic();
-            }
-
-            if (var1 == this.mStyleUnderlineButton) {
-                this.doUnderline();
-            }
-
-            if (var1 == this.mStyleLinethroughButton) {
-                this.doStrikethrough();
-            }
+//            if (var1 == this.mStyleBoldButton) {
+//                this.doBold();
+//            }
+//
+//            if (var1 == this.mStyleItalicButton) {
+//                this.doItalic();
+//            }
+//
+//            if (var1 == this.mStyleUnderlineButton) {
+//                this.doUnderline();
+//            }
+//
+//            if (var1 == this.mStyleLinethroughButton) {
+//                this.doStrikethrough();
+//            }
 
             if (var1 == this.mListBulletsButton || var1 == this.editorExpandBulletDots) {
                 this.onListBulletsButton(var1);
@@ -3285,10 +3372,10 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         if (var2 != null) {
             var2.finaliseDataLeakHandlers();
         }
-        if(document != null){
+        if (document != null) {
             try {
                 document.close();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -4518,57 +4605,57 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public void setupTabs() {
-        TabHost tabHost = (TabHost) findViewById(com.document.docease.R.id.tabhost);
-        Bundle bundle = new Bundle();
-        bundle = activity().getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(Constant.PREVIEW)) {
-            tabHost.setVisibility(GONE);
-        }
-
-        this.af = tabHost;
-        tabHost.setup();
-        final TabData[] tabData = getTabData();
-        setupTab(this.af, getContext().getString(com.document.docease.R.string.sodk_editor_tab_hidden), com.document.docease.R.id.hiddenTab, com.document.docease.R.layout.sodk_editor_tab, 0);
-        this.af.getTabWidget().getChildTabViewAt(0).setVisibility(GONE);
-        for (TabData tabData2 : tabData) {
-            setupTab(this.af, tabData2.name, tabData2.contentId, tabData2.layoutId, tabData2.visibility);
-        }
-        setupTab(this.af, getContext().getString(com.document.docease.R.string.sodk_editor_tab_single), com.document.docease.R.id.hiddenTab, com.document.docease.R.layout.sodk_editor_tab_single, 0);
-        final int initialTab = getInitialTab();
-        setTab(tabData[initialTab].name);
-        final ViewTreeObserver viewTreeObserver = getViewTreeObserver();
-        viewTreeObserver.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            public void onGlobalLayout() {
-                viewTreeObserver.removeOnGlobalLayoutListener(this);
-                NUIDocView.this.setTabColors(tabData[initialTab].name);
-            }
-        });
-        setSingleTabTitle(tabData[initialTab].name);
-        int i2 = 0;
-        while (i2 < tabData.length) {
-            i2++;
-            View childAt = this.af.getTabWidget().getChildAt(i2);
-            if (childAt != null) {
-                SOTextView sOTextView = (SOTextView) childAt.findViewById(com.document.docease.R.id.tabText);
-                if (sOTextView != null) {
-                    sOTextView.measure(0, 0);
-                    childAt.getLayoutParams().width = sOTextView.getMeasuredWidth() + childAt.getPaddingLeft() + childAt.getPaddingRight();
-                }
-            }
-        }
-        this.af.setOnTabChangedListener(this);
-        TabWidget tabWidget = this.af.getTabWidget();
-        int tabCount = tabWidget.getTabCount();
-        for (int i3 = 0; i3 < tabCount; i3++) {
-            tabWidget.getChildAt(i3).setOnTouchListener(new OnTouchListener() {
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    if (motionEvent.getAction() == 1) {
-                        NUIDocView.this.h();
-                    }
-                    return false;
-                }
-            });
-        }
+//        TabHost tabHost = (TabHost) findViewById(com.document.docease.R.id.tabhost);
+//        Bundle bundle = new Bundle();
+//        bundle = activity().getIntent().getExtras();
+//        if (bundle != null && bundle.containsKey(Constant.PREVIEW)) {
+//            tabHost.setVisibility(GONE);
+//        }
+//
+//        this.af = tabHost;
+//        tabHost.setup();
+//        final TabData[] tabData = getTabData();
+//        setupTab(this.af, getContext().getString(com.document.docease.R.string.sodk_editor_tab_hidden), com.document.docease.R.id.hiddenTab, com.document.docease.R.layout.sodk_editor_tab, 0);
+//        this.af.getTabWidget().getChildTabViewAt(0).setVisibility(GONE);
+//        for (TabData tabData2 : tabData) {
+//            setupTab(this.af, tabData2.name, tabData2.contentId, tabData2.layoutId, tabData2.visibility);
+//        }
+//        setupTab(this.af, getContext().getString(com.document.docease.R.string.sodk_editor_tab_single), com.document.docease.R.id.hiddenTab, com.document.docease.R.layout.sodk_editor_tab_single, 0);
+//        final int initialTab = getInitialTab();
+//        setTab(tabData[initialTab].name);
+//        final ViewTreeObserver viewTreeObserver = getViewTreeObserver();
+//        viewTreeObserver.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+//            public void onGlobalLayout() {
+//                viewTreeObserver.removeOnGlobalLayoutListener(this);
+//                NUIDocView.this.setTabColors(tabData[initialTab].name);
+//            }
+//        });
+//        setSingleTabTitle(tabData[initialTab].name);
+//        int i2 = 0;
+//        while (i2 < tabData.length) {
+//            i2++;
+//            View childAt = this.af.getTabWidget().getChildAt(i2);
+//            if (childAt != null) {
+//                SOTextView sOTextView = (SOTextView) childAt.findViewById(com.document.docease.R.id.tabText);
+//                if (sOTextView != null) {
+//                    sOTextView.measure(0, 0);
+//                    childAt.getLayoutParams().width = sOTextView.getMeasuredWidth() + childAt.getPaddingLeft() + childAt.getPaddingRight();
+//                }
+//            }
+//        }
+//        this.af.setOnTabChangedListener(this);
+//        TabWidget tabWidget = this.af.getTabWidget();
+//        int tabCount = tabWidget.getTabCount();
+//        for (int i3 = 0; i3 < tabCount; i3++) {
+//            tabWidget.getChildAt(i3).setOnTouchListener(new OnTouchListener() {
+//                public boolean onTouch(View view, MotionEvent motionEvent) {
+//                    if (motionEvent.getAction() == 1) {
+//                        NUIDocView.this.h();
+//                    }
+//                    return false;
+//                }
+//            });
+//        }
     }
 
     protected boolean shouldConfigureSaveAsPDFButton() {
@@ -4764,15 +4851,15 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         }, 200);
     }
 
-    public boolean checkIfClipBoardHasText(){
+    public boolean checkIfClipBoardHasText() {
         try {
-            ClipboardManager clipboard = (ClipboardManager)activity().getSystemService(Context.CLIPBOARD_SERVICE);
-            if(clipboard.hasPrimaryClip() && clipboard.getPrimaryClipDescription().hasMimeType(MIMETYPE_TEXT_PLAIN)){
+            ClipboardManager clipboard = (ClipboardManager) activity().getSystemService(Context.CLIPBOARD_SERVICE);
+            if (clipboard.hasPrimaryClip() && clipboard.getPrimaryClipDescription().hasMimeType(MIMETYPE_TEXT_PLAIN)) {
                 return true;
             } else {
                 return false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -4807,13 +4894,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         this.checkIfPdf();
     }
 
-    private boolean isDeviceLowOnMemory(){
+    private boolean isDeviceLowOnMemory() {
         try {
             ActivityManager activityManager = (ActivityManager) activity().getSystemService(Context.ACTIVITY_SERVICE);
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
-            return  memoryInfo.lowMemory;
-        }catch (Exception e){
+            return memoryInfo.lowMemory;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -4821,29 +4908,29 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
 
     private void checkIfPdf() {
-            try {
-                if (getDocFileExtension() != null) {
-                    if (getDocFileExtension().toLowerCase().contains("pdf")) {
-                        isPdf = true;
-                        FileUtil fileUtil = new FileUtil(activity());
-                        String filePath = fileUtil.getPath(this.mStartUri);
-                        if(isDeviceLowOnMemory()){
-                            return;
-                        }
-                        initSelectionPopup();
-                        if (filePath != null) {
-                            File mFile = new File(filePath);
-                            document = PDDocument.load(mFile, MemoryUsageSetting.setupTempFileOnly());
-                        }
-                    } else{
-                        initSelectionPopup();
+        try {
+            if (getDocFileExtension() != null) {
+                if (getDocFileExtension().toLowerCase().contains("pdf")) {
+                    isPdf = true;
+                    FileUtil fileUtil = new FileUtil(activity());
+                    String filePath = fileUtil.getPath(this.mStartUri);
+                    if (isDeviceLowOnMemory()) {
+                        return;
                     }
-                } else{
+                    initSelectionPopup();
+                    if (filePath != null) {
+                        File mFile = new File(filePath);
+                        document = PDDocument.load(mFile, MemoryUsageSetting.setupTempFileOnly());
+                    }
+                } else {
                     initSelectionPopup();
                 }
-            }catch (Exception e){
-                e.printStackTrace();
+            } else {
+                initSelectionPopup();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -4981,113 +5068,113 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 var3 = false;
             }
 
-            this.mStyleBoldButton.setEnabled(var3);
-            ToolbarButton var7 = this.mStyleBoldButton;
-            boolean var8;
-            if (var3 && var9.getSelectionIsBold()) {
-                var8 = true;
-            } else {
-                var8 = false;
-            }
+//            this.mStyleBoldButton.setEnabled(var3);
+//            ToolbarButton var7 = this.mStyleBoldButton;
+//            boolean var8;
+//            if (var3 && var9.getSelectionIsBold()) {
+//                var8 = true;
+//            } else {
+//                var8 = false;
+//            }
 
-            var7.setSelected(var8);
-            this.mStyleItalicButton.setEnabled(var3);
-            var7 = this.mStyleItalicButton;
-            if (var3 && var9.getSelectionIsItalic()) {
-                var8 = true;
-            } else {
-                var8 = false;
-            }
+//            var7.setSelected(var8);
+//            this.mStyleItalicButton.setEnabled(var3);
+//            var7 = this.mStyleItalicButton;
+//            if (var3 && var9.getSelectionIsItalic()) {
+//                var8 = true;
+//            } else {
+//                var8 = false;
+//            }
 
-            var7.setSelected(var8);
-            this.mStyleUnderlineButton.setEnabled(var3);
-            var7 = this.mStyleUnderlineButton;
-            if (var3 && var9.getSelectionIsUnderlined()) {
-                var8 = true;
-            } else {
-                var8 = false;
-            }
+//            var7.setSelected(var8);
+//            this.mStyleUnderlineButton.setEnabled(var3);
+//            var7 = this.mStyleUnderlineButton;
+//            if (var3 && var9.getSelectionIsUnderlined()) {
+//                var8 = true;
+//            } else {
+//                var8 = false;
+//            }
 
-            var7.setSelected(var8);
-            this.mStyleLinethroughButton.setEnabled(var3);
-            var7 = this.mStyleLinethroughButton;
-            if (var3 && var9.getSelectionIsLinethrough()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var8);
+//            this.mStyleLinethroughButton.setEnabled(var3);
+//            var7 = this.mStyleLinethroughButton;
+//            if (var3 && var9.getSelectionIsLinethrough()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            this.q.setEnabled(var5);
-            var7 = this.q;
-            if (var5 && var9.getSelectionIsAlignLeft()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var3);
+//            this.q.setEnabled(var5);
+//            var7 = this.q;
+//            if (var5 && var9.getSelectionIsAlignLeft()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            this.r.setEnabled(var5);
-            var7 = this.r;
-            if (var5 && var9.getSelectionIsAlignCenter()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var3);
+//            this.r.setEnabled(var5);
+//            var7 = this.r;
+//            if (var5 && var9.getSelectionIsAlignCenter()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            this.s.setEnabled(var5);
-            var7 = this.s;
-            if (var5 && var9.getSelectionIsAlignRight()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var3);
+//            this.s.setEnabled(var5);
+//            var7 = this.s;
+//            if (var5 && var9.getSelectionIsAlignRight()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            this.t.setEnabled(var5);
-            var7 = this.t;
-            if (var5 && var9.getSelectionIsAlignJustify()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var3);
+//            this.t.setEnabled(var5);
+//            var7 = this.t;
+//            if (var5 && var9.getSelectionIsAlignJustify()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            this.mListBulletsButton.setEnabled(var5);
-            var7 = this.mListBulletsButton;
-            if (var5 && var9.getSelectionListStyleIsDisc()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var3);
+//            this.mListBulletsButton.setEnabled(var5);
+//            var7 = this.mListBulletsButton;
+//            if (var5 && var9.getSelectionListStyleIsDisc()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            this.mListNumbersButton.setEnabled(var5);
-            var7 = this.mListNumbersButton;
-            if (var5 && var9.getSelectionListStyleIsDecimal()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
+//            var7.setSelected(var3);
+//            this.mListNumbersButton.setEnabled(var5);
+//            var7 = this.mListNumbersButton;
+//            if (var5 && var9.getSelectionListStyleIsDecimal()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
 
-            var7.setSelected(var3);
-            ToolbarButton var10 = this.mIncreaseIndentButton;
-            if (var5 && this.o()) {
-                var3 = true;
-            } else {
-                var3 = false;
-            }
-
-            var10.setEnabled(var3);
-            var10 = this.mDecreaseIndentButton;
-            if (var5 && this.p()) {
-                var5 = var2;
-            } else {
-                var5 = false;
-            }
-
-            var10.setEnabled(var5);
+//            var7.setSelected(var3);
+//            ToolbarButton var10 = this.mIncreaseIndentButton;
+//            if (var5 && this.o()) {
+//                var3 = true;
+//            } else {
+//                var3 = false;
+//            }
+//
+//            var10.setEnabled(var3);
+//            var10 = this.mDecreaseIndentButton;
+//            if (var5 && this.p()) {
+//                var5 = var2;
+//            } else {
+//                var5 = false;
+//            }
+//
+//            var10.setEnabled(var5);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -5213,68 +5300,68 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                     var3 = false;
                 }
 
-                this.F.setEnabled(var3);
+//                this.F.setEnabled(var3);
                 this.C.setEnabled(var3);
                 long var7 = Math.round(this.mSession.getDoc().getSelectionFontSize());
-                SOTextView var9 = this.C;
+                TextView var9 = this.C;
                 String var11;
                 if (var7 > 0L) {
                     var11 = String.format("%d", (int) var7);
                 } else {
                     var11 = "12";
                 }
-                this.editorExpandFontTv.setText(var11);
+//                this.editorExpandFontTv.setText(var11);
                 var9.setText(var11);
-                ToolbarButton var12;
-                if (var3) {
-                    var12 = this.D;
-                    boolean var10;
-                    if (var7 < 72L) {
-                        var10 = true;
-                    } else {
-                        var10 = false;
-                    }
-
-                    var12.setEnabled(var10);
-                    var12 = this.E;
-                    if (var7 > 6L) {
-                        var10 = true;
-                    } else {
-                        var10 = false;
-                    }
-
-                    var12.setEnabled(var10);
-                } else {
-                    this.D.setEnabled(false);
-                    this.E.setEnabled(false);
-                }
+//                ToolbarButton var12;
+//                if (var3) {
+//                    var12 = this.D;
+//                    boolean var10;
+//                    if (var7 < 72L) {
+//                        var10 = true;
+//                    } else {
+//                        var10 = false;
+//                    }
+//
+//                    var12.setEnabled(var10);
+//                    var12 = this.E;
+//                    if (var7 > 6L) {
+//                        var10 = true;
+//                    } else {
+//                        var10 = false;
+//                    }
+//
+//                    var12.setEnabled(var10);
+//                } else {
+//                    this.D.setEnabled(false);
+//                    this.E.setEnabled(false);
+//                }
 
                 var11 = Utilities.getSelectionFontName(this.mSession.getDoc());
-                this.F.setText(var11);
-                this.editorExpandFontNameTv.setText(var11);
-                this.G.setEnabled(var3);
-                this.H.setEnabled(var3);
+//                this.F.setText(var11);
+//                this.editorExpandFontNameTv.setText(var11);
+//                this.G.setEnabled(var3);
+//                this.H.setEnabled(var3);
                 if (var4 && this.mSession.getDoc().getSelectionCanBeDeleted()) {
                     var3 = true;
                 } else {
                     var3 = false;
                 }
 
-                this.I.setEnabled(var3);
+//                this.I.setEnabled(var3);
                 if (var4 && this.mSession.getDoc().getSelectionCanBeCopied()) {
                     var3 = true;
                 } else {
                     var3 = false;
                 }
 
-                this.J.setEnabled(var3);
+//                this.J.setEnabled(var3);
                 if (!var6 && (var5 || var4) && this.mSession.getDoc().J()) {
                     var3 = var2;
                 } else {
                     var3 = false;
                 }
 
-                this.K.setEnabled(var3);
+//                this.K.setEnabled(var3);
                 this.updateInsertUIAppearance();
             }
         } catch (Exception e) {

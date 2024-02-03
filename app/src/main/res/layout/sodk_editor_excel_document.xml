@@ -11,9 +11,7 @@
         android:layout_above="@+id/ln_banner"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/editor_header_layout"
-            android:visibility="gone" />
+        <include layout="@layout/editor_header_layout" />
 
         <LinearLayout
             android:id="@+id/editor_search_layout"
@@ -47,6 +45,7 @@
 
         <TabHost
             android:id="@id/tabhost"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.0">
@@ -144,64 +143,64 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <LinearLayout
-                        android:id="@id/hiddenTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" />
+<!--                    <LinearLayout-->
+<!--                        android:id="@id/hiddenTab"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical" />-->
 
-                    <LinearLayout
-                        android:id="@id/fileTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:background="@color/sodk_editor_toolbar"
-                        android:orientation="vertical"
-                        android:visibility="gone">
+<!--                    <LinearLayout-->
+<!--                        android:id="@id/fileTab"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:background="@color/sodk_editor_toolbar"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:visibility="gone">-->
 
-                        <include layout="@layout/sodk_editor_file_toolbar" />
-                    </LinearLayout>
+<!--                        <include layout="@layout/sodk_editor_file_toolbar" />-->
+<!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:id="@id/editTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/bg_color_main"
-                        android:padding="@dimen/_8sdp"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@id/editTab"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@color/bg_color_main"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="@dimen/_8sdp">-->
 
-                        <include layout="@layout/sodk_editor_excel_edit_toolbar" />
-                    </LinearLayout>
+<!--                        <include layout="@layout/sodk_editor_excel_edit_toolbar" />-->
+<!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:id="@id/insertTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/sodk_editor_toolbar"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@id/insertTab"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@color/sodk_editor_toolbar"-->
+<!--                        android:orientation="vertical">-->
 
-                        <include layout="@layout/sodk_editor_excel_insert_toolbar" />
-                    </LinearLayout>
+<!--                        <include layout="@layout/sodk_editor_excel_insert_toolbar" />-->
+<!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:id="@id/formatTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/sodk_editor_toolbar"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@id/formatTab"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@color/sodk_editor_toolbar"-->
+<!--                        android:orientation="vertical">-->
 
-                        <include layout="@layout/sodk_editor_format_toolbar" />
-                    </LinearLayout>
+<!--                        <include layout="@layout/sodk_editor_format_toolbar" />-->
+<!--                    </LinearLayout>-->
 
-                    <LinearLayout
-                        android:id="@id/formulasTab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/sodk_editor_toolbar"
-                        android:orientation="vertical">
+<!--                    <LinearLayout-->
+<!--                        android:id="@id/formulasTab"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@color/sodk_editor_toolbar"-->
+<!--                        android:orientation="vertical">-->
 
-                        <include layout="@layout/sodk_editor_formulas_toolbar" />
-                    </LinearLayout>
+<!--                        <include layout="@layout/sodk_editor_formulas_toolbar" />-->
+<!--                    </LinearLayout>-->
 
                     <LinearLayout
                         android:id="@id/searchTab"
@@ -272,7 +271,8 @@
                             android:id="@id/hruler_spacer"
                             android:layout_width="5dp"
                             android:layout_height="match_parent"
-                            android:background="@color/colorGray_BEC7D8" />
+                            android:background="@color/colorGray_BEC7D8"
+                            android:orientation="horizontal" />
 
                         <com.artifex.sonui.editor.HorizontalRuler
                             android:id="@id/horizontal_ruler"
@@ -337,7 +337,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/editor_tools_layout" />
+            <include layout="@layout/layout_editing_tools" />
         </LinearLayout>
     </LinearLayout>
 

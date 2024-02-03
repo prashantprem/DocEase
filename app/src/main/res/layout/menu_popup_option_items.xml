@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@drawable/round_rect_rating"
+    android:backgroundTint="@color/greyDayNight"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/edit_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="@string/edit"
+            android:textSize="12sp"
+            android:textAllCaps="true"
+            android:textColor="@color/text_color" />
+
+        <ImageView
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_main_arrow_down" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8C2FC582" />
+
+    <RelativeLayout
+        android:id="@+id/insert_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="@string/sodk_editor_tab_insert"
+            android:textSize="12sp"
+            android:textColor="@color/text_color" />
+
+        <ImageView
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_main_arrow_down" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8C2FC582" />
+
+
+    <RelativeLayout
+        android:id="@+id/format_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:text="@string/sodk_editor_tab_format"
+            android:textSize="12sp"
+            android:textColor="@color/text_color" />
+
+        <ImageView
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_main_arrow_down" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8C2FC582" />
+
+
+    <RelativeLayout
+        android:id="@+id/formula_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="@string/sodk_editor_tab_formulas"
+            android:textColor="@color/text_color"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_main_arrow_down" />
+
+    </RelativeLayout>
+</LinearLayout>

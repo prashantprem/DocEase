@@ -1,250 +1,257 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?><!--<merge xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite">
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@id/formulas_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/bg_color_main"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@id/formulas_toolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
+            android:id="@id/formula_sum"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@id/formula_sum"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_sum" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_autosum" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_sum_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_datetime"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_date_time" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_datetime_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_engineering"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_engineering" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_engineering_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_financial"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_financial" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_financial_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_information"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_information" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_information_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_logical"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_logical" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_logical_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_lookup"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_lookup" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_lookup_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_maths"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_maths" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_maths_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_statistical"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_statistical" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_statistical_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/formula_text"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/sodk_editor_icon_formula_text" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/sodk_editor_text_upper"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text"
-                    android:textSize="10sp" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_sum_upper"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
         </LinearLayout>
-    </HorizontalScrollView>
-</merge>
+
+        <LinearLayout
+            android:id="@id/formula_datetime"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_date_time" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_datetime_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_engineering"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_engineering" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_engineering_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_financial"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_finance" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_financial_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_information"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_information" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_information_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_logical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_logical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_logical_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_lookup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_lookup" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_lookup_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_maths"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_maths" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_maths_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_statistical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_stats" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_statistical_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/formula_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_main_text_excel" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_text_upper"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</HorizontalScrollView><!--</merge>-->

@@ -61,15 +61,15 @@
                     android:background="?attr/selectableItemBackground"
                     android:drawableTop="@drawable/sodk_editor_icon_font_down" />
 
-                <com.artifex.sonui.editor.SOTextView
-                    android:id="@id/font_size_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="30dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textAppearance="?android:textAppearanceLarge"
-                    android:textColor="@drawable/sodk_editor_font_ui_text" />
+<!--                <com.artifex.sonui.editor.SOTextView-->
+<!--                    android:id="@id/font_size_text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:minWidth="30dp"-->
+<!--                    android:paddingLeft="5dp"-->
+<!--                    android:paddingRight="5dp"-->
+<!--                    android:textAppearance="?android:textAppearanceLarge"-->
+<!--                    android:textColor="@drawable/sodk_editor_font_ui_text" />-->
 
                 <com.artifex.sonui.editor.ToolbarButton
                     android:id="@id/fontup_button"

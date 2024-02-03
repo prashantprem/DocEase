@@ -43,7 +43,7 @@ class ViewEditorActivity : AppNUIActivity() {
     private var editorExpandAlignLeft: AppCompatImageView? = null
     private var editorExpandAlignCenter: AppCompatImageView? = null
     private var editorExpandAlignJustify: AppCompatImageView? = null
-    private var toolbarCancel: AppCompatImageView? = null
+    private var toolbarCancel: LinearLayout? = null
     private var editorFontFamily: LinearLayout? = null
     private var popupWindow: ListPopupWindow? = null
     private val homeViewModel by viewModels<HomeViewModel>()
@@ -78,21 +78,21 @@ class ViewEditorActivity : AppNUIActivity() {
 
     private fun initView() {
         editorStyle = findViewById(R.id.imv_activity_editor_style)
-        editorHistory = findViewById(R.id.imv_activity_editor_history)
+//        editorHistory = findViewById(R.id.imv_activity_editor_history)
         editorFontFamily = findViewById(R.id.imv_activity_editor_font_family)
         editorAlign = findViewById(R.id.imv_activity_editor_align)
         editorInsertImage = findViewById(R.id.imv_activity_editor_insert_image)
         editorHighlight = findViewById(R.id.imv_activity_editor_highlight)
         editorFontColor = findViewById(R.id.imv_activity_editor_fonts)
         editorExpand = findViewById(R.id.imv_activity_editor_expand)
-        editorExpandOptions = findViewById(R.id.editor_expand_options)
+//        editorExpandOptions = findViewById(R.id.editor_expand_options)
         editorExpandHighlight = findViewById(R.id.editor_expand_highlight)
         editorExpandFont = findViewById(R.id.editor_expand_font_color)
         editorExpandAlignRight = findViewById(R.id.editor_expand_align_right)
         editorExpandAlignCenter = findViewById(R.id.editor_expand_align_center)
         editorExpandAlignLeft = findViewById(R.id.editor_expand_align_left)
         editorExpandAlignJustify = findViewById(R.id.editor_expand_align_justify)
-        imvActivityEditorBookmark = findViewById(R.id.imv_activity_editor_bookmark)
+//        imvActivityEditorBookmark = findViewById(R.id.imv_activity_editor_bookmark)
         toolbarCancel = findViewById(R.id.toolbar_cancel)
         imvBack = findViewById(R.id.imv_back)
         moreToolsOther = findViewById(R.id.imv_tools_fragments)

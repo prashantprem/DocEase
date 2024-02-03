@@ -67,15 +67,15 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/imv_activity_editor_share"
-                android:padding="1dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_search_black" />
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:id="@+id/toolbar_search"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_toStartOf="@+id/imv_activity_editor_share"-->
+<!--                android:padding="1dp"-->
+<!--                android:visibility="gone"-->
+<!--                app:srcCompat="@drawable/ic_search_black" />-->
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imv_activity_preview_save"
@@ -90,13 +90,13 @@
 
             <ImageView
                 android:id="@+id/imv_activity_editor_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_toStartOf="@+id/imv_menu_option"
-                android:src="@drawable/ic_share_preview"
+                android:src="@drawable/ic_main_share"
                 android:visibility="visible"
                 app:tint="@color/text_color" />
 

@@ -81,7 +81,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:layout_toStartOf="@+id/imv_activity_editor_bookmark"
                 android:layout_toEndOf="@+id/back_button"
                 android:ellipsize="end"
                 android:lines="1"
@@ -127,15 +126,15 @@
                  android:layout_marginEnd="6dp"
                 app:tint="@color/material_blue_grey_900" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/toolbar_paste"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/toolbar_search"
-                android:padding="4dp"
-                app:srcCompat="@drawable/ic_new_paste"
-                android:layout_marginEnd="6dp" />
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:id="@+id/toolbar_paste"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_toStartOf="@+id/toolbar_search"-->
+<!--                android:padding="4dp"-->
+<!--                app:srcCompat="@drawable/ic_new_paste"-->
+<!--                android:layout_marginEnd="6dp" />-->
 
 
 
@@ -680,14 +679,14 @@
                 </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
-        <LinearLayout
-            android:id="@+id/editor_expand_options"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="vertical">
-            <include layout="@layout/layout_editor_expand"/>
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:id="@+id/editor_expand_options"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            android:orientation="vertical">-->
+<!--            <include layout="@layout/layout_editor_expand"/>-->
+<!--        </LinearLayout>-->
     </LinearLayout>
 
     <LinearLayout

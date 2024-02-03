@@ -497,7 +497,7 @@ Please use Office on a desktop computer to convert the file to the newer format.
     <string name="sodk_editor_copyright">Copyright © 2000-2019 Artifex Software Inc. All rights reserved.</string>
     <string name="sodk_editor_create_new">Create New</string>
     <string name="sodk_editor_cut_upper">CUT</string>
-    <string name="sodk_editor_datetime_upper">DATE/TIME</string>
+    <string name="sodk_editor_datetime_upper">Date/Time</string>
     <string name="sodk_editor_default_name_document">Document</string>
     <string name="sodk_editor_default_name_presentation">Presentation</string>
     <string name="sodk_editor_default_name_spreadsheet">Spreadsheet</string>
@@ -522,7 +522,7 @@ COMMENT"</string>
     <string name="sodk_editor_draw_upper">DRAW</string>
     <string name="sodk_editor_edit_font">Edit Font</string>
     <string name="sodk_editor_edit_function">Edit Function</string>
-    <string name="sodk_editor_engineering_upper">ENGINEERING</string>
+    <string name="sodk_editor_engineering_upper">Engineering</string>
     <string name="sodk_editor_enter_a_new_name">Enter a new name for \"%s\":</string>
     <string name="sodk_editor_error">Error</string>
     <string name="sodk_editor_error_copying_from_remote">Error copying from remote.</string>
@@ -536,7 +536,7 @@ COMMENT"</string>
     <string name="sodk_editor_file_already_exists2">\"%s\" already exists.</string>
     <string name="sodk_editor_file_name">File Name</string>
     <string name="sodk_editor_file_size">File Size</string>
-    <string name="sodk_editor_financial_upper">FINANCIAL</string>
+    <string name="sodk_editor_financial_upper">Financial</string>
     <string name="sodk_editor_find">Find...</string>
     <string name="sodk_editor_first_page_upper">FIRST PAGE</string>
     <string name="sodk_editor_format_category_accounting">Accounting</string>
@@ -555,7 +555,7 @@ to leave fullscreen mode."</string>
     <string name="sodk_editor_highlight_upper">Highlight</string>
     <string name="sodk_editor_image_upper">IMAGE</string>
     <string name="sodk_editor_ime_action_label_done">Done</string>
-    <string name="sodk_editor_information_upper">INFORMATION</string>
+    <string name="sodk_editor_information_upper">Information</string>
     <string name="sodk_editor_insert_image_gone_body">"The selected image can't be inserted. It may have been deleted or moved."</string>
     <string name="sodk_editor_insert_image_gone_title">Unable to insert image</string>
     <string name="sodk_editor_inserted_paragraph">Inserted paragraph</string>
@@ -570,9 +570,9 @@ to leave fullscreen mode."</string>
     <string name="sodk_editor_like_to_retain">Would you like to update the author name, or retain the current one?</string>
     <string name="sodk_editor_loading_please_wait">Loading, please wait.</string>
     <string name="sodk_editor_log_out">Log out</string>
-    <string name="sodk_editor_logical_upper">LOGICAL</string>
-    <string name="sodk_editor_lookup_upper">LOOKUP</string>
-    <string name="sodk_editor_maths_upper">MATHS</string>
+    <string name="sodk_editor_logical_upper">Logical</string>
+    <string name="sodk_editor_lookup_upper">Lookup</string>
+    <string name="sodk_editor_maths_upper">Maths</string>
     <string name="sodk_editor_menu">Menu</string>
     <string name="sodk_editor_merge_cells_upper">MERGE CELLS</string>
     <string name="sodk_editor_more">More</string>
@@ -674,11 +674,11 @@ AND LINE"</string>
 CHANGES"</string>
     <string name="sodk_editor_smartoffice">Office Editor</string>
     <string name="sodk_editor_sort_menu">Sort menu</string>
-    <string name="sodk_editor_statistical_upper">STATISTICAL</string>
+    <string name="sodk_editor_statistical_upper">Statistical</string>
     <string name="sodk_editor_stop">Stop</string>
     <string name="sodk_editor_storage">Storage</string>
     <string name="sodk_editor_str_continue">Continue</string>
-    <string name="sodk_editor_sum_upper">SUM</string>
+    <string name="sodk_editor_sum_upper">Sum</string>
     <string name="sodk_editor_support">Support</string>
     <string name="sodk_editor_tab_annotate">ANNOTATE</string>
     <string name="sodk_editor_tab_edit">EDIT</string>
@@ -694,7 +694,7 @@ CHANGES"</string>
     <string name="sodk_editor_tab_single">SINGLE</string>
     <string name="sodk_editor_tab_slides">SLIDES</string>
     <string name="sodk_editor_templates">Templates</string>
-    <string name="sodk_editor_text_upper">TEXT</string>
+    <string name="sodk_editor_text_upper">Text</string>
     <string name="sodk_editor_thousand_separator">Thousand separator</string>
     <string name="sodk_editor_title">Title</string>
     <string name="sodk_editor_toggle_upper">TOGGLE</string>

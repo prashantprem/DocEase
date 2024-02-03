@@ -69,16 +69,16 @@
                 android:padding="8dp"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_editor_arrow_up"/>
-            <TextView
-                android:id="@+id/editor_expand_font_tv"
-                android:text="9"
-                android:gravity="center"
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:fontFamily="@font/nunito"
-                android:textSize="15sp"
-                android:textColor="@color/font_color_grey"
-                android:layout_height="wrap_content"/>
+<!--            <TextView-->
+<!--                android:id="@+id/editor_expand_font_tv"-->
+<!--                android:text="9"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="0.3"-->
+<!--                android:fontFamily="@font/nunito"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textColor="@color/font_color_grey"-->
+<!--                android:layout_height="wrap_content"/>-->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/editor_expand_font_down"
                 android:layout_width="0dp"
