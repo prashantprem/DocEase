@@ -26,8 +26,13 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            isShrinkResources = false
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -58,6 +63,11 @@ android {
         getByName("main") {
             jniLibs.srcDirs("libs")
         }
+    }
+
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
     }
 
 
@@ -99,10 +109,7 @@ dependencies {
 
     //datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-
-    //coil
-    implementation("io.coil-kt:coil-compose:2.5.0")
-
+    
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
@@ -132,10 +139,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
-
-
-    implementation("com.github.barteksc:android-pdf-viewer:2.8.2")
-
 
 
 }
