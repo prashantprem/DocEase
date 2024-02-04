@@ -29,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/DocEase.Splash.Theme"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.module.main.MainActivity"
             android:exported="true"
@@ -40,9 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.document.docease.ui.module.editors.ViewEditorActivity"
+            android:name=".ui.module.editors.ViewEditorActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
@@ -54,7 +54,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.document.docease.ui.module.preview.PreviewActivity"
+            android:name=".ui.module.preview.PreviewActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/style_main"
@@ -114,7 +114,6 @@
                 <data android:mimeType="text/conf" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.artifex.sonui.ChoosePathActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
@@ -122,7 +121,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/style_main"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name="com.artifex.sonui.editor.SlideShowActivity"
             android:theme="@style/style_main_2" />
@@ -139,7 +137,6 @@
                 android:name="android.supportv1.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
         <provider
             android:name=".utils.GenericFileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -153,7 +150,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
-
     </application>
 
 </manifest>

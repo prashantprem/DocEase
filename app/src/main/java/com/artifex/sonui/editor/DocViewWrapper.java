@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import com.artifex.solib.SOSelectionLimits;
 
-public class DocViewWrapper extends DocView{
+public class DocViewWrapper extends DocView {
 
     float posX = 0;
     float posY = 0;
@@ -27,7 +27,7 @@ public class DocViewWrapper extends DocView{
 
     public void onSelectionChanged() {
         super.onSelectionChanged();
-        NUIDocView.currentNUIDocView().handleSelectionPopup(posX,posY);
+        NUIDocView.currentNUIDocView().handleSelectionPopup(posX, posY);
     }
 
     @Override
@@ -46,20 +46,9 @@ public class DocViewWrapper extends DocView{
                     var4.onDoubleTap(var3.x, var3.y);
                     this.focusInputView();
                     this.resetInputView();
-                    //logic to show paste popup on long press
-                    try {
-                        SOSelectionLimits limits = NUIDocView.currentNUIDocView().getDocView().getSelectionLimits();
-                        float threshold = limits.getBox().right - limits.getBox().left;
-                        if(threshold <= 5F && NUIDocView.currentNUIDocView().getDoc().clipboardHasData()){
-                            NUIDocView.currentNUIDocView().showPastePopUp(var1,var2);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
                 }
-
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -77,4 +77,29 @@
 
     </LinearLayout>
 
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/edit_tools_ppt"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone">-->
+<!--        <include layout="@layout/editor_tools_layout" />-->
+<!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/insert_tools_ppt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <include layout="@layout/sodk_editor_powerpoint_insert_toolbar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/format_tools_ppt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <include layout="@layout/sodk_editor_powerpoint_format_toolbar" />
+    </LinearLayout>
+
 </LinearLayout>

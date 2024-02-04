@@ -60,7 +60,7 @@ class PreviewActivity
         super.onCreate(bundle)
         fileUtil = FileUtil(this)
         viewMore = findViewById(R.id.imv_activity_editor_more)
-        imvEditorSave = findViewById(R.id.imv_activity_preview_save)
+//        imvEditorSave = findViewById(R.id.imv_activity_preview_save)
         shareToAny = findViewById(R.id.imv_activity_preview_share)
         imvEditorShare = findViewById(R.id.imv_activity_editor_share)
         shareToWhatsapp = findViewById(R.id.imv_activity_preview_whatsapp)

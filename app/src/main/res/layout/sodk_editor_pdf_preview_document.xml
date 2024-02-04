@@ -16,121 +16,7 @@
         android:layout_above="@+id/ln_banner"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/bg_color_main"
-            android:padding="5dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imv_back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:background="@color/sodk_editor_transparent"
-                android:contentDescription="@string/todo"
-                android:padding="7dp"
-                android:tint="@color/text_color"
-                app:srcCompat="@drawable/ic_back_button_preview" />
-
-            <ImageButton
-                android:id="@+id/back_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/imv_back"
-                android:adjustViewBounds="true"
-                android:background="@color/sodk_editor_transparent"
-                android:contentDescription="@string/todo"
-                android:scaleType="fitCenter"
-                android:src="@drawable/sodk_editor_icon_back"
-                android:textColor="@color/black_light"
-                android:visibility="gone" />
-
-            <com.artifex.sonui.editor.SOTextView
-                android:id="@+id/footer_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
-                android:layout_toStartOf="@+id/toolbar_search"
-                android:layout_toEndOf="@+id/back_button"
-                android:ellipsize="end"
-                android:fontFamily="@font/nunito"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="@string/create_document"
-                android:textAllCaps="false"
-                android:textColor="@color/text_color"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-<!--            <androidx.appcompat.widget.AppCompatImageView-->
-<!--                android:id="@+id/toolbar_search"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:layout_toStartOf="@+id/imv_activity_editor_share"-->
-<!--                android:padding="1dp"-->
-<!--                android:visibility="gone"-->
-<!--                app:srcCompat="@drawable/ic_search_black" />-->
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imv_activity_preview_save"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toStartOf="@+id/imv_activity_editor_share"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_viewmore_save" />
-
-            <ImageView
-                android:id="@+id/imv_activity_editor_share"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toStartOf="@+id/imv_menu_option"
-                android:src="@drawable/ic_main_share"
-                android:visibility="visible"
-                app:tint="@color/text_color" />
-
-            <ImageView
-                android:id="@+id/imv_menu_option"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_menu_reading_file"
-                app:tint="@color/text_color" />
-
-            <!--            <ImageView-->
-            <!--                android:id="@+id/imv_activity_editor_bookmark"-->
-            <!--                android:layout_width="20dp"-->
-            <!--                android:layout_height="20dp"-->
-            <!--                android:layout_centerVertical="true"-->
-            <!--                android:layout_marginEnd="5dp"-->
-            <!--                android:layout_toStartOf="@+id/imv_activity_editor__ads"-->
-            <!--                android:contentDescription="@string/todo"-->
-            <!--                android:padding="1dp"-->
-            <!--                android:src="@drawable/ic_favourite_unfilled"-->
-            <!--                android:visibility="gone" />-->
-
-            <!--            <com.airbnb.lottie.LottieAnimationView-->
-            <!--                android:id="@+id/imv_activity_editor__ads"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="0dp"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_centerVertical="true"-->
-            <!--                android:contentDescription="@string/todo"-->
-            <!--                android:padding="2dp" />-->
-        </RelativeLayout>
+        <include layout="@layout/layout_preview_header" />
 
         <LinearLayout
             android:id="@id/footer"
@@ -213,53 +99,6 @@
                         android:paddingLeft="3dp"
                         android:paddingRight="3dp"
                         android:textSize="0.0sp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@id/undo_button"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="5dp"
-                        app:srcCompat="@drawable/sodk_editor_icon_undo" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@id/redo_button"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="5dp"
-                        app:srcCompat="@drawable/sodk_editor_icon_redo" />
-
-                    <Button
-                        android:id="@id/search_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/sodk_editor_search_button"
-                        android:drawableTop="@drawable/sodk_editor_icon_find"
-                        android:minWidth="0.0dip"
-                        android:minHeight="0.0dip"
-                        android:paddingStart="7dp"
-                        android:paddingEnd="10dp"
-                        android:textSize="0.0sp" />
-
-                    <View
-                        android:layout_width="0.0dip"
-                        android:layout_height="0.0dip"
-                        android:layout_weight="1.0" />
-
-                    <Button
-                        android:id="@id/fullscreen_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/sodk_editor_search_button"
-                        android:drawableTop="@drawable/sodk_editor_icon_fullscreen"
-                        android:minWidth="0.0dip"
-                        android:minHeight="0.0dip"
-                        android:paddingStart="7dp"
-                        android:paddingEnd="10dp"
-                        android:textSize="0.0sp" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -271,22 +110,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:id="@id/hiddenTab"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" />
+                        <!--                        <LinearLayout-->
+                        <!--                            android:id="@id/hiddenTab"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:orientation="vertical" />-->
 
-                        <LinearLayout
-                            android:id="@id/fileTab"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="3dp"
-                            android:background="@color/colorWhite_ffffff"
-                            android:orientation="vertical">
+                        <!--                        <LinearLayout-->
+                        <!--                            android:id="@id/fileTab"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginBottom="3dp"-->
+                        <!--                            android:background="@color/colorWhite_ffffff"-->
+                        <!--                            android:orientation="vertical">-->
 
-                            <include layout="@layout/sodk_editor_file_toolbar" />
-                        </LinearLayout>
+                        <!--                            <include layout="@layout/sodk_editor_file_toolbar" />-->
+                        <!--                        </LinearLayout>-->
 
                         <LinearLayout
                             android:id="@id/annotateTab"
@@ -298,36 +137,36 @@
                             <include layout="@layout/sodk_editor_annotate_toolbar" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@id/redactTab"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/sodk_editor_toolbar"
-                            android:orientation="vertical">
+<!--                        <LinearLayout-->
+<!--                            android:id="@id/redactTab"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@color/sodk_editor_toolbar"-->
+<!--                            android:orientation="vertical">-->
 
-                            <include layout="@layout/sodk_editor_redact_toolbar" />
-                        </LinearLayout>
+<!--                            <include layout="@layout/sodk_editor_redact_toolbar" />-->
+<!--                        </LinearLayout>-->
 
-                        <LinearLayout
-                            android:id="@id/pagesTab"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/sodk_editor_toolbar"
-                            android:orientation="vertical">
+<!--                        <LinearLayout-->
+<!--                            android:id="@id/pagesTab"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@color/sodk_editor_toolbar"-->
+<!--                            android:orientation="vertical">-->
 
-                            <include layout="@layout/sodk_editor_pdf_pages_toolbar" />
-                        </LinearLayout>
+<!--                            <include layout="@layout/sodk_editor_pdf_pages_toolbar" />-->
+<!--                        </LinearLayout>-->
 
-                        <LinearLayout
-                            android:id="@id/searchTab"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/sodk_editor_toolbar"
-                            android:orientation="vertical"
-                            android:visibility="gone">
+                        <!--                        <LinearLayout-->
+                        <!--                            android:id="@id/searchTab"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:background="@color/sodk_editor_toolbar"-->
+                        <!--                            android:orientation="vertical"-->
+                        <!--                            android:visibility="gone">-->
 
-                            <include layout="@layout/sodk_editor_search_toolbar" />
-                        </LinearLayout>
+                        <!--                            <include layout="@layout/sodk_editor_search_toolbar" />-->
+                        <!--                        </LinearLayout>-->
                     </FrameLayout>
                 </RelativeLayout>
             </LinearLayout>
@@ -493,104 +332,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/imv_activity_editor_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="4dp"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:id="@+id/imv_activity_preview_whatsapp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_whatsapp_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="Whatsapp"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/imv_activity_preview_share"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_share_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="Share"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/imv_activity_preview_print"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_print_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="Print"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/imv_activity_editor_more"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_more_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="More"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

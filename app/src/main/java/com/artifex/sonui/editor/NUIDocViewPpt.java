@@ -33,11 +33,11 @@ public class NUIDocViewPpt extends NUIDocView {
     private LinearLayout l;
     private TabData[] m = null;
     private boolean n = false;
-    private LinearLayout editorExpandBullets;
+//    private LinearLayout editorExpandBullets;
 
-    private AppCompatImageView mToolbarPaste;
-    private LinearLayout mSlideShowContainer;
-    private AppCompatImageView ctaSlideShow;
+    private LinearLayout mToolbarPaste;
+//    private LinearLayout mSlideShowContainer;
+//    private AppCompatImageView ctaSlideShow;
 
 
     public NUIDocViewPpt(Context var1) {
@@ -60,25 +60,25 @@ public class NUIDocViewPpt extends NUIDocView {
 
     protected void afterFirstLayoutComplete() {
         super.afterFirstLayoutComplete();
-        this.c = (ToolbarButton)this.createToolbarButton(id.shape_color);
-        this.d = (ToolbarButton)this.createToolbarButton(id.line_color);
-        this.e = (ToolbarButton)this.createToolbarButton(id.line_width);
-        this.f = (ToolbarButton)this.createToolbarButton(id.line_type);
-        this.g = (ToolbarButton)this.createToolbarButton(id.arrange_back);
-        this.h = (ToolbarButton)this.createToolbarButton(id.arrange_backwards);
-        this.i = (ToolbarButton)this.createToolbarButton(id.arrange_forward);
-        this.j = (ToolbarButton)this.createToolbarButton(id.arrange_front);
-        this.k = (LinearLayout)this.createToolbarButton(id.insert_shape_button);
-        this.l = (LinearLayout)this.createToolbarButton(id.slideshow_button);
-        this.editorExpandBullets = (LinearLayout) this.findViewById(MainR.getMainAppInt("editor_expand_bullets"));
-        this.editorExpandBullets.setVisibility(GONE);
-        this.mToolbarPaste =  this.findViewById(com.document.docease.R.id.toolbar_paste);
-        this.mSlideShowContainer = this.findViewById(com.document.docease.R.id.editor_expand_slide_show);
-        this.mSlideShowContainer.setVisibility(View.VISIBLE);
-        this.ctaSlideShow = this.findViewById(com.document.docease.R.id.editor_expand_slide_show_image);
-        this.ctaSlideShow.setOnClickListener(v -> {
-            onClickSlideshow(this.ctaSlideShow);
-        });
+        this.c = (ToolbarButton) this.createToolbarButton(id.shape_color);
+        this.d = (ToolbarButton) this.createToolbarButton(id.line_color);
+        this.e = (ToolbarButton) this.createToolbarButton(id.line_width);
+        this.f = (ToolbarButton) this.createToolbarButton(id.line_type);
+        this.g = (ToolbarButton) this.createToolbarButton(id.arrange_back);
+        this.h = (ToolbarButton) this.createToolbarButton(id.arrange_backwards);
+        this.i = (ToolbarButton) this.createToolbarButton(id.arrange_forward);
+        this.j = (ToolbarButton) this.createToolbarButton(id.arrange_front);
+        this.k = (LinearLayout) this.createToolbarButton(id.insert_shape_button);
+        this.l = (LinearLayout) this.createToolbarButton(id.slideshow_button);
+//        this.editorExpandBullets = (LinearLayout) this.findViewById(MainR.getMainAppInt("editor_expand_bullets"));
+//        this.editorExpandBullets.setVisibility(GONE);
+        this.mToolbarPaste = (LinearLayout) this.findViewById(com.document.docease.R.id.toolbar_paste);
+//        this.mSlideShowContainer = this.findViewById(com.document.docease.R.id.editor_expand_slide_show);
+//        this.mSlideShowContainer.setVisibility(View.VISIBLE);
+//        this.ctaSlideShow = this.findViewById(com.document.docease.R.id.editor_expand_slide_show_image);
+//        this.ctaSlideShow.setOnClickListener(v -> {
+//            onClickSlideshow(this.ctaSlideShow);
+//        });
         this.mToolbarPaste.setOnClickListener(v -> {
             this.doPaste();
         });
@@ -94,10 +94,10 @@ public class NUIDocViewPpt extends NUIDocView {
 
     protected DocView createMainView(Activity var1) {
         DocPowerPointView var2 = new DocPowerPointView(var1);
-        this.mIncreaseIndentButton.setVisibility(GONE);
-        this.mDecreaseIndentButton.setVisibility(GONE);
-        this.mListBulletsButton.setVisibility(GONE);
-        this.mListNumbersButton.setVisibility(GONE);
+//        this.mIncreaseIndentButton.setVisibility(GONE);
+//        this.mDecreaseIndentButton.setVisibility(GONE);
+//        this.mListBulletsButton.setVisibility(GONE);
+//        this.mListNumbersButton.setVisibility(GONE);
         return var2;
     }
 
@@ -310,8 +310,8 @@ public class NUIDocViewPpt extends NUIDocView {
     }
 
     public void onClickSlideshow(View var1) {
-        try{
-            if(this.getSession() != null){
+        try {
+            if (this.getSession() != null) {
                 this.getDoc().clearSelection();
                 this.getDoc().o();
                 SlideShowActivity.setSession(this.mSession);
@@ -319,7 +319,7 @@ public class NUIDocViewPpt extends NUIDocView {
                 var2.setAction(Constant.INTENT_ACTION_VIEW);
                 this.activity().startActivity(var2);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -426,5 +426,25 @@ public class NUIDocViewPpt extends NUIDocView {
         }
 
         var2.setEnabled(var4);
+    }
+
+    void onMenuOptionClicked(MenuOptions option) {
+        switch (option) {
+            case EDIT:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.insert_tools_ppt).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.format_tools_ppt).setVisibility(View.GONE);
+                break;
+            case INSERT:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_ppt).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.format_tools_ppt).setVisibility(View.GONE);
+                break;
+            case FORMAT:
+                findViewById(com.document.docease.R.id.format_tools_ppt).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_ppt).setVisibility(View.GONE);
+                break;
+        }
     }
 }

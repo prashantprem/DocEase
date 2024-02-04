@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.supportv1.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.ContextMenu;
 import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -1488,5 +1489,35 @@ public class NUIDocViewXls extends NUIDocView {
 
     protected boolean usePagesView() {
         return false;
+    }
+
+    @Override
+    void onMenuOptionClicked(MenuOptions option) {
+        switch (option) {
+            case EDIT:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.GONE);
+                break;
+            case INSERT:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.GONE);
+                break;
+            case FORMAT:
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.VISIBLE);
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.GONE);
+                break;
+            case FORMULAS:
+                findViewById(com.document.docease.R.id.edit_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.insert_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.format_tools_excel).setVisibility(View.GONE);
+                findViewById(com.document.docease.R.id.formulas_tools_excel).setVisibility(View.VISIBLE);
+                break;
+        }
     }
 }

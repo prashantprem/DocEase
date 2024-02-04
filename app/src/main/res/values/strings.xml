@@ -8,7 +8,7 @@
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
     <string name="save_cta">Save</string>
 
-<!--    //Legacy Strings-->
+    <!--    //Legacy Strings-->
     <string name="no_data">No Data</string>
     <string name="search_by_name">Search by name</string>
     <string name="search_error">there is no such recipe name</string>

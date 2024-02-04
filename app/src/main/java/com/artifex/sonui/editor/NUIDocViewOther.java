@@ -217,8 +217,8 @@ public class NUIDocViewOther extends NUIDocView {
 
     protected void scaleHeader() {
         this.scaleToolbar(id.other_toolbar, 0.65F);
-        this.mBackButton.setScaleX(0.65F);
-        this.mBackButton.setScaleY(0.65F);
+//        this.mBackButton.setScaleX(0.65F);
+//        this.mBackButton.setScaleY(0.65F);
     }
 
     public void setupTabs() {

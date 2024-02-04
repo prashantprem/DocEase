@@ -95,7 +95,7 @@ class ViewEditorActivity : AppNUIActivity() {
 //        imvActivityEditorBookmark = findViewById(R.id.imv_activity_editor_bookmark)
         toolbarCancel = findViewById(R.id.toolbar_cancel)
         imvBack = findViewById(R.id.imv_back)
-        moreToolsOther = findViewById(R.id.imv_tools_fragments)
+//        moreToolsOther = findViewById(R.id.imv_tools_fragments)
         moreToolsPdf = findViewById(R.id.tools_button)
         if (moreToolsPdf != null) moreToolsPdf!!.setOnClickListener {
 
@@ -248,9 +248,9 @@ class ViewEditorActivity : AppNUIActivity() {
 
 
     override fun onKeyDown(var1: Int, var2: KeyEvent): Boolean {
-        if (var1 == KeyEvent.KEYCODE_BACK) {
-            finish()
-        }
+//        if (var1 == KeyEvent.KEYCODE_BACK) {
+//            finish()
+//        }
         return super.onKeyDown(var1, var2)
     }
 

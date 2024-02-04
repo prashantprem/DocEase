@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <LinearLayout
@@ -15,10 +15,14 @@
             android:layout_width="0.0px"
             android:layout_height="0.0px"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true" />
+
+        <include layout="@layout/layout_preview_header" />
+
 
         <LinearLayout
             android:id="@id/header"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -36,56 +40,56 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@id/imv_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@color/sodk_editor_transparent"
-                        android:contentDescription="@string/sodk_editor_nav_back"
-                        android:gravity="center_vertical"
-                        android:padding="5dp"
-                        app:tint="@color/text_color"
-                        app:srcCompat="@drawable/ic_back_button_preview" />
-
-                    <com.artifex.sonui.editor.SOTextView
-                        android:id="@id/footer_text"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.0"
-                        android:ellipsize="middle"
-                        android:gravity="center|start"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="5dp"
-                        android:singleLine="true"
-                        android:fontFamily="@font/nunito"
-                        android:textColor="@color/text_color"
-                        android:textSize="16sp" />
 <!--                    <androidx.appcompat.widget.AppCompatImageView-->
-<!--                        android:id="@+id/toolbar_search"-->
+<!--                        android:id="@id/imv_back"-->
 <!--                        android:layout_width="wrap_content"-->
 <!--                        android:layout_height="wrap_content"-->
-<!--                        android:padding="1dp"-->
-<!--                        android:visibility="gone"-->
-<!--                        android:layout_marginEnd="18dp"-->
-<!--                        app:srcCompat="@drawable/ic_search_black"/>-->
-                    <ImageView
-                        android:visibility="visible"
-                        android:id="@+id/imv_activity_editor_share"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_height="@dimen/_25sdp"
-                        app:tint="@color/text_color"
-                        android:src="@drawable/ic_main_share"/>
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:background="@color/sodk_editor_transparent"-->
+<!--                        android:contentDescription="@string/sodk_editor_nav_back"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:padding="5dp"-->
+<!--                        app:srcCompat="@drawable/ic_back_button_preview"-->
+<!--                        app:tint="@color/text_color" />-->
 
-                    <ImageView
-                        android:id="@+id/imv_menu_option"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/text_color"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_menu_reading_file" />
+<!--                    <com.artifex.sonui.editor.SOTextView-->
+<!--                        android:id="@id/footer_text"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1.0"-->
+<!--                        android:ellipsize="middle"-->
+<!--                        android:fontFamily="@font/nunito"-->
+<!--                        android:gravity="center|start"-->
+<!--                        android:paddingStart="12dp"-->
+<!--                        android:paddingEnd="5dp"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:textColor="@color/text_color"-->
+<!--                        android:textSize="16sp" />-->
+                    <!--                    <androidx.appcompat.widget.AppCompatImageView-->
+                    <!--                        android:id="@+id/toolbar_search"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:padding="1dp"-->
+                    <!--                        android:visibility="gone"-->
+                    <!--                        android:layout_marginEnd="18dp"-->
+                    <!--                        app:srcCompat="@drawable/ic_search_black"/>-->
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imv_activity_editor_share"-->
+<!--                        android:layout_width="@dimen/_25sdp"-->
+<!--                        android:layout_height="@dimen/_25sdp"-->
+<!--                        android:layout_marginEnd="10dp"-->
+<!--                        android:src="@drawable/ic_main_share"-->
+<!--                        android:visibility="visible"-->
+<!--                        app:tint="@color/text_color" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imv_menu_option"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:layout_marginEnd="10dp"-->
+<!--                        android:src="@drawable/ic_menu_reading_file"-->
+<!--                        app:tint="@color/text_color" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -102,11 +106,11 @@
 
                     <LinearLayout
                         android:id="@id/other_toolbar"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@color/colorWhite"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:weightSum="4">
 
                         <LinearLayout
@@ -238,14 +242,16 @@
                         android:layout_height="wrap_content"
                         android:background="@color/colorWhite" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/editor_search_layout"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
                     <include layout="@layout/editor_toolbar_find_layout" />
                 </LinearLayout>
-<!--                <include layout="@layout/sodk_editor_other_search_toolbar"/>-->
+                <!--                <include layout="@layout/sodk_editor_other_search_toolbar"/>-->
             </LinearLayout>
         </LinearLayout>
 
@@ -262,10 +268,10 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:clickable="false"
                     android:id="@id/doc_inner_container"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:clickable="false">
 
                     <LinearLayout
                         android:id="@id/doc_cover"
@@ -308,81 +314,82 @@
                             android:text="" />
                     </LinearLayout>
 
-<!--                    <LinearLayout-->
-<!--                        android:id="@id/footer"-->
-<!--                        android:background="@color/white"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignParentBottom="true"-->
-<!--                        android:layout_marginBottom="4dp"-->
-<!--                        android:layout_weight="0.0"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal">-->
+                    <!--                    <LinearLayout-->
+                    <!--                        android:id="@id/footer"-->
+                    <!--                        android:background="@color/white"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_alignParentBottom="true"-->
+                    <!--                        android:layout_marginBottom="4dp"-->
+                    <!--                        android:layout_weight="0.0"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:orientation="horizontal">-->
 
-<!--                        <View-->
-<!--                            android:id="@id/footer_lead"-->
-<!--                            android:layout_width="0.0dip"-->
-<!--                            android:layout_height="0.0dip"-->
-<!--                            android:layout_weight="0.0"-->
-<!--                            android:background="@color/sodk_editor_footer" />-->
+                    <!--                        <View-->
+                    <!--                            android:id="@id/footer_lead"-->
+                    <!--                            android:layout_width="0.0dip"-->
+                    <!--                            android:layout_height="0.0dip"-->
+                    <!--                            android:layout_weight="0.0"-->
+                    <!--                            android:background="@color/sodk_editor_footer" />-->
 
-<!--                        <com.artifex.sonui.editor.SOTextView-->
-<!--                            android:id="@id/footer_page_text"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:layout_weight="0.0"-->
-<!--                            android:background="@color/sodk_editor_footer"-->
-<!--                            android:gravity="center"-->
-<!--                            android:paddingLeft="5dp"-->
-<!--                            android:paddingRight="5dp"-->
-<!--                            android:singleLine="true"-->
-<!--                            android:textColor="@color/sodk_editor_footer_page_text" />-->
-<!--                    </LinearLayout>-->
+                    <!--                        <com.artifex.sonui.editor.SOTextView-->
+                    <!--                            android:id="@id/footer_page_text"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_weight="0.0"-->
+                    <!--                            android:background="@color/sodk_editor_footer"-->
+                    <!--                            android:gravity="center"-->
+                    <!--                            android:paddingLeft="5dp"-->
+                    <!--                            android:paddingRight="5dp"-->
+                    <!--                            android:singleLine="true"-->
+                    <!--                            android:textColor="@color/sodk_editor_footer_page_text" />-->
+                    <!--                    </LinearLayout>-->
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
 
-                <LinearLayout
-                    android:background="@color/white"
-                    android:id="@id/footer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.0"
-                    android:gravity="center"
-                    android:padding="2dp"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:id="@id/footer_lead"
-                        android:layout_width="0.0dip"
-                        android:layout_height="0.0dip"
-                        android:layout_weight="0.0"
-                        android:background="@color/sodk_editor_footer" />
-
-                    <com.artifex.sonui.editor.SOTextView
-                        android:id="@id/footer_page_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.0"
-                        android:background="@color/sodk_editor_footer"
-                        android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:singleLine="true"
-                        android:textColor="@color/sodk_editor_footer_page_text" />
-                </LinearLayout>
-
         <LinearLayout
-            android:visibility="gone"
+            android:id="@id/footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:gravity="center"
+            android:layout_weight="0.0"
             android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <View
+                android:id="@id/footer_lead"
+                android:layout_width="0.0dip"
+                android:layout_height="0.0dip"
+                android:layout_weight="0.0"
+                android:background="@color/sodk_editor_footer" />
+
+            <com.artifex.sonui.editor.SOTextView
+                android:id="@id/footer_page_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.0"
+                android:background="@color/sodk_editor_footer"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@color/sodk_editor_footer_page_text" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/imv_activity_editor_toolbar"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:visibility="gone">
+
             <LinearLayout
                 android:id="@+id/imv_activity_preview_whatsapp"
                 android:layout_width="0dp"
@@ -390,77 +397,85 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_whatsapp_icon"/>
+                    app:srcCompat="@drawable/ic_whatsapp_icon" />
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_margin="4dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
                     android:fontFamily="@font/nunito"
-                    android:textSize="12sp"
-                    android:text="@string/whatsapp"/>
+                    android:text="@string/whatsapp"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/imv_activity_preview_share"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_share_icon"/>
+                    app:srcCompat="@drawable/ic_share_icon" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito"
-                    android:textSize="12sp"
                     android:layout_margin="4dp"
-                    android:text="@string/share"/>
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/share"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/imv_activity_preview_print"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_print_icon"/>
+                    app:srcCompat="@drawable/ic_print_icon" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito"
-                    android:textSize="12sp"
                     android:layout_margin="4dp"
-                    android:text="@string/print"/>
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/print"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/imv_activity_editor_more"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_more_icon"/>
+                    app:srcCompat="@drawable/ic_more_icon" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito"
-                    android:textSize="12sp"
                     android:layout_margin="4dp"
-                    android:text="@string/more"/>
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/more"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 

@@ -2,12 +2,16 @@ package com.artifex.sonui.editor;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.supportv1.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.artifex.solib.ConfigOptions;
+import com.artifex.solib.SOLib;
 import com.artifex.solib.SOSelectionLimits;
 import com.artifex.solib.c;
 import com.artifex.sonui.editor.History.HistoryItem;
@@ -33,6 +38,14 @@ import com.artifex.sonui.editor.R.integer;
 import com.artifex.sonui.editor.R.layout;
 import com.artifex.sonui.editor.R.string;
 import com.document.docease.utils.Constant;
+import com.document.docease.utils.FileUtil;
+import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
+import com.tom_roush.pdfbox.io.MemoryUsageSetting;
+import com.tom_roush.pdfbox.pdmodel.PDDocument;
+import com.tom_roush.pdfbox.text.PDFTextStripperByArea;
+
+import java.io.File;
+import java.io.IOException;
 
 public class NUIDocViewPdf extends NUIDocView {
     private ToolbarButton b;
@@ -44,20 +57,22 @@ public class NUIDocViewPdf extends NUIDocView {
     private ImageView imgColorButton;
     private LinearLayout h;
     private ToolbarButton i;
-    private ToolbarButton j;
-    private ToolbarButton k;
-    private ToolbarButton l;
+//    private ToolbarButton j;
+//    private ToolbarButton k;
+//    private ToolbarButton l;
     private LinearLayout m;
     private LinearLayout n;
     private TextView tvPrevious;
     private TextView tvNext;
-    private ImageView imgPrevious;
-    private ImageView imgNext;
+//    private ImageView imgPrevious;
+//    private ImageView imgNext;
     private Button o;
     private TabData[] p = null;
     private boolean q = false;
 
     private ToolbarButton tools;
+
+    private LinearLayout toolbarPdfCopy;
 
 
     public NUIDocViewPdf(Context var1) {
@@ -104,10 +119,10 @@ public class NUIDocViewPdf extends NUIDocView {
         if (this.mSavePdfButton != null) {
             this.mSavePdfButton.setVisibility(GONE);
         }
-
-        if (this.mOpenPdfInButton != null) {
-            this.mOpenPdfInButton.setVisibility(GONE);
-        }
+//
+//        if (this.mOpenPdfInButton != null) {
+//            this.mOpenPdfInButton.setVisibility(GONE);
+//        }
 
     }
 
@@ -138,9 +153,9 @@ public class NUIDocViewPdf extends NUIDocView {
         this.imgColorButton = (ImageView) this.createToolbarButton(com.document.docease.R.id.img_color_button);
         this.h = (LinearLayout) this.createToolbarButton(id.line_thickness_button);
         this.d = (ToolbarButton) this.createToolbarButton(id.delete_button);
-        this.j = (ToolbarButton) this.createToolbarButton(id.redact_button_mark);
-        this.k = (ToolbarButton) this.createToolbarButton(id.redact_button_remove);
-        this.l = (ToolbarButton) this.createToolbarButton(id.redact_button_apply);
+//        this.j = (ToolbarButton) this.createToolbarButton(id.redact_button_mark);
+//        this.k = (ToolbarButton) this.createToolbarButton(id.redact_button_remove);
+//        this.l = (ToolbarButton) this.createToolbarButton(id.redact_button_apply);
         this.a();
         this.b();
         this.m = (LinearLayout) this.createToolbarButton(id.previous_link_button);
@@ -148,12 +163,13 @@ public class NUIDocViewPdf extends NUIDocView {
 
         this.tvPrevious = (TextView) this.createToolbarButton(com.document.docease.R.id.txt_previous);
         this.tvNext = (TextView) this.createToolbarButton(com.document.docease.R.id.tv_next);
-        this.imgPrevious = (ImageView) this.createToolbarButton(com.document.docease.R.id.img_previous);
-        this.imgNext = (ImageView) this.createToolbarButton(com.document.docease.R.id.img_next);
+//        this.imgPrevious = (ImageView) this.createToolbarButton(com.document.docease.R.id.img_previous);
+//        this.imgNext = (ImageView) this.createToolbarButton(com.document.docease.R.id.img_next);
+        this.toolbarPdfCopy = (LinearLayout) this.createToolbarButton(com.document.docease.R.id.toolbar_copy_pdf);
 
 
-        imgPrevious.setOnClickListener(this);
-        imgNext.setOnClickListener(this);
+//        imgPrevious.setOnClickListener(this);
+//        imgNext.setOnClickListener(this);
         imgColorButton.setOnClickListener(this);
 
         TabHost tabHost = (TabHost) findViewById(com.document.docease.R.id.tabhost);
@@ -167,7 +183,7 @@ public class NUIDocViewPdf extends NUIDocView {
         try {
             TabHost tabHost = (TabHost) findViewById(com.document.docease.R.id.tabhost);
             tabHost.setVisibility(GONE);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -318,6 +334,10 @@ public class NUIDocViewPdf extends NUIDocView {
     public void onClick(View var1) {
         super.onClick(var1);
 
+        if (var1 == this.toolbarPdfCopy) {
+            this.copyTextInDocument(var1);
+        }
+
         if (var1 == this.b) {
             this.onToggleAnnotationsButton(var1);
         }
@@ -362,33 +382,33 @@ public class NUIDocViewPdf extends NUIDocView {
             this.a(var1);
         }
 
-        if (var1 == this.j) {
-            this.onRedactMark(var1);
-        }
-
-        if (var1 == this.k) {
-            this.onRedactRemove(var1);
-        }
-
-        if (var1 == this.l) {
-            this.onRedactApply(var1);
-        }
+//        if (var1 == this.j) {
+//            this.onRedactMark(var1);
+//        }
+//
+//        if (var1 == this.k) {
+//            this.onRedactRemove(var1);
+//        }
+//
+//        if (var1 == this.l) {
+//            this.onRedactApply(var1);
+//        }
 
         if (var1 == this.m) {
             this.b(var1);
         }
 
-        if (var1 == this.imgPrevious) {
-            this.b(var1);
-        }
+//        if (var1 == this.imgPrevious) {
+//            this.b(var1);
+//        }
 
         if (var1 == this.n) {
             this.c(var1);
         }
 
-        if (var1 == this.imgNext) {
-            this.c(var1);
-        }
+//        if (var1 == this.imgNext) {
+//            this.c(var1);
+//        }
     }
 
     public void onDeleteButton(View var1) {
@@ -696,7 +716,7 @@ public class NUIDocViewPdf extends NUIDocView {
             this.findViewById(id.draw_tools_holder).setSelected(var6);
             try {
                 c var12 = (c) this.getDoc();
-                this.j.setEnabled(var4);
+//                this.j.setEnabled(var4);
                 var5 = var7;
                 if (var3) {
                     var5 = var7;
@@ -704,8 +724,8 @@ public class NUIDocViewPdf extends NUIDocView {
                         var5 = true;
                     }
                 }
-                this.k.setEnabled(var5);
-                this.l.setEnabled(var12.t());
+//                this.k.setEnabled(var5);
+//                this.l.setEnabled(var12.t());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -715,19 +735,19 @@ public class NUIDocViewPdf extends NUIDocView {
 
             try {
                 if (var10.canPrevious()) {
-                    tvPrevious.setTextColor(activity().getResources().getColor(com.document.docease.R.color.blue));
-                    imgPrevious.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.blue));
+//                    tvPrevious.setTextColor(activity().getResources().getColor(com.document.docease.R.color.blue));
+//                    imgPrevious.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.blue));
                 } else {
-                    tvPrevious.setTextColor(activity().getResources().getColor(com.document.docease.R.color.black_trans));
-                    imgPrevious.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.black_trans));
+//                    tvPrevious.setTextColor(activity().getResources().getColor(com.document.docease.R.color.black_trans));
+//                    imgPrevious.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.black_trans));
                 }
 
                 if (var10.canNext()) {
-                    tvNext.setTextColor(activity().getResources().getColor(com.document.docease.R.color.blue));
-                    imgNext.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.blue));
+//                    tvNext.setTextColor(activity().getResources().getColor(com.document.docease.R.color.blue));
+//                    imgNext.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.blue));
                 } else {
-                    tvNext.setTextColor(activity().getResources().getColor(com.document.docease.R.color.black_trans));
-                    imgNext.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.black_trans));
+//                    tvNext.setTextColor(activity().getResources().getColor(com.document.docease.R.color.black_trans));
+//                    imgNext.setColorFilter(activity().getResources().getColor(com.document.docease.R.color.black_trans));
                 }
             } catch (Resources.NotFoundException notFoundException) {
                 notFoundException.printStackTrace();
@@ -739,8 +759,44 @@ public class NUIDocViewPdf extends NUIDocView {
     }
 
     protected void updateUndoUIAppearance() {
-        this.mUndoButton.setVisibility(GONE);
-        this.mRedoButton.setVisibility(GONE);
+//        this.mUndoButton.setVisibility(GONE);
+//        this.mRedoButton.setVisibility(GONE);
+    }
+
+
+    @Override
+    public void copyTextInDocument(View view) {
+        if (this.mStartUri != null) {
+            FileUtil fileUtil = new FileUtil(activity());
+            String filePath = fileUtil.getPath(this.mStartUri);
+            SOSelectionLimits limits = this.getDocView().getSelectionLimits();
+            if (filePath != null && limits != null) {
+                PDDocument document = new PDDocument();
+                File mFile = new File(filePath);
+                try {
+                    document = PDDocument.load(mFile, MemoryUsageSetting.setupTempFileOnly());
+                    PDFBoxResourceLoader.init(activity().getApplicationContext());
+                    PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+                    stripper.setSortByPosition(true);
+                    RectF rect = new RectF(limits.getBox().left, limits.getBox().top, limits.getBox().right, limits.getBox().bottom);
+                    stripper.addRegion("class1", rect);
+                    stripper.extractRegions(document.getPage(this.mSession.getFileState().getPageNumber()));
+                    String copiedText = stripper.getTextForRegion("class1");
+                    ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText(copiedText, copiedText);
+                    clipboard.setPrimaryClip(clip);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (document != null) {
+                        try {
+                            document.close();
+                        } catch (IOException ignored) {
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
