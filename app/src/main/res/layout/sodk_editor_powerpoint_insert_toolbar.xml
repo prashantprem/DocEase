@@ -5,87 +5,103 @@
     <LinearLayout
         android:id="@id/ppt_insert_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/bg_color_main"
         android:orientation="horizontal"
         android:paddingBottom="2dp">
 
         <LinearLayout
             android:id="@id/insert_image_button"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
+            android:layout_marginStart="@dimen/_8sdp"
             android:gravity="center"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:padding="3dp"
-                app:srcCompat="@drawable/sodk_editor_icon_insert_image" />
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_main_add_image"
+                app:tint="@color/text_color" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textColor="@color/text_color"
                 android:text="@string/sodk_editor_image_upper"
-                android:textAllCaps="false"
-                android:textColor="@color/text"
-                android:textSize="9sp" />
+                android:textSize="12sp" />
+
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="#777777" />
+
 
         <LinearLayout
             android:id="@id/insert_photo_button"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
+            android:layout_marginStart="@dimen/_4sdp"
             android:gravity="center"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:padding="3dp"
-                app:srcCompat="@drawable/sodk_editor_icon_insert_photo" />
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_main_add_camera"
+                app:tint="@color/text_color" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textColor="@color/text_color"
                 android:text="@string/sodk_editor_photo_upper"
-                android:textAllCaps="false"
-                android:textColor="@color/text"
-                android:textSize="9sp" />
+                android:textSize="12sp" />
+
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="#777777" />
+
 
         <LinearLayout
             android:id="@id/insert_shape_button"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_55sdp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackground"
+            android:layout_marginStart="@dimen/_4sdp"
             android:gravity="center"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:padding="3dp"
-                app:srcCompat="@drawable/sodk_editor_icon_insert_shape" />
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_main_add_elements"
+                app:tint="@color/text_color" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/sodk_editor_shape_upper"
-                android:textAllCaps="false"
-                android:textColor="@color/text"
-                android:textSize="9sp" />
+                android:text="Elements"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
         </LinearLayout>
+
+
     </LinearLayout>
 </merge>

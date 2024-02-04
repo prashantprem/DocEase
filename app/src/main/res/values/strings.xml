@@ -553,7 +553,7 @@ to leave fullscreen mode."</string>
     <string name="sodk_editor_getting_started">Getting Started</string>
     <string name="sodk_editor_go_up">Go up</string>
     <string name="sodk_editor_highlight_upper">Highlight</string>
-    <string name="sodk_editor_image_upper">IMAGE</string>
+    <string name="sodk_editor_image_upper">Image</string>
     <string name="sodk_editor_ime_action_label_done">Done</string>
     <string name="sodk_editor_information_upper">Information</string>
     <string name="sodk_editor_insert_image_gone_body">"The selected image can't be inserted. It may have been deleted or moved."</string>
@@ -621,7 +621,7 @@ FORMAT"</string>
     <string name="sodk_editor_permission_google_final">Sorry, you cannot access Google Drive.</string>
     <string name="sodk_editor_permission_google_why">These permissions are necessary to choose your Google account. Would you like to try again?</string>
     <string name="sodk_editor_permission_why">These permissions are necessary for Office Editor to open and save documents. Would you like to try again?</string>
-    <string name="sodk_editor_photo_upper">PHOTO</string>
+    <string name="sodk_editor_photo_upper">Photo</string>
     <string name="sodk_editor_picker_title_App_Ver_Dir">%1$s %2$s: %3$s</string>
     <string name="sodk_editor_please_wait">Please wait...</string>
     <string name="sodk_editor_present_upper">PRESENT</string>

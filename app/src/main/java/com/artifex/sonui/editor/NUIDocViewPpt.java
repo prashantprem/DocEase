@@ -21,14 +21,14 @@ import com.document.docease.utils.Constant;
 
 public class NUIDocViewPpt extends NUIDocView {
     boolean b = false;
-    private ToolbarButton c;
-    private ToolbarButton d;
-    private ToolbarButton e;
-    private ToolbarButton f;
-    private ToolbarButton g;
-    private ToolbarButton h;
-    private ToolbarButton i;
-    private ToolbarButton j;
+    private LinearLayout c;
+    private LinearLayout d;
+    private LinearLayout e;
+    private LinearLayout f;
+    private LinearLayout g;
+    private LinearLayout h;
+    private LinearLayout i;
+    private LinearLayout j;
     private LinearLayout k;
     private LinearLayout l;
     private TabData[] m = null;
@@ -60,14 +60,14 @@ public class NUIDocViewPpt extends NUIDocView {
 
     protected void afterFirstLayoutComplete() {
         super.afterFirstLayoutComplete();
-        this.c = (ToolbarButton) this.createToolbarButton(id.shape_color);
-        this.d = (ToolbarButton) this.createToolbarButton(id.line_color);
-        this.e = (ToolbarButton) this.createToolbarButton(id.line_width);
-        this.f = (ToolbarButton) this.createToolbarButton(id.line_type);
-        this.g = (ToolbarButton) this.createToolbarButton(id.arrange_back);
-        this.h = (ToolbarButton) this.createToolbarButton(id.arrange_backwards);
-        this.i = (ToolbarButton) this.createToolbarButton(id.arrange_forward);
-        this.j = (ToolbarButton) this.createToolbarButton(id.arrange_front);
+        this.c = (LinearLayout) this.createToolbarButton(id.shape_color);
+        this.d = (LinearLayout) this.createToolbarButton(id.line_color);
+        this.e = (LinearLayout) this.createToolbarButton(id.line_width);
+        this.f = (LinearLayout) this.createToolbarButton(id.line_type);
+        this.g = (LinearLayout) this.createToolbarButton(id.arrange_back);
+        this.h = (LinearLayout) this.createToolbarButton(id.arrange_backwards);
+        this.i = (LinearLayout) this.createToolbarButton(id.arrange_forward);
+        this.j = (LinearLayout) this.createToolbarButton(id.arrange_front);
         this.k = (LinearLayout) this.createToolbarButton(id.insert_shape_button);
         this.l = (LinearLayout) this.createToolbarButton(id.slideshow_button);
 //        this.editorExpandBullets = (LinearLayout) this.findViewById(MainR.getMainAppInt("editor_expand_bullets"));
@@ -390,7 +390,7 @@ public class NUIDocViewPpt extends NUIDocView {
         this.d.setEnabled(var1);
         this.e.setEnabled(var1);
         this.f.setEnabled(var1);
-        ToolbarButton var2 = this.g;
+        LinearLayout var2 = this.g;
         boolean var3 = false;
         boolean var4;
         if (var1 && !this.n) {
@@ -399,7 +399,7 @@ public class NUIDocViewPpt extends NUIDocView {
             var4 = false;
         }
 
-        var2.setEnabled(var4);
+//        var2.setEnabled(var4);
         var2 = this.h;
         if (var1 && !this.n) {
             var4 = true;
@@ -407,7 +407,7 @@ public class NUIDocViewPpt extends NUIDocView {
             var4 = false;
         }
 
-        var2.setEnabled(var4);
+//        var2.setEnabled(var4);
         var2 = this.i;
         if (var1 && !this.n) {
             var4 = true;
@@ -415,7 +415,7 @@ public class NUIDocViewPpt extends NUIDocView {
             var4 = false;
         }
 
-        var2.setEnabled(var4);
+//        var2.setEnabled(var4);
         var2 = this.j;
         var4 = var3;
         if (var1) {
