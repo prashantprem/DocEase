@@ -95,6 +95,7 @@ import com.document.docease.ui.module.editors.ViewEditorActivity;
 
 import com.document.docease.ui.module.editors.adapters.ColorListAdapter;
 import com.document.docease.utils.Constant;
+import com.document.docease.utils.SharedPreferencesUtility;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
 
 import java.io.File;
@@ -3477,16 +3478,16 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public void onAddCameraClicked(View var1) {
-//        if (activity() != null) {
-//            if (SharedPreferencesUtility.INSTANCE.getCameraPermissionPrompt(activity())) {
-//                showCameraPermissionInformation();
-//                SharedPreferencesUtility.INSTANCE.setCameraPermissionPrompt(activity(), false);
-//            } else {
-//                requestCameraPermission();
-//            }
-//        } else {
-//            requestCameraPermission();
-//        }
+        if (activity() != null) {
+            if (SharedPreferencesUtility.INSTANCE.getSavedBoolean(activity(), SharedPreferencesUtility.CAMERA_PERMISSION_PROMPT, true)) {
+                showCameraPermissionInformation();
+                SharedPreferencesUtility.INSTANCE.saveBoolean(activity(), SharedPreferencesUtility.CAMERA_PERMISSION_PROMPT, false);
+            } else {
+                requestCameraPermission();
+            }
+        } else {
+            requestCameraPermission();
+        }
     }
 
     public void showCameraPermissionInformation() {

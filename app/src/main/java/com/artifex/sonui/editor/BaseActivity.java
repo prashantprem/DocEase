@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.document.docease.ui.module.editors.ViewEditorActivity;
 import com.document.docease.utils.Constant;
+import com.document.docease.utils.SharedPreferencesUtility;
 
 import java.util.Locale;
 
@@ -81,15 +82,15 @@ public class BaseActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int var1, String[] var2, int[] var3) {
         PermissionResultHandler var4 = mPermissionResultHandler;
         if (var4 == null || !var4.handle(var1, var2, var3)) {
-            if(var1 == ViewEditorActivity.REQUEST_CAMERA_PERMISSIONS){
-                if(var3.length > 0 && var3[0] == PackageManager.PERMISSION_DENIED){
-//                    int count = SharedPreferencesUtility.INSTANCE.getCameraPermissionCount(this);
-//                    SharedPreferencesUtility.INSTANCE.setCameraPermissionCount(this,count+1);
-//                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && count > 2) {
-//                        handlePermissionDenyForAPI30AndAbove(getResources().getString(com.document.docease.R.string.camera_permission_deny),getResources().getString(com.R.string.camera_permission_deny_message));
-//                    } else {
-//                        showExplanation(getResources().getString(com.document.docease.R.string.camera_permission_deny),getResources().getString(com.document.docease.R.string.camera_permission_deny_message), Manifest.permission.CAMERA,ViewEditorActivity.REQUEST_CAMERA_PERMISSIONS);
-//                    }
+            if (var1 == ViewEditorActivity.REQUEST_CAMERA_PERMISSIONS) {
+                if (var3.length > 0 && var3[0] == PackageManager.PERMISSION_DENIED) {
+                    int count = SharedPreferencesUtility.INSTANCE.getSavedInt(this, SharedPreferencesUtility.CAMERA_PERMISSION_PROMPT_COUNT, 1);
+                    SharedPreferencesUtility.INSTANCE.saveInt(this, SharedPreferencesUtility.CAMERA_PERMISSION_PROMPT_COUNT, count + 1);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && count > 2) {
+                        handlePermissionDenyForAPI30AndAbove(getResources().getString(com.document.docease.R.string.camera_permission_deny), getResources().getString(com.document.docease.R.string.camera_permission_deny_message));
+                    } else {
+                        showExplanation(getResources().getString(com.document.docease.R.string.camera_permission_deny), getResources().getString(com.document.docease.R.string.camera_permission_deny_message), Manifest.permission.CAMERA, ViewEditorActivity.REQUEST_CAMERA_PERMISSIONS);
+                    }
                 }
             }
             super.onRequestPermissionsResult(var1, var2, var3);
@@ -133,8 +134,8 @@ public class BaseActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-    private void handlePermissionDenyForAPI30AndAbove (String title,
-                                 String message) {
+    private void handlePermissionDenyForAPI30AndAbove(String title,
+                                                      String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title)
                 .setMessage(message)
@@ -142,13 +143,13 @@ public class BaseActivity extends AppCompatActivity {
 
                 })
                 .setPositiveButton(com.document.docease.R.string.permisson_go_to_setting, (DialogInterface.OnClickListener) (dialog, id) -> {
-                    try{
+                    try {
                         Intent intent = new Intent();
                         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         Uri uri = Uri.fromParts(Constant.PACKAGE, getPackageName(), null);
                         intent.setData(uri);
                         startActivity(intent);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });

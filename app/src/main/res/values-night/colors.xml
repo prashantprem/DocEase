@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#ffffff</color>
+    <color name="primary">#003EC9</color>
     <color name="bg_color_main">#202124</color>
     <color name="bg_file_list_item_color_main">#3D4043</color>
     <color name="text_color">#FFFFFF</color>
