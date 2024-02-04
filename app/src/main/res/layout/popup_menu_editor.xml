@@ -1,10 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="5dip"
     android:paddingBottom="5dip"
     android:paddingStart="10dip"
     android:gravity="center"
+    android:background="@color/greyDayNight"
     android:paddingEnd="10dip">
 
     <ImageView
@@ -12,5 +14,6 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        app:tint="@color/text_color" />
 </LinearLayout>

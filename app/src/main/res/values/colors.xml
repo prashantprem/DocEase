@@ -31,7 +31,7 @@
     <color name="pink">#f64c73</color>
     <color name="green">#20d2bb</color>
     <color name="blue">#4369F2</color>
-    <color name="app_color">#e6680d</color>
+    <color name="app_color">#003EC9</color>
     <color name="light_blue">#6DA5FB</color>
     <color name="dark">#c873f4</color>
     <color name="readItemDownloadBG">#FF3AA7FF</color>
@@ -279,7 +279,7 @@
     <color name="sodk_editor_cell_box_text_color">@color/sodk_editor_palette_black</color>
     <color name="sodk_editor_dialog_textcolor">@color/sodk_editor_palette_black</color>
     <!--    background of docs-->
-    <color name="sodk_editor_doc_background">@color/colorWhite</color>
+    <color name="sodk_editor_doc_background">@color/bg_color_main</color>
     <color name="sodk_editor_dotted_line_bg_color">@color/sodk_editor_palette_white</color>
     <color name="sodk_editor_edit_toolbar_bg">@color/sodk_editor_palette_white</color>
     <color name="sodk_editor_excel_doc_bg_color">@color/sodk_editor_palette_ltgrey</color>

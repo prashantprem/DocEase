@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
                 android:text="@string/app_name"
-                android:textColor="#E45F16"
+                android:textColor="@color/primary"
                 android:textSize="17sp" />
 
             <TextView
@@ -102,14 +102,13 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:padding="2dp"
-                    android:src="@drawable/ic_app_icon_new" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/app_logo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
-                    android:layout_marginTop="4dp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito"
                     android:textSize="10sp" />
@@ -181,18 +180,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:backgroundTint="@color/primary"
                 android:background="@drawable/ic_default_ellipse">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
+                    android:tint="@color/primary"
                     android:src="@drawable/ic_default_check" />
 
                 <TextView
                     android:text="Mark it as default app"
                     android:gravity="start|center"
-                    android:textColor="@color/app_color"
+                    android:textColor="@color/primary"
                     android:fontFamily="@font/nunito"
                     android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
@@ -220,6 +221,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/default_button"
+        android:backgroundTint="@color/primary"
         android:fontFamily="@font/nunito"
         android:text="@string/mark_now"
         android:textColor="#FFFFFF"

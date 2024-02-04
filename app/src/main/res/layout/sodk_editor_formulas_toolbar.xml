@@ -28,6 +28,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_sum" />
 
             <TextView
@@ -50,6 +51,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_date_time" />
 
             <TextView
@@ -74,6 +76,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_engineering" />
 
             <TextView
@@ -97,6 +100,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:tint="@color/text_color"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_main_finance" />
 
@@ -121,6 +125,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
+                android:tint="@color/text_color"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_main_information" />
 
@@ -146,6 +151,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_logical" />
 
             <TextView
@@ -170,6 +176,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_lookup" />
 
             <TextView
@@ -194,6 +201,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_maths" />
 
             <TextView
@@ -218,6 +226,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_stats" />
 
             <TextView
@@ -243,6 +252,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
+                android:tint="@color/text_color"
                 app:srcCompat="@drawable/ic_main_text_excel" />
 
             <TextView

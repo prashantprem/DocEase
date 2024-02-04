@@ -4,4 +4,5 @@
     <color name="bg_color_main">#202124</color>
     <color name="bg_file_list_item_color_main">#3D4043</color>
     <color name="text_color">#FFFFFF</color>
+    <color name="greyDayNight">#3D4043</color>
 </resources>

@@ -93,7 +93,8 @@
                 android:padding="@dimen/_4sdp"
                 android:src="@drawable/ic_main_minus"
                 android:textColor="@color/text_color"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:tint="@color/text_color" />
 
             <View
                 android:layout_width="1dp"
@@ -126,6 +127,7 @@
                 android:fontFamily="@font/nunito"
                 android:gravity="center"
                 android:padding="@dimen/_4sdp"
+                app:tint="@color/text_color"
                 android:src="@drawable/ic_main_plus"
                 android:textColor="@color/text_color"
                 android:textSize="18sp" />

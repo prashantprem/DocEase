@@ -233,13 +233,13 @@
                     android:id="@id/header_top_spacer"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="@color/colorWhite" />
+                    android:background="@color/bg_color_main" />
 
                 <LinearLayout
                     android:id="@id/header_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
+                    android:background="@color/bg_color_main"
                     android:gravity="bottom"
                     android:orientation="horizontal">
 
@@ -416,9 +416,9 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_gravity="center"
             android:gravity="center"
             android:padding="2dp">
 

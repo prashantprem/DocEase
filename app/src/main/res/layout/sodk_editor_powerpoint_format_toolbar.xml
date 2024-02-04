@@ -13,7 +13,6 @@
             android:id="@id/ppt_format_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
             android:orientation="horizontal"
             android:paddingTop="5dp"
             android:paddingBottom="5dp">
@@ -53,7 +52,8 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_main_outline_ppt" />
+                    android:src="@drawable/ic_main_outline_ppt"
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,6 +76,7 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
+                    app:tint="@color/text_color"
                     android:src="@drawable/ic_main_border_weight_ppt" />
 
                 <TextView
@@ -100,6 +101,7 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
+                    app:tint="@color/text_color"
                     android:src="@drawable/ic_main_border_styles" />
 
                 <TextView
@@ -170,6 +172,7 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
+                    app:tint="@color/text_color"
                     android:src="@drawable/ic_main_front_ppt" />
 
                 <TextView
@@ -193,6 +196,7 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
+                    app:tint="@color/text_color"
                     android:src="@drawable/ic_main_back_ppt" />
 
                 <TextView

@@ -1002,7 +1002,7 @@ CHANGES"</string>
     <string name="highlight">Highlight</string>
     <string name="make">Make</string>
     <string name="as">as</string>
-    <string name="default_document_viewer">default document Viewer</string>
+    <string name="default_document_viewer">default document Editor/Viewer</string>
     <string name="open_document_and_mark_it_as_default_app_on_bottom_tray">Open document and mark it as default app on bottom tray</string>
     <string name="mark_it_as_default_app">Mark it as default app</string>
     <string name="mark_now">Mark Now</string>
