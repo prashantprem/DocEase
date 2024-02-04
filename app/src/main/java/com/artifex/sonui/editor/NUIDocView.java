@@ -3229,8 +3229,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.setType("application/*");
-        Uri uri = FileProvider.getUriForFile(context.getContext(), BuildConfig.APPLICATION_ID + ".fileprovider", file);
+        Uri uri = FileProvider.getUriForFile(activity(), BuildConfig.APPLICATION_ID + ".fileprovider", file);
+        shareIntent.setClipData(ClipData.newRawUri("", uri));
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.addFlags(
+                Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         List<ResolveInfo> resInfoList = activity().getPackageManager().queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY);
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;

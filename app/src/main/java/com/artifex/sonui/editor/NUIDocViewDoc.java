@@ -4,6 +4,7 @@ import android.content.Context;
 import android.supportv1.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -25,7 +26,7 @@ public class NUIDocViewDoc extends NUIDocView {
     private ToolbarButton i;
     private ToolbarButton j;
 
-    private AppCompatImageView mToolbarPaste;
+    private LinearLayout mToolbarPaste;
 
 
     public NUIDocViewDoc(Context var1) {

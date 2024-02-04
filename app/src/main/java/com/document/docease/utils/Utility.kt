@@ -1,6 +1,7 @@
 package com.document.docease.utils
 
 import android.app.Activity
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -188,7 +189,12 @@ object Utility {
                 context, BuildConfig.APPLICATION_ID + ".fileprovider",
                 file
             )
+            shareIntent.clipData = ClipData.newRawUri("", uri)
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+            shareIntent.addFlags(
+                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+//            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             val resInfoList: List<ResolveInfo> = context.packageManager
                 .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
             for (resolveInfo in resInfoList) {
