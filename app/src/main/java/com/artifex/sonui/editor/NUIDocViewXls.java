@@ -3,6 +3,7 @@ package com.artifex.sonui.editor;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
@@ -617,6 +618,7 @@ public class NUIDocViewXls extends NUIDocView {
 //
 //        this.editorExpandBullets = (LinearLayout) this.findViewById(MainR.getMainAppInt("editor_expand_bullets"));
 //        this.editorExpandBullets.setVisibility(GONE);
+        menuOptions.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), com.document.docease.R.color.menu_excel_color)));
 
     }
 

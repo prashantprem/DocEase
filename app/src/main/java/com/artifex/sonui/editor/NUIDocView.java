@@ -4,7 +4,6 @@ import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
@@ -22,7 +21,6 @@ import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -37,7 +35,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -56,7 +53,6 @@ import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -64,6 +60,7 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.LifecycleOwner;
@@ -92,27 +89,23 @@ import com.artifex.sonui.editor.R.style;
 import com.artifex.sonui.editor.SODocSession.SODocSessionLoadListener;
 
 import com.document.docease.BuildConfig;
+import com.document.docease.ui.module.editors.HighlightBottomSheetFragment;
 import com.document.docease.ui.module.editors.HomeViewModel;
 import com.document.docease.ui.module.editors.ViewEditorActivity;
 
+import com.document.docease.ui.module.editors.adapters.ColorListAdapter;
 import com.document.docease.utils.Constant;
-import com.document.docease.utils.FileUtil;
-import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
-import com.tom_roush.pdfbox.io.MemoryUsageSetting;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
-import com.tom_roush.pdfbox.text.PDFTextStripperByArea;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import kotlin.jvm.internal.markers.KMutableList;
 
 public class NUIDocView extends FrameLayout implements OnClickListener, OnTabChangeListener, DocViewHost {
     public static int OVERSIZE_MARGIN;
@@ -277,10 +270,12 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 //    private View lineView;
     private boolean isBeingSelected = false;
 
-    private ImageView menuOptions;
-    private PopupWindow menuOptionsPopup;
+    ImageView menuOptions;
+    PopupWindow menuOptionsPopup;
+    ListPopupWindow fontColorPopup;
 
     private ImageView previewCopy;
+
 
     public NUIDocView(Context var1) {
         super(var1);
@@ -2866,7 +2861,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         }, var2.getAuthor());
     }
 
-    private void onMenuOptionButton(View view) {
+    void onMenuOptionButton(View view) {
         if (this.activity() != null && !this.activity().isFinishing()) {
             View popupView = LayoutInflater.from(this.activity()).inflate(com.document.docease.R.layout.menu_popup_option_items, null, false);
             menuOptionsPopup = new PopupWindow(popupView, 500, 500, true);
@@ -2906,6 +2901,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     public void onClick(View var1) {
         if (var1 != null) {
+
 
             if (var1 == this.previewCopy) {
                 copyTextInDocument(var1);

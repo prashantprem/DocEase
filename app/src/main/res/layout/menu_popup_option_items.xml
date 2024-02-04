@@ -38,7 +38,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#8C2FC582" />
+        android:background="@color/gray" />
 
     <RelativeLayout
         android:id="@+id/insert_menu"
@@ -70,7 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#8C2FC582" />
+        android:background="@color/gray" />
 
 
     <RelativeLayout
@@ -101,7 +101,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#8C2FC582" />
+        android:background="@color/gray" />
 
 
     <RelativeLayout

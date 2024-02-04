@@ -3,10 +3,13 @@ package com.artifex.sonui.editor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.supportv1.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -82,6 +85,7 @@ public class NUIDocViewPpt extends NUIDocView {
         this.mToolbarPaste.setOnClickListener(v -> {
             this.doPaste();
         });
+        menuOptions.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), com.document.docease.R.color.menu_ppt_color)));
     }
 
     public boolean canCanManipulatePages() {
@@ -447,4 +451,31 @@ public class NUIDocViewPpt extends NUIDocView {
                 break;
         }
     }
+
+
+    @Override
+    void onMenuOptionButton(View view) {
+        if (this.activity() != null && !this.activity().isFinishing()) {
+            View popupView = LayoutInflater.from(this.activity()).inflate(com.document.docease.R.layout.menu_popup_option_items, null, false);
+            menuOptionsPopup = new PopupWindow(popupView, 500, 400, true);
+
+            popupView.findViewById(com.document.docease.R.id.edit_menu).setOnClickListener(view1 -> {
+                onMenuOptionClicked(MenuOptions.EDIT);
+                menuOptionsPopup.dismiss();
+            });
+
+            popupView.findViewById(com.document.docease.R.id.insert_menu).setOnClickListener(view1 -> {
+                onMenuOptionClicked(MenuOptions.INSERT);
+                menuOptionsPopup.dismiss();
+            });
+
+            popupView.findViewById(com.document.docease.R.id.format_menu).setOnClickListener(view1 -> {
+                onMenuOptionClicked(MenuOptions.FORMAT);
+                menuOptionsPopup.dismiss();
+            });
+            popupView.findViewById(com.document.docease.R.id.formula_menu).setVisibility(View.GONE);
+            menuOptionsPopup.showAsDropDown(view, 0, -70);
+        }
+    }
+
 }
