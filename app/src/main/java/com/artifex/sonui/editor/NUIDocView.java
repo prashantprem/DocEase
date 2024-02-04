@@ -1620,6 +1620,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                     NUIDocView.this.b();
                                     NUIDocView.this.j();
                                     if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
+                                        Log.d("TestingError", "Called here 1");
                                         String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
                                         Utilities.showMessage(var9, NUIDocView.this.getContext().getString(string.sodk_editor_error), var3);
                                     }
@@ -1682,6 +1683,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                             NUIDocView.this.b();
                                             NUIDocView.this.j();
                                             if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
+                                                Log.d("TestingError", "Called here 2");
                                                 String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
                                                 Utilities.showMessage(var9, NUIDocView.this.getContext().getString(string.sodk_editor_error), var3);
                                             }
@@ -1791,6 +1793,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                             NUIDocView.this.b();
                                             NUIDocView.this.j();
                                             if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
+                                                Log.d("TestingError", "Called here 3");
                                                 String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
                                                 Utilities.showMessage(var9, NUIDocView.this.getContext().getString(string.sodk_editor_error), var3);
                                             }

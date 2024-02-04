@@ -3204,6 +3204,7 @@
     <style name="sodk_editor_alert_dialog_style" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:buttonStyle">@style/sodk_editor_alert_button_style</item>
         <item name="android:textColor">@color/sodk_editor_palette_black</item>
+        <item name="background">@drawable/round_rect_rating</item>
     </style>
 
     <style name="sodk_editor_alert_edit_text_style" />
