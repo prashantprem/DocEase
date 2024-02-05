@@ -1,7 +1,9 @@
 package com.document.docease.ui.module.main
 
+import android.content.Intent
 import android.util.Log
 import androidx.activity.compose.BackHandler
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -55,7 +57,8 @@ import java.io.File
 @Composable
 fun LandingScreen(
     viewModel: MainViewModel,
-    navigationController: NavHostController
+    navigationController: NavHostController,
+    storageRequestLauncher: ActivityResultLauncher<Intent>
 ) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.HOME,
@@ -224,7 +227,8 @@ fun LandingScreen(
                             }
                         }
 
-                    }, bottomBarNativeState
+                    }, bottomBarNativeState,
+                    storageRequestLauncher
                 )
             }
         },

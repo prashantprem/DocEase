@@ -1,5 +1,7 @@
 package com.document.docease.ui.navigation
 
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
@@ -14,6 +16,7 @@ import com.document.docease.ui.module.search.SearchScreen
 fun MainNavigationConfiguration(
     navController: NavHostController,
     viewModel: MainViewModel,
+    storageRequestLauncher: ActivityResultLauncher<Intent>
 ) {
     NavHost(navController, startDestination = Routes.LANDING,
         enterTransition = {
@@ -30,7 +33,7 @@ fun MainNavigationConfiguration(
             SearchScreen(viewModel, navController)
         }
         composable(Routes.LANDING) {
-            LandingScreen(viewModel, navController)
+            LandingScreen(viewModel, navController,storageRequestLauncher)
         }
     }
 }

@@ -36,11 +36,10 @@ class MainActivity : ComponentActivity() {
 
 
     private val viewModel by viewModels<MainViewModel>()
-    private val PERMISSION_EXTERNAL = 0x111111
 
     companion object {
         const val CODE_RESULT_BOOKMARK = 2
-
+        const val PERMISSION_EXTERNAL = 0x111111
     }
 
 
@@ -48,6 +47,7 @@ class MainActivity : ComponentActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 if (Environment.isExternalStorageManager()) {
+                    PermissionUtils.storagePermissionState.value = true
                     viewModel.getAllFiles(this@MainActivity)
                 } else {
                     Toast.makeText(
@@ -82,16 +82,19 @@ class MainActivity : ComponentActivity() {
                 viewModel.showSplash = false
             }
         }
-
-        PermissionUtils.isPermission(
-            PERMISSION_EXTERNAL,
-            this@MainActivity,
-            requestPermissionResultLauncher
-        ).let { hasPermission ->
-            if (hasPermission) {
-                viewModel.getAllFiles(this@MainActivity)
-            }
+        if (PermissionUtils.hasPermission(this@MainActivity)) {
+            viewModel.getAllFiles(this@MainActivity)
         }
+
+//        PermissionUtils.isPermission(
+//            PERMISSION_EXTERNAL,
+//            this@MainActivity,
+//            requestPermissionResultLauncher
+//        ).let { hasPermission ->
+//            if (hasPermission) {
+//                viewModel.getAllFiles(this@MainActivity)
+//            }
+//        }
 
 
         viewModel.allFiles.observe(this) {
@@ -103,7 +106,8 @@ class MainActivity : ComponentActivity() {
                 Box(Modifier.safeDrawingPadding()) {
                     MainNavigationConfiguration(
                         navController = navController,
-                        viewModel = viewModel
+                        viewModel = viewModel,
+                        requestPermissionResultLauncher
                     )
                 }
             }
@@ -120,9 +124,9 @@ class MainActivity : ComponentActivity() {
         if (requestCode == PERMISSION_EXTERNAL) {
             if (grantResults.isNotEmpty() && permissions[0] == Manifest.permission.WRITE_EXTERNAL_STORAGE) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    PermissionUtils.storagePermissionState.value = true
                     viewModel.getAllFiles(this@MainActivity)
                 } else {
-
                     PermissionUtils.isPermission(
                         PERMISSION_EXTERNAL,
                         this,

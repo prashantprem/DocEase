@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
+import androidx.compose.runtime.mutableStateOf
 import androidx.core.content.ContextCompat
 
 object PermissionUtils {
@@ -48,4 +49,19 @@ object PermissionUtils {
             }
         }
     }
+
+    fun hasPermission(activity: Activity): Boolean {
+        val hasStoragePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Environment.isExternalStorageManager()
+        } else {
+            ContextCompat.checkSelfPermission(
+                activity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+        storagePermissionState.value = hasStoragePermission
+        return hasStoragePermission
+    }
+
+    var storagePermissionState = mutableStateOf(false)
 }

@@ -1,5 +1,7 @@
 package com.document.docease.ui.navigation
 
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
@@ -18,7 +20,9 @@ import com.google.android.gms.ads.nativead.NativeAd
 fun BottomNavigationScreenConfigurations(
     navController: NavHostController,
     viewModel: MainViewModel,
-    fileClickListener: FileClickListener, bottomBarNativeAd: NativeAd?,
+    fileClickListener: FileClickListener,
+    bottomBarNativeAd: NativeAd?,
+    storageRequestLauncher: ActivityResultLauncher<Intent>,
 ) {
     NavHost(navController, startDestination = BottomNavigationScreens.HOME.route,
         enterTransition = { EnterTransition.None },
@@ -28,19 +32,19 @@ fun BottomNavigationScreenConfigurations(
     ) {
         composable(BottomNavigationScreens.HOME.route) {
 
-            HomeScreen(viewModel, fileClickListener)
+            HomeScreen(viewModel, fileClickListener, storageRequestLauncher)
         }
         composable(BottomNavigationScreens.PDF.route) {
-            FileListScreen(viewModel, FileType.PDF, fileClickListener, bottomBarNativeAd)
+            FileListScreen(viewModel, FileType.PDF, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
         }
         composable(BottomNavigationScreens.WORD.route) {
-            FileListScreen(viewModel, FileType.WORD, fileClickListener, bottomBarNativeAd)
+            FileListScreen(viewModel, FileType.WORD, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
         }
         composable(BottomNavigationScreens.EXCEL.route) {
-            FileListScreen(viewModel, FileType.EXCEL, fileClickListener, bottomBarNativeAd)
+            FileListScreen(viewModel, FileType.EXCEL, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
         }
         composable(BottomNavigationScreens.PPT.route) {
-            FileListScreen(viewModel, FileType.P_POINT, fileClickListener, bottomBarNativeAd)
+            FileListScreen(viewModel, FileType.P_POINT, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
         }
     }
 }

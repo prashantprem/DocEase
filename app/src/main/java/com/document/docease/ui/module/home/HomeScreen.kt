@@ -1,6 +1,8 @@
 package com.document.docease.ui.module.home
 
+import android.content.Intent
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -40,32 +42,39 @@ import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
+import com.document.docease.ui.common.StoragePermissionScreen
 import com.document.docease.ui.components.ads.NativeAdAdmobMedium
 import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
+import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.theme.primaryBlue
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.Extensions.findActivity
+import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     viewModel: MainViewModel,
-    fileClickListener: FileClickListener
+    fileClickListener: FileClickListener,
+    storageRequestLauncher: ActivityResultLauncher<Intent>
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
+    val mActivity = LocalContext.current.findActivity()
     val documentCountState = viewModel.documentCount.observeAsState()
     val adstate = rememberNativeAdState(
-        context = LocalContext.current, adUnitId = AdUnits.homeNative,
-        refreshInterval = 300000
+        context = LocalContext.current, adUnitId = AdUnits.homeNative, refreshInterval = 300000
     )
+    val hasPermission = PermissionUtils.storagePermissionState.value
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 8.dp)
+            .padding(horizontal = 4.dp)
     ) {
         var tabIndex by remember { mutableIntStateOf(0) }
         val pagerState = rememberPagerState(initialPage = 0, pageCount = {
@@ -78,14 +87,27 @@ fun HomeScreen(
         LaunchedEffect(pagerState.currentPage) {
             tabIndex = pagerState.currentPage
         }
-        NativeAdAdmobMedium(
-            context = LocalContext.current,
-            loadedAd = adstate,
-            isDarkTheme = isSystemInDarkTheme()
-        )
-        TabRow(selectedTabIndex = tabIndex, modifier = Modifier
-            .padding(vertical = 8.dp)
-            .fillMaxWidth(),
+        if (mActivity != null && !hasPermission) {
+            StoragePermissionScreen {
+                PermissionUtils.isPermission(
+                    MainActivity.PERMISSION_EXTERNAL,
+                    activity = mActivity,
+                    storageRequestLauncher
+                )
+
+            }
+        } else {
+            NativeAdAdmobMedium(
+                context = LocalContext.current,
+                loadedAd = adstate,
+                isDarkTheme = isSystemInDarkTheme()
+            )
+        }
+
+        TabRow(selectedTabIndex = tabIndex,
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+                .fillMaxWidth(),
             indicator = { tabPositions ->
                 Box(
                     modifier = Modifier
@@ -114,7 +136,8 @@ fun HomeScreen(
                         )
                 ) {
                     Image(
-                        painter = painterResource(id = tabs[index]), contentDescription = "Recent",
+                        painter = painterResource(id = tabs[index]),
+                        contentDescription = "Recent",
                         modifier = Modifier
                             .size(30.dp)
                             .padding(6.dp),
@@ -126,14 +149,12 @@ fun HomeScreen(
         }
 
         HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
+            state = pagerState, modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
         ) {
             Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
             ) {
                 when (tabIndex) {
                     0 -> {
