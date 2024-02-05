@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
                 android:text="@string/app_name"
+                android:textStyle="bold"
                 android:textColor="@color/primary"
                 android:textSize="17sp" />
 
@@ -80,7 +81,7 @@
     <!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
     <LinearLayout
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,16 +95,17 @@
             android:padding="8dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_50sdp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
                 android:gravity="center"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/ic_app_placeholder"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:scaleType="fitCenter"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/app_logo" />
 
                 <TextView
@@ -144,9 +146,9 @@
             android:padding="8dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_50sdp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_marginEnd="@dimen/_4sdp"
                 android:src="@drawable/ic_app_placeholder" />
 
 
@@ -209,6 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                android:tint="@color/primary"
                 android:src="@drawable/ic_default_hand" />
         </LinearLayout>
 
