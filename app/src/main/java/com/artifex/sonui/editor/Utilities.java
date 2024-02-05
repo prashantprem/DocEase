@@ -1046,7 +1046,6 @@ public class Utilities {
                     public void onClick(DialogInterface var1x, int var2x) {
                         var1x.dismiss();
                         Utilities.b = null;
-                        var0.finish();
                     }
                 }).create();
                 Utilities.b.show();

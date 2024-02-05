@@ -1791,7 +1791,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                             if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
                                                 Log.d("TestingError", "Called here 3");
                                                 String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
-                                                Utilities.showMessage(var9, NUIDocView.this.getContext().getString(string.sodk_editor_error), var3);
+                                                Utilities.showMessageAndFinish(var9, NUIDocView.this.getContext().getString(string.sodk_editor_error), var3);
                                             }
 
                                         }
@@ -3133,16 +3133,18 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 //                this.goBack();
 //            }
 
-            if (var1 == this.mInsertImageButton) {
-                this.onInsertImageButton(var1);
-            }
+//            if (var1 == this.mInsertImageButton) {
+//                if (isImageAreaSelected()) {
+//                    this.onInsertImageButton(var1);
+//                }
+//            }
 //chnaged here
             if (var1 == this.imgInsertImageButton) {
                 if (isImageAreaSelected()) {
                     this.onInsertImageButton(var1);
                 }
             }
-            if (var1 == this.editorExpandInsertImage) {
+            if (var1 == this.editorExpandInsertImage || var1 == this.mInsertImageButton) {
                 if (isImageAreaSelected()) {
                     this.onInsertImageButton(var1);
                 } else {

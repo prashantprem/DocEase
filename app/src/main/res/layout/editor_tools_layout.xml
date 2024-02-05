@@ -127,10 +127,10 @@
                 android:fontFamily="@font/nunito"
                 android:gravity="center"
                 android:padding="@dimen/_4sdp"
-                app:tint="@color/text_color"
                 android:src="@drawable/ic_main_plus"
                 android:textColor="@color/text_color"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:tint="@color/text_color" />
 
 
         </LinearLayout>
@@ -420,11 +420,63 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="#777777" />
+
+        <LinearLayout
+            android:id="@id/insert_image_button"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_main_add_image"
+                app:tint="@color/text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sodk_editor_image_upper"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@id/insert_photo_button"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_main_add_camera"
+                app:tint="@color/text_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sodk_editor_photo_upper"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@id/save_pdf_button"
