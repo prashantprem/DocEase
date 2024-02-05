@@ -4,5 +4,6 @@
     android:layout_height="wrap_content"
     android:background="@drawable/sodk_editor_button"
     android:minWidth="30dp"
-    android:textColor="@color/sodk_palette_white"
-    android:textSize="24.0sp" />
+    android:fontFamily="@font/nunito"
+    android:textColor="@color/text_color"
+    android:textSize="14.0sp" />

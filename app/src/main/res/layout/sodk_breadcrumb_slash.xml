@@ -5,5 +5,5 @@
     android:background="@color/sodk_transparent"
     android:gravity="center"
     android:text="/"
-    android:textColor="@color/sodk_breadcrumb_tint"
+    android:textColor="@color/text_color"
     android:textSize="16sp" />

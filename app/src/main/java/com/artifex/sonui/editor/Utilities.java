@@ -758,22 +758,19 @@ public class Utilities {
 
         switch (var1) {
             case 0:
-                return drawable.sodk_editor_icon_doc;
             case 1:
             case 2:
             case 3:
             case 4:
-                return drawable.sodk_editor_icon_docx;
+                return com.document.docease.R.drawable.ic_large_word;
             case 5:
-                return drawable.sodk_editor_icon_xls;
             case 6:
             case 7:
             case 8:
             case 9:
-                return drawable.sodk_editor_icon_xlsx;
+                return com.document.docease.R.drawable.ic_large_excel;
             case 10:
             case 11:
-                return drawable.sodk_editor_icon_ppt;
             case 12:
             case 13:
             case 14:
@@ -781,12 +778,13 @@ public class Utilities {
             case 16:
             case 17:
             case 18:
-                return drawable.sodk_editor_icon_pptx;
+                return com.document.docease.R.drawable.ic_large_ppt;
             case 19:
-                return drawable.sodk_editor_icon_pdf;
+                return com.document.docease.R.drawable.ic_large_pdf;
             case 20:
             case 21:
-                return drawable.sodk_editor_icon_txt;
+                return com.document.docease.R.drawable.ic_text_unselected;
+
             case 22:
                 return drawable.sodk_editor_icon_hangul;
             case 23:
@@ -798,7 +796,7 @@ public class Utilities {
             case 29:
             case 30:
             case 31:
-                return drawable.sodk_editor_icon_image;
+                return com.document.docease.R.drawable.ic_image_icon;
             case 32:
                 return drawable.sodk_editor_icon_svg;
             case 33:
@@ -973,7 +971,7 @@ public class Utilities {
     public static void setFilenameText(SOTextView var0, String var1) {
         Context var2 = var0.getContext();
         int var3 = var1.lastIndexOf(".");
-        String var4 = a(color.sodk_editor_filename_textcolor, var2);
+        String var4 = a(com.document.docease.R.color.text_color, var2);
         String var5 = a(color.sodk_editor_extension_textcolor, var2);
         StringBuilder var6;
         if (var3 >= 0) {
