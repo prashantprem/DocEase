@@ -98,7 +98,7 @@ fun SearchScreen(
                             mFile = null
                         },
                         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-                        containerColor = colorResource(id = R.color.bg_color_main),
+                        containerColor = colorResource(id = R.color.bottom_sheet_bg),
                         sheetState = fileInfoBottomSheetState,
                         dragHandle = null,
 

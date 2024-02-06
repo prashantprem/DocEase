@@ -6,4 +6,5 @@
     <color name="text_color">#FFFFFF</color>
     <color name="greyDayNight">#3D4043</color>
     <color name="bar_color">#1f1f1f</color>
+    <color name="bottom_sheet_bg">#323232</color>
 </resources>

@@ -104,14 +104,12 @@ fun LandingScreen(
                     )
                 },
                 navigationIcon = {
-//                    IconButton(onClick = { /*TODO*/ }) {
-//                        Icon(
-//                            painter = painterResource(id = R.drawable.ic_hamburger),
-//                            contentDescription = "App Logo",
-//                            tint = colorResource(id = R.color.primary),
-//                            modifier = Modifier.size(30.dp),
-//                        )
-//                    }
+                    Icon(
+                        painter = painterResource(id = R.drawable.app_logo),
+                        contentDescription = "App Logo",
+                        modifier = Modifier.size(30.dp),
+                    )
+
                 },
                 actions = {
                     Icon(
@@ -145,7 +143,7 @@ fun LandingScreen(
                         mFile = null
                     },
                     shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-                    containerColor = colorResource(id = R.color.bg_color_main),
+                    containerColor = colorResource(id = R.color.bottom_sheet_bg),
                     sheetState = fileInfoBottomSheetState,
                     dragHandle = null,
 

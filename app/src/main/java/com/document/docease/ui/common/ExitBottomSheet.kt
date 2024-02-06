@@ -42,7 +42,7 @@ fun ExitBottomSheet(
             onDismiss()
         },
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        containerColor = colorResource(id = R.color.bar_color),
+        containerColor = colorResource(id = R.color.bottom_sheet_bg),
         dragHandle = null,
         sheetState = exitBottomSheetState
     ) {
@@ -54,8 +54,9 @@ fun ExitBottomSheet(
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Exit ${stringResource(id = R.string.app_name)}?")
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             NativeAdAdmobMedium(context = LocalContext.current, loadedAd = adState)
+            Spacer(modifier = Modifier.height(8.dp))
             Row {
                 Button(
                     modifier = Modifier
