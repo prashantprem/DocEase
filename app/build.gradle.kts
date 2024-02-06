@@ -85,6 +85,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
 //    implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material3:material3:1.2.0-rc01")
+    implementation("androidx.compose.material:material:1.6.0")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.lifecycle:lifecycle-process:2.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

@@ -36,6 +36,7 @@ class MainViewModel @Inject constructor(
 
     var showSplash by mutableStateOf(true)
 
+    var isRefreshing by mutableStateOf(false)
 
     private val _allFiles = MutableLiveData<Resource<List<File>>>()
     val allFiles: LiveData<Resource<List<File>>> get() = _allFiles
@@ -80,7 +81,7 @@ class MainViewModel @Inject constructor(
                     getAllFilesLegacy(Constant.dir)
                 }.await()
             }
-            updateFilesAfterLoading()
+            updateFilesAfterLoading(context == null)
         }
     }
 
@@ -102,12 +103,15 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun updateFilesAfterLoading() {
+    private fun updateFilesAfterLoading(isSortRequired: Boolean = true) {
         CoroutineScope(Dispatchers.IO).launch {
-            allPdfFiles.sortByDescending { it.lastModified() }
-            allWordFiles.sortByDescending { it.lastModified() }
-            allExcelFiles.sortByDescending { it.lastModified() }
-            allPptFiles.sortByDescending { it.lastModified() }
+            isRefreshing = false
+            if (isSortRequired) {
+                allPdfFiles.sortByDescending { it.lastModified() }
+                allWordFiles.sortByDescending { it.lastModified() }
+                allExcelFiles.sortByDescending { it.lastModified() }
+                allPptFiles.sortByDescending { it.lastModified() }
+            }
             _allFiles.postValue(Resource.Success(allOfficeFile))
             _pdfFiles.postValue(Resource.Success(allPdfFiles))
             _wordFiles.postValue(Resource.Success(allWordFiles))
@@ -310,6 +314,12 @@ class MainViewModel @Inject constructor(
             e.printStackTrace()
         }
 
+    }
+
+
+    fun refresh(context: Context) {
+        isRefreshing = true
+        getAllFiles(context)
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -53,7 +54,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import kotlin.system.exitProcess
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun LandingScreen(
     viewModel: MainViewModel,
@@ -90,6 +91,7 @@ fun LandingScreen(
         refreshInterval = 300000
     )
 
+
     var clickCount = 0
     Scaffold(
         topBar = {
@@ -104,11 +106,11 @@ fun LandingScreen(
                     )
                 },
                 navigationIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.app_logo),
-                        contentDescription = "App Logo",
-                        modifier = Modifier.size(30.dp),
-                    )
+//                    Icon(
+//                        painter = painterResource(id = R.drawable.app_logo),
+//                        contentDescription = "App Logo",
+//                        modifier = Modifier.size(30.dp),
+//                    )
 
                 },
                 actions = {
@@ -196,6 +198,7 @@ fun LandingScreen(
                     showExitBottomSheet = true
                 }
             })
+
 
             Column(
                 modifier = Modifier

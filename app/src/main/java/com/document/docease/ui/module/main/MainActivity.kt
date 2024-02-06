@@ -14,7 +14,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
@@ -63,6 +70,7 @@ class MainActivity : ComponentActivity() {
         }
 
 
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
@@ -96,12 +104,27 @@ class MainActivity : ComponentActivity() {
         setContent {
             DocEaseTheme {
                 val navController = rememberNavController()
-                Box(Modifier.safeDrawingPadding()) {
+                val pullRefreshState = rememberPullRefreshState(
+                    viewModel.isRefreshing,
+                    { viewModel.refresh(this@MainActivity) })
+                Box(
+                    Modifier
+                        .safeDrawingPadding()
+                        .pullRefresh(pullRefreshState)
+                ) {
                     MainNavigationConfiguration(
                         navController = navController,
                         viewModel = viewModel,
                         requestPermissionResultLauncher
                     )
+                    if (PermissionUtils.storagePermissionState.value) {
+                        PullRefreshIndicator(
+                            viewModel.isRefreshing, pullRefreshState,
+                            Modifier
+                                .align(Alignment.TopCenter)
+                                .size(30.dp)
+                        )
+                    }
                 }
             }
 
