@@ -77,6 +77,9 @@ fun LandingScreen(
     var mFile: File? = null
     val mContext = LocalContext.current
     val bottomNavigationController = rememberNavController()
+    val homeNativeAdState = rememberNativeAdState(
+        context = LocalContext.current, adUnitId = AdUnits.homeNative, refreshInterval = 300000
+    )
 
     val exitAdState = rememberNativeAdState(
         context = LocalContext.current, adUnitId = AdUnits.exitNative,
@@ -86,6 +89,7 @@ fun LandingScreen(
         context = LocalContext.current, adUnitId = AdUnits.filesNative,
         refreshInterval = 300000
     )
+
     var clickCount = 0
     Scaffold(
         topBar = {
@@ -229,7 +233,8 @@ fun LandingScreen(
                         }
 
                     }, bottomBarNativeState,
-                    storageRequestLauncher
+                    storageRequestLauncher,
+                    homeNativeAdState
                 )
             }
         },

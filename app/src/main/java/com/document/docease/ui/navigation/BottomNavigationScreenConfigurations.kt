@@ -23,6 +23,7 @@ fun BottomNavigationScreenConfigurations(
     fileClickListener: FileClickListener,
     bottomBarNativeAd: NativeAd?,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
+    ad: NativeAd?
 ) {
     NavHost(navController, startDestination = BottomNavigationScreens.HOME.route,
         enterTransition = { EnterTransition.None },
@@ -32,19 +33,43 @@ fun BottomNavigationScreenConfigurations(
     ) {
         composable(BottomNavigationScreens.HOME.route) {
 
-            HomeScreen(viewModel, fileClickListener, storageRequestLauncher)
+            HomeScreen(viewModel, fileClickListener, storageRequestLauncher, ad)
         }
         composable(BottomNavigationScreens.PDF.route) {
-            FileListScreen(viewModel, FileType.PDF, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
+            FileListScreen(
+                viewModel,
+                FileType.PDF,
+                fileClickListener,
+                bottomBarNativeAd,
+                storageRequestLauncher
+            )
         }
         composable(BottomNavigationScreens.WORD.route) {
-            FileListScreen(viewModel, FileType.WORD, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
+            FileListScreen(
+                viewModel,
+                FileType.WORD,
+                fileClickListener,
+                bottomBarNativeAd,
+                storageRequestLauncher
+            )
         }
         composable(BottomNavigationScreens.EXCEL.route) {
-            FileListScreen(viewModel, FileType.EXCEL, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
+            FileListScreen(
+                viewModel,
+                FileType.EXCEL,
+                fileClickListener,
+                bottomBarNativeAd,
+                storageRequestLauncher
+            )
         }
         composable(BottomNavigationScreens.PPT.route) {
-            FileListScreen(viewModel, FileType.P_POINT, fileClickListener, bottomBarNativeAd,storageRequestLauncher)
+            FileListScreen(
+                viewModel,
+                FileType.P_POINT,
+                fileClickListener,
+                bottomBarNativeAd,
+                storageRequestLauncher
+            )
         }
     }
 }

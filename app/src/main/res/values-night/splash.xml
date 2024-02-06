@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="DocEase.Splash.Theme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#1C1E21</item>
+        <item name="windowSplashScreenBackground">#121212</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_inset</item>
         <item name="postSplashScreenTheme">@style/Theme.DocEase</item>
     </style>

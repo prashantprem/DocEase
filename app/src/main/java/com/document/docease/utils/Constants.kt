@@ -7,7 +7,7 @@ import java.io.File
 object Constant {
     var showAds = true
     var appOpenTimeout = 4000
-    var adPerClickCount = 2
+    var adPerClickCount = 4
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
