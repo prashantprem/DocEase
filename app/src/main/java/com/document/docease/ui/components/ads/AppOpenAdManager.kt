@@ -119,7 +119,7 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
         if (isInterstitialAdShowing) return false
         val currentTimeInMillis = System.currentTimeMillis()
         val dateDifference: Long = currentTimeInMillis - loadTime
-        return dateDifference > Constant.appOpenTime
+        return dateDifference > Constant.appOpenTimeout
 
     }
 

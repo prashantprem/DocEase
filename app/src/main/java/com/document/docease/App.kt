@@ -3,6 +3,7 @@ package com.document.docease
 import AppOpenAdManager
 import com.artifex.sonui.MainApp
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.RemoteConfigUtil
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import dagger.hilt.android.HiltAndroidApp
@@ -20,6 +21,7 @@ class App : MainApp() {
                     RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
                 MobileAds.setRequestConfiguration(configuration)
             }
+            RemoteConfigUtil().init()
             AppOpenAdManager(this, AdUnits.appOpen)
         }
     }
