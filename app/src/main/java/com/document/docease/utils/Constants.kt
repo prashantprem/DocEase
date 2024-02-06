@@ -5,7 +5,7 @@ import com.document.docease.BuildConfig
 import java.io.File
 
 object Constant {
-    var showAds = false
+    var showAds = true
     var adPerClickCount = 2
     var appOpenTime = 5000L
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
@@ -235,9 +235,22 @@ object PrefKeys {
 
 
 object AdUnits {
-    const val homeNative = "ca-app-pub-3940256099942544/2247696110"
-    const val filesNative = "ca-app-pub-3940256099942544/2247696110"
-    const val exitNative = "ca-app-pub-3940256099942544/2247696110"
-    const val splashInterstitial = "ca-app-pub-3940256099942544/8691691433"
-    const val appOpen = "ca-app-pub-3940256099942544/9257395921"
+    //test ads
+//    const val homeNative = "ca-app-pub-3940256099942544/2247696110"
+//    const val filesNative = "ca-app-pub-3940256099942544/2247696110"
+//    const val exitNative = "ca-app-pub-3940256099942544/2247696110"
+//    const val splashInterstitial = "ca-app-pub-3940256099942544/8691691433"
+//    const val appOpen = "ca-app-pub-3940256099942544/9257395921"
+
+
+    //prod
+    const val homeNative = "ca-app-pub-7642879603256855/5233946502"
+    const val filesNative = "ca-app-pub-7642879603256855/8961438520"
+    const val exitNative = "ca-app-pub-7642879603256855/2607783165"
+    const val splashInterstitial = "ca-app-pub-7642879603256855/6035343549"
+    const val appOpen = "ca-app-pub-7642879603256855/1454483590"
+    const val buyMeCoffee = "ca-app-pub-7642879603256855/8507015090"
+    const val fileEditInterstitial = "ca-app-pub-7642879603256855/7843249236"
+    const val flowInterstitial = "ca-app-pub-7642879603256855/7860109843"
+    const val fileBanner = "ca-app-pub-7642879603256855/8890158470"
 }

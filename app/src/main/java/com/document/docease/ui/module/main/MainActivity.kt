@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
             loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
                 showInterstitial(this@MainActivity, onAdDismissed = {
                     viewModel.showSplash = false
-                })
+                }, adUnit = AdUnits.splashInterstitial)
 
             }, onAdFailed = {
                 viewModel.showSplash = false
@@ -85,17 +85,6 @@ class MainActivity : ComponentActivity() {
         if (PermissionUtils.hasPermission(this@MainActivity)) {
             viewModel.getAllFiles(this@MainActivity)
         }
-
-//        PermissionUtils.isPermission(
-//            PERMISSION_EXTERNAL,
-//            this@MainActivity,
-//            requestPermissionResultLauncher
-//        ).let { hasPermission ->
-//            if (hasPermission) {
-//                viewModel.getAllFiles(this@MainActivity)
-//            }
-//        }
-
 
         viewModel.allFiles.observe(this) {
             Log.d("TestingFiles", "$it")

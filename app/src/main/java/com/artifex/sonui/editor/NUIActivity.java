@@ -14,7 +14,11 @@ import com.artifex.solib.ConfigOptions;
 import com.artifex.solib.SOSelectionLimits;
 import com.artifex.sonui.editor.R.string;
 import com.artifex.sonui.editor.SODocSession.SODocSessionLoadListenerCustom;
+import com.document.docease.utils.AdUnits;
 import com.document.docease.utils.Constant;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -25,7 +29,7 @@ public class NUIActivity extends BaseActivity {
     private int d = -1;
     protected NUIPreview mNUIPreview;
 
-    LinearLayout adView;
+    AdView adView;
 
     public NUIActivity() {
     }
@@ -147,6 +151,15 @@ public class NUIActivity extends BaseActivity {
         } else {
             //pass intent with nuipreview for previewing
             nUIActivity.mNUIPreview.start(intent.getData(), z2, i, str, intent.getType(), intent);
+        }
+
+        loadBannerAd();
+    }
+
+    private void loadBannerAd() {
+        if (Constant.INSTANCE.getShowAds()) {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
         }
     }
 

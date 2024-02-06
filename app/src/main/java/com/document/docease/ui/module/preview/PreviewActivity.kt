@@ -17,9 +17,12 @@ import androidx.core.content.FileProvider
 import com.artifex.sonui.AppNUIActivity
 import com.document.docease.BuildConfig
 import com.document.docease.R
+import com.document.docease.ui.components.ads.loadInterstitial
+import com.document.docease.ui.components.ads.showInterstitial
 import com.document.docease.ui.module.editors.HomeViewModel
 import com.document.docease.ui.module.editors.ViewEditorActivity
 import com.document.docease.ui.module.editors.ViewEditorViewModel
+import com.document.docease.utils.AdUnits
 import com.document.docease.utils.Constant
 import com.document.docease.utils.FileUtil
 import com.document.docease.utils.Utility
@@ -29,20 +32,14 @@ import java.io.File
 @AndroidEntryPoint
 class PreviewActivity
     : AppNUIActivity() {
-    private var imvActivityEditorBookmark: ImageView? = null
     private var imvBack: AppCompatImageView? = null
     private var isClickBookmark = false
     private var imvMenuOption: ImageView? = null
 
-    //    private var shareToWhatsapp: LinearLayout? = null
-//    private var shareToAny: LinearLayout? = null
-//    private var viewMore: LinearLayout? = null
     private var mFile: File? = null
-    private var extras: Bundle? = null
     private var popupMenu: PopupMenu? = null
     private var imvEditorShare: AppCompatImageView? = null
 
-    //    private var imvEditorSave: AppCompatImageView? = null
     private var showEditInPopup = false
     private var toolbarSearch: AppCompatImageView? = null
     private var isCheckFavorite = false
@@ -57,15 +54,11 @@ class PreviewActivity
     @Suppress("DEPRECATION")
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
+        loadInterstitial(this@PreviewActivity, AdUnits.fileEditInterstitial)
         fileUtil = FileUtil(this)
-//        viewMore = findViewById(R.id.imv_activity_editor_more)
-//        imvEditorSave = findViewById(R.id.imv_activity_preview_save)
-//        shareToAny = findViewById(R.id.imv_activity_preview_share)
         imvEditorShare = findViewById(R.id.imv_activity_editor_share)
-//        shareToWhatsapp = findViewById(R.id.imv_activity_preview_whatsapp)
         imvMenuOption = findViewById(R.id.imv_menu_option)
         toolbarSearch = findViewById(R.id.toolbar_search)
-//        imvActivityEditorBookmark = findViewById(R.id.imv_activity_editor_bookmark)
         imvBack = findViewById(R.id.imv_back)
         popupMenu = PopupMenu(this@PreviewActivity, imvMenuOption, Gravity.END)
         popupMenu!!.menuInflater.inflate(R.menu.menu_reading_file_actions, popupMenu!!.menu)
@@ -93,16 +86,21 @@ class PreviewActivity
 
         if (imvEdit != null) {
             imvEdit!!.setOnClickListener {
-                if (isFromOutside) {
-                    Utility.openFileFromUri(this, intent.data!!)
-                } else {
-                    try {
-                        Utility.openFile(this, mFile!!, 0)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        Utility.openFileFromUri(this, intent.data!!)
-                    }
-                }
+                showInterstitial(
+                    this@PreviewActivity,
+                    AdUnits.fileEditInterstitial,
+                    onAdDismissed = {
+                        if (isFromOutside) {
+                            Utility.openFileFromUri(this, intent.data!!)
+                        } else {
+                            try {
+                                Utility.openFile(this, mFile!!, 0)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                Utility.openFileFromUri(this, intent.data!!)
+                            }
+                        }
+                    })
             }
         }
 
@@ -112,47 +110,6 @@ class PreviewActivity
                 finish()
             }
         }
-
-//        if (imvEditorSave != null) {
-//            imvEditorSave!!.setOnClickListener {
-//                if (Utility.fileType(mFile!!) == 6 || Utility.fileType(mFile!!) == 11) {
-//                    val intent = Intent(this, ChoosePathActivity::class.java)
-//                    intent.putExtra(Constant.FILE_PATH, mFile!!.path)
-//                    intent.putExtra(Constant.IS_IMAGE_FILE, true)
-//                    startActivity(intent)
-//                } else {
-//                    homeViewModel?.getTriggerSave()?.setValue(true)
-//                }
-//                finish()
-//            }
-//        }
-//        if (shareToWhatsapp != null) {
-//            shareToWhatsapp!!.setOnClickListener {
-//                try {
-//                    val sharingIntent = Intent(Intent.ACTION_SEND)
-//                    sharingIntent.type = "file/*"
-//                    val uri: Uri? = try {
-//                        FileProvider.getUriForFile(
-//                            this@PreviewActivity,
-//                            BuildConfig.APPLICATION_ID + ".provider",
-//                            mFile!!
-//                        )
-//                    } catch (e: Exception) {
-//                        Uri.fromFile(mFile)
-//                    }
-//                    sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
-//                    sharingIntent.setPackage("com.whatsapp")
-//                    startActivity(sharingIntent)
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//        }
-//        if (shareToAny != null) {
-//            shareToAny!!.setOnClickListener {
-//                Utility.shareToAny(mFile!!, this@PreviewActivity)
-//            }
-//        }
         if (imvEditorShare != null) {
             imvEditorShare!!.setOnClickListener {
                 if (isFromOutside) {
@@ -162,13 +119,6 @@ class PreviewActivity
                 }
             }
         }
-//        if (viewMore != null) {
-//            viewMore!!.setOnClickListener {
-//                val viewMoreBottomSheetFragment = ViewMoreBottomSheetFragment()
-//                viewMoreBottomSheetFragment.arguments = extras
-//                viewMoreBottomSheetFragment.showNow(supportFragmentManager, "bsViewMore")
-//            }
-//        }
         if (imvMenuOption != null) {
             imvMenuOption!!.setOnClickListener {
                 showPopUpMenu()
@@ -181,27 +131,6 @@ class PreviewActivity
         try {
             popupMenu?.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-//                    R.id.edit -> {
-//                        if (isFromOutside) {
-//                            Utility.openFileFromUri(this, intent.data!!)
-//                        } else {
-//                            try {
-//                                Utility.openFile(this, mFile!!, 0)
-//                            } catch (e: Exception) {
-//                                e.printStackTrace()
-//                                Utility.openFileFromUri(this, intent.data!!)
-//                            }
-//                        }
-//                    }
-
-//                    R.id.saveFile -> {
-//                        //library saving having some glitch so custom saving
-//                        val intent = Intent(this, ChoosePathActivity::class.java)
-//                        intent.putExtra(Constant.FILE_PATH, mFile!!.path)
-//                        intent.putExtra(Constant.IS_IMAGE_FILE, true)
-//                        startActivity(intent)
-//                    }
-
                     R.id.share -> {
                         if (isFromOutside) {
                             homeViewModel?.getTriggerShare()?.value = true
@@ -292,15 +221,6 @@ class PreviewActivity
                             ).show()
                         }
                     }
-
-                    R.id.moveToTrash -> {
-//                        val dialog = DeleteFragment.newInstance(object : sampleClickListener {
-//                            override fun onClick() {
-//                                finish()
-//                            }
-//                        }, mFile!!)
-//                        dialog.show(supportFragmentManager, "delete_fragment")
-                    }
                 }
                 true
             }
@@ -316,12 +236,6 @@ class PreviewActivity
             } finally {
                 popupMenu?.show()
             }
-//            if (showEditInPopup) {
-//                popupMenu?.menu?.findItem(R.id.edit)?.isVisible = false
-//            }
-//            popupMenu?.menu?.findItem(R.id.saveFile)?.isVisible = false
-//            popupMenu?.menu?.findItem(R.id.moveToTrash)?.isVisible = false
-//            popupMenu?.menu?.findItem(R.id.share)?.isVisible = false
         } catch (e: Exception) {
             e.printStackTrace()
         }

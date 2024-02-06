@@ -22,6 +22,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
@@ -45,6 +46,7 @@
             android:name=".ui.module.editors.ViewEditorActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
+            android:hardwareAccelerated="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/style_main"
@@ -56,6 +58,7 @@
         <activity
             android:name=".ui.module.preview.PreviewActivity"
             android:exported="true"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
             android:theme="@style/style_main"
             android:windowSoftInputMode="adjustPan">
@@ -149,7 +152,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-7642879603256855~7054294630" />
     </application>
 
 </manifest>

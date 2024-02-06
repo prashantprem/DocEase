@@ -133,7 +133,7 @@ fun LandingScreen(
             )
         },
         content = {
-            loadInterstitial(context = mContext, AdUnits.splashInterstitial)
+            loadInterstitial(context = mContext, AdUnits.flowInterstitial)
             if (showFileActionBottomSheet) {
                 ModalBottomSheet(
                     onDismissRequest = {
@@ -240,7 +240,7 @@ fun LandingScreen(
                 clickCount += 1
                 showInterstitialOnClick(
                     mContext,
-                    adUnit = AdUnits.splashInterstitial,
+                    adUnit = AdUnits.flowInterstitial,
                     clickCount, onAdDismissed = {
                         clickCount = 0
                     }
