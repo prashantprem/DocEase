@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidViewBinding
-import com.document.docease.R
 import com.document.docease.databinding.NativeAdMediumBinding
 import com.document.docease.databinding.NativeAdSmallBinding
 import com.google.android.gms.ads.nativead.NativeAd
@@ -28,15 +27,15 @@ fun NativeAdAdmobSmall(context: Context, loadedAd: NativeAd?, isDarkTheme: Boole
                 }
                 nativead.headline?.let { headline ->
                     this.adHeadline.text = headline
-                    if (!isDarkTheme) {
-                        this.adHeadline.setTextColor(context.getColor(R.color.black))
-                    }
+//                    if (!isDarkTheme) {
+//                        this.adHeadline.setTextColor(context.getColor(R.color.black))
+//                    }
                 }
                 nativead.body?.let { body ->
                     this.adBody.text = body
-                    if (!isDarkTheme) {
-                        this.adBody.setTextColor(context.getColor(R.color.black))
-                    }
+//                    if (!isDarkTheme) {
+//                        this.adBody.setTextColor(context.getColor(R.color.black))
+//                    }
                 }
                 nativead.callToAction?.let { actionbutton ->
                     this.adActionbutton.text = actionbutton
@@ -68,15 +67,15 @@ fun NativeAdAdmobMedium(context: Context, loadedAd: NativeAd?, isDarkTheme: Bool
                 }
                 nativead.headline?.let { headline ->
                     this.adHeadline.text = headline
-                    if (!isDarkTheme) {
-                        this.adHeadline.setTextColor(context.getColor(R.color.black))
-                    }
+//                    if (!isDarkTheme) {
+//                        this.adHeadline.setTextColor(context.getColor(R.color.black))
+//                    }
                 }
                 nativead.body?.let { body ->
                     this.adBody.text = body
-                    if (!isDarkTheme) {
-                        this.adBody.setTextColor(context.getColor(R.color.black))
-                    }
+//                    if (!isDarkTheme) {
+//                        this.adBody.setTextColor(context.getColor(R.color.black))
+//                    }
 
                 }
                 //media
