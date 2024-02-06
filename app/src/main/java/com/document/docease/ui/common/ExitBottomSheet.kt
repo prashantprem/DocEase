@@ -55,7 +55,7 @@ fun ExitBottomSheet(
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "Exit ${stringResource(id = R.string.app_name)}?")
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             NativeAdAdmobMedium(context = LocalContext.current, loadedAd = adState)
             Row {
                 Button(

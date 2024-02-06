@@ -47,11 +47,11 @@ import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
 import com.document.docease.ui.navigation.BottomNavigationScreenConfigurations
 import com.document.docease.ui.navigation.Routes
 import com.document.docease.utils.AdUnits
-import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
 import java.io.File
+import kotlin.system.exitProcess
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -183,7 +183,8 @@ fun LandingScreen(
             } else if (showExitBottomSheet) {
                 ExitBottomSheet(onExit = {
                     showExitBottomSheet = false
-                    mContext.findActivity()?.finish()
+                    exitProcess(0)
+//                    mContext.findActivity()?.finish()
                 }, onDismiss = {
                     showExitBottomSheet = false
                 }, exitBottomSheetState, exitAdState)

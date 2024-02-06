@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.document.docease.ui.components.ads.isInterstitialAdShowing
 import com.document.docease.utils.Constant
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -115,6 +116,7 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
     }
 
     private fun canShowAd(): Boolean {
+        if (isInterstitialAdShowing) return false
         val currentTimeInMillis = System.currentTimeMillis()
         val dateDifference: Long = currentTimeInMillis - loadTime
         return dateDifference > Constant.appOpenTime
