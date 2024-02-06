@@ -50,7 +50,6 @@ import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
-import com.document.docease.ui.theme.primaryBlue
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.PermissionUtils
@@ -116,7 +115,7 @@ fun HomeScreen(
                         .width(8.dp)
                         .clip(RoundedCornerShape(30.dp)) // clip modifier not working
                         .padding(horizontal = 40.dp)
-                        .background(color = primaryBlue)
+                        .background(color =  colorResource(id = R.color.primary))
 
                 )
 
@@ -141,7 +140,7 @@ fun HomeScreen(
                         modifier = Modifier
                             .size(30.dp)
                             .padding(6.dp),
-                        colorFilter = ColorFilter.tint(color = if (tabIndex == index) primaryBlue else Color.LightGray)
+                        colorFilter = ColorFilter.tint(color = if (tabIndex == index)  colorResource(id = R.color.primary) else Color.LightGray)
 
                     )
                 }

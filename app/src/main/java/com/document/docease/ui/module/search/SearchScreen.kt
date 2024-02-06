@@ -80,6 +80,7 @@ fun SearchScreen(
                     modifier = Modifier.noRippleClickable {
                         queryText = ""
                         viewModel.searchFile("")
+                        navController.popBackStack()
                     })
             },
             leadingIcon = {

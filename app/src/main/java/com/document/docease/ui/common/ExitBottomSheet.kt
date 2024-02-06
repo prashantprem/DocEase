@@ -25,7 +25,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
 import com.document.docease.ui.components.ads.NativeAdAdmobMedium
-import com.document.docease.ui.theme.primaryBlue
 import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.coroutines.launch
 
@@ -89,7 +88,7 @@ fun ExitBottomSheet(
                         .fillMaxWidth()
                         .weight(1f),
                     colors = ButtonDefaults.elevatedButtonColors(
-                        containerColor = primaryBlue,
+                        containerColor = colorResource(id = R.color.primary),
                         contentColor = Color.White
                     ),
                     onClick = { onDismiss() }, shape = RoundedCornerShape(36.dp),
