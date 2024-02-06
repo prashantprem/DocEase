@@ -5,6 +5,7 @@ import com.document.docease.BuildConfig
 import java.io.File
 
 object Constant {
+    var hasOpenedAFileInSession = false
     var showAds = true
     var appOpenTimeout = 4000
     var adPerClickCount = 4

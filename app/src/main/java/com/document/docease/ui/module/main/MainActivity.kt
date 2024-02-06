@@ -24,6 +24,7 @@ import com.document.docease.ui.navigation.MainNavigationConfiguration
 import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.Constant
+import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -36,6 +37,8 @@ class MainActivity : ComponentActivity() {
 
 
     private val viewModel by viewModels<MainViewModel>()
+    private var inAppReviewUtil: InAppReviewUtil? = null
+    private var hasRequestedReviewFlowInSession = false
 
     companion object {
         const val CODE_RESULT_BOOKMARK = 2
@@ -89,6 +92,7 @@ class MainActivity : ComponentActivity() {
         viewModel.allFiles.observe(this) {
             Log.d("TestingFiles", "$it")
         }
+        inAppReviewUtil = InAppReviewUtil(this@MainActivity)
         setContent {
             DocEaseTheme {
                 val navController = rememberNavController()
@@ -125,6 +129,15 @@ class MainActivity : ComponentActivity() {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        if (Constant.hasOpenedAFileInSession && !hasRequestedReviewFlowInSession) {
+            hasRequestedReviewFlowInSession = true
+            inAppReviewUtil?.showInAppReview()
+        }
     }
 }
 

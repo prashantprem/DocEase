@@ -124,6 +124,7 @@ object Utility {
     }
 
     fun openFileFromUri(activity: Activity, uri: Uri, isForPrint: Boolean = false) {
+        Constant.hasOpenedAFileInSession = true
         val intent = Intent(activity, ViewEditorActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW
         intent.data = uri
@@ -136,6 +137,7 @@ object Utility {
     }
 
     fun previewFile(activity: Activity, mFile: File, pageNumber: Int, isForPrint: Boolean = false) {
+        Constant.hasOpenedAFileInSession = true
         val storageUtils = StorageUtils(activity)
         storageUtils.addRecent(mFile)
         val fromFile = Uri.fromFile(mFile)
