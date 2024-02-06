@@ -5,14 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
+    android:background="@color/bar_color"
     android:scrollbars="none">
 
     <LinearLayout
         android:id="@id/formulas_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_60sdp"
-        android:background="@color/bg_color_main"
+        android:background="@color/bar_color"
         android:gravity="center"
         android:orientation="horizontal">
 

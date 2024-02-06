@@ -91,7 +91,7 @@ fun LandingScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = colorResource(id = R.color.bg_color_main)
+                    containerColor = colorResource(id = R.color.bar_color)
                 ),
                 title = {
                     Text(

@@ -52,7 +52,7 @@ fun CustomBottomNavigation(
             horizontalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = colorResource(id = R.color.bg_color_main))
+                .background(color = colorResource(id = R.color.bar_color))
         ) {
             val currentBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = currentBackStackEntry?.destination?.route
@@ -77,7 +77,7 @@ fun CustomBottomNavigation(
                             }
                         }
                         .size(70.dp)
-                        .background(color = colorResource(id = R.color.bg_color_main))
+                        .background(color = colorResource(id = R.color.bar_color))
                 ) {
                     Icon(
                         painter = painterResource(id = screen.icon),

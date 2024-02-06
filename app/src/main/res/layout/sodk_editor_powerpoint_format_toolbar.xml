@@ -5,7 +5,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:background="@color/bg_color_main"
+        android:background="@color/bar_color"
         android:scrollbars="none">
 
 
@@ -76,8 +76,8 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
-                    app:tint="@color/text_color"
-                    android:src="@drawable/ic_main_border_weight_ppt" />
+                    android:src="@drawable/ic_main_border_weight_ppt"
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,8 +101,8 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
-                    app:tint="@color/text_color"
-                    android:src="@drawable/ic_main_border_styles" />
+                    android:src="@drawable/ic_main_border_styles"
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:background="#777777" />
-<!--            <View style="@style/sodk_editor_toolbar_divider" />-->
+            <!--            <View style="@style/sodk_editor_toolbar_divider" />-->
 
             <LinearLayout
                 android:id="@id/arrange_front"
@@ -172,8 +172,8 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
-                    app:tint="@color/text_color"
-                    android:src="@drawable/ic_main_front_ppt" />
+                    android:src="@drawable/ic_main_front_ppt"
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -196,8 +196,8 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:contentDescription="@null"
-                    app:tint="@color/text_color"
-                    android:src="@drawable/ic_main_back_ppt" />
+                    android:src="@drawable/ic_main_back_ppt"
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"

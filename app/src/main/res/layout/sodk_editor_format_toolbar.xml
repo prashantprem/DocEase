@@ -5,7 +5,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:background="@color/bg_color_main"
+        android:background="@color/bar_color"
         android:scrollbars="none">
 
         <LinearLayout

@@ -5,7 +5,7 @@
     android:id="@+id/header"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_50sdp"
-    android:background="@color/bg_color_main"
+    android:background="@color/bar_color"
     android:padding="5dp">
 
     <androidx.appcompat.widget.AppCompatImageView
