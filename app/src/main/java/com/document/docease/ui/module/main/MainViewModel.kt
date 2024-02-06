@@ -68,6 +68,10 @@ class MainViewModel @Inject constructor(
     private var allPptFiles: MutableList<File> = mutableListOf()
     private var allTextFiles: MutableList<File> = mutableListOf()
 
+    init {
+
+    }
+
 
     fun getAllFiles(context: Context? = null) {
         CoroutineScope(Dispatchers.IO).launch {

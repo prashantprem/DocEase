@@ -5,6 +5,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
@@ -79,6 +80,7 @@ class MainActivity : ComponentActivity() {
             }
         }
         if (Constant.showAds) {
+            initSplashAdCountDownTimer()
             loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
                 showInterstitial(this@MainActivity, onAdDismissed = {
                     viewModel.showSplash = false
@@ -161,6 +163,23 @@ class MainActivity : ComponentActivity() {
             hasRequestedReviewFlowInSession = true
             inAppReviewUtil?.showInAppReview()
         }
+    }
+
+    private fun initSplashAdCountDownTimer() {
+        object : CountDownTimer(
+            Constant.splashTime,
+            1000
+        ) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                println("Countdown Seconds remaining: $secondsRemaining")
+            }
+
+            override fun onFinish() {
+                viewModel.showSplash = false
+                println("Countdown finished!")
+            }
+        }.start()
     }
 }
 

@@ -11,7 +11,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 val ads: MutableMap<String, InterstitialAd?> = mutableMapOf()
-var isInterstitialAdShowing =false
+var isInterstitialAdShowing = false
 
 fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit) {
     if (Constant.showAds) {
@@ -116,7 +116,6 @@ fun loadInterstitial(
             }
         )
     }
-
 }
 
 

@@ -9,6 +9,8 @@ object Constant {
     var showAds = true
     var appOpenTimeout = 4000
     var adPerClickCount = 4
+    var nativeAdRefreshInterval = 30000L
+    var splashTime = 7000L
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
@@ -47,6 +49,8 @@ object Constant {
     const val APP_OPEN_THRESHOLD = "APP_OPEN_THRESHOLD"
     const val FLOW_AD_CLICK_THRESHOLD = "FLOW_AD_CLICK_THRESHOLD"
     const val ADS_ENABLED = "ADS_ENABLED"
+    const val NATIVE_AD_REFRESH_TIME_IN_MILLIS = "NATIVE_AD_REFRESH_TIME_IN_MILLIS"
+    const val SPLASH_TIME = "SPLASH_TIME"
 
 
     const val COUPON_URL = "https://redeemoffercode-3jb3ulwblq-uc.a.run.app?offer_code="

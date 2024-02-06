@@ -48,6 +48,7 @@ import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
 import com.document.docease.ui.navigation.BottomNavigationScreenConfigurations
 import com.document.docease.ui.navigation.Routes
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
@@ -79,16 +80,18 @@ fun LandingScreen(
     val mContext = LocalContext.current
     val bottomNavigationController = rememberNavController()
     val homeNativeAdState = rememberNativeAdState(
-        context = LocalContext.current, adUnitId = AdUnits.homeNative, refreshInterval = 300000
+        context = LocalContext.current,
+        adUnitId = AdUnits.homeNative,
+        refreshInterval = Constant.nativeAdRefreshInterval
     )
 
     val exitAdState = rememberNativeAdState(
         context = LocalContext.current, adUnitId = AdUnits.exitNative,
-        refreshInterval = 300000
+        refreshInterval = Constant.nativeAdRefreshInterval
     )
     val bottomBarNativeState = rememberNativeAdState(
         context = LocalContext.current, adUnitId = AdUnits.filesNative,
-        refreshInterval = 300000
+        refreshInterval = Constant.nativeAdRefreshInterval
     )
 
 
