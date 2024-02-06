@@ -9,6 +9,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.supportv1.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -57,14 +59,14 @@ public class NUIDocViewPdf extends NUIDocView {
     private ImageView imgColorButton;
     private LinearLayout h;
     private ToolbarButton i;
-//    private ToolbarButton j;
+    //    private ToolbarButton j;
 //    private ToolbarButton k;
 //    private ToolbarButton l;
     private LinearLayout m;
     private LinearLayout n;
     private TextView tvPrevious;
     private TextView tvNext;
-//    private ImageView imgPrevious;
+    //    private ImageView imgPrevious;
 //    private ImageView imgNext;
     private Button o;
     private TabData[] p = null;
@@ -767,35 +769,40 @@ public class NUIDocViewPdf extends NUIDocView {
     @Override
     public void copyTextInDocument(View view) {
         if (this.mStartUri != null) {
-            FileUtil fileUtil = new FileUtil(activity());
-            String filePath = fileUtil.getPath(this.mStartUri);
-            SOSelectionLimits limits = this.getDocView().getSelectionLimits();
-            if (filePath != null && limits != null) {
-                PDDocument document = new PDDocument();
-                File mFile = new File(filePath);
-                try {
-                    document = PDDocument.load(mFile, MemoryUsageSetting.setupTempFileOnly());
-                    PDFBoxResourceLoader.init(activity().getApplicationContext());
-                    PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-                    stripper.setSortByPosition(true);
-                    RectF rect = new RectF(limits.getBox().left, limits.getBox().top, limits.getBox().right, limits.getBox().bottom);
-                    stripper.addRegion("class1", rect);
-                    stripper.extractRegions(document.getPage(this.mSession.getFileState().getPageNumber()));
-                    String copiedText = stripper.getTextForRegion("class1");
-                    ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText(copiedText, copiedText);
-                    clipboard.setPrimaryClip(clip);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    if (document != null) {
-                        try {
-                            document.close();
-                        } catch (IOException ignored) {
+            new Thread(() -> {
+                FileUtil fileUtil = new FileUtil(activity());
+                String filePath = fileUtil.getPath(this.mStartUri);
+                SOSelectionLimits limits = this.getDocView().getSelectionLimits();
+                if (filePath != null && limits != null) {
+                    PDDocument document = new PDDocument();
+                    File mFile = new File(filePath);
+                    try {
+                        document = PDDocument.load(mFile, MemoryUsageSetting.setupTempFileOnly());
+                        PDFBoxResourceLoader.init(activity().getApplicationContext());
+                        PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+                        stripper.setSortByPosition(true);
+                        RectF rect = new RectF(limits.getBox().left, limits.getBox().top, limits.getBox().right, limits.getBox().bottom);
+                        stripper.addRegion("class1", rect);
+                        stripper.extractRegions(document.getPage(this.mSession.getFileState().getPageNumber()));
+                        String copiedText = stripper.getTextForRegion("class1");
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clip = ClipData.newPlainText(copiedText, copiedText);
+                            clipboard.setPrimaryClip(clip);
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (document != null) {
+                            try {
+                                document.close();
+                            } catch (IOException ignored) {
+                            }
                         }
                     }
                 }
-            }
+            }).start();
+
         }
     }
 
