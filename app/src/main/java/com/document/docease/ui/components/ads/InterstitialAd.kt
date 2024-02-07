@@ -42,8 +42,11 @@ fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit
             }
             ads[adUnit]?.show(activity)
         } else if (ads[adUnit] == null) {
+            onAdDismissed()
             loadInterstitial(context, adUnit)
         }
+    } else {
+        onAdDismissed()
     }
 }
 

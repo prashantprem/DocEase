@@ -117,7 +117,7 @@ dependencies {
 
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
 
-    implementation("com.tom-roush:pdfbox-android:2.0.27.0")
+//    implementation("com.tom-roush:pdfbox-android:2.0.27.0")
     val appcompat_version = "1.6.1"
 
     implementation("androidx.appcompat:appcompat:$appcompat_version")

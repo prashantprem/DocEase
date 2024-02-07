@@ -73,6 +73,8 @@ import com.artifex.solib.SOBitmap;
 import com.artifex.solib.SODoc;
 import com.artifex.solib.SODocSaveListener;
 import com.artifex.solib.SOLib;
+import com.artifex.solib.SOPage;
+import com.artifex.solib.SOPageListener;
 import com.artifex.solib.SOSelectionLimits;
 import com.artifex.solib.j;
 import com.artifex.solib.k;
@@ -96,7 +98,7 @@ import com.document.docease.ui.module.editors.ViewEditorActivity;
 import com.document.docease.ui.module.editors.adapters.ColorListAdapter;
 import com.document.docease.utils.Constant;
 import com.document.docease.utils.SharedPreferencesUtility;
-import com.tom_roush.pdfbox.pdmodel.PDDocument;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -259,7 +261,6 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     private NUIDocView context;
     private LinearLayout editorStyle;
 
-    private PDDocument document;
     private Boolean isPdf = false;
     private Boolean isPreview = false;
     private PopupWindow popupWindow;
@@ -3326,13 +3327,6 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         SODataLeakHandlers var2 = this.n;
         if (var2 != null) {
             var2.finaliseDataLeakHandlers();
-        }
-        if (document != null) {
-            try {
-                document.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 

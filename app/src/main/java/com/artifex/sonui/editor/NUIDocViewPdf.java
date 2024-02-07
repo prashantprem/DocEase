@@ -27,6 +27,9 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.artifex.mupdf.fitz.Document;
+import com.artifex.mupdf.fitz.Page;
+import com.artifex.mupdf.fitz.Point;
 import com.artifex.solib.ConfigOptions;
 import com.artifex.solib.SOLib;
 import com.artifex.solib.SOSelectionLimits;
@@ -40,11 +43,7 @@ import com.artifex.sonui.editor.R.integer;
 import com.artifex.sonui.editor.R.layout;
 import com.artifex.sonui.editor.R.string;
 import com.document.docease.utils.Constant;
-import com.document.docease.utils.FileUtil;
-import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
-import com.tom_roush.pdfbox.io.MemoryUsageSetting;
-import com.tom_roush.pdfbox.pdmodel.PDDocument;
-import com.tom_roush.pdfbox.text.PDFTextStripperByArea;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -768,41 +767,22 @@ public class NUIDocViewPdf extends NUIDocView {
 
     @Override
     public void copyTextInDocument(View view) {
-        if (this.mStartUri != null) {
-            new Thread(() -> {
-                FileUtil fileUtil = new FileUtil(activity());
-                String filePath = fileUtil.getPath(this.mStartUri);
-                SOSelectionLimits limits = this.getDocView().getSelectionLimits();
-                if (filePath != null && limits != null) {
-                    PDDocument document = new PDDocument();
-                    File mFile = new File(filePath);
-                    try {
-                        document = PDDocument.load(mFile, MemoryUsageSetting.setupTempFileOnly());
-                        PDFBoxResourceLoader.init(activity().getApplicationContext());
-                        PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-                        stripper.setSortByPosition(true);
-                        RectF rect = new RectF(limits.getBox().left, limits.getBox().top, limits.getBox().right, limits.getBox().bottom);
-                        stripper.addRegion("class1", rect);
-                        stripper.extractRegions(document.getPage(this.mSession.getFileState().getPageNumber()));
-                        String copiedText = stripper.getTextForRegion("class1");
-                        new Handler(Looper.getMainLooper()).post(() -> {
-                            ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                            ClipData clip = ClipData.newPlainText(copiedText, copiedText);
-                            clipboard.setPrimaryClip(clip);
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (document != null) {
-                            try {
-                                document.close();
-                            } catch (IOException ignored) {
-                            }
-                        }
-                    }
-                }
-            }).start();
-
+        try {
+            SOSelectionLimits limits = this.getDocView().getSelectionLimits();
+            if (limits != null && this.mSession != null && this.mSession.getDoc() != null) {
+                Document doc = this.mSession.getDoc().getDocument();
+                Page currentPage = doc.loadPage(this.mSession.getFileState().getPageNumber());
+                Point start = new Point(limits.getStart().x, limits.getStart().y);
+                Point end = new Point(limits.getEnd().x, limits.getEnd().y);
+                String selectedText = currentPage.toStructuredText().copy(start, end);
+                Log.d("TestingCopyPDF", selectedText);
+                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText(selectedText, selectedText);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(activity(), "Copied", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
