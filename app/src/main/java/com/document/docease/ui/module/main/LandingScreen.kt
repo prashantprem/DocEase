@@ -118,6 +118,25 @@ fun LandingScreen(
                 },
                 actions = {
                     Icon(
+                        painter = painterResource(id = R.drawable.ic_main_remove_ad),
+                        contentDescription = "Search Button",
+                        tint = colorResource(id = R.color.na_button_default),
+                        modifier = Modifier
+                            .noRippleClickable {
+                                navigationController.navigate(Routes.REMOVE_ADS) {
+                                    popUpTo(navigationController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                                Log.d("TestingCLick", "CLicked")
+                            }
+                            .size(40.dp)
+                            .fillMaxWidth(0.2f)
+                            .padding(end = 8.dp)
+                    )
+                    Icon(
                         painter = painterResource(id = R.drawable.ic_search),
                         contentDescription = "Search Button",
                         tint = colorResource(id = R.color.primary),
