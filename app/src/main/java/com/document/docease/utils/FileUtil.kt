@@ -1,6 +1,7 @@
 package com.document.docease.utils
 
 import android.annotation.SuppressLint
+import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
@@ -11,6 +12,7 @@ import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.text.TextUtils
+import android.webkit.MimeTypeMap
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
@@ -355,26 +357,20 @@ class FileUtil(var context: Context) {
     }
 
     private fun getFileExtension(uri: Uri, context: Context): String {
-//        return try {
-//            var mimeType: String? = null
-//            mimeType = if (ContentResolver.SCHEME_CONTENT == uri.scheme) {
-//                val cr = context.contentResolver
-//                cr.getType(uri)
-//            } else {
-//                val fileExtension = MimeTypeMap.getFileExtensionFromUrl(
-//                    uri
-//                        .toString()
-//                )
-//                MimeTypeMap.getSingleton().getMimeTypeFromExtension(
-//                    fileExtension.lowercase(Locale.getDefault())
-//                )
-//            }
-//            MimeTypes.lookupExt(mimeType)
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            ""
-//        }
-        return ""  //temp
+        return try {
+            val mimeType: String? = if (ContentResolver.SCHEME_CONTENT == uri.scheme) {
+                context.contentResolver.getType(uri)
+            } else {
+                val fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri.toString())
+                MimeTypeMap.getSingleton().getMimeTypeFromExtension(
+                    fileExtension.lowercase(Locale.getDefault())
+                )
+            }
+            MimeTypes.lookupExt(mimeType ?: "") ?: ""
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ""
+        }
     }
 
     companion object {

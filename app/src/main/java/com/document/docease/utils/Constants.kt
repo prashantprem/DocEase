@@ -6,7 +6,7 @@ import java.io.File
 
 object Constant {
     var hasOpenedAFileInSession = false
-    var showAds = true
+    var showAds = false
     var appOpenTimeout = 4000
     var adPerClickCount = 4
     var nativeAdRefreshInterval = 30000L
@@ -53,17 +53,7 @@ object Constant {
     const val SPLASH_TIME = "SPLASH_TIME"
 
 
-    const val COUPON_URL = "https://redeemoffercode-3jb3ulwblq-uc.a.run.app?offer_code="
-    const val entitlement = "pro_entitlement"
-    const val promo_entitlement = "promotional_entitlement"
-    const val flavor = "docViewer"
     const val platform = "android"
-    const val BILLING_PUBLIC_KEY = "billing_public_key"
-    const val POINT_ADS = "point_ads"
-    const val TIME_RATE_DEFAULT = 180000 //3p ( minisecond)
-    const val SHORT_CUT_FILE_NAME = "fileName"
-    const val SHORT_CUT_PAGE_NUM = "pageNum"
-    const val RESULT = "CREATE_FILE"
 
     const val INTENT_DATA = "intentData"
     const val INTENT_FILE_URI = "intentFileUri"
