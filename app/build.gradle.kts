@@ -15,7 +15,7 @@ android {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
         multiDexEnabled = true
 
@@ -105,7 +105,6 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation("androidx.navigation:navigation-compose:2.6.0")
 
 
     //datastore

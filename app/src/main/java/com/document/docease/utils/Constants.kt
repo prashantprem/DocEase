@@ -7,7 +7,7 @@ import java.io.File
 object Constant {
     var hasOpenedAFileInSession = false
     var showAds = false
-    var appOpenTimeout = 4000
+    var appOpenTimeout = 5000
     var adPerClickCount = 4
     var nativeAdRefreshInterval = 30000L
     var splashTime = 7000L
