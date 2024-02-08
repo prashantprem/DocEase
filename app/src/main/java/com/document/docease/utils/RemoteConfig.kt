@@ -22,7 +22,7 @@ class RemoteConfigUtil {
         hashMapOf(
             APP_OPEN_THRESHOLD to 4000,
             FLOW_AD_CLICK_THRESHOLD to 2,
-            ADS_ENABLED to false,
+            ADS_ENABLED to true,
             NATIVE_AD_REFRESH_TIME_IN_MILLIS to 10000L,
             SPLASH_TIME to 6000L
         )
@@ -33,7 +33,7 @@ class RemoteConfigUtil {
         try {
             remoteConfig = getFirebaseRemoteConfig()
             remoteConfig.apply {
-                showAds = getBoolean(ADS_ENABLED)
+//                showAds = getBoolean(ADS_ENABLED)
                 appOpenTimeout = getLong(APP_OPEN_THRESHOLD).toInt()
                 adPerClickCount = getDouble(FLOW_AD_CLICK_THRESHOLD).toInt()
                 nativeAdRefreshInterval = getLong(NATIVE_AD_REFRESH_TIME_IN_MILLIS)

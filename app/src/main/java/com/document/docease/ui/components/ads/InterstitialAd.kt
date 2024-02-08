@@ -1,6 +1,7 @@
 package com.document.docease.ui.components.ads
 
 import android.content.Context
+import android.util.Log
 import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.findActivity
 import com.google.android.gms.ads.AdError
@@ -15,6 +16,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 val ads: MutableMap<String, InterstitialAd?> = mutableMapOf()
 var isInterstitialAdShowing = false
 var rewardedAd: RewardedAd? = null
+const val AdTag = "AdUtil"
 
 fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit) {
     if (Constant.showAds) {
@@ -25,6 +27,8 @@ fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit
                     isInterstitialAdShowing = false
                     ads[adUnit] = null
                     onAdDismissed()
+                    Log.d("Interstitial", "Called here-4")
+                    log("Interstitial AdFailedToShow")
 
                 }
 
@@ -33,6 +37,7 @@ fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit
                     ads[adUnit] = null
                     loadInterstitial(context, adUnit)
                     onAdDismissed()
+                    Log.d("Interstitial", "Called here-5")
                 }
 
                 override fun onAdShowedFullScreenContent() {
@@ -40,12 +45,15 @@ fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit
                     isInterstitialAdShowing = true
                 }
             }
+            Log.d("Interstitial", "Called here-6")
             ads[adUnit]?.show(activity)
         } else if (ads[adUnit] == null) {
+            Log.d("Interstitial", "Called here-7")
             onAdDismissed()
             loadInterstitial(context, adUnit)
         }
     } else {
+        Log.d("Interstitial", "Called here-8")
         onAdDismissed()
     }
 }
@@ -78,6 +86,8 @@ fun showInterstitialOnClick(
                 override fun onAdShowedFullScreenContent() {
                     super.onAdShowedFullScreenContent()
                     isInterstitialAdShowing = true
+                    log("Interstitial AdFailedToShow")
+
                 }
 
             }
@@ -111,6 +121,8 @@ fun loadInterstitial(
                     if (onAdFailed != null) {
                         onAdFailed()
                     }
+                    log("Interstitial AdLoad failed")
+
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
@@ -118,6 +130,7 @@ fun loadInterstitial(
                     if (onAdLoaded != null) {
                         onAdLoaded()
                     }
+                    log("Interstitial AdLoaded")
                 }
             }
         )
@@ -185,5 +198,9 @@ fun showRewardedAd(context: Context, adUnit: String, onAdDismissed: () -> Unit) 
             loadRewardedAd(context, adUnit)
         }
     }
+}
+
+fun log(msg: String) {
+    Log.d(AdTag, msg)
 }
 
