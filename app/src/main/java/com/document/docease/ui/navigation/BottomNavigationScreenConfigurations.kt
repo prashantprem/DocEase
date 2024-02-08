@@ -23,7 +23,6 @@ fun BottomNavigationScreenConfigurations(
     fileClickListener: FileClickListener,
     bottomBarNativeAd: NativeAd?,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
-    ad: NativeAd?
 ) {
     NavHost(navController, startDestination = BottomNavigationScreens.HOME.route,
         enterTransition = { EnterTransition.None },
@@ -33,7 +32,7 @@ fun BottomNavigationScreenConfigurations(
     ) {
         composable(BottomNavigationScreens.HOME.route) {
 
-            HomeScreen(viewModel, fileClickListener, storageRequestLauncher, ad)
+            HomeScreen(viewModel, fileClickListener, storageRequestLauncher)
         }
         composable(BottomNavigationScreens.PDF.route) {
             FileListScreen(

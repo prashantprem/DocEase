@@ -69,32 +69,10 @@ fun LandingScreen(
         BottomNavigationScreens.EXCEL,
         BottomNavigationScreens.PPT
     )
-    val fileInfoBottomSheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
-    var showFileActionBottomSheet by remember { mutableStateOf(false) }
-    var showExitBottomSheet by remember { mutableStateOf(false) }
-    val exitBottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
-    )
     var mFile: File? = null
     val mContext = LocalContext.current
     val bottomNavigationController = rememberNavController()
-    val homeNativeAdState = rememberNativeAdState(
-        context = LocalContext.current,
-        adUnitId = AdUnits.homeNative,
-        refreshInterval = Constant.nativeAdRefreshInterval
-    )
-
-    val exitAdState = rememberNativeAdState(
-        context = LocalContext.current, adUnitId = AdUnits.exitNative,
-        refreshInterval = Constant.nativeAdRefreshInterval
-    )
-    val bottomBarNativeState = rememberNativeAdState(
-        context = LocalContext.current, adUnitId = AdUnits.filesNative,
-        refreshInterval = Constant.nativeAdRefreshInterval
-    )
-
-
     var clickCount = 0
     Scaffold(
         topBar = {
@@ -109,33 +87,28 @@ fun LandingScreen(
                     )
                 },
                 navigationIcon = {
-//                    Icon(
-//                        painter = painterResource(id = R.drawable.app_logo),
-//                        contentDescription = "App Logo",
-//                        modifier = Modifier.size(30.dp),
-//                    )
 
                 },
                 actions = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_main_remove_ad),
-                        contentDescription = "Search Button",
-                        tint = colorResource(id = R.color.na_button_default),
-                        modifier = Modifier
-                            .noRippleClickable {
-                                navigationController.navigate(Routes.REMOVE_ADS) {
-                                    popUpTo(navigationController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                                Log.d("TestingCLick", "CLicked")
-                            }
-                            .size(40.dp)
-                            .fillMaxWidth(0.2f)
-                            .padding(end = 8.dp)
-                    )
+//                    Icon(
+//                        painter = painterResource(id = R.drawable.ic_main_remove_ad),
+//                        contentDescription = "Search Button",
+//                        tint = colorResource(id = R.color.na_button_default),
+//                        modifier = Modifier
+//                            .noRippleClickable {
+//                                navigationController.navigate(Routes.REMOVE_ADS) {
+//                                    popUpTo(navigationController.graph.findStartDestination().id) {
+//                                        saveState = true
+//                                    }
+//                                    launchSingleTop = true
+//                                    restoreState = true
+//                                }
+//                                Log.d("TestingCLick", "CLicked")
+//                            }
+//                            .size(40.dp)
+//                            .fillMaxWidth(0.2f)
+//                            .padding(end = 8.dp)
+//                    )
                     Icon(
                         painter = painterResource(id = R.drawable.ic_search),
                         contentDescription = "Search Button",
@@ -159,6 +132,26 @@ fun LandingScreen(
             )
         },
         content = {
+            val fileInfoBottomSheetState = rememberModalBottomSheetState(
+                skipPartiallyExpanded = true
+            )
+            var showFileActionBottomSheet by remember {
+                mutableStateOf(false)
+            }
+            var showExitBottomSheet by remember { mutableStateOf(false) }
+            val exitBottomSheetState = rememberModalBottomSheetState(
+                skipPartiallyExpanded = true
+            )
+
+            val exitAdState = rememberNativeAdState(
+                context = LocalContext.current, adUnitId = AdUnits.exitNative,
+                refreshInterval = Constant.nativeAdRefreshInterval
+            )
+            val bottomBarNativeState = rememberNativeAdState(
+                context = LocalContext.current, adUnitId = AdUnits.filesNative,
+                refreshInterval = Constant.nativeAdRefreshInterval
+            )
+
             loadInterstitial(context = mContext, AdUnits.flowInterstitial)
             if (showFileActionBottomSheet) {
                 ModalBottomSheet(
@@ -255,9 +248,9 @@ fun LandingScreen(
                             }
                         }
 
-                    }, bottomBarNativeState,
+                    },
+                    bottomBarNativeState,
                     storageRequestLauncher,
-                    homeNativeAdState
                 )
             }
         },

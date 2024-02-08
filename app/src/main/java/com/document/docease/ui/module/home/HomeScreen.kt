@@ -44,15 +44,17 @@ import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.common.StoragePermissionScreen
 import com.document.docease.ui.components.ads.NativeAdAdmobMedium
+import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.AdUnits
+import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
-import com.google.android.gms.ads.nativead.NativeAd
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -60,13 +62,18 @@ fun HomeScreen(
     viewModel: MainViewModel,
     fileClickListener: FileClickListener,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
-    adState: NativeAd?
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
     val mActivity = LocalContext.current.findActivity()
     val documentCountState = viewModel.documentCount.observeAsState()
 
     val hasPermission = PermissionUtils.storagePermissionState.value
+    val homeNativeAdState = rememberNativeAdState(
+        context = LocalContext.current,
+        adUnitId = AdUnits.homeNative,
+        refreshInterval = Constant.nativeAdRefreshInterval
+    )
+
 
 
     Column(
@@ -97,7 +104,7 @@ fun HomeScreen(
         } else {
             NativeAdAdmobMedium(
                 context = LocalContext.current,
-                loadedAd = adState,
+                loadedAd = homeNativeAdState,
                 isDarkTheme = isSystemInDarkTheme()
             )
         }
