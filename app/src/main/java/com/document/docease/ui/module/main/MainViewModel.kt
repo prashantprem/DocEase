@@ -76,9 +76,9 @@ class MainViewModel @Inject constructor(
     fun getAllFiles(context: Context? = null) {
         CoroutineScope(Dispatchers.IO).launch {
             initFileLoading()
-            if (context != null) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                 async {
-                    getAllFilesUsingMediaStore(context)
+                    getAllFilesUsingMediaStore(context!!)
                 }.await()
             } else {
                 async {
