@@ -154,6 +154,12 @@ fun LandingScreen(
                 context = LocalContext.current, adUnitId = AdUnits.filesNative,
                 refreshInterval = Constant.nativeAdRefreshInterval
             )
+            val homeNativeAdState = rememberNativeAdState(
+                context = LocalContext.current,
+                adUnitId = AdUnits.homeNative,
+                refreshInterval = Constant.nativeAdRefreshInterval
+            )
+
 
             loadInterstitial(context = mContext, AdUnits.flowInterstitial)
             if (showFileActionBottomSheet) {
@@ -256,6 +262,7 @@ fun LandingScreen(
                     },
                     bottomBarNativeState,
                     storageRequestLauncher,
+                    homeNativeAdState
                 )
             }
         },

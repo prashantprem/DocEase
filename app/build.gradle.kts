@@ -15,7 +15,7 @@ android {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
+        versionCode = 3
         versionName = "1.0"
         multiDexEnabled = true
 
