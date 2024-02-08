@@ -48,8 +48,10 @@ import com.document.docease.ui.module.main.bottomnav.CustomBottomNavigation
 import com.document.docease.ui.navigation.BottomNavigationScreenConfigurations
 import com.document.docease.ui.navigation.Routes
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.noRippleClickable
+import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
 import java.io.File
@@ -116,6 +118,7 @@ fun LandingScreen(
                         modifier = Modifier
                             .noRippleClickable {
                                 navigationController.navigate(Routes.SEARCH) {
+                                    AnalyticsManager.logEvent(FirebaseEvents.fileSearch)
                                     popUpTo(navigationController.graph.findStartDestination().id) {
                                         saveState = true
                                     }
@@ -180,6 +183,7 @@ fun LandingScreen(
                                 }
 
                                 override fun onShare(file: File) {
+                                    AnalyticsManager.logEvent(FirebaseEvents.fileShareBottomSheet)
                                     Utility.shareToAny(file, mContext)
                                 }
 
@@ -229,6 +233,7 @@ fun LandingScreen(
                                 if (!fileInfoBottomSheetState.isVisible || !showFileActionBottomSheet) {
                                     mFile = file
                                     showFileActionBottomSheet = true
+                                    AnalyticsManager.logEvent(FirebaseEvents.fileInfoBottomSheetOpened)
                                 }
                             }
                         }

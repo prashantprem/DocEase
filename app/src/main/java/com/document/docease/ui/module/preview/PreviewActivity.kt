@@ -23,8 +23,10 @@ import com.document.docease.ui.module.editors.HomeViewModel
 import com.document.docease.ui.module.editors.ViewEditorActivity
 import com.document.docease.ui.module.editors.ViewEditorViewModel
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
 import com.document.docease.utils.FileUtil
+import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.Utility
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -55,6 +57,7 @@ class PreviewActivity
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
         loadInterstitial(this@PreviewActivity, AdUnits.fileEditInterstitial)
+        Constant.isPreview = true
         fileUtil = FileUtil(this)
         imvEditorShare = findViewById(R.id.imv_activity_editor_share)
         imvMenuOption = findViewById(R.id.imv_menu_option)
@@ -76,7 +79,10 @@ class PreviewActivity
             }
         }
         if (isFromOutside) {
+            AnalyticsManager.logEvent(FirebaseEvents.fileOpenFromOutSide)
             onFileOpenedFromOutsideIntent()
+        } else {
+            AnalyticsManager.logEvent(FirebaseEvents.fileOpenFromInside)
         }
         checkIfIsFavourite()
         initClickListeners()
@@ -112,6 +118,7 @@ class PreviewActivity
         }
         if (imvEditorShare != null) {
             imvEditorShare!!.setOnClickListener {
+                AnalyticsManager.logEvent(FirebaseEvents.fileSharePreview)
                 if (isFromOutside) {
                     homeViewModel.getTriggerShare().value = true
                 } else {

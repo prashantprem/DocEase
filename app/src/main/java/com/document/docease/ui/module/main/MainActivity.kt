@@ -31,7 +31,9 @@ import com.document.docease.ui.components.ads.showInterstitial
 import com.document.docease.ui.navigation.MainNavigationConfiguration
 import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
+import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,6 +77,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
+            AnalyticsManager.logEvent(FirebaseEvents.splashLaunch)
             this.setKeepOnScreenCondition {
                 viewModel.showSplash
             }
@@ -83,10 +86,12 @@ class MainActivity : ComponentActivity() {
             initSplashAdCountDownTimer()
             loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
                 showInterstitial(this@MainActivity, onAdDismissed = {
+                    AnalyticsManager.logEvent(FirebaseEvents.shownAdOnSPlash)
                     viewModel.showSplash = false
                 }, adUnit = AdUnits.splashInterstitial)
 
             }, onAdFailed = {
+                AnalyticsManager.logEvent(FirebaseEvents.notShownAdOnSPlash)
                 viewModel.showSplash = false
             })
         } else {

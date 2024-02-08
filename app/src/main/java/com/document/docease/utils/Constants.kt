@@ -11,6 +11,7 @@ object Constant {
     var adPerClickCount = 4
     var nativeAdRefreshInterval = 30000L
     var splashTime = 7000L
+    var isPreview = false
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
@@ -252,4 +253,20 @@ object AdUnits {
     const val fileEditInterstitial = "ca-app-pub-7642879603256855/7843249236"
     const val flowInterstitial = "ca-app-pub-7642879603256855/7860109843"
     const val fileBanner = "ca-app-pub-7642879603256855/8890158470"
+}
+
+object FirebaseEvents {
+    const val filePreview = "FilePreview"
+    const val fileEdit = "FileEdit"
+    const val fileOpenFromOutSide = "FileOpenFromOutside"
+    const val fileOpenFromInside = "FileOpenFromInside"
+    const val fileSearch = "FileSearch"
+    const val fileShareBottomSheet = "FileShareBottomSheet"
+    const val fileSharePreview = "FileSharePreview"
+    const val fileShareEdit = "FileShareEdit"
+    const val splashLaunch = "SplashLaunch"
+    const val shownAdOnSPlash = "ShownAdOnSplash"
+    const val notShownAdOnSPlash = "NotShownAdOnSplash"
+    const val ratingShown = "RatingShown"
+    const val fileInfoBottomSheetOpened = "FileInfoBottomSheetOpened"
 }

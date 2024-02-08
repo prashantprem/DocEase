@@ -108,6 +108,7 @@ object Utility {
 
     fun openFileWithLocalContext(context: Context, mFile: File, pageNumber: Int = 0) {
         context.findActivity()?.let { activity ->
+            AnalyticsManager.logEvent(FirebaseEvents.fileEdit)
             openFile(activity, mFile, pageNumber)
         }
     }
@@ -119,6 +120,7 @@ object Utility {
         isForPrint: Boolean = false
     ) {
         context.findActivity()?.let { activity ->
+            AnalyticsManager.logEvent(FirebaseEvents.filePreview)
             previewFile(activity, mFile, pageNumber, isForPrint = isForPrint)
         }
     }

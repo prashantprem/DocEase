@@ -20,7 +20,9 @@ class InAppReviewUtil(private val activity: Activity) {
                 manager?.launchReviewFlow(
                     activity,
                     reviewInfo
-                )
+                )?.addOnCompleteListener {
+                    AnalyticsManager.logEvent(FirebaseEvents.ratingShown)
+                }
             }
         }
     }

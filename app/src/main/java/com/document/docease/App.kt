@@ -3,6 +3,7 @@ package com.document.docease
 import AppOpenAdManager
 import com.artifex.sonui.MainApp
 import com.document.docease.utils.AdUnits
+import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.RemoteConfigUtil
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
@@ -21,6 +22,7 @@ class App : MainApp() {
                     RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
                 MobileAds.setRequestConfiguration(configuration)
             }
+            AnalyticsManager.initialize(this)
             RemoteConfigUtil().init()
             AppOpenAdManager(this, AdUnits.appOpen)
         }

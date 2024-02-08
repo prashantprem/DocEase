@@ -96,7 +96,9 @@ import com.document.docease.ui.module.editors.HomeViewModel;
 import com.document.docease.ui.module.editors.ViewEditorActivity;
 
 import com.document.docease.ui.module.editors.adapters.ColorListAdapter;
+import com.document.docease.utils.AnalyticsManager;
 import com.document.docease.utils.Constant;
+import com.document.docease.utils.FirebaseEvents;
 import com.document.docease.utils.SharedPreferencesUtility;
 
 
@@ -2948,6 +2950,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             }
 
             if (var1 == this.mShareButton || var1 == this.editorToolbarShare) {
+                AnalyticsManager.INSTANCE.logEvent(FirebaseEvents.fileShareEdit);
                 if (f != null) {
                     shareDocument(new File(f.getOpenedPath()));
                 } else {
