@@ -27,6 +27,8 @@ import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
 import com.document.docease.utils.FileUtil
 import com.document.docease.utils.FirebaseEvents
+import com.document.docease.utils.PrefKeys
+import com.document.docease.utils.SharedPreferencesUtility
 import com.document.docease.utils.Utility
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -313,15 +315,28 @@ class PreviewActivity
             }
             viewEditorViewModel.addFilesToRecent(this, mFile!!)
         }
-        if (!Utility.isDefaultReaderSet(intent.data, this)) {
-            if (filePath != null && filePath != "") {
-                val args = Bundle()
-                args.putString(Constant.INTENT_DATA, intent.data.toString())
-                args.putString(Constant.INTENT_FILE_URI, filePath)
-                val makeDefaultViewer = MakeDefaultViewer()
-                makeDefaultViewer.arguments = args
-                makeDefaultViewer.show(supportFragmentManager, "makeDefaultViewer")
+        SharedPreferencesUtility.getSavedInt(
+            this@PreviewActivity,
+            PrefKeys.keyOutSideLaunchCount,
+            0
+        ).let { launchCount ->
+            if (launchCount >= 2) {
+                if (!Utility.isDefaultReaderSet(intent.data, this)) {
+                    if (filePath != null && filePath != "") {
+                        val args = Bundle()
+                        args.putString(Constant.INTENT_DATA, intent.data.toString())
+                        args.putString(Constant.INTENT_FILE_URI, filePath)
+                        val makeDefaultViewer = MakeDefaultViewer()
+                        makeDefaultViewer.arguments = args
+                        makeDefaultViewer.show(supportFragmentManager, "makeDefaultViewer")
+                    }
+                }
             }
+            SharedPreferencesUtility.saveInt(
+                this@PreviewActivity,
+                PrefKeys.keyOutSideLaunchCount,
+                if (launchCount >= 3) 0 else launchCount + 1
+            )
         }
     }
 

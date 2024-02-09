@@ -27,7 +27,7 @@
                 android:layout_marginEnd="4dp"
                 android:fontFamily="@font/nunito"
                 android:text="@string/make"
-                android:textColor="#444546"
+                android:textColor="@color/text_color"
                 android:textSize="17sp" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/nunito"
                 android:text="@string/as"
-                android:textColor="#444546"
+                android:textColor="@color/text_color"
                 android:textSize="17sp" />
         </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_marginTop="2dp"
             android:fontFamily="@font/nunito"
             android:text="@string/default_document_viewer"
-            android:textColor="#444546"
+            android:textColor="@color/text_color"
             android:textSize="17sp" />
 
         <TextView
@@ -66,7 +66,7 @@
             android:gravity="center_horizontal"
             android:paddingHorizontal="32dp"
             android:text="@string/open_document_and_mark_it_as_default_app_on_bottom_tray"
-            android:textColor="#444546"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
     </LinearLayout>
 

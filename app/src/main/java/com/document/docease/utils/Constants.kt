@@ -231,6 +231,7 @@ const val SHARED_PREFERENCES_FILE_NAME = BuildConfig.APPLICATION_ID + "_shared_p
 object PrefKeys {
     const val keyRecent = "keyRecent"
     const val keyBookMarks = "keyBookMarks"
+    const val keyOutSideLaunchCount = "keyOutSideLaunchCount"
 }
 
 
