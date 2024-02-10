@@ -5,6 +5,7 @@ import com.artifex.sonui.MainApp
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.RemoteConfigUtil
+import com.document.docease.utils.Utility
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import dagger.hilt.android.HiltAndroidApp
@@ -15,6 +16,7 @@ class App : MainApp() {
 
     override fun onCreate() {
         super.onCreate()
+        Utility.checkIfHasToShowAds(this)
         MobileAds.initialize(this) {
             if (BuildConfig.DEBUG) {
                 val testDeviceIds = listOf("AFFEC6633D87C069A5650A2AE9B6CF4B")

@@ -39,6 +39,7 @@ import com.document.docease.utils.Constant
 import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
+import com.document.docease.utils.Utility
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -86,7 +87,8 @@ class MainActivity : ComponentActivity() {
                 viewModel.showSplash
             }
         }
-        if (Constant.showAds) {
+        Utility.checkIfHasToShowAds(this)
+        if (Constant.showAdsState.value) {
             initSplashAdCountDownTimer()
             loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
                 showInterstitial(this@MainActivity, onAdDismissed = {

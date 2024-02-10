@@ -17,9 +17,12 @@ val ads: MutableMap<String, InterstitialAd?> = mutableMapOf()
 var isInterstitialAdShowing = false
 var rewardedAd: RewardedAd? = null
 const val AdTag = "AdUtil"
+var isInterstitialLoading = false
+var isRewardAdLoading = false
+
 
 fun showInterstitial(context: Context, adUnit: String, onAdDismissed: () -> Unit) {
-    if (Constant.showAds) {
+    if (Constant.showAdsState.value) {
         val activity = context.findActivity()
         if (activity != null && ads[adUnit] != null) {
             ads[adUnit]?.fullScreenContentCallback = object : FullScreenContentCallback() {
@@ -65,7 +68,7 @@ fun showInterstitialOnClick(
     onAdDismissed: () -> Unit,
     finished: () -> Unit
 ) {
-    if (Constant.showAds) {
+    if (Constant.showAdsState.value) {
         val activity = context.findActivity()
         if (ads[adUnit] != null && activity != null && clickCount >= Constant.adPerClickCount) {
             ads[adUnit]?.fullScreenContentCallback = object : FullScreenContentCallback() {
@@ -86,7 +89,7 @@ fun showInterstitialOnClick(
                 override fun onAdShowedFullScreenContent() {
                     super.onAdShowedFullScreenContent()
                     isInterstitialAdShowing = true
-                    log("Interstitial AdFailedToShow")
+                    log("Interstitial AdShown")
 
                 }
 
@@ -110,13 +113,15 @@ fun loadInterstitial(
     onAdLoaded: (() -> Unit)? = null,
     onAdFailed: (() -> Unit)? = null
 ) {
-    if (Constant.showAds) {
+    if (Constant.showAdsState.value && !isInterstitialLoading) {
+        isInterstitialLoading = true
         InterstitialAd.load(
             context,
             adUnit,
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
+                    isInterstitialLoading = false
                     ads[adUnit] = null
                     if (onAdFailed != null) {
                         onAdFailed()
@@ -126,6 +131,7 @@ fun loadInterstitial(
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    isInterstitialLoading = false
                     ads[adUnit] = interstitialAd
                     if (onAdLoaded != null) {
                         onAdLoaded()
@@ -143,7 +149,9 @@ fun loadRewardedAd(
     onAdLoaded: (() -> Unit)? = null,
     onAdFailed: (() -> Unit)? = null
 ) {
-    if (Constant.showAds) {
+    if (Constant.showAdsState.value && !isRewardAdLoading) {
+        log("LoadingRewardAd: Started")
+        isRewardAdLoading = true
         RewardedAd.load(
             context,
             adUnit,
@@ -154,6 +162,8 @@ fun loadRewardedAd(
                     if (onAdFailed != null) {
                         onAdFailed()
                     }
+                    isRewardAdLoading = false
+                    log("LoadingRewardAd: Failed")
                 }
 
                 override fun onAdLoaded(p0: RewardedAd) {
@@ -162,6 +172,8 @@ fun loadRewardedAd(
                     if (onAdLoaded != null) {
                         onAdLoaded()
                     }
+                    isRewardAdLoading = false
+                    log("LoadingRewardAd: Loaded")
                 }
 
             }
@@ -170,7 +182,7 @@ fun loadRewardedAd(
 }
 
 fun showRewardedAd(context: Context, adUnit: String, onAdDismissed: () -> Unit) {
-    if (Constant.showAds) {
+    if (Constant.showAdsState.value) {
         val activity = context.findActivity()
         if (activity != null && rewardedAd != null) {
             rewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {

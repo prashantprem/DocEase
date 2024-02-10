@@ -9,7 +9,6 @@ import com.document.docease.utils.Constant.SPLASH_TIME
 import com.document.docease.utils.Constant.adPerClickCount
 import com.document.docease.utils.Constant.appOpenTimeout
 import com.document.docease.utils.Constant.nativeAdRefreshInterval
-import com.document.docease.utils.Constant.showAds
 import com.document.docease.utils.Constant.splashTime
 import com.document.docease.utils.Extensions.tryCatch
 import com.google.firebase.ktx.Firebase
@@ -40,13 +39,13 @@ class RemoteConfigUtil {
             }
             adPerClickCount = getDouble(FLOW_AD_CLICK_THRESHOLD).toInt()
             if (adPerClickCount == 0) {
-                adPerClickCount = 4
+                adPerClickCount = 3
             }
             nativeAdRefreshInterval = getLong(NATIVE_AD_REFRESH_TIME_IN_MILLIS)
             splashTime = getLong(SPLASH_TIME)
             log(
                 """
-                    $ADS_ENABLED :: $showAds
+                    $ADS_ENABLED :: ${Constant.showAdsState.value}
                     $FLOW_AD_CLICK_THRESHOLD :: $adPerClickCount
                     $APP_OPEN_THRESHOLD :: $appOpenTimeout
                     $NATIVE_AD_REFRESH_TIME_IN_MILLIS :: $nativeAdRefreshInterval

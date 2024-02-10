@@ -1,17 +1,22 @@
 package com.document.docease.utils
 
 import android.os.Environment
+import androidx.compose.runtime.mutableStateOf
 import com.document.docease.BuildConfig
 import java.io.File
 
 object Constant {
     var hasOpenedAFileInSession = false
-    var showAds = true
+
+    //    var showAds = true
+    var showAdsState = mutableStateOf(true)
     var appOpenTimeout = 6000
-    var adPerClickCount = 4000000
+    var adPerClickCount = 3
     var nativeAdRefreshInterval = 30000L
     var splashTime = 7000L
     var isPreview = false
+    var removeAdsCount = 1
+    var removeAdsDays = 2
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
@@ -207,6 +212,9 @@ object PrefKeys {
     const val keyRecent = "keyRecent"
     const val keyBookMarks = "keyBookMarks"
     const val keyOutSideLaunchCount = "keyOutSideLaunchCount"
+    const val keyRewardAdCount = "keyRewardAdCount"
+    const val keyRemoveAdsFromTimeStamp = "keyRemoveAdsTill"
+    const val keyShowAds = "keyShowAds"
 }
 
 

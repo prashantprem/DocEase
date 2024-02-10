@@ -78,7 +78,7 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
 
     fun loadAd(context: Context) {
         // Do not load ad if there is an unused ad or one is already loading.
-        if (isLoadingAd || isAdAvailable() || !Constant.showAds) {
+        if (isLoadingAd || isAdAvailable() || !Constant.showAdsState.value) {
             return
         }
 
@@ -116,6 +116,7 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
     }
 
     private fun canShowAd(): Boolean {
+        if (!Constant.showAdsState.value) return false
         if (isInterstitialAdShowing) return false
         val currentTimeInMillis = System.currentTimeMillis()
         val dateDifference: Long = currentTimeInMillis - loadTime

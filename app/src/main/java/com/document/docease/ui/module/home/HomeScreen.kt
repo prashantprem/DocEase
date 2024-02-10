@@ -49,6 +49,7 @@ import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
@@ -95,7 +96,7 @@ fun HomeScreen(
                 )
 
             }
-        } else {
+        } else if (Constant.showAdsState.value) {
             NativeAdAdmobMedium(
                 context = LocalContext.current,
                 loadedAd = ad,

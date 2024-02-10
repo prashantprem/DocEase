@@ -9,7 +9,6 @@ object SharedPreferencesUtility {
     const val CAMERA_PERMISSION_PROMPT = "CAMERA_PERMISSION"
 
 
-
     fun saveString(context: Context, key: String?, value: String?) {
         val preferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
         val editor = preferences.edit()
@@ -41,6 +40,17 @@ object SharedPreferencesUtility {
     fun getSavedInt(context: Context, key: String, defaultValue: Int): Int {
         val preferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
         return preferences.getInt(key, defaultValue)
+    }
+
+    fun saveLong(context: Context, key: String, value: Long) {
+        val preferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putLong(key, value).apply()
+    }
+
+    fun getSavedLong(context: Context, key: String, defaultValue: Long): Long {
+        val preferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
+        return preferences.getLong(key, defaultValue)
     }
 
 

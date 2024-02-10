@@ -12,6 +12,7 @@ import androidx.compose.ui.res.colorResource
 import com.document.docease.R
 import com.document.docease.ui.components.ads.NativeAdAdmobSmall
 import com.document.docease.ui.module.filescreen.FileClickListener
+import com.document.docease.utils.Constant
 import com.document.docease.utils.ScreenType
 import com.google.android.gms.ads.nativead.NativeAd
 import java.io.File
@@ -30,7 +31,12 @@ fun FileListWrapper(
             .fillMaxSize()
     ) {
         if (!files.isNullOrEmpty()) {
-            NativeAdAdmobSmall(context = LocalContext.current, loadedAd = nativeAd)
+            if (Constant.showAdsState.value) {
+                NativeAdAdmobSmall(
+                    context = LocalContext.current,
+                    loadedAd = nativeAd
+                )
+            }
             FileList(
                 files = files,
                 imageId,

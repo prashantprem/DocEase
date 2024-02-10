@@ -157,9 +157,12 @@ public class NUIActivity extends BaseActivity {
     }
 
     private void loadBannerAd() {
-        if (Constant.INSTANCE.getShowAds()) {
+        if (Constant.INSTANCE.getShowAdsState().getValue()) {
+            adView.setVisibility(View.VISIBLE);
             AdRequest adRequest = new AdRequest.Builder().build();
             adView.loadAd(adRequest);
+        } else {
+            adView.setVisibility(View.GONE);
         }
     }
 

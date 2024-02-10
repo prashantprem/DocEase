@@ -23,7 +23,7 @@ fun rememberNativeAdState(
     adUnitId: String,
     refreshInterval: Long = 60000L
 ): NativeAd? {
-    if (!Constant.showAds) {
+    if (!Constant.showAdsState.value) {
         return null;
     }
     var state by remember {

@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import androidx.core.content.FileProvider
 import com.document.docease.BuildConfig
 import com.document.docease.R
@@ -248,6 +249,26 @@ object Utility {
                 putExtra(Intent.EXTRA_TEXT, eMailBody)
             }
         )
+    }.tryCatch()
+
+
+    fun checkIfHasToShowAds(context: Context) = {
+        if (!SharedPreferencesUtility.getSavedBoolean(context, PrefKeys.keyShowAds, true)) {
+            val rewardTime = SharedPreferencesUtility.getSavedLong(
+                context,
+                PrefKeys.keyRemoveAdsFromTimeStamp,
+                System.currentTimeMillis()
+            )
+            val cutOffTimeStamp = Constant.removeAdsDays * (24 * 60 * 60 * 1000L)
+            val differenceInMillis = System.currentTimeMillis() - rewardTime
+            Constant.showAdsState.value = differenceInMillis >= cutOffTimeStamp
+            SharedPreferencesUtility.saveBoolean(
+                context,
+                PrefKeys.keyShowAds,
+                Constant.showAdsState.value
+            )
+            Log.d("TestingShowAds", Constant.showAdsState.value.toString())
+        }
     }.tryCatch()
 
 

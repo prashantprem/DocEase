@@ -25,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
 import com.document.docease.ui.components.ads.NativeAdAdmobMedium
+import com.document.docease.utils.Constant
 import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.coroutines.launch
 
@@ -55,7 +56,12 @@ fun ExitBottomSheet(
         ) {
             Text(text = "Exit ${stringResource(id = R.string.app_name)}?")
             Spacer(modifier = Modifier.height(8.dp))
-            NativeAdAdmobMedium(context = LocalContext.current, loadedAd = adState)
+            if (Constant.showAdsState.value) {
+                NativeAdAdmobMedium(
+                    context = LocalContext.current,
+                    loadedAd = adState
+                )
+            }
             Spacer(modifier = Modifier.height(8.dp))
             Row {
                 Button(
