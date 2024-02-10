@@ -51,6 +51,7 @@ import com.document.docease.utils.Constant
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.PrefKeys
 import com.document.docease.utils.SharedPreferencesUtility
+import com.document.docease.utils.Utility
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -139,7 +140,8 @@ fun RemoveAds(
                 RewardScreen(
                     Modifier
                         .fillMaxHeight()
-                        .weight(1f)
+                        .weight(1f),
+                    context = context
                 )
             }
 
@@ -240,7 +242,7 @@ fun AdScreen(adCount: MutableIntState, context: Context, modifier: Modifier) {
 }
 
 @Composable
-fun RewardScreen(modifier: Modifier) {
+fun RewardScreen(modifier: Modifier, context: Context) {
 
     Column(modifier) {
         Image(
@@ -268,13 +270,26 @@ fun RewardScreen(modifier: Modifier) {
 
         Text(
             text =
-            " You've earned 2 days of ad-free browsing. Enjoy the uninterrupted experience!",
+            " You've earned ad-free browsing. Enjoy the uninterrupted experience!",
             style = MaterialTheme.typography.bodySmall.copy(
                 color = colorResource(
                     id = R.color.text_color
                 )
             ),
-            fontSize = 12.sp,
+            fontSize = 13.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(.9f)
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text =
+            "Valid till: ${Utility.getRewardValidityDate(context = context)}",
+            style = MaterialTheme.typography.labelSmall.copy(
+                color = colorResource(
+                    id = R.color.text_color
+                )
+            ),
+            fontSize = 11.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(.9f)
         )

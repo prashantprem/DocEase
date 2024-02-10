@@ -20,6 +20,10 @@ import com.document.docease.ui.module.preview.PreviewActivity
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.Extensions.tryCatch
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 object Utility {
 
@@ -270,6 +274,34 @@ object Utility {
             Log.d("TestingShowAds", Constant.showAdsState.value.toString())
         }
     }.tryCatch()
+
+    fun getRewardValidityDate(context: Context): String {
+        if (!SharedPreferencesUtility.getSavedBoolean(context, PrefKeys.keyShowAds, true)) {
+            try {
+                val rewardTime = SharedPreferencesUtility.getSavedLong(
+                    context,
+                    PrefKeys.keyRemoveAdsFromTimeStamp,
+                    System.currentTimeMillis()
+                )
+                val calendar = Calendar.getInstance()
+                calendar.timeInMillis = rewardTime
+                calendar.add(Calendar.DAY_OF_MONTH, Constant.removeAdsDays)
+                // Get the date after 2 days
+                val dateAfterTwoDays: Date = calendar.time
+
+                // Format the date in dd/MM/yyyy format
+                val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                return formatter.format(dateAfterTwoDays)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return ""
+            }
+
+
+        } else {
+            return ""
+        }
+    }
 
 
 }
