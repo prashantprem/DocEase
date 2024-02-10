@@ -7,8 +7,8 @@ import java.io.File
 object Constant {
     var hasOpenedAFileInSession = false
     var showAds = true
-    var appOpenTimeout = 5000
-    var adPerClickCount = 4
+    var appOpenTimeout = 6000
+    var adPerClickCount = 4000000
     var nativeAdRefreshInterval = 30000L
     var splashTime = 7000L
     var isPreview = false
@@ -83,15 +83,16 @@ object Constant {
 
     const val REGULAR_SPACE_CHARACTER = ' '
     const val NON_BREAKABLE_SPACE_UNICODE = '\u00A0'
+    const val contactMail = "contactdocease@gmail.com"
+    const val inviteMessage =
+        "\uD83D\uDCF2 Hey! Found an amazing app! \uD83D\uDE80 Manage docs like a pro – view & edit PDFs, Word, Excel, & PowerPoint files effortlessly. \uD83D\uDCBC✨ Trust me, it's a productivity booster! Tap to download now! \uD83D\uDCE5"
 
 
     fun getFileAssetList(): ArrayList<FileAssetModel> {
         val mFileArrayList = ArrayList<FileAssetModel>()
         mFileArrayList.add(
             FileAssetModel(
-                "spreadsheet-blank.xlsx",
-                "ic_excel_new_file.png",
-                "Spreadsheet.xlsx"
+                "spreadsheet-blank.xlsx", "ic_excel_new_file.png", "Spreadsheet.xlsx"
             )
         )
         mFileArrayList.add(
@@ -104,9 +105,7 @@ object Constant {
         )
         mFileArrayList.add(
             FileAssetModel(
-                "document-blank.docx",
-                "ic_word_new_file.png",
-                "Document.docx"
+                "document-blank.docx", "ic_word_new_file.png", "Document.docx"
             )
         )
         mFileArrayList.add(
@@ -119,9 +118,7 @@ object Constant {
         )
         mFileArrayList.add(
             FileAssetModel(
-                "presentation-blank.pptx",
-                "ic_ppt_new_file.png",
-                "Presentation.pptx"
+                "presentation-blank.pptx", "ic_ppt_new_file.png", "Presentation.pptx"
             )
         )
         mFileArrayList.add(
@@ -139,79 +136,57 @@ object Constant {
         val mFileArrayList = ArrayList<FileAssetModel>()
         mFileArrayList.add(
             FileAssetModel(
-                "template-docx-a.docx",
-                "template-docx-a.png",
-                "Resume.docx"
+                "template-docx-a.docx", "template-docx-a.png", "Resume.docx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "template-docx-b.docx",
-                "template-docx-b.png",
-                "Report II.docx"
+                "template-docx-b.docx", "template-docx-b.png", "Report II.docx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "template-pptx-a.pptx",
-                "template-pptx-a.png",
-                "Dark II.pptx"
+                "template-pptx-a.pptx", "template-pptx-a.png", "Dark II.pptx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "template-pptx-b.pptx",
-                "template-pptx-b.png",
-                "Light II.pptx"
+                "template-pptx-b.pptx", "template-pptx-b.png", "Light II.pptx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "template-xlsx-a.xlsx",
-                "template-xlsx-a.png",
-                "Expenses II.xlsx"
+                "template-xlsx-a.xlsx", "template-xlsx-a.png", "Expenses II.xlsx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "template-xlsx-b.xlsx",
-                "template-xlsx-b.png",
-                "Invoice.xlsx"
+                "template-xlsx-b.xlsx", "template-xlsx-b.png", "Invoice.xlsx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "document-letter.docx",
-                "document-letter.png",
-                "Letter.docx"
+                "document-letter.docx", "document-letter.png", "Letter.docx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "document-report.docx",
-                "document-report.png",
-                "Report I.docx"
+                "document-report.docx", "document-report.png", "Report I.docx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "presentation-dark-amber.pptx",
-                "presentation-dark-amber.png",
-                "Dark I.pptx"
+                "presentation-dark-amber.pptx", "presentation-dark-amber.png", "Dark I.pptx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "presentation-light-bubbles.pptx",
-                "presentation-light-bubbles.png",
-                "Light I.pptx"
+                "presentation-light-bubbles.pptx", "presentation-light-bubbles.png", "Light I.pptx"
             )
         )
         mFileArrayList.add(
             FileAssetModel(
-                "spreadsheet-chart-data.xlsx",
-                "spreadsheet-chart-data.png",
-                "Chart.xlsx"
+                "spreadsheet-chart-data.xlsx", "spreadsheet-chart-data.png", "Chart.xlsx"
             )
         )
         mFileArrayList.add(

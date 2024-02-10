@@ -101,4 +101,11 @@ object Extensions {
             ScreenType.HISTORY -> "Open a file to add in history!"
         }
     }
+
+    fun <T> (() -> T).tryCatch() =
+        try {
+            this()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 }

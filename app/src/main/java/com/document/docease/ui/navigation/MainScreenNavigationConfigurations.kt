@@ -37,7 +37,7 @@ fun MainNavigationConfiguration(
             LandingScreen(viewModel, navController, storageRequestLauncher)
         }
         composable(Routes.REMOVE_ADS) {
-            RemoveAds()
+            RemoveAds(navController)
         }
     }
 }

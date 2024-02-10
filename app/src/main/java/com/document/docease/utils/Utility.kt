@@ -9,12 +9,15 @@ import android.content.pm.ResolveInfo
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.net.Uri
+import android.os.Build
 import androidx.core.content.FileProvider
 import com.document.docease.BuildConfig
+import com.document.docease.R
 import com.document.docease.ui.module.editors.ViewEditorActivity
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.preview.PreviewActivity
 import com.document.docease.utils.Extensions.findActivity
+import com.document.docease.utils.Extensions.tryCatch
 import java.io.File
 
 object Utility {
@@ -91,7 +94,7 @@ object Utility {
     }
 
 
-    fun openFile(activity: Activity, mFile: File, pageNumber: Int) {
+    fun openFile(activity: Activity, mFile: File, pageNumber: Int) = {
         val storageUtils = StorageUtils(activity)
         storageUtils.addRecent(mFile)
         val fromFile = Uri.fromFile(mFile)
@@ -104,14 +107,14 @@ object Utility {
         intent.putExtra(Constant.SHOW_DEFAULT_BS, false)
         intent.putExtra(Constant.EDITOR, true)
         activity.startActivityForResult(intent, MainActivity.CODE_RESULT_BOOKMARK)
-    }
+    }.tryCatch()
 
-    fun openFileWithLocalContext(context: Context, mFile: File, pageNumber: Int = 0) {
+    fun openFileWithLocalContext(context: Context, mFile: File, pageNumber: Int = 0) = {
         context.findActivity()?.let { activity ->
             AnalyticsManager.logEvent(FirebaseEvents.fileEdit)
             openFile(activity, mFile, pageNumber)
         }
-    }
+    }.tryCatch()
 
     fun previewFileWithLocalContext(
         context: Context,
@@ -125,7 +128,7 @@ object Utility {
         }
     }
 
-    fun openFileFromUri(activity: Activity, uri: Uri, isForPrint: Boolean = false) {
+    fun openFileFromUri(activity: Activity, uri: Uri, isForPrint: Boolean = false) = {
         Constant.hasOpenedAFileInSession = true
         val intent = Intent(activity, ViewEditorActivity::class.java)
         intent.action = Constant.INTENT_ACTION_VIEW
@@ -136,84 +139,116 @@ object Utility {
         intent.putExtra(Constant.EDITOR, true)
         intent.putExtra(Constant.PRINT, isForPrint)
         activity.startActivity(intent)
-    }
+    }.tryCatch()
 
-    fun previewFile(activity: Activity, mFile: File, pageNumber: Int, isForPrint: Boolean = false) {
-        Constant.hasOpenedAFileInSession = true
-        val storageUtils = StorageUtils(activity)
-        storageUtils.addRecent(mFile)
-        val fromFile = Uri.fromFile(mFile)
-        val intent = Intent(activity, PreviewActivity::class.java)
-        intent.action = Constant.INTENT_ACTION_VIEW
-        intent.data = fromFile
-        intent.putExtra(Constant.STARTED_FROM_EXPLORER, true)
-        intent.putExtra(Constant.START_PAGE, pageNumber)
-        intent.putExtra(Constant.FILE_NAME, mFile.name)
-        intent.putExtra(Constant.PREVIEW, true)
-        intent.putExtra(Constant.FILE, mFile)
-        intent.putExtra(Constant.PRINT, isForPrint)
-        if (mFile.name.endsWith(".pdf")) {
-            intent.putExtra("isPdf", true)
-        }
-        activity.startActivityForResult(intent, MainActivity.CODE_RESULT_BOOKMARK)
-    }
+    fun previewFile(activity: Activity, mFile: File, pageNumber: Int, isForPrint: Boolean = false) =
+        {
+            Constant.hasOpenedAFileInSession = true
+            val storageUtils = StorageUtils(activity)
+            storageUtils.addRecent(mFile)
+            val fromFile = Uri.fromFile(mFile)
+            val intent = Intent(activity, PreviewActivity::class.java)
+            intent.action = Constant.INTENT_ACTION_VIEW
+            intent.data = fromFile
+            intent.putExtra(Constant.STARTED_FROM_EXPLORER, true)
+            intent.putExtra(Constant.START_PAGE, pageNumber)
+            intent.putExtra(Constant.FILE_NAME, mFile.name)
+            intent.putExtra(Constant.PREVIEW, true)
+            intent.putExtra(Constant.FILE, mFile)
+            intent.putExtra(Constant.PRINT, isForPrint)
+            if (mFile.name.endsWith(".pdf")) {
+                intent.putExtra("isPdf", true)
+            }
+            activity.startActivityForResult(intent, MainActivity.CODE_RESULT_BOOKMARK)
+        }.tryCatch()
 
 
     fun getResizedDrawableUsingSpecificSize(drawable: Drawable, newWidth: Int, newHeight: Int) =
         LayerDrawable(arrayOf(drawable)).also { it.setLayerSize(0, newWidth, newHeight) }
 
 
-    fun shareToWhatsApp(file: File, context: Context) {
-        try {
-            val sharingIntent = Intent(Intent.ACTION_SEND)
-            sharingIntent.type = "file/*"
-            val uri: Uri? = try {
-                FileProvider.getUriForFile(
-                    context,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    file
-                )
-            } catch (e: Exception) {
-                Uri.fromFile(file)
-            }
-            sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
-            sharingIntent.setPackage("com.whatsapp")
-            context.startActivity(sharingIntent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    fun shareToAny(file: File, context: Context) {
-        try {
-            val shareIntent = Intent()
-            shareIntent.action = Intent.ACTION_SEND
-            shareIntent.type = "application/*"
-            val uri = FileProvider.getUriForFile(
-                context, BuildConfig.APPLICATION_ID + ".fileprovider",
+    fun shareToWhatsApp(file: File, context: Context) = {
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "file/*"
+        val uri: Uri? = try {
+            FileProvider.getUriForFile(
+                context,
+                BuildConfig.APPLICATION_ID + ".provider",
                 file
             )
-            shareIntent.clipData = ClipData.newRawUri("", uri)
-            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-            shareIntent.addFlags(
-                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-//            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-            val resInfoList: List<ResolveInfo> = context.packageManager
-                .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
-            for (resolveInfo in resInfoList) {
-                val packageName = resolveInfo.activityInfo.packageName
-                context.grantUriPermission(
-                    packageName,
-                    uri,
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            }
-            context.startActivity(Intent.createChooser(shareIntent, "Share"))
         } catch (e: Exception) {
-            e.printStackTrace()
+            Uri.fromFile(file)
         }
-    }
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
+        sharingIntent.setPackage("com.whatsapp")
+        context.startActivity(sharingIntent)
+    }.tryCatch()
+
+    fun shareToAny(file: File, context: Context) = {
+
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.type = "application/*"
+        val uri = FileProvider.getUriForFile(
+            context, BuildConfig.APPLICATION_ID + ".fileprovider",
+            file
+        )
+        shareIntent.clipData = ClipData.newRawUri("", uri)
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+        shareIntent.addFlags(
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+        )
+        val resInfoList: List<ResolveInfo> = context.packageManager
+            .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
+        for (resolveInfo in resInfoList) {
+            val packageName = resolveInfo.activityInfo.packageName
+            context.grantUriPermission(
+                packageName,
+                uri,
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+        }
+        context.startActivity(Intent.createChooser(shareIntent, "Share"))
+
+    }.tryCatch()
+
+
+    fun inviteFriends(context: Context) = {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name)
+        val appIdLink =
+            context.getString(R.string.playstore_app_link) + BuildConfig.APPLICATION_ID
+        shareIntent.putExtra(Intent.EXTRA_TEXT, Constant.inviteMessage + "\n$appIdLink")
+        context.startActivity(Intent.createChooser(shareIntent, "choose one"))
+    }.tryCatch()
+
+    fun rateOnPlayStore(context: Context) = {
+        context.startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(
+                    "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
+                )
+            ).also { it.setPackage("com.android.vending") }
+        )
+    }.tryCatch()
+
+    fun giveFeedback(context: Context) = {
+        val eMailBody = """
+            app_version: ${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})
+            device: ${Build.PRODUCT}(${Build.MODEL})
+            android_version: ${Build.VERSION.RELEASE}
+        """.trimIndent()
+        context.startActivity(
+            Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(Constant.contactMail))
+                putExtra(Intent.EXTRA_SUBJECT, "DocEase Support")
+                putExtra(Intent.EXTRA_TEXT, eMailBody)
+            }
+        )
+    }.tryCatch()
 
 
 }

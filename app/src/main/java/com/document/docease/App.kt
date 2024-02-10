@@ -22,9 +22,9 @@ class App : MainApp() {
                     RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
                 MobileAds.setRequestConfiguration(configuration)
             }
-            AnalyticsManager.initialize(this)
-            RemoteConfigUtil().init()
-            AppOpenAdManager(this, AdUnits.appOpen)
         }
+        AnalyticsManager.initialize(this)
+        RemoteConfigUtil().init()
+        AppOpenAdManager(this, AdUnits.appOpen)
     }
 }

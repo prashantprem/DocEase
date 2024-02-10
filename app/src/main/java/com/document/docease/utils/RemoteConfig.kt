@@ -11,6 +11,7 @@ import com.document.docease.utils.Constant.appOpenTimeout
 import com.document.docease.utils.Constant.nativeAdRefreshInterval
 import com.document.docease.utils.Constant.showAds
 import com.document.docease.utils.Constant.splashTime
+import com.document.docease.utils.Extensions.tryCatch
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
@@ -20,8 +21,8 @@ class RemoteConfigUtil {
 
     private val DEFAULTS: HashMap<String, Any> =
         hashMapOf(
-            APP_OPEN_THRESHOLD to 4000,
-            FLOW_AD_CLICK_THRESHOLD to 2,
+            APP_OPEN_THRESHOLD to 5000,
+            FLOW_AD_CLICK_THRESHOLD to 4,
             ADS_ENABLED to true,
             NATIVE_AD_REFRESH_TIME_IN_MILLIS to 10000L,
             SPLASH_TIME to 6000L
@@ -29,29 +30,31 @@ class RemoteConfigUtil {
 
     private lateinit var remoteConfig: FirebaseRemoteConfig
 
-    fun init() {
-        try {
-            remoteConfig = getFirebaseRemoteConfig()
-            remoteConfig.apply {
+    fun init() = {
+        remoteConfig = getFirebaseRemoteConfig()
+        remoteConfig.apply {
 //                showAds = getBoolean(ADS_ENABLED)
-                appOpenTimeout = getLong(APP_OPEN_THRESHOLD).toInt()
-                adPerClickCount = getDouble(FLOW_AD_CLICK_THRESHOLD).toInt()
-                nativeAdRefreshInterval = getLong(NATIVE_AD_REFRESH_TIME_IN_MILLIS)
-                splashTime = getLong(SPLASH_TIME)
-                log(
-                    """
-                    $ADS_ENABLED :: $showAds \n
-                    $FLOW_AD_CLICK_THRESHOLD :: $adPerClickCount\n
-                    $APP_OPEN_THRESHOLD :: $appOpenTimeout\n
-                    $NATIVE_AD_REFRESH_TIME_IN_MILLIS :: $nativeAdRefreshInterval\n
+            appOpenTimeout = getLong(APP_OPEN_THRESHOLD).toInt()
+            if (appOpenTimeout == 0) {
+                appOpenTimeout = 6000
+            }
+            adPerClickCount = getDouble(FLOW_AD_CLICK_THRESHOLD).toInt()
+            if (adPerClickCount == 0) {
+                adPerClickCount = 4
+            }
+            nativeAdRefreshInterval = getLong(NATIVE_AD_REFRESH_TIME_IN_MILLIS)
+            splashTime = getLong(SPLASH_TIME)
+            log(
+                """
+                    $ADS_ENABLED :: $showAds
+                    $FLOW_AD_CLICK_THRESHOLD :: $adPerClickCount
+                    $APP_OPEN_THRESHOLD :: $appOpenTimeout
+                    $NATIVE_AD_REFRESH_TIME_IN_MILLIS :: $nativeAdRefreshInterval
                     $SPLASH_TIME :: $splashTime
                 """.trimIndent()
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+            )
         }
-    }
+    }.tryCatch()
 
     fun log(msg: String) {
         Log.d("RemoteConfig", msg)

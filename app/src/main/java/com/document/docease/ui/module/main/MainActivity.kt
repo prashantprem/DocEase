@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
+import com.document.docease.ui.components.ads.isInterstitialAdShowing
 import com.document.docease.ui.components.ads.loadInterstitial
 import com.document.docease.ui.components.ads.showInterstitial
 import com.document.docease.ui.navigation.MainNavigationConfiguration
@@ -76,6 +77,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        isInterstitialAdShowing = true
         installSplashScreen().apply {
             AnalyticsManager.logEvent(FirebaseEvents.splashLaunch)
             this.setKeepOnScreenCondition {

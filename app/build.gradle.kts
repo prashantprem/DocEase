@@ -15,8 +15,8 @@ android {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.1"
+        versionCode = 5
+        versionName = "1.2"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -70,6 +70,14 @@ android {
         abortOnError = false
     }
 
+    androidResources {
+        ignoreAssetsPattern = "!x86"
+        ignoreAssetsPattern = "!x8_64"
+        ignoreAssetsPattern = "!mips"
+        ignoreAssetsPattern = "!mips64"
+        ignoreAssetsPattern = "!armeabi"
+    }
+
 
 }
 
@@ -109,7 +117,7 @@ dependencies {
 
     //datastore
 //    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    
+
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
@@ -142,7 +150,6 @@ dependencies {
     //review
     implementation("com.google.android.play:review:2.0.1")
     implementation("com.google.android.play:review-ktx:2.0.1")
-
 
 
 }
