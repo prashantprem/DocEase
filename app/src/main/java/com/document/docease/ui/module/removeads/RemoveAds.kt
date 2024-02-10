@@ -200,7 +200,7 @@ fun AdScreen(adCount: MutableIntState, context: Context, modifier: Modifier) {
                 .height(50.dp)
                 .align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.elevatedButtonColors(
-                containerColor = colorResource(id = R.color.primary),
+                containerColor = Color(0xff003EC9),
                 contentColor = Color.White
             ),
             onClick = {
@@ -229,7 +229,7 @@ fun AdScreen(adCount: MutableIntState, context: Context, modifier: Modifier) {
         ) {
 
             Text(
-                text = "Watch Ad!(${adCount.intValue}/${Constant.removeAdsCount})",
+                text = "Watch Ad! (${adCount.intValue}/${Constant.removeAdsCount})",
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color.White
                 ),

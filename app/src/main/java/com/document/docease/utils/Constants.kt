@@ -15,7 +15,7 @@ object Constant {
     var nativeAdRefreshInterval = 30000L
     var splashTime = 7000L
     var isPreview = false
-    var removeAdsCount = 1
+    var removeAdsCount = 3
     var removeAdsDays = 2
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
@@ -57,6 +57,8 @@ object Constant {
     const val ADS_ENABLED = "ADS_ENABLED"
     const val NATIVE_AD_REFRESH_TIME_IN_MILLIS = "NATIVE_AD_REFRESH_TIME_IN_MILLIS"
     const val SPLASH_TIME = "SPLASH_TIME"
+    const val REWARD_AD_COUNT = "REWARD_AD_COUNT"
+    const val REWARD_DAYS = "REWARD_DAYS"
 
 
     const val platform = "android"
