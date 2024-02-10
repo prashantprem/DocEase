@@ -229,6 +229,7 @@ object AdUnits {
     const val fileEditInterstitial = "ca-app-pub-7642879603256855/7843249236"
     const val flowInterstitial = "ca-app-pub-7642879603256855/7860109843"
     const val fileBanner = "ca-app-pub-7642879603256855/8890158470"
+    const val drawerNative = "ca-app-pub-7642879603256855~7054294630"
 }
 
 object FirebaseEvents {

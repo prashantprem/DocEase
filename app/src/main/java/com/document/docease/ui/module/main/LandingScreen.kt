@@ -63,6 +63,7 @@ import com.document.docease.utils.Utility
 import com.document.docease.utils.Utility.giveFeedback
 import com.document.docease.utils.Utility.inviteFriends
 import com.document.docease.utils.Utility.rateOnPlayStore
+import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.coroutines.launch
 import java.io.File
 import kotlin.system.exitProcess
@@ -72,7 +73,8 @@ import kotlin.system.exitProcess
 fun LandingScreen(
     viewModel: MainViewModel,
     navigationController: NavHostController,
-    storageRequestLauncher: ActivityResultLauncher<Intent>
+    storageRequestLauncher: ActivityResultLauncher<Intent>,
+    homeNativeAdState: NativeAd?
 ) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.HOME,
@@ -87,6 +89,10 @@ fun LandingScreen(
     val bottomNavigationController = rememberNavController()
     var clickCount = 0
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val drawerNativeState = rememberNativeAdState(
+        context = LocalContext.current, adUnitId = AdUnits.drawerNative,
+        refreshInterval = Constant.nativeAdRefreshInterval
+    )
 
     ModalNavigationDrawer(
         drawerContent = {
@@ -128,7 +134,7 @@ fun LandingScreen(
 
                     else -> {}
                 }
-            })
+            }, drawerNativeState, mContext)
         },
         drawerState = drawerState
     ) {
@@ -226,13 +232,6 @@ fun LandingScreen(
                     context = LocalContext.current, adUnitId = AdUnits.filesNative,
                     refreshInterval = Constant.nativeAdRefreshInterval
                 )
-                val homeNativeAdState = rememberNativeAdState(
-                    context = LocalContext.current,
-                    adUnitId = AdUnits.homeNative,
-                    refreshInterval = Constant.nativeAdRefreshInterval
-                )
-
-
                 loadInterstitial(context = mContext, AdUnits.flowInterstitial)
                 if (showFileActionBottomSheet) {
                     ModalBottomSheet(
@@ -344,7 +343,7 @@ fun LandingScreen(
             bottomBar = {
                 CustomBottomNavigation(
                     navController = bottomNavigationController,
-                    items = bottomNavigationItems
+                    items = bottomNavigationItems,
                 ) {
                     clickCount += 1
                     showInterstitialOnClick(

@@ -22,12 +22,14 @@ import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.document.docease.R
 import com.document.docease.ui.components.ads.isInterstitialAdShowing
 import com.document.docease.ui.components.ads.loadInterstitial
+import com.document.docease.ui.components.ads.rememberNativeAdState
 import com.document.docease.ui.components.ads.showInterstitial
 import com.document.docease.ui.navigation.MainNavigationConfiguration
 import com.document.docease.ui.theme.DocEaseTheme
@@ -116,6 +118,11 @@ class MainActivity : ComponentActivity() {
                 val pullRefreshState = rememberPullRefreshState(
                     viewModel.isRefreshing,
                     { viewModel.refresh(this@MainActivity) })
+                val homeNativeAdState = rememberNativeAdState(
+                    context = LocalContext.current,
+                    adUnitId = AdUnits.homeNative,
+                    refreshInterval = Constant.nativeAdRefreshInterval
+                )
                 Box(
                     Modifier
                         .safeDrawingPadding()
@@ -124,7 +131,8 @@ class MainActivity : ComponentActivity() {
                     MainNavigationConfiguration(
                         navController = navController,
                         viewModel = viewModel,
-                        requestPermissionResultLauncher
+                        requestPermissionResultLauncher,
+                        homeNativeAdState
                     )
                     if (PermissionUtils.storagePermissionState.value) {
                         PullRefreshIndicator(

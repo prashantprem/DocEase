@@ -1,5 +1,6 @@
 package com.document.docease.ui.common
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -35,10 +36,13 @@ import com.document.docease.BuildConfig
 import com.document.docease.R
 import com.document.docease.data.dto.DrawerItemData
 import com.document.docease.utils.Extensions.noRippleClickable
+import com.google.android.gms.ads.nativead.NativeAd
 
 @Composable
 fun AppDrawer(
-    onItemClick: ((AppDrawerItemType) -> Unit)? = null
+    onItemClick: ((AppDrawerItemType) -> Unit)? = null,
+    nativeAd: NativeAd? = null,
+    context: Context
 ) {
     Column(
         modifier = Modifier
@@ -113,6 +117,7 @@ fun AppDrawer(
                 .fillMaxHeight()
                 .weight(1f)
         )
+//        NativeAdAdmobSmall(context = context, loadedAd = nativeAd)
         Text(
             text = "${stringResource(id = R.string.app_name)} v${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})",
             style = MaterialTheme.typography.labelSmall,
@@ -179,7 +184,7 @@ fun DrawerHeader() {
 @Composable
 @Preview(showBackground = true)
 fun previewDrawer() {
-    AppDrawer()
+//    AppDrawer()
 
 }
 
