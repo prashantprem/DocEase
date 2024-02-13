@@ -8,12 +8,14 @@ import com.document.docease.utils.Constant.NATIVE_AD_REFRESH_TIME_IN_MILLIS
 import com.document.docease.utils.Constant.REWARD_AD_COUNT
 import com.document.docease.utils.Constant.REWARD_DAYS
 import com.document.docease.utils.Constant.SPLASH_TIME
+import com.document.docease.utils.Constant.SUPPORT_MAIL
 import com.document.docease.utils.Constant.adPerClickCount
 import com.document.docease.utils.Constant.appOpenTimeout
 import com.document.docease.utils.Constant.nativeAdRefreshInterval
 import com.document.docease.utils.Constant.removeAdsCount
 import com.document.docease.utils.Constant.removeAdsDays
 import com.document.docease.utils.Constant.splashTime
+import com.document.docease.utils.Constant.supportMail
 import com.document.docease.utils.Extensions.tryCatch
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -28,13 +30,13 @@ class RemoteConfigUtil {
             FLOW_AD_CLICK_THRESHOLD to 4,
             ADS_ENABLED to true,
             NATIVE_AD_REFRESH_TIME_IN_MILLIS to 10000L,
-            SPLASH_TIME to 6000L
+            SPLASH_TIME to 6000L,
+            SUPPORT_MAIL to "premifsb@gmail.com"
         )
 
     private lateinit var remoteConfig: FirebaseRemoteConfig
 
     fun init() = {
-//        remoteConfig = getFirebaseRemoteConfig()
         remoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 0
@@ -59,6 +61,13 @@ class RemoteConfigUtil {
                 getDouble(REWARD_DAYS).toInt().apply {
                     if (this == 0) removeAdsDays = 2 else removeAdsCount = this
                 }
+                getString(SUPPORT_MAIL).apply {
+                    supportMail = if (isNullOrBlank()) {
+                        "premifsb@gmail.com"
+                    } else {
+                        this
+                    }
+                }
 
                 log(
                     """
@@ -69,6 +78,7 @@ class RemoteConfigUtil {
                     $SPLASH_TIME :: $splashTime
                     $REWARD_AD_COUNT:: $removeAdsCount
                     $REWARD_DAYS :: $removeAdsDays
+                    $SUPPORT_MAIL :: $supportMail
                 """.trimIndent()
                 )
             }
@@ -81,17 +91,5 @@ class RemoteConfigUtil {
     fun log(msg: String) {
         Log.d("RemoteConfig", msg)
     }
-
-    private fun getFirebaseRemoteConfig(): FirebaseRemoteConfig {
-        val remoteConfig = Firebase.remoteConfig
-        val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 0
-        }
-        remoteConfig.setConfigSettingsAsync(configSettings)
-        remoteConfig.setDefaultsAsync(DEFAULTS as Map<String, Any>)
-        remoteConfig.fetchAndActivate().addOnCompleteListener {}
-        return remoteConfig
-    }
-
 
 }

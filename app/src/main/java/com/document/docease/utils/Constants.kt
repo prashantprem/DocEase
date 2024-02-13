@@ -17,6 +17,7 @@ object Constant {
     var isPreview = false
     var removeAdsCount = 3
     var removeAdsDays = 2
+    var supportMail = "premifsb@gmail.com"
     val dir = File(Environment.getExternalStorageDirectory().absolutePath)
     val fontSizeList = ArrayList(
         listOf(
@@ -59,6 +60,7 @@ object Constant {
     const val SPLASH_TIME = "SPLASH_TIME"
     const val REWARD_AD_COUNT = "REWARD_AD_COUNT"
     const val REWARD_DAYS = "REWARD_DAYS"
+    const val SUPPORT_MAIL = "SUPPORT_MAIL"
 
 
     const val platform = "android"
