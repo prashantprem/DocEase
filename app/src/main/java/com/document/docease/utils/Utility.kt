@@ -219,6 +219,7 @@ object Utility {
 
 
     fun inviteFriends(context: Context) = {
+        AnalyticsManager.logEvent(FirebaseEvents.sharedApp)
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = "text/plain"
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name)

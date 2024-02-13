@@ -105,6 +105,7 @@ fun LandingScreen(
                             drawerState.close()
                         }
                         navigationController.navigate(Routes.REMOVE_ADS) {
+                            AnalyticsManager.logEvent(FirebaseEvents.removeAdsOpened)
                             popUpTo(navigationController.graph.findStartDestination().id) {
                                 saveState = true
                             }
@@ -178,6 +179,7 @@ fun LandingScreen(
                             tint = if (isSystemInDarkTheme()) colorResource(id = R.color.na_button_default) else Color.Red,
                             modifier = Modifier
                                 .noRippleClickable {
+                                    AnalyticsManager.logEvent(FirebaseEvents.removeAdsOpened)
                                     navigationController.navigate(Routes.REMOVE_ADS) {
                                         popUpTo(navigationController.graph.findStartDestination().id) {
                                             saveState = true
