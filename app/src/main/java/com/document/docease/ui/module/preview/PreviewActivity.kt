@@ -2,7 +2,6 @@ package com.document.docease.ui.module.preview
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.KeyEvent
@@ -13,9 +12,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.artifex.sonui.AppNUIActivity
-import com.document.docease.BuildConfig
 import com.document.docease.R
 import com.document.docease.ui.components.ads.loadInterstitial
 import com.document.docease.ui.components.ads.showInterstitial
@@ -140,34 +137,34 @@ class PreviewActivity
         try {
             popupMenu?.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.share -> {
-                        if (isFromOutside) {
-                            homeViewModel?.getTriggerShare()?.value = true
-                        } else {
-                            try {
-                                val sharingIntent = Intent(Intent.ACTION_SEND)
-                                sharingIntent.type = "file/*"
-                                val uri: Uri? = try {
-                                    FileProvider.getUriForFile(
-                                        this,
-                                        BuildConfig.APPLICATION_ID + ".provider",
-                                        mFile!!
-                                    )
-                                } catch (e: Exception) {
-                                    Uri.fromFile(mFile)
-                                }
-                                sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
-                                startActivity(
-                                    Intent.createChooser(
-                                        sharingIntent,
-                                        getString(R.string.share_document)
-                                    )
-                                )
-                            } catch (e: Exception) {
-                                e.printStackTrace()
-                            }
-                        }
-                    }
+//                    R.id.share -> {
+//                        if (isFromOutside) {
+//                            homeViewModel?.getTriggerShare()?.value = true
+//                        } else {
+//                            try {
+//                                val sharingIntent = Intent(Intent.ACTION_SEND)
+//                                sharingIntent.type = "file/*"
+//                                val uri: Uri? = try {
+//                                    FileProvider.getUriForFile(
+//                                        this,
+//                                        BuildConfig.APPLICATION_ID + ".provider",
+//                                        mFile!!
+//                                    )
+//                                } catch (e: Exception) {
+//                                    Uri.fromFile(mFile)
+//                                }
+//                                sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
+//                                startActivity(
+//                                    Intent.createChooser(
+//                                        sharingIntent,
+//                                        getString(R.string.share_document)
+//                                    )
+//                                )
+//                            } catch (e: Exception) {
+//                                e.printStackTrace()
+//                            }
+//                        }
+//                    }
 
                     R.id.bookmark -> {
                         val finalIsCheckFavorite = booleanArrayOf(isCheckFavorite)
