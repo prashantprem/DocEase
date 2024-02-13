@@ -34,28 +34,34 @@ class RemoteConfigUtil {
     private lateinit var remoteConfig: FirebaseRemoteConfig
 
     fun init() = {
-        remoteConfig = getFirebaseRemoteConfig()
-        remoteConfig.apply {
-//                showAds = getBoolean(ADS_ENABLED)
-            appOpenTimeout = getLong(APP_OPEN_THRESHOLD).toInt()
-            if (appOpenTimeout == 0) {
-                appOpenTimeout = 6000
-            }
-            adPerClickCount = getDouble(FLOW_AD_CLICK_THRESHOLD).toInt()
-            if (adPerClickCount == 0) {
-                adPerClickCount = 3
-            }
-            nativeAdRefreshInterval = getLong(NATIVE_AD_REFRESH_TIME_IN_MILLIS)
-            splashTime = getLong(SPLASH_TIME)
-            getDouble(REWARD_AD_COUNT).toInt().apply {
-                if (this == 0) removeAdsCount = 3 else removeAdsCount = this
-            }
-            getDouble(REWARD_DAYS).toInt().apply {
-                if (this == 0) removeAdsDays = 2 else removeAdsCount = this
-            }
+//        remoteConfig = getFirebaseRemoteConfig()
+        remoteConfig = Firebase.remoteConfig
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 0
+        }
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.setDefaultsAsync(DEFAULTS as Map<String, Any>)
+        remoteConfig.fetchAndActivate().addOnCompleteListener {
+            remoteConfig.apply {
+                appOpenTimeout = getLong(APP_OPEN_THRESHOLD).toInt()
+                if (appOpenTimeout == 0) {
+                    appOpenTimeout = 6000
+                }
+                adPerClickCount = getDouble(FLOW_AD_CLICK_THRESHOLD).toInt()
+                if (adPerClickCount == 0) {
+                    adPerClickCount = 3
+                }
+                nativeAdRefreshInterval = getLong(NATIVE_AD_REFRESH_TIME_IN_MILLIS)
+                splashTime = getLong(SPLASH_TIME)
+                getDouble(REWARD_AD_COUNT).toInt().apply {
+                    if (this == 0) removeAdsCount = 3 else removeAdsCount = this
+                }
+                getDouble(REWARD_DAYS).toInt().apply {
+                    if (this == 0) removeAdsDays = 2 else removeAdsCount = this
+                }
 
-            log(
-                """
+                log(
+                    """
                     $ADS_ENABLED :: ${Constant.showAdsState.value}
                     $FLOW_AD_CLICK_THRESHOLD :: $adPerClickCount
                     $APP_OPEN_THRESHOLD :: $appOpenTimeout
@@ -64,8 +70,12 @@ class RemoteConfigUtil {
                     $REWARD_AD_COUNT:: $removeAdsCount
                     $REWARD_DAYS :: $removeAdsDays
                 """.trimIndent()
-            )
+                )
+            }
+
+
         }
+
     }.tryCatch()
 
     fun log(msg: String) {

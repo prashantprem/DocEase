@@ -208,7 +208,7 @@ fun AdScreen(adCount: MutableIntState, context: Context, modifier: Modifier) {
                     showRewardedAd(context, AdUnits.buyMeCoffee, onAdDismissed = {
                         if (adCount.intValue > 0) {
                             adCount.intValue = adCount.intValue - 1
-                            Constant.removeAdsCount = adCount.intValue
+//                            Constant.removeAdsCount = adCount.intValue
                             SharedPreferencesUtility.saveInt(
                                 context,
                                 PrefKeys.keyRewardAdCount,
@@ -244,7 +244,11 @@ fun AdScreen(adCount: MutableIntState, context: Context, modifier: Modifier) {
 @Composable
 fun RewardScreen(modifier: Modifier, context: Context) {
 
-    Column(modifier) {
+    Column(
+        modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Image(
             painter = painterResource(id = R.drawable.ic_main_reward_granted),
             contentDescription = null,
