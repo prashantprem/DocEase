@@ -92,7 +92,6 @@ object Constant {
 
     const val REGULAR_SPACE_CHARACTER = ' '
     const val NON_BREAKABLE_SPACE_UNICODE = '\u00A0'
-    const val contactMail = "contactdocease@gmail.com"
     const val inviteMessage =
         "\uD83D\uDCF2 Hey! Found an amazing app! \uD83D\uDE80 Manage docs like a pro – view & edit PDFs, Word, Excel, & PowerPoint files effortlessly. \uD83D\uDCBC✨ Trust me, it's a productivity booster! Tap to download now! \uD83D\uDCE5"
 
@@ -258,4 +257,6 @@ object FirebaseEvents {
     const val notShownAdOnSPlash = "NotShownAdOnSplash"
     const val ratingShown = "RatingShown"
     const val fileInfoBottomSheetOpened = "FileInfoBottomSheetOpened"
+    const val sharedApp = "SharedApp"
+    const val removeAdsOpened = "RemoveAdOpened"
 }

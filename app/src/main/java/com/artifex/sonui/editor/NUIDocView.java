@@ -4430,21 +4430,21 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
         ArrayList var4 = new ArrayList();
         if (this.mInsertImageButton != null) {
-            if (this.mConfigOptions.k()) {
-                this.mInsertImageButton.setVisibility(VISIBLE);
-                var4.add(this.mInsertImageButton);
-            } else {
-                this.mInsertImageButton.setVisibility(GONE);
-            }
+//            if (this.mConfigOptions.k()) {
+//                this.mInsertImageButton.setVisibility(VISIBLE);
+//                var4.add(this.mInsertImageButton);
+//            } else {
+//                this.mInsertImageButton.setVisibility(GONE);
+//            }
         }
 
         if (this.mInsertPhotoButton != null) {
-            if (this.mConfigOptions.l()) {
-                this.mInsertPhotoButton.setVisibility(VISIBLE);
-                var4.add(this.mInsertPhotoButton);
-            } else {
-                this.mInsertPhotoButton.setVisibility(GONE);
-            }
+//            if (this.mConfigOptions.l()) {
+//                this.mInsertPhotoButton.setVisibility(VISIBLE);
+//                var4.add(this.mInsertPhotoButton);
+//            } else {
+//                this.mInsertPhotoButton.setVisibility(GONE);
+//            }
         }
 
         /*if (var4.size() > 0) {

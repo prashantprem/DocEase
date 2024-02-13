@@ -36,12 +36,10 @@ import com.document.docease.BuildConfig
 import com.document.docease.R
 import com.document.docease.data.dto.DrawerItemData
 import com.document.docease.utils.Extensions.noRippleClickable
-import com.google.android.gms.ads.nativead.NativeAd
 
 @Composable
 fun AppDrawer(
     onItemClick: ((AppDrawerItemType) -> Unit)? = null,
-    nativeAd: NativeAd? = null,
     context: Context
 ) {
     Column(

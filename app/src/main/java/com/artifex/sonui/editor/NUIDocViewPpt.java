@@ -374,13 +374,13 @@ public class NUIDocViewPpt extends NUIDocView {
     }
 
     protected void updateInsertUIAppearance() {
-        if (this.mInsertImageButton != null && this.mConfigOptions.k()) {
-            this.mInsertImageButton.setEnabled(true);
-        }
-
-        if (this.mInsertPhotoButton != null && this.mConfigOptions.l()) {
-            this.mInsertPhotoButton.setEnabled(true);
-        }
+//        if (this.mInsertImageButton != null && this.mConfigOptions.k()) {
+//            this.mInsertImageButton.setEnabled(true);
+//        }
+//
+//        if (this.mInsertPhotoButton != null && this.mConfigOptions.l()) {
+//            this.mInsertPhotoButton.setEnabled(true);
+//        }
 
     }
 

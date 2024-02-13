@@ -122,8 +122,8 @@ public class NUIDocViewDoc extends NUIDocView {
         this.mToolbarPaste.setOnClickListener(v -> {
             this.doPaste();
         });
-        this.mInsertImageButton.setVisibility(View.VISIBLE);
-        this.mInsertPhotoButton.setVisibility(View.VISIBLE);
+//        this.mInsertImageButton.setVisibility(View.VISIBLE);
+//        this.mInsertPhotoButton.setVisibility(View.VISIBLE);
     }
 
     protected void createReviewButtons() {

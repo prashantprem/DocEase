@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -32,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -89,10 +91,10 @@ fun LandingScreen(
     val bottomNavigationController = rememberNavController()
     var clickCount = 0
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val drawerNativeState = rememberNativeAdState(
-        context = LocalContext.current, adUnitId = AdUnits.drawerNative,
-        refreshInterval = Constant.nativeAdRefreshInterval
-    )
+//    val drawerNativeState = rememberNativeAdState(
+//        context = LocalContext.current, adUnitId = AdUnits.drawerNative,
+//        refreshInterval = Constant.nativeAdRefreshInterval
+//    )
 
     ModalNavigationDrawer(
         drawerContent = {
@@ -134,7 +136,7 @@ fun LandingScreen(
 
                     else -> {}
                 }
-            }, drawerNativeState, mContext)
+            }, mContext)
         },
         drawerState = drawerState
     ) {
@@ -173,7 +175,7 @@ fun LandingScreen(
                         Icon(
                             painter = painterResource(id = R.drawable.ic_main_remove_ad),
                             contentDescription = "Search Button",
-                            tint = colorResource(id = R.color.na_button_default),
+                            tint = if (isSystemInDarkTheme()) colorResource(id = R.color.na_button_default) else Color.Red,
                             modifier = Modifier
                                 .noRippleClickable {
                                     navigationController.navigate(Routes.REMOVE_ADS) {
