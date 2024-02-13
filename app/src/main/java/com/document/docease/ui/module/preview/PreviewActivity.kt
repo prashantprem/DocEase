@@ -137,35 +137,6 @@ class PreviewActivity
         try {
             popupMenu?.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-//                    R.id.share -> {
-//                        if (isFromOutside) {
-//                            homeViewModel?.getTriggerShare()?.value = true
-//                        } else {
-//                            try {
-//                                val sharingIntent = Intent(Intent.ACTION_SEND)
-//                                sharingIntent.type = "file/*"
-//                                val uri: Uri? = try {
-//                                    FileProvider.getUriForFile(
-//                                        this,
-//                                        BuildConfig.APPLICATION_ID + ".provider",
-//                                        mFile!!
-//                                    )
-//                                } catch (e: Exception) {
-//                                    Uri.fromFile(mFile)
-//                                }
-//                                sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
-//                                startActivity(
-//                                    Intent.createChooser(
-//                                        sharingIntent,
-//                                        getString(R.string.share_document)
-//                                    )
-//                                )
-//                            } catch (e: Exception) {
-//                                e.printStackTrace()
-//                            }
-//                        }
-//                    }
-
                     R.id.bookmark -> {
                         val finalIsCheckFavorite = booleanArrayOf(isCheckFavorite)
                         isClickBookmark = true
