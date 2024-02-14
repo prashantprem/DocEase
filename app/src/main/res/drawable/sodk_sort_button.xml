@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/sodk_sort_button_pressed" />
+            <stroke android:width="1.0px" android:color="@color/sodk_sort_button_border" />
+        </shape>
+    </item>
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/sodk_sort_button_selected" />
+            <stroke android:width="1.0px" android:color="@color/sodk_sort_button_border" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="@color/sodk_sort_button_normal" />
+            <stroke android:width="1.0px" android:color="@color/sodk_sort_button_border" />
+        </shape>
+    </item>
+</selector>

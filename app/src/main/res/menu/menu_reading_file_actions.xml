@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg_menu_corner"
+    >
+
+<!--    <item-->
+<!--        android:id="@+id/edit"-->
+<!--        android:icon="@drawable/ic_edit"-->
+<!--        android:title="@string/edit"-->
+<!--        />-->
+
+<!--    <item-->
+<!--        android:id="@+id/saveFile"-->
+<!--        android:icon="@drawable/ic_save_new"-->
+<!--        android:title="@string/save_file"-->
+<!--        />-->
+
+<!--    <item-->
+<!--        android:id="@+id/share"-->
+<!--        android:icon="@drawable/ic_share_preview"-->
+<!--        android:title="@string/share"-->
+<!--        />-->
+<!--    <item-->
+<!--        android:id="@+id/search"-->
+<!--        android:icon="@drawable/ic_search_main"-->
+<!--        android:title="@string/search_menu_title"-->
+<!--        />-->
+
+    <item
+        android:id="@+id/bookmark"
+        android:icon="@drawable/ic_star_bookmark"
+        android:title="@string/favourite"
+        />
+
+    <item
+        android:id="@+id/print"
+        android:icon="@drawable/ic_print_file"
+        android:title="@string/print"
+        />
+
+<!--    <item-->
+<!--        android:id="@+id/moveToTrash"-->
+<!--        android:icon="@drawable/ic_move_to_trash"-->
+<!--        android:title="@string/move_to_trash"-->
+<!--        />-->
+
+</menu>

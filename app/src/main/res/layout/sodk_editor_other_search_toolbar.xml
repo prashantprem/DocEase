@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="2dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.0" />
+
+        <LinearLayout
+            android:id="@id/search_input_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/sodk_editor_search_input_wrapper"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.0" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/search_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="0.0"
+                android:padding="3dp"
+                app:srcCompat="@drawable/sodk_editor_icon_find" />
+
+            <LinearLayout
+                android:layout_width="0.0px"
+                android:layout_height="0.0px"
+                android:layout_weight="0.0"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <com.artifex.sonui.editor.SOEditText
+                android:id="@id/search_text_input"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/sodk_editor_search_text_input"
+                android:hint="@string/sodk_editor_find"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/sodk_editor_search_text"
+                android:textColorHint="@color/sodk_editor_search_text_hint"
+                android:textSize="17sp" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.0" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@id/search_text_clear"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.0"
+                app:srcCompat="@drawable/sodk_editor_clear_text" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.0" />
+
+        <LinearLayout
+            android:id="@id/search_next"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:padding="3dp"
+                app:srcCompat="@drawable/sodk_editor_icon_find_next" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_next_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/search_previous"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:padding="3dp"
+                app:srcCompat="@drawable/sodk_editor_icon_find_previous" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sodk_editor_previous_upper"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </LinearLayout>
+</merge>

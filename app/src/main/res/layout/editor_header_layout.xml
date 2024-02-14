@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bar_color"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/toolbar_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_main_save"
+            app:tint="@color/text_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"
+            android:text="@string/save"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/toolbar_undo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_toEndOf="@+id/toolbar_done"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_main_undo"
+            app:tint="@color/text_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"
+            android:text="Undo"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/toolbar_redo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_toEndOf="@+id/toolbar_undo"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_main_redo"
+            app:tint="@color/text_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"
+            android:text="Redo"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/toolbar_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_main_cancel"
+            app:tint="@color/text_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"
+            android:text="@string/cancel_button_label"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/toolbar_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_toStartOf="@+id/toolbar_cancel"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_main_search"
+            app:tint="@color/text_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"
+            android:text="@string/search_menu_title"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/toolbar_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_toStartOf="@+id/toolbar_search"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_main_share"
+            app:tint="@color/text_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_color"
+            android:text="@string/share"/>
+
+    </LinearLayout>
+
+
+
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:padding="4dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:srcCompat="@drawable/ic_toolbar_cancel"-->
+<!--        app:tint="@color/material_blue_grey_900" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_toEndOf="@+id/toolbar_cancel"-->
+<!--        android:padding="2dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:srcCompat="@drawable/ic_toolbar_done"-->
+<!--        app:tint="@color/material_blue_grey_900" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:fontFamily="@font/nunito"-->
+<!--        android:padding="4dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:text="@string/save_cta"-->
+<!--        android:textColor="@color/text_color"-->
+<!--        android:textSize="16sp" />-->
+
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/back_button"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_toEndOf="@+id/imv_back"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:background="@color/sodk_editor_transparent"-->
+<!--        android:contentDescription="@string/todo"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:src="@drawable/sodk_editor_icon_back"-->
+<!--        android:visibility="gone"-->
+<!--        app:tint="@color/black_light" />-->
+
+<!--    <com.artifex.sonui.editor.SOTextView-->
+<!--        android:id="@+id/footer_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginStart="5dp"-->
+<!--        android:layout_toEndOf="@+id/imv_back"-->
+<!--        android:ellipsize="end"-->
+<!--        android:lines="1"-->
+<!--        android:maxLines="1"-->
+<!--        android:singleLine="true"-->
+<!--        android:text="@string/create_document"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="gone" />-->
+
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/toolbar_copy"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="6dp"-->
+<!--        android:layout_toStartOf="@+id/toolbar_paste"-->
+<!--        android:padding="4dp"-->
+<!--        android:visibility="visible"-->
+<!--        app:srcCompat="@drawable/ic_toolbar_copy"-->
+<!--        app:tint="@color/text_color" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/toolbar_search"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="6dp"-->
+<!--        android:layout_toStartOf="@+id/toolbar_share"-->
+<!--        android:padding="2dp"-->
+<!--        app:srcCompat="@drawable/ic_search_black"-->
+<!--        app:tint="@color/text_color" />-->
+
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/toolbar_paste"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="6dp"-->
+<!--        android:layout_toStartOf="@+id/toolbar_search"-->
+<!--        android:padding="4dp"-->
+<!--        app:srcCompat="@drawable/ic_new_paste"-->
+<!--        app:tint="@color/text_color" />-->
+
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/toolbar_share"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:padding="4dp"-->
+<!--        app:srcCompat="@drawable/ic_share_preview"-->
+<!--        app:tint="@color/text_color" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="6dp"-->
+<!--        android:layout_toStartOf="@+id/toolbar_redo"-->
+<!--        android:padding="4dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:srcCompat="@drawable/sodk_editor_icon_undo"-->
+<!--        app:tint="@color/material_blue_grey_900" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/toolbar_redo"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="6dp"-->
+<!--        android:padding="4dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:srcCompat="@drawable/sodk_editor_icon_redo"-->
+<!--        app:tint="@color/material_blue_grey_900" />-->
+</RelativeLayout>
+
+

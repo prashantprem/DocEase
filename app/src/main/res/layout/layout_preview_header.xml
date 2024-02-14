@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_50sdp"
+    android:background="@color/bar_color"
+    android:padding="5dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imv_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:background="@color/sodk_editor_transparent"
+        android:contentDescription="@string/todo"
+        android:padding="7dp"
+        android:tint="@color/text_color"
+        app:srcCompat="@drawable/ic_back_button_preview" />
+
+    <com.artifex.sonui.editor.SOTextView
+        android:id="@+id/footer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_1sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_toStartOf="@+id/imv_preview_copy"
+        android:layout_toEndOf="@+id/imv_back"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@string/create_document"
+        android:textAllCaps="false"
+        android:textColor="@color/text_color"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imv_preview_copy"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_toStartOf="@+id/imv_preview_edit"
+        android:src="@drawable/ic_main_preview_copy"
+        android:visibility="visible"
+        app:tint="@color/text_color" />
+
+    <ImageView
+        android:id="@+id/imv_preview_edit"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_toStartOf="@+id/imv_activity_editor_share"
+        android:src="@drawable/ic_main_preview_edit"
+        android:visibility="visible"
+        app:tint="@color/text_color" />
+
+    <ImageView
+        android:id="@+id/imv_activity_editor_share"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:layout_toStartOf="@+id/imv_menu_option"
+        android:src="@drawable/ic_main_share"
+        android:visibility="visible"
+        app:tint="@color/text_color" />
+
+    <ImageView
+        android:id="@+id/imv_menu_option"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:src="@drawable/ic_menu_reading_file"
+        app:tint="@color/text_color" />
+</RelativeLayout>
+
+

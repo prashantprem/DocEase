@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/sodk_sort_background" />
+            <stroke android:width="2.0px" android:color="@color/sodk_sort_tab_border" />
+            <padding android:left="2.0px" android:top="2.0px" android:right="2.0px" android:bottom="2.0px" />
+            <corners android:topLeftRadius="@dimen/_5sdp" android:bottomLeftRadius="@dimen/_5sdp" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include
+        android:id="@id/zui_cell_status_view"
+        layout="@layout/zui_cell_agent_response_label" />
+
+    <LinearLayout
+        android:id="@id/zui_answer_bot_contact_options_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/zui_background_agent_cell"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@id/zui_answer_bot_contact_options_header"
+            style="@style/ZendeskSdkTheme.Light.Cell.Text.Response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:importantForAccessibility="no"
+            android:paddingLeft="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingTop="@dimen/zui_cell_text_field_padding_vertical"
+            android:paddingRight="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingBottom="@dimen/zui_cell_text_field_padding_vertical"
+            android:textIsSelectable="false" />
+    </LinearLayout>
+</merge>

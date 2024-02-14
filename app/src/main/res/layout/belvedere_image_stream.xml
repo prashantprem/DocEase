@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.supportv1.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@id/dismiss_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="?actionBarSize"
+        android:visibility="gone"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="@dimen/belvedere_bottom_sheet_height"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <android.supportv1.v7.widget.RecyclerView
+            android:id="@id/image_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:background="#ffffffff"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/_3sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_5sdp" />
+    </FrameLayout>
+
+    <zendesk.belvedere.FloatingActionMenu
+        android:id="@id/floating_action_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom|center"
+        android:layout_marginEnd="@dimen/_3sdp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@id/image_stream_toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@id/image_stream_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?colorPrimary"
+            android:elevation="@dimen/_3sdp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <View
+            android:id="@id/image_stream_compat_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_3sdp"
+            android:background="@drawable/belvedere_toolbar_shadow"
+            android:visibility="invisible" />
+    </LinearLayout>
+</android.supportv1.design.widget.CoordinatorLayout>

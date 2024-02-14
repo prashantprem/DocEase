@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bs_back_btn"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="10dp"
+            android:tint="#454648"
+            app:srcCompat="@drawable/ic_fragment_back"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/highlight"
+            android:textColor="#454746"
+            android:textSize="17sp" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_font"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_editor_font"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_highlight"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_editor_highlight"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="@dimen/_8sdp">
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/remove_highlight"
+            style="@style/sodk_editor_font_color_button"
+            android:background="@drawable/sodk_editor_transparent_color_swatch"
+            android:tag="transparent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_gravity="center"
+            android:id="@+id/color_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_color_rv"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="13dp"/>
+
+</LinearLayout>

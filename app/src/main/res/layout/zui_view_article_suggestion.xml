@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zui_background_cell_articles_response_content"
+    android:foreground="?selectableItemBackground">
+
+    <ImageView
+        android:id="@id/zui_article_icon"
+        android:layout_width="@dimen/zui_layout_icon"
+        android:layout_height="@dimen/zui_layout_icon"
+        android:layout_marginStart="@dimen/zui_layout_keylines_screen_edge_margin"
+        android:layout_marginLeft="@dimen/zui_layout_keylines_screen_edge_margin"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginEnd="@dimen/zui_layout_keylines_screen_edge_margin"
+        android:layout_marginRight="@dimen/zui_layout_keylines_screen_edge_margin"
+        app:srcCompat="@drawable/zui_ic_article"
+        app:tint="?colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56.0dip"
+        android:layout_marginTop="@dimen/zui_cell_text_field_padding_vertical"
+        android:layout_marginEnd="@dimen/zui_layout_keylines_screen_edge_margin"
+        android:layout_marginBottom="@dimen/zui_cell_text_field_padding_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@id/zui_article_title"
+            style="@style/ZendeskSdkTheme.Light.Cell.Article.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:importantForAccessibility="no"
+            android:lineSpacingExtra="@dimen/zui_cell_article_line_spacing_extra"
+            android:maxLines="2" />
+
+        <TextView
+            android:id="@id/zui_article_snippet"
+            style="@style/ZendeskSdkTheme.Light.Cell.Article.Snippet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:lineSpacingExtra="@dimen/zui_cell_article_line_spacing_extra"
+            android:maxLines="2" />
+    </LinearLayout>
+</merge>

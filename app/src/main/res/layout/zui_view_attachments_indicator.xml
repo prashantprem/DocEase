@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/zui_input_box_button_width"
+    android:layout_height="@dimen/zui_input_box_button_height"
+    android:foreground="?selectableItemBackgroundBorderless">
+
+    <TextView
+        android:id="@id/attachments_indicator_counter"
+        style="@style/TextAppearance.Design.Counter"
+        android:layout_width="24.0dip"
+        android:layout_height="24.0dip"
+        android:layout_gravity="end|center|top"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginEnd="@dimen/_1sdp"
+        android:background="@drawable/zui_background_attachments_indicator_counter"
+        android:elevation="@dimen/_1sdp"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:textColor="@color/zui_color_white_100"
+        android:textSize="10.0sp"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@id/attachments_indicator_icon"
+        android:layout_width="@dimen/zui_input_box_button_icon_size"
+        android:layout_height="@dimen/zui_input_box_button_icon_size"
+        android:layout_gravity="start|center"
+        android:layout_marginStart="@dimen/zui_input_box_button_margin_side"
+        android:importantForAccessibility="no"
+        android:scaleX="@integer/zui_rtl_support_scale_x"
+        app:srcCompat="@drawable/zui_ic_attach_file" />
+
+    <View
+        android:id="@id/attachments_indicator_bottom_border"
+        android:layout_width="@dimen/zui_attachment_indicator_bottom_border_width"
+        android:layout_height="@dimen/zui_attachment_indicator_bottom_border_height"
+        android:layout_gravity="start|bottom|center"
+        android:layout_marginStart="@dimen/zui_input_box_button_margin_side"
+        android:background="?colorPrimary"
+        android:importantForAccessibility="no"
+        android:visibility="invisible" />
+</FrameLayout>

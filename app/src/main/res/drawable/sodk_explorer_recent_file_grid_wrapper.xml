@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:width="@dimen/_1sdp" android:color="@color/sodk_so_ui_explorer_background_strokecolor" />
+    <solid android:color="@color/sodk_so_ui_explorer_tab_background_color" />
+    <corners android:topLeftRadius="0.00999999dip" android:topRightRadius="0.00999999dip" android:bottomLeftRadius="24.0dip" android:bottomRightRadius="24.0dip" />
+</shape>

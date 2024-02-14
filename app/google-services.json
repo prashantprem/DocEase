@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "514800815555",
+    "project_id": "docease-e8862",
+    "storage_bucket": "docease-e8862.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514800815555:android:48846ff9b8768fa73a0176",
+        "android_client_info": {
+          "package_name": "com.all.document.reader.pdf.doc.docease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgswqluKsWyEp8Mc0IhSgQbuMKoz8L5a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.supportv1.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@id/zui_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@id/zui_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"
+            android:minHeight="?actionBarSize"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            app:navigationContentDescription="@string/abc_action_bar_up_description"
+            app:navigationIcon="@drawable/zui_ic_back"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+            app:subtitleTextAppearance="@style/ZendeskSdkTheme.Toolbar.SubTitle"
+            app:titleTextAppearance="@style/ZendeskSdkTheme.Toolbar.Title" />
+
+        <zendesk.commonui.AvatarContainer
+            android:id="@id/zui_avatar_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="@dimen/_13sdp" />
+
+        <zendesk.commonui.AlmostRealProgressBar
+            android:id="@id/zui_progressBar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zui_toolbar_progress_bar_height"
+            android:layout_gravity="bottom"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/zui_background_progressbar"
+            android:visibility="visible" />
+    </FrameLayout>
+</android.supportv1.design.widget.AppBarLayout>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@color/bar_color"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@id/format_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/bg_main_rounded_grey_stroke"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@id/cell_width_down_button"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_4sdp"
+                            android:tint="@color/text_color"
+                            app:srcCompat="@drawable/ic_main_minus" />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="#777777" />
+
+                    <com.artifex.sonui.editor.SOEditText
+                        android:id="@id/cell_width_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:cursorVisible="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:padding="1dp"
+                        android:selectAllOnFocus="true"
+                        android:text="12"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp" />
+
+                    <com.artifex.sonui.editor.SOTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_1sdp"
+                        android:text="@string/sodk_editor_cm"
+                        android:textColor="@color/text_color"
+                        android:textSize="11sp" />
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="#777777" />
+
+                    <LinearLayout
+                        android:id="@id/cell_width_up_button"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_4sdp"
+                            android:tint="@color/text_color"
+                            app:srcCompat="@drawable/ic_main_plus" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/cell_width_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:text="Cell Width"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="#777777" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/bg_main_rounded_grey_stroke"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@id/cell_height_down_button"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_4sdp"
+                            android:tint="@color/text_color"
+                            app:srcCompat="@drawable/ic_main_minus" />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="#777777" />
+
+                    <com.artifex.sonui.editor.SOEditText
+                        android:id="@id/cell_height_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:cursorVisible="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:padding="1dp"
+                        android:selectAllOnFocus="true"
+                        android:text="12"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_color"
+                        android:textSize="12sp" />
+
+                    <com.artifex.sonui.editor.SOTextView
+                        android:id="@+id/cell_height_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/_1sdp"
+                        android:text="@string/sodk_editor_cm"
+                        android:textColor="@color/text_color"
+                        android:textSize="11sp" />
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="#777777" />
+
+                    <LinearLayout
+                        android:id="@id/cell_height_up_button"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/_4sdp"
+                            android:tint="@color/text_color"
+                            app:srcCompat="@drawable/ic_main_plus" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:text="Cell Height"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="vertical">-->
+
+            <!--                <Space-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="7dp" />-->
+
+            <!--                <com.artifex.sonui.editor.SOTextView-->
+            <!--                    android:id="@id/cell_height_label"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center_horizontal"-->
+            <!--                    android:text="@string/sodk_editor_cell_height_upper"-->
+            <!--                    android:textColor="@color/sodk_editor_button_text" />-->
+
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:gravity="center_vertical"-->
+            <!--                    android:orientation="horizontal">-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:id="@id/cell_height_down_button"-->
+            <!--                        android:layout_width="30dp"-->
+            <!--                        android:layout_height="match_parent"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                            android:layout_width="30dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:padding="3dp"-->
+            <!--                            app:srcCompat="@drawable/sodk_editor_minus" />-->
+            <!--                    </LinearLayout>-->
+
+            <!--&lt;!&ndash;                    <com.artifex.sonui.editor.SOEditText&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:id="@id/cell_height_box"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:width="50.0dip"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:background="@drawable/sodk_editor_cell_size_box"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:cursorVisible="false"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:imeOptions="actionDone"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:inputType="numberDecimal"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:padding="1dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:selectAllOnFocus="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textAlignment="gravity"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textColor="@color/sodk_editor_cell_box_text_color"&ndash;&gt;-->
+            <!--&lt;!&ndash;                        android:textSize="15sp" />&ndash;&gt;-->
+
+            <!--                    <com.artifex.sonui.editor.SOTextView-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:paddingStart="3dp"-->
+            <!--                        android:text="@string/sodk_editor_cm"-->
+            <!--                        android:textColor="@color/sodk_editor_button_text"-->
+            <!--                        android:textSize="14.0sp" />-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:id="@id/cell_height_up_button"-->
+            <!--                        android:layout_width="30dp"-->
+            <!--                        android:layout_height="match_parent"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                            android:layout_width="30dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:padding="3dp"-->
+            <!--                            app:srcCompat="@drawable/sodk_editor_plus" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </LinearLayout>-->
+            <!--            </LinearLayout>-->
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="#777777" />
+
+            <LinearLayout
+                android:id="@id/merge_cells_button"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/ic_main_merge_cells" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Merge Cells"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/number_format_button"
+                android:layout_width="60dp"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    app:srcCompat="@drawable/sodk_editor_icon_number_format" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/sodk_editor_number_format_upper"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+</merge>

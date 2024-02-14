@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.artifex.sonui.editor.SOTextView
+            style="@style/sodk_cert_detail_title"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:text="@string/sodk_certificates"
+            android:textSize="18.0sp" />
+
+        <View style="@style/sodk_dialog_separator" />
+
+        <LinearLayout
+            android:id="@id/sodk_certificate_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <android.supportv1.v7.widget.RecyclerView
+                android:id="@id/certificate_view"
+                style="@style/sodk_dialog_panel_border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp" />
+
+            <LinearLayout
+                style="@style/sodk_dialog_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_heading"
+                    android:text="@string/sodk_certificate_details" />
+
+                <View
+                    style="@style/sodk_dialog_separator"
+                    android:paddingStart="@dimen/_7sdp"
+                    android:paddingEnd="@dimen/_7sdp" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_heading"
+                    android:text="@string/sodk_issued_to" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_subheading"
+                    android:text="@string/sodk_certificate_common_name" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/certificate_cn"
+                    style="@style/sodk_cert_detail_description"
+                    android:text="" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_subheading"
+                    android:text="@string/sodk_certificate_org" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/certificate_o"
+                    style="@style/sodk_cert_detail_description"
+                    android:text="" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_subheading"
+                    android:text="@string/sodk_certificate_org_unit" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/certificate_ou"
+                    style="@style/sodk_cert_detail_description"
+                    android:text="" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_subheading"
+                    android:text="@string/sodk_certificate_email" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/certificate_email"
+                    style="@style/sodk_cert_detail_description"
+                    android:text="" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    style="@style/sodk_cert_detail_subheading"
+                    android:text="@string/sodk_certificate_country" />
+
+                <com.artifex.sonui.editor.SOTextView
+                    android:id="@id/certificate_c"
+                    style="@style/sodk_cert_detail_description"
+                    android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/sodk_certificate_none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.artifex.sonui.editor.SOTextView
+                style="@style/sodk_cert_detail_heading"
+                android:text="@string/sodk_no_certificates" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@id/sodk_choose_signature"
+        style="@style/sodk_dialog_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:text="@string/sodk_certificate_sign" />
+</RelativeLayout>

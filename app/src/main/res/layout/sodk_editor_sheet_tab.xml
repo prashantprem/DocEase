@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/sodk_editor_sheet_tab"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@id/sheetTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.artifex.sonui.editor.SOTextView
+            android:id="@id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/sodk_editor_transparent"
+            android:clickable="false"
+            android:textColor="@color/colorBlack"
+            android:textSize="17sp" />
+
+        <Space
+            android:id="@id/spacer"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="match_parent" />
+
+        <com.artifex.sonui.editor.SOTextView
+            android:id="@id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/sodk_editor_transparent"
+            android:clickable="true"
+            android:text="X"
+            android:textColor="@drawable/sodk_editor_sheet_tab_text"
+            android:textSize="17sp"
+            android:focusable="true" />
+    </LinearLayout>
+</merge>

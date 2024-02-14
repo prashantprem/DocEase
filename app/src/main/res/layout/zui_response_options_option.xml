@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/zui_response_option_text"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/zui_cell_response_options_height"
+    android:background="@drawable/zui_background_response_option"
+    android:gravity="center"
+    android:maxLines="1"
+    android:minWidth="@dimen/zui_cell_response_option_min_width"
+    android:paddingLeft="@dimen/zui_cell_response_option_padding"
+    android:paddingRight="@dimen/zui_cell_response_option_padding"
+    android:textColor="@color/zui_color_primary" />

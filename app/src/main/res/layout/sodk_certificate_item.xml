@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.artifex.sonui.editor.SOTextView
+        android:id="@id/sodk_certificate_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/sodk_credential_selector"
+        android:drawableTop="@drawable/sodk_credential"
+        android:ellipsize="marquee"
+        android:maxWidth="@dimen/sodk_editor_explorer_grid_image_height"
+        android:padding="@dimen/_7sdp"
+        android:singleLine="true"
+        android:textColor="@color/sodk_palette_black" />
+</LinearLayout>

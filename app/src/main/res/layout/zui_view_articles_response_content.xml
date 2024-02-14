@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include
+        android:id="@id/zui_cell_status_view"
+        layout="@layout/zui_cell_agent_response_label" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/zui_background_agent_cell"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@id/zui_header_article_suggestions"
+            style="@style/ZendeskSdkTheme.Light.Cell.Text.Response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:importantForAccessibility="no"
+            android:paddingStart="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingLeft="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingTop="@dimen/zui_cell_text_field_padding_vertical"
+            android:paddingEnd="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingRight="@dimen/zui_cell_text_field_padding_horizontal"
+            android:paddingBottom="@dimen/zui_cell_text_field_padding_vertical"
+            android:textIsSelectable="false" />
+
+        <FrameLayout
+            android:id="@id/zui_first_article_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zui_background_cell_articles_response_content">
+
+            <include layout="@layout/zui_view_article_suggestion" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@id/zui_second_article_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:background="@drawable/zui_background_cell_articles_response_content">
+
+            <include layout="@layout/zui_view_article_suggestion" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@id/zui_third_article_suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:background="@drawable/zui_background_cell_articles_response_footer">
+
+            <include layout="@layout/zui_view_article_suggestion" />
+        </FrameLayout>
+    </LinearLayout>
+</merge>

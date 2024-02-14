@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:width="@dimen/zui_layout_divider_size" android:color="@color/zui_divider_color" />
+    <solid android:color="@color/zui_color_white_100" />
+    <corners android:bottomLeftRadius="@dimen/zui_cell_bubble_corner_radius" android:bottomRightRadius="@dimen/zui_cell_bubble_corner_radius" />
+</shape>
