@@ -17,6 +17,9 @@
     <color name="menu_ppt_color">#BF3512</color>
     <color name="bar_color">#FFFFFF</color>
     <color name="bottom_sheet_bg">#FFFFFF</color>
+    <color name="sign_bg">#ffffff</color>
+
+
 
     <color name="image_background">#123</color>
     <color name="text_color">#000000</color>

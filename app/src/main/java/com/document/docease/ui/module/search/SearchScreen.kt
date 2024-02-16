@@ -132,6 +132,9 @@ fun SearchScreen(
                                         viewModel.addToFavourites(file)
                                     }
 
+                                    override fun onSignPdf(file: File) {
+                                    }
+
                                 })
                         }
                     }

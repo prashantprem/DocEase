@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/freehanditem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/sign_bg"
+    android:orientation="horizontal">
+
+    <com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureView
+        android:id="@+id/signatureview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/deleteSignature"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|center_vertical"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:tint="@color/text_color" />
+</FrameLayout>

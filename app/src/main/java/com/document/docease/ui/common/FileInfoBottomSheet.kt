@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.document.docease.R
 import com.document.docease.data.dto.FIleInfoBottomSheetData
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
+import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.utils.Extensions.FileType
 import com.document.docease.utils.Extensions.favouriteTintColor
 import com.document.docease.utils.Extensions.fileIcon
@@ -134,12 +136,30 @@ fun FileInfoBottomSheetUI(
 
         HorizontalDivider()
         Spacer(modifier = Modifier.height(10.dp))
-        val options = listOf(
+        val options = if (file.FileType() != FileType.PDF) listOf(
             FIleInfoBottomSheetData(stringResource(id = R.string.edit), R.drawable.ic_edit_main),
             FIleInfoBottomSheetData(stringResource(id = R.string.whatsapp), R.drawable.ic_whatsapp),
             FIleInfoBottomSheetData(stringResource(id = R.string.share), R.drawable.ic_share_main),
             FIleInfoBottomSheetData(stringResource(id = R.string.print), R.drawable.ic_print)
-        )
+
+        ) else
+            listOf(
+                FIleInfoBottomSheetData(
+                    stringResource(id = R.string.edit),
+                    R.drawable.ic_edit_main
+                ),
+                FIleInfoBottomSheetData(
+                    stringResource(id = R.string.whatsapp),
+                    R.drawable.ic_whatsapp
+                ),
+                FIleInfoBottomSheetData(
+                    stringResource(id = R.string.share),
+                    R.drawable.ic_share_main
+                ),
+                FIleInfoBottomSheetData(stringResource(id = R.string.print), R.drawable.ic_print),
+                FIleInfoBottomSheetData("Sign PDF", R.drawable.ic_sigining_main)
+            )
+
         options.forEachIndexed { index, item ->
 
             Row(
@@ -155,6 +175,7 @@ fun FileInfoBottomSheetUI(
                                 1 -> onWhatsAppShare(file)
                                 2 -> onShare(file)
                                 3 -> onPrint(file)
+                                4 -> onSignPdf(file)
                             }
                         }
                     }
@@ -165,7 +186,8 @@ fun FileInfoBottomSheetUI(
                     contentDescription = null,
                     modifier = Modifier
                         .size(30.dp)
-                        .padding(start = 5.dp)
+                        .padding(start = 5.dp),
+                    colorFilter = ColorFilter.tint(colorResource(id = R.color.text_grey))
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(

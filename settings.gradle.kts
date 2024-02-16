@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DocEase"
 include(":app")
+include(":app:pdfsign")

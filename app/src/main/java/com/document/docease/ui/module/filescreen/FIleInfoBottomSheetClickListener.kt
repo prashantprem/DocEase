@@ -10,4 +10,6 @@ interface FIleInfoBottomSheetClickListener {
     fun onPrint(file: File)
 
     fun onAddToFavourite(file: File)
+
+    fun onSignPdf(file: File)
 }

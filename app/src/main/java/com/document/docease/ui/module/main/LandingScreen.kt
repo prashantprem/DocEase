@@ -1,6 +1,7 @@
 package com.document.docease.ui.module.main
 
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.result.ActivityResultLauncher
@@ -59,6 +60,7 @@ import com.document.docease.ui.navigation.Routes
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.Utility
@@ -76,7 +78,8 @@ fun LandingScreen(
     viewModel: MainViewModel,
     navigationController: NavHostController,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
-    homeNativeAdState: NativeAd?
+    homeNativeAdState: NativeAd?,
+    dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
 ) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.HOME,
@@ -279,6 +282,21 @@ fun LandingScreen(
 
                                     override fun onAddToFavourite(file: File) {
                                         viewModel.addToFavourites(file)
+                                    }
+
+                                    override fun onSignPdf(file: File) {
+                                        if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                                            val list = ArrayList<Uri>()
+                                            list.add(Uri.fromFile(file))
+                                            val intent = Intent()
+                                            intent.setClassName(
+                                                "com.all.document.reader.pdf.doc.docease",
+                                                "com.docease.pdfsign.pdfdigitalsignature.DigitalSignatureActivity"
+                                            )
+                                            intent.putExtra("ActivityAction", "PDFOpen")
+                                            intent.putExtra("PDFOpen", list)
+                                            mContext.startActivity(intent)
+                                        }
                                     }
 
                                 })

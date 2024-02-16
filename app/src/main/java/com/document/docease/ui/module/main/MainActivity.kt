@@ -36,6 +36,8 @@ import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
+import com.document.docease.utils.DynamicDeliveryCallback
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
@@ -47,12 +49,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
 
 
     private val viewModel by viewModels<MainViewModel>()
     private var inAppReviewUtil: InAppReviewUtil? = null
     private var hasRequestedReviewFlowInSession = false
+    private lateinit var dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
+
 
     companion object {
         const val CODE_RESULT_BOOKMARK = 2
@@ -80,6 +84,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        dynamicModuleDownloadUtil = DynamicModuleDownloadUtil(baseContext, this)
         isInterstitialAdShowing = true
         installSplashScreen().apply {
             AnalyticsManager.logEvent(FirebaseEvents.splashLaunch)
@@ -134,7 +139,8 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         viewModel = viewModel,
                         requestPermissionResultLauncher,
-                        homeNativeAdState
+                        homeNativeAdState,
+                        dynamicModuleDownloadUtil
                     )
                     if (PermissionUtils.storagePermissionState.value) {
                         PullRefreshIndicator(
@@ -197,6 +203,19 @@ class MainActivity : ComponentActivity() {
                 println("Countdown finished!")
             }
         }.start()
+    }
+
+    override fun onDownloading() {
+        dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+    }
+
+    override fun onDownloadCompleted() {
+    }
+
+    override fun onInstallSuccess() {
+    }
+
+    override fun onFailed(errorMessage: String) {
     }
 }
 

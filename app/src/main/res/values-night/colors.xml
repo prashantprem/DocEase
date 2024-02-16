@@ -7,4 +7,5 @@
     <color name="greyDayNight">#3D4043</color>
     <color name="bar_color">#262930</color>
     <color name="bottom_sheet_bg">#262930</color>
+    <color name="sign_bg">#3f4659</color>
 </resources>

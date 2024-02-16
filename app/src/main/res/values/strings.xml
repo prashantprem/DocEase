@@ -1084,4 +1084,5 @@ CHANGES"</string>
     <string name="have_a_coupon_code">Have a coupon code?</string>
     <string name="enter_coupon_code">Enter code</string>
     <string name="redeem">Redeem Code</string>
+    <string name="title_pdfsign">Module Title</string>
 </resources>

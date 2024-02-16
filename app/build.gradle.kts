@@ -15,8 +15,8 @@ android {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
-        versionCode = 8
-        versionName = "1.5"
+        versionCode = 9
+        versionName = "1.6"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -77,6 +77,7 @@ android {
         ignoreAssetsPattern = "!mips64"
         ignoreAssetsPattern = "!armeabi"
     }
+    dynamicFeatures += setOf(":app:pdfsign")
 
 
 }
@@ -150,6 +151,9 @@ dependencies {
     //review
     implementation("com.google.android.play:review:2.0.1")
     implementation("com.google.android.play:review-ktx:2.0.1")
+
+    implementation("com.google.android.play:feature-delivery:2.1.0")
+    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
 
 
 }
