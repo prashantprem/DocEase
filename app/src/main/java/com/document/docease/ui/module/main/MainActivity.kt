@@ -2,12 +2,15 @@ package com.document.docease.ui.module.main
 
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Environment
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -48,6 +51,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
 
@@ -56,6 +60,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     private var inAppReviewUtil: InAppReviewUtil? = null
     private var hasRequestedReviewFlowInSession = false
     private lateinit var dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
+    private var moduleLoading: AlertDialog? = null
 
 
     companion object {
@@ -206,16 +211,41 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     override fun onDownloading() {
-        dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+        Toast.makeText(this@MainActivity, "Downloading PDF Sign Module", Toast.LENGTH_LONG)
+            .show()
+        showLoadingDialog()
     }
 
     override fun onDownloadCompleted() {
     }
 
     override fun onInstallSuccess() {
+        hideModuleLoading()
+        Toast.makeText(this@MainActivity, "PDF Sign is ready for use!", Toast.LENGTH_LONG).show()
     }
 
     override fun onFailed(errorMessage: String) {
+        hideModuleLoading()
+        Toast.makeText(this@MainActivity, "Failed to download PDF Sign Module", Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    private fun showLoadingDialog() {
+        val builder = AlertDialog.Builder(this@MainActivity)
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.module_loading_dialog, null)
+        builder.setView(view)
+        builder.setCancelable(false)
+        moduleLoading = builder.create()
+        moduleLoading?.show()
+    }
+
+    private fun hideModuleLoading() {
+        moduleLoading?.apply {
+            if (isShowing) {
+                hide()
+            }
+        }
     }
 }
 

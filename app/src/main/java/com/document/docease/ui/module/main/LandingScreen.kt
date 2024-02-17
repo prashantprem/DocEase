@@ -2,7 +2,6 @@ package com.document.docease.ui.module.main
 
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
@@ -141,15 +140,15 @@ fun LandingScreen(
                     }
 
                     AppDrawerItemType.signpdf -> {
-                        if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                            launchSignatureModule(mContext)
-                        } else {
-                            Toast.makeText(
-                                mContext,
-                                "PDF Sign Module not loaded yet!",
-                                Toast.LENGTH_LONG
-                            ).show()
+                        scope.launch {
+                            drawerState.close()
+                            if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                                launchSignatureModule(mContext)
+                            } else {
+                                dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                            }
                         }
+
                     }
 
                     else -> {}
@@ -302,11 +301,7 @@ fun LandingScreen(
                                         if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
                                             signPdf(file, mContext)
                                         } else {
-                                            Toast.makeText(
-                                                mContext,
-                                                "PDF Sign Module not loaded yet!",
-                                                Toast.LENGTH_LONG
-                                            ).show()
+                                            dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
                                         }
                                     }
 

@@ -38,6 +38,7 @@ class MainViewModel @Inject constructor(
 
     var isRefreshing by mutableStateOf(false)
 
+
     private val _allFiles = MutableLiveData<Resource<List<File>>>()
     val allFiles: LiveData<Resource<List<File>>> get() = _allFiles
 
