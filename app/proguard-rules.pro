@@ -410,3 +410,10 @@
 -dontwarn org.bouncycastle.asn1.tsp.TSTInfo
 -dontwarn org.bouncycastle.asn1.tsp.TimeStampReq
 -dontwarn org.bouncycastle.asn1.tsp.TimeStampResp
+
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+-keep class * extends com.google.gson.TypeAdapter
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
