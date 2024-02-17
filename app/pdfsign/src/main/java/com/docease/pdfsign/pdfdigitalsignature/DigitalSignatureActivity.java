@@ -86,6 +86,8 @@ public class DigitalSignatureActivity extends AppCompatActivity {
     private ImageView actionSign;
     private ImageView actionSave;
 
+    private ImageView imgBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +151,11 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                 }
             }
         }
+        imgBack = findViewById(R.id.action_back);
+        imgBack.setOnClickListener(view -> {
+            finish();
+
+        });
     }
 
     @Override

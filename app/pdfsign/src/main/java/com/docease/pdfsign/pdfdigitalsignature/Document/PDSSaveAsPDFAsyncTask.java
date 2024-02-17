@@ -58,15 +58,16 @@ public class PDSSaveAsPDFAsyncTask extends AsyncTask<Void, Void, Boolean> {
             Looper.prepare();
         }
         PDSPDFDocument document = mCtx.getDocument();
-//        File root = mCtx.getFilesDir();
-        File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        File root = mCtx.getFilesDir();
+        File myDir = new File(root + "/DigitalSignature");
+//        File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
 
 //        File myDir = new File(root);
-        if (!root.exists()) {
-            root.mkdirs();
+        if (!myDir.exists()) {
+            myDir.mkdirs();
         }
-        File file = new File(root.getAbsolutePath(), mfileName);
+        File file = new File(myDir.getAbsolutePath(), mfileName);
         if (file.exists())
             file.delete();
         try {

@@ -28,6 +28,7 @@ public class FreeHandActivity extends AppCompatActivity {
     private Menu menu = null;
     MenuItem saveItem;
     ImageView signSave2;
+    ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,11 @@ public class FreeHandActivity extends AppCompatActivity {
             String text = "Result OK";
             data.setAction(text);
             setResult(RESULT_OK, data);
+            finish();
+        });
+
+        imgBack = findViewById(R.id.action_back);
+        imgBack.setOnClickListener(view -> {
             finish();
         });
     }

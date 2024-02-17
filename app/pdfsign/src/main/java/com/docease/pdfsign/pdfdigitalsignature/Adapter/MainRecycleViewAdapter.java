@@ -1,5 +1,6 @@
 package com.docease.pdfsign.pdfdigitalsignature.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 
@@ -16,12 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.docease.pdfsign.R;
+import com.document.docease.utils.Utility;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -29,7 +32,7 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     private SparseBooleanArray selected_items;
     private int current_selected_idx = -1;
-    private Context ctx;
+    private Activity ctx;
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
@@ -42,7 +45,7 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         this.mOnItemClickListener = mItemClickListener;
     }
 
-    public MainRecycleViewAdapter(Context context, List<File> items) {
+    public MainRecycleViewAdapter(Activity context, List<File> items) {
         this.items = items;
         ctx = context;
         selected_items = new SparseBooleanArray();
@@ -55,6 +58,8 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         public TextView size;
         public View lyt_parent;
 
+        public ImageView menu;
+
         public OriginalViewHolder(View v) {
             super(v);
             image = v.findViewById(R.id.fileImageView);
@@ -62,6 +67,7 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             brief = v.findViewById(R.id.dateItemTimeTextView);
             size = v.findViewById(R.id.sizeItemTimeTextView);
             lyt_parent = v.findViewById(R.id.listItemLinearLayout);
+            menu = v.findViewById(R.id.signMenu);
         }
     }
 
@@ -76,33 +82,32 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final File obj = items.get(position);
+        final File obj = items.get(holder.getAdapterPosition());
         if (holder instanceof OriginalViewHolder) {
             OriginalViewHolder view = (OriginalViewHolder) holder;
             view.name.setText(obj.getName());
             Date lastModDate = new Date(obj.lastModified());
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             String strDate = formatter.format(lastModDate);
             view.brief.setText(strDate);
             view.size.setText(GetSize(obj.length()));
 
-            view.lyt_parent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnItemClickListener == null) return;
-                    mOnItemClickListener.onItemClick(v, obj, position);
-                }
+            view.menu.setOnClickListener(v -> {
+                if (mOnItemClickListener == null) return;
+                mOnItemClickListener.onItemClick(v, obj, holder.getAdapterPosition());
             });
-            view.lyt_parent.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if (mOnItemClickListener == null) return false;
-                    mOnItemClickListener.onItemLongClick(v, obj, position);
-                    return true;
-                }
+            view.lyt_parent.setOnClickListener(view1 -> {
+                Utility.INSTANCE.previewFile(ctx, obj, 0, false);
+
             });
-            toggleCheckedIcon(holder, position);
-            view.image.setImageResource(R.drawable.ic_adobe);
+//            view.lyt_parent.setOnLongClickListener(new View.OnLongClickListener() {
+//                @Override
+//                public boolean onLongClick(View v) {
+//                    if (mOnItemClickListener == null) return false;
+//                    mOnItemClickListener.onItemLongClick(v, obj, holder.getAdapterPosition());
+//                    return true;
+//                }
+//            });
         }
     }
 
@@ -113,14 +118,14 @@ public class MainRecycleViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
 
     private void toggleCheckedIcon(RecyclerView.ViewHolder holder, int position) {
-        OriginalViewHolder view = (OriginalViewHolder) holder;
-        if (selected_items.get(position, false)) {
-            view.lyt_parent.setBackgroundColor(Color.parseColor("#4A32740A"));
-            if (current_selected_idx == position) resetCurrentIndex();
-        } else {
-            view.lyt_parent.setBackgroundColor(Color.parseColor("#ffffff"));
-            if (current_selected_idx == position) resetCurrentIndex();
-        }
+//        OriginalViewHolder view = (OriginalViewHolder) holder;
+//        if (selected_items.get(position, false)) {
+//            view.lyt_parent.setBackgroundColor(Color.parseColor("#4A32740A"));
+//            if (current_selected_idx == position) resetCurrentIndex();
+//        } else {
+//            view.lyt_parent.setBackgroundColor(Color.parseColor("#ffffff"));
+//            if (current_selected_idx == position) resetCurrentIndex();
+//        }
     }
 
 

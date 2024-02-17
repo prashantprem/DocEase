@@ -1,8 +1,8 @@
 package com.document.docease.ui.module.main
 
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
@@ -66,7 +66,9 @@ import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.Utility
 import com.document.docease.utils.Utility.giveFeedback
 import com.document.docease.utils.Utility.inviteFriends
+import com.document.docease.utils.Utility.launchSignatureModule
 import com.document.docease.utils.Utility.rateOnPlayStore
+import com.document.docease.utils.Utility.signPdf
 import com.google.android.gms.ads.nativead.NativeAd
 import kotlinx.coroutines.launch
 import java.io.File
@@ -135,6 +137,18 @@ fun LandingScreen(
                         scope.launch {
                             drawerState.close()
                             giveFeedback(mContext)
+                        }
+                    }
+
+                    AppDrawerItemType.signpdf -> {
+                        if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                            launchSignatureModule(mContext)
+                        } else {
+                            Toast.makeText(
+                                mContext,
+                                "PDF Sign Module not loaded yet!",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
 
@@ -286,16 +300,13 @@ fun LandingScreen(
 
                                     override fun onSignPdf(file: File) {
                                         if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                                            val list = ArrayList<Uri>()
-                                            list.add(Uri.fromFile(file))
-                                            val intent = Intent()
-                                            intent.setClassName(
-                                                "com.all.document.reader.pdf.doc.docease",
-                                                "com.docease.pdfsign.pdfdigitalsignature.DigitalSignatureActivity"
-                                            )
-                                            intent.putExtra("ActivityAction", "PDFOpen")
-                                            intent.putExtra("PDFOpen", list)
-                                            mContext.startActivity(intent)
+                                            signPdf(file, mContext)
+                                        } else {
+                                            Toast.makeText(
+                                                mContext,
+                                                "PDF Sign Module not loaded yet!",
+                                                Toast.LENGTH_LONG
+                                            ).show()
                                         }
                                     }
 

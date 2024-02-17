@@ -23,23 +23,23 @@
             android:name=".pdfdigitalsignature.Signature.FreeHandActivity"
             android:label="Draw Signature"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/style_main_pdf_sign" />
         <activity
             android:name=".pdfdigitalsignature.Signature.SignatureActivity"
             android:label="Signatures"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/style_main_pdf_sign" />
         <activity
             android:name=".pdfdigitalsignature.DigitalSignatureActivity"
             android:label=""
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/style_main_pdf_sign" />
         <activity
             android:name=".pdfdigitalsignature.MainActivity"
             android:exported="true"
             android:label="Sign PDF"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/style_main_pdf_sign">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 

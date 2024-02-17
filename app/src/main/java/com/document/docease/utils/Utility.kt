@@ -189,7 +189,7 @@ object Utility {
         context.startActivity(sharingIntent)
     }.tryCatch()
 
-    fun shareToAny(file: File, context: Context) = {
+    fun shareToAny(file: File, context: Context, isEmail: Boolean = false) = {
 
         val shareIntent = Intent()
         shareIntent.action = Intent.ACTION_SEND
@@ -203,6 +203,9 @@ object Utility {
         shareIntent.addFlags(
             Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
         )
+        if (isEmail) {
+            shareIntent.data = Uri.parse("mailto:")
+        }
         val resInfoList: List<ResolveInfo> = context.packageManager
             .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
         for (resolveInfo in resInfoList) {
@@ -303,6 +306,28 @@ object Utility {
             return ""
         }
     }
+
+    fun signPdf(file: File, context: Context) = {
+        val list = ArrayList<Uri>()
+        list.add(Uri.fromFile(file))
+        val intent = Intent()
+        intent.setClassName(
+            BuildConfig.APPLICATION_ID,
+            Constant.PDF_SIGN_Digital_SIGNATURE_ACTIVITY
+        )
+        intent.putExtra("ActivityAction", "PDFOpen")
+        intent.putExtra("PDFOpen", list)
+        context.startActivity(intent)
+    }.tryCatch()
+
+    fun launchSignatureModule(context: Context) = {
+        val intent = Intent()
+        intent.setClassName(
+            BuildConfig.APPLICATION_ID,
+            Constant.PDF_SIGN_MAIN_ACTIVITY
+        )
+        context.startActivity(intent)
+    }.tryCatch()
 
 
 }

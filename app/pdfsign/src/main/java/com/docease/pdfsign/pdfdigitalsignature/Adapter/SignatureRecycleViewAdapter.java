@@ -50,14 +50,14 @@ public class SignatureRecycleViewAdapter extends RecyclerView.Adapter<SignatureR
             myViewHolder.layout.removeViewAt(0);
         }
 
-        signatureView = PDSSignatureUtils.showFreeHandView(myViewHolder.context, signatures.get(i));
+        signatureView = PDSSignatureUtils.showFreeHandView(myViewHolder.context, signatures.get(myViewHolder.getAdapterPosition()));
         myViewHolder.layout.addView(signatureView);
 
         myViewHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onClickListener == null) return;
-                onClickListener.onItemClick(v, signatures.get(i), myViewHolder.getAdapterPosition());
+                onClickListener.onItemClick(v, signatures.get(myViewHolder.getAdapterPosition()), myViewHolder.getAdapterPosition());
             }
 
         });
@@ -65,7 +65,7 @@ public class SignatureRecycleViewAdapter extends RecyclerView.Adapter<SignatureR
             @Override
             public void onClick(View v) {
                 if (onClickListener == null) return;
-                onClickListener.onItemClick(v, signatures.get(i), myViewHolder.getAdapterPosition());
+                onClickListener.onItemClick(v, signatures.get(myViewHolder.getAdapterPosition()), myViewHolder.getAdapterPosition());
             }
 
         });
@@ -74,7 +74,7 @@ public class SignatureRecycleViewAdapter extends RecyclerView.Adapter<SignatureR
             @Override
             public void onClick(View v) {
                 if (onClickListener == null) return;
-                onClickListener.onDeleteItemClick(v, signatures.get(i), myViewHolder.getAdapterPosition());
+                onClickListener.onDeleteItemClick(v, signatures.get(myViewHolder.getAdapterPosition()), myViewHolder.getAdapterPosition());
             }
         });
     }

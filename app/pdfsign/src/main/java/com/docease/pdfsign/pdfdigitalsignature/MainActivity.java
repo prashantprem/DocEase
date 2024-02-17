@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import com.docease.pdfsign.pdfdigitalsignature.Adapter.MainRecycleViewAdapter;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureActivity;
 import com.docease.pdfsign.pdfdigitalsignature.utils.RecyclerViewEmptySupport;
 import com.document.docease.BuildConfig;
+import com.document.docease.utils.Utility;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,6 +44,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -54,8 +58,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private static final int Merge_Request_CODE = 43;
     private RecyclerViewEmptySupport recyclerView;
     List<File> items = null;
@@ -67,12 +70,11 @@ public class MainActivity extends AppCompatActivity
 
     private Handler mHandler = new Handler();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,16 +84,8 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(intent, Merge_Request_CODE);
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-//        navigationView.setNavigationItemSelectedListener(this);
 
         CheckStoragePermission();
-
         recyclerView = findViewById(R.id.mainRecycleView);
         recyclerView.setEmptyView(findViewById(R.id.toDoEmptyView));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -102,6 +96,15 @@ public class MainActivity extends AppCompatActivity
         }
 
         HandleExternalData();
+        TextView savedSign = findViewById(R.id.action_saved_sign);
+        savedSign.setOnClickListener(view -> {
+            mHandler.postDelayed(mUpdateTimeTask, 100);
+        });
+
+        ImageView imgBack = findViewById(R.id.action_back);
+        imgBack.setOnClickListener(view -> {
+            finish();
+        });
     }
 
     @Override
@@ -166,43 +169,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_signatures) {
-
-            mHandler.postDelayed(mUpdateTimeTask, 100);
-        }
-        else if(id == R.id.github){
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/varshithvhegde"));
-            startActivity(browserIntent);
-        }
-        else if(id== R.id.share){
-            try {
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
-                String shareMessage = "Let me recommend you this application\n PDF Signer\n\n";
-                shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
-                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-                startActivity(Intent.createChooser(shareIntent, "choose one"));
-            } catch (Exception e) {
-                //e.toString();
-            }
-        }
-        else if(id == R.id.web){
-            Intent BI = new Intent(Intent.ACTION_VIEW, Uri.parse("https://varshithvhegde.github.io"));
-            startActivity(BI);
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
@@ -397,19 +363,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 mBottomSheetDialog.dismiss();
-                Intent target = new Intent(Intent.ACTION_VIEW);
-                Uri contentUri = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", currentFile);
-                target.setDataAndType(contentUri, "application/pdf");
-                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                Intent intent = Intent.createChooser(target, "Open File");
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    //Snackbar.make(mCoordLayout, "Install PDF reader application.", Snackbar.LENGTH_LONG).show();
-                }
-
+                Utility.INSTANCE.previewFile(MainActivity.this, currentFile, 0, false);
             }
         });
         mBottomSheetDialog = new BottomSheetDialog(this);

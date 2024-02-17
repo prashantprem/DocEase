@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.View;
+import android.widget.ImageView;
 
 
 import java.io.File;
@@ -53,6 +54,11 @@ public class SignatureActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         message = intent.getStringExtra("ActivityAction");
+
+        ImageView imgBack = findViewById(R.id.action_back);
+        imgBack.setOnClickListener(view -> {
+            finish();
+        });
     }
 
     @Override

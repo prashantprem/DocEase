@@ -61,7 +61,12 @@ object Constant {
     const val REWARD_AD_COUNT = "REWARD_AD_COUNT"
     const val REWARD_DAYS = "REWARD_DAYS"
     const val SUPPORT_MAIL = "SUPPORT_MAIL"
+
+    //pdfSign module
     const val DYNAMIC_MODULE_PDF_SIGN = "pdfsign"
+    const val PDF_SIGN_Digital_SIGNATURE_ACTIVITY =
+        "com.docease.pdfsign.pdfdigitalsignature.DigitalSignatureActivity"
+    const val PDF_SIGN_MAIN_ACTIVITY = "com.docease.pdfsign.pdfdigitalsignature.MainActivity"
 
 
     const val platform = "android"
