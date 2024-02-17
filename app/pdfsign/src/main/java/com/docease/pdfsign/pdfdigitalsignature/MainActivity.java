@@ -20,6 +20,7 @@ import com.document.docease.utils.Utility;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.os.Environment;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -256,7 +257,8 @@ public class MainActivity extends AppCompatActivity {
             items = new ArrayList<File>();
 
             File root = getFilesDir();
-            File myDir = new File(root + "/DigitalSignature");
+            File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath() + File.separator + "DocEaseSignedPDFs");
+//            File myDir = new File(root + File.separator + "DocEaseSignedPDFs");
             if (!myDir.exists()) {
                 myDir.mkdirs();
             }

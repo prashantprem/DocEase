@@ -36,7 +36,7 @@
             android:theme="@style/style_main_pdf_sign" />
         <activity
             android:name=".pdfdigitalsignature.MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="Sign PDF"
             android:screenOrientation="portrait"
             android:theme="@style/style_main_pdf_sign">

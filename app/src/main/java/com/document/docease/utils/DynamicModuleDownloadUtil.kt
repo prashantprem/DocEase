@@ -24,6 +24,7 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
 
     private lateinit var splitInstallManager: SplitInstallManager
     private var mySessionId = 0
+    private var listener: SplitInstallStateUpdatedListener? = null
 
     init {
         if (!::splitInstallManager.isInitialized) {
@@ -40,8 +41,10 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
             .addModule(moduleName)
             .build()
 
-        val listener = SplitInstallStateUpdatedListener { state -> handleInstallStates(state) }
-        splitInstallManager.registerListener(listener)
+        listener = SplitInstallStateUpdatedListener { state -> handleInstallStates(state) }
+        listener?.let {
+            splitInstallManager.registerListener(listener!!)
+        }
 
         splitInstallManager.startInstall(request)
             .addOnSuccessListener { sessionId ->
@@ -51,8 +54,6 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
                 Log.d(TAG, "Exception: $e")
                 handleInstallFailure((e as SplitInstallException).errorCode)
             }
-
-        splitInstallManager.unregisterListener(listener)
     }
 
     private fun handleInstallFailure(errorCode: Int) {
@@ -92,19 +93,44 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
 
                 SplitInstallSessionStatus.DOWNLOADED -> {
                     callback.onDownloadCompleted()
+
                 }
 
                 SplitInstallSessionStatus.INSTALLED -> {
                     Log.d(TAG, "Dynamic Module downloaded")
                     callback.onInstallSuccess()
+                    listener?.let {
+                        splitInstallManager.unregisterListener(listener!!)
+                    }
                 }
 
                 SplitInstallSessionStatus.FAILED -> {
                     callback.onFailed("Installation failed")
+                    listener?.let {
+                        splitInstallManager.unregisterListener(listener!!)
+                    }
                 }
 
                 SplitInstallSessionStatus.CANCELED -> {
                     callback.onFailed("Installation Cancelled")
+                    listener?.let {
+                        splitInstallManager.unregisterListener(listener!!)
+                    }
+                }
+
+                SplitInstallSessionStatus.CANCELING -> {
+                }
+
+                SplitInstallSessionStatus.INSTALLING -> {
+                }
+
+                SplitInstallSessionStatus.PENDING -> {
+                }
+
+                SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
+                }
+
+                SplitInstallSessionStatus.UNKNOWN -> {
                 }
             }
         }

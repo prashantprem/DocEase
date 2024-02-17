@@ -89,7 +89,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dynamicModuleDownloadUtil = DynamicModuleDownloadUtil(baseContext, this)
+        dynamicModuleDownloadUtil = DynamicModuleDownloadUtil(baseContext, this@MainActivity)
         isInterstitialAdShowing = true
         installSplashScreen().apply {
             AnalyticsManager.logEvent(FirebaseEvents.splashLaunch)
@@ -226,7 +226,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
 
     override fun onFailed(errorMessage: String) {
         hideModuleLoading()
-        Toast.makeText(this@MainActivity, "Failed to download PDF Sign Module", Toast.LENGTH_SHORT)
+        Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT)
             .show()
     }
 

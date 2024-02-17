@@ -234,7 +234,7 @@ class MainViewModel @Inject constructor(
                     MediaStore.Files.FileColumns.MIME_TYPE,
                     MediaStore.Files.FileColumns.SIZE
                 )
-            val sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC"
+            val sortOrder = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
             val selectionArgs = when (fileType) {
                 FileType.PDF -> arrayOf(MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"))
                 FileType.WORD -> {
