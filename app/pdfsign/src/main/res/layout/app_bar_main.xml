@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:background="@color/bar_color"
-        android:gravity="end">
+        android:gravity="center_vertical|end">
 
         <ImageView
             android:id="@+id/action_back"
@@ -26,18 +26,26 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <TextView
+        <ImageView
             android:id="@+id/action_saved_sign"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:layout_margin="16dp"
-            android:drawablePadding="4dp"
-            android:fontFamily="@font/nunito"
-            android:text="Saved"
-            android:textColor="@color/text_color"
-            android:textSize="16sp"
-            app:drawableEndCompat="@drawable/ic_sigining"
-            app:drawableTint="@color/text_color" />
+            android:src="@drawable/ic_saved_signatures"
+            app:tint="@color/text_color" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/action_saved_sign"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_margin="16dp"-->
+        <!--            android:drawablePadding="4dp"-->
+        <!--            android:fontFamily="@font/nunito"-->
+        <!--            android:text="Saved"-->
+        <!--            android:textColor="@color/text_color"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:drawableEndCompat="@drawable/ic_sigining"-->
+        <!--            app:drawableTint="@color/text_color" />-->
     </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -52,8 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginBottom="@dimen/_44sdp"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_44sdp"
             app:srcCompat="@drawable/ic_add_black_24dp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

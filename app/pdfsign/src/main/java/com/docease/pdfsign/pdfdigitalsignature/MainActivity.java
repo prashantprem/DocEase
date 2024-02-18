@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         HandleExternalData();
-        TextView savedSign = findViewById(R.id.action_saved_sign);
+        ImageView savedSign = findViewById(R.id.action_saved_sign);
         savedSign.setOnClickListener(view -> {
             mHandler.postDelayed(mUpdateTimeTask, 100);
         });
