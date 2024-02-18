@@ -50,9 +50,11 @@ import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
 import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.Extensions.findActivity
+import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
 import com.document.docease.utils.Utility
@@ -83,6 +85,7 @@ fun HomeScreen(
     ) {
         SignPdfBanner {
             if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
                 Utility.launchSignatureModule(mContext)
             } else {
                 dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)

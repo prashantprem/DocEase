@@ -16,6 +16,8 @@ import com.docease.pdfsign.pdfdigitalsignature.Adapter.MainRecycleViewAdapter;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureActivity;
 import com.docease.pdfsign.pdfdigitalsignature.utils.RecyclerViewEmptySupport;
 import com.document.docease.BuildConfig;
+import com.document.docease.utils.AnalyticsManager;
+import com.document.docease.utils.FirebaseEvents;
 import com.document.docease.utils.Utility;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -321,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
         (view.findViewById(R.id.lyt_share)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnalyticsManager.INSTANCE.logEvent(FirebaseEvents.signedPdfShared);
                 mBottomSheetDialog.dismiss();
                 Uri contentUri = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", currentFile);
                 Intent target = ShareCompat.IntentBuilder.from(MainActivity.this).setStream(contentUri).getIntent();
@@ -396,6 +399,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
                 CreateDataSource();
                 mAdapter.notifyItemInserted(items.size() - 1);
+                AnalyticsManager.INSTANCE.logEvent(FirebaseEvents.signedPdfRenamed);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

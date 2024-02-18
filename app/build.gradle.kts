@@ -15,8 +15,8 @@ android {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
-        versionCode = 11
-        versionName = "1.8"
+        versionCode = 12
+        versionName = "1.9"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -147,6 +147,7 @@ fun LandingScreen(
                         scope.launch {
                             drawerState.close()
                             if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                                AnalyticsManager.logEvent(FirebaseEvents.pdfSignDrawer)
                                 launchSignatureModule(mContext)
                             } else {
                                 dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
@@ -312,6 +313,7 @@ fun LandingScreen(
 
                                     override fun onSignPdf(file: File) {
                                         if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                                            AnalyticsManager.logEvent(FirebaseEvents.pdfSignBottomSheet)
                                             signPdf(file, mContext)
                                         } else {
                                             dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)

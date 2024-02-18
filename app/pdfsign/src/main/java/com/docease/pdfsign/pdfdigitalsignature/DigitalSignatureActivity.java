@@ -47,6 +47,8 @@ import com.docease.pdfsign.pdfdigitalsignature.PDSModel.PDSElement;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureActivity;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureUtils;
 import com.docease.pdfsign.pdfdigitalsignature.imageviewer.PDSPageAdapter;
+import com.document.docease.utils.AnalyticsManager;
+import com.document.docease.utils.FirebaseEvents;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
@@ -561,6 +563,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                     PDSSaveAsPDFAsyncTask task = new PDSSaveAsPDFAsyncTask(DigitalSignatureActivity.this, fileName + ".pdf");
                     task.execute(new Void[0]);
                     dialog.dismiss();
+                    AnalyticsManager.INSTANCE.logEvent(FirebaseEvents.signedPDFSaved);
                 }
             }
         });

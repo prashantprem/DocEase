@@ -18,6 +18,8 @@ import android.widget.SeekBar;
 
 
 import com.docease.pdfsign.R;
+import com.document.docease.utils.AnalyticsManager;
+import com.document.docease.utils.FirebaseEvents;
 
 import java.util.ArrayList;
 
@@ -169,5 +171,6 @@ public class FreeHandActivity extends AppCompatActivity {
             isFreeHandCreated = true;
         }
         SignatureUtils.saveSignature(getApplicationContext(), localSignatureView);
+        AnalyticsManager.INSTANCE.logEvent(FirebaseEvents.savedSignature);
     }
 }

@@ -211,6 +211,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     override fun onDownloading() {
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadStarted)
         showLoadingDialog()
     }
 
@@ -218,11 +219,13 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     override fun onInstallSuccess() {
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadCompleted)
         Toast.makeText(this@MainActivity, "PDF Sign is ready for use!", Toast.LENGTH_LONG).show()
         hideModuleLoading()
     }
 
     override fun onFailed(errorMessage: String) {
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadFailed)
         hideModuleLoading()
         Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT)
             .show()
