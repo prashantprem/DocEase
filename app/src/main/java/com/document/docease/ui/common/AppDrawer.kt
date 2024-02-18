@@ -3,7 +3,6 @@ package com.document.docease.ui.common
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,9 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -78,34 +74,39 @@ fun AppDrawer(
             )
 
         )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(150.dp)
-                .background(
-                    brush = Brush.horizontalGradient(
-                        listOf(
-                            Color(0xff0066FF), Color(0xffB2C5FF),
-                        ),
-                        startX = 0f
-                    )
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.app_logo),
-                contentDescription = "AppLogo",
-                contentScale = ContentScale.Fit
-            )
-            Text(
-                text = stringResource(id = R.string.app_name) + ": PDF, Word, Excel",
-                textAlign = TextAlign.Center,
-                color = colorResource(id = R.color.text_color),
-                style = MaterialTheme.typography.labelLarge.copy(fontSize = 18.sp)
-            )
-
-        }
+//        Row(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(150.dp)
+//                .background(
+//                    brush = Brush.horizontalGradient(
+//                        listOf(
+//                            Color(0xff0066FF), Color(0xffB2C5FF),
+//                        ),
+//                        startX = 0f
+//                    )
+//                ),
+//            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.Center
+//        ) {
+//            Image(
+//                painter = painterResource(id = R.drawable.app_logo),
+//                contentDescription = "AppLogo",
+//                contentScale = ContentScale.Fit
+//            )
+//            Text(
+//                text = stringResource(id = R.string.app_name) + ": PDF, Word, Excel",
+//                textAlign = TextAlign.Center,
+//                color = colorResource(id = R.color.text_color),
+//                style = MaterialTheme.typography.labelLarge.copy(fontSize = 18.sp)
+//            )
+//
+//        }
+        Image(
+            painter = painterResource(id = R.drawable.img_main_drawer_banner),
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth()
+        )
         Spacer(modifier = Modifier.height(16.dp))
         drawerItem.forEachIndexed { index, drawerItemData ->
             AppDrawerItem(item = drawerItemData, onItemClick)
