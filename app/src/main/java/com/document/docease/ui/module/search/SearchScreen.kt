@@ -34,6 +34,7 @@ import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.module.filescreen.FIleInfoBottomSheetClickListener
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.Extensions.canGoBack
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.Utility
 import kotlinx.coroutines.launch
@@ -68,7 +69,7 @@ fun SearchScreen(
             active = active,
             onActiveChange = {
                 active = it
-                if (!it) {
+                if (!it && navController.canGoBack()) {
                     navController.popBackStack()
                 }
                 Log.d("Testing", "calcjhgdsghjds")
@@ -80,7 +81,9 @@ fun SearchScreen(
                     modifier = Modifier.noRippleClickable {
                         queryText = ""
                         viewModel.searchFile("")
-                        navController.popBackStack()
+                        if (navController.canGoBack()) {
+                            navController.popBackStack()
+                        }
                     })
             },
             leadingIcon = {
