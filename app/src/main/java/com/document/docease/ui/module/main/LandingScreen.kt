@@ -42,6 +42,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -172,7 +173,8 @@ fun LandingScreen(
                             style = MaterialTheme.typography.titleLarge.copy(
                                 color = colorResource(
                                     id = R.color.primary
-                                )
+                                ),
+                                fontSize = 16.sp
                             )
                         )
                     },
@@ -375,7 +377,8 @@ fun LandingScreen(
                         },
                         bottomBarNativeState,
                         storageRequestLauncher,
-                        homeNativeAdState
+                        homeNativeAdState,
+                        dynamicModuleDownloadUtil
                     )
                 }
             },

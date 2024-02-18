@@ -42,17 +42,20 @@ import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
+import com.document.docease.ui.common.SignPdfBanner
 import com.document.docease.ui.common.StoragePermissionScreen
-import com.document.docease.ui.components.ads.NativeAdAdmobMedium
+import com.document.docease.ui.components.ads.NativeAdAdmobSmall
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.utils.Constant
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
+import com.document.docease.utils.Utility
 import com.google.android.gms.ads.nativead.NativeAd
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -62,8 +65,10 @@ fun HomeScreen(
     fileClickListener: FileClickListener,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
     ad: NativeAd?,
+    dynamicModuleDownloadUtil: DynamicModuleDownloadUtil,
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
+    val mContext = LocalContext.current
     val mActivity = LocalContext.current.findActivity()
     val documentCountState = viewModel.documentCount.observeAsState()
 
@@ -76,6 +81,13 @@ fun HomeScreen(
             .fillMaxSize()
             .padding(horizontal = 4.dp)
     ) {
+        SignPdfBanner {
+            if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                Utility.launchSignatureModule(mContext)
+            } else {
+                dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+            }
+        }
         var tabIndex by remember { mutableIntStateOf(0) }
         val pagerState = rememberPagerState(initialPage = 0, pageCount = {
             tabs.size
@@ -97,7 +109,7 @@ fun HomeScreen(
 
             }
         } else if (Constant.showAdsState.value) {
-            NativeAdAdmobMedium(
+            NativeAdAdmobSmall(
                 context = LocalContext.current,
                 loadedAd = ad,
                 isDarkTheme = isSystemInDarkTheme()

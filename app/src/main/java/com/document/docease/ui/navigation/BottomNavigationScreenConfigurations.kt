@@ -14,6 +14,7 @@ import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.ui.module.home.HomeScreen
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.main.bottomnav.BottomNavigationScreens
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.google.android.gms.ads.nativead.NativeAd
 
 @Composable
@@ -23,7 +24,8 @@ fun BottomNavigationScreenConfigurations(
     fileClickListener: FileClickListener,
     bottomBarNativeAd: NativeAd?,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
-    ad: NativeAd?
+    ad: NativeAd?,
+    dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
 ) {
     NavHost(navController, startDestination = BottomNavigationScreens.HOME.route,
         enterTransition = { EnterTransition.None },
@@ -33,7 +35,7 @@ fun BottomNavigationScreenConfigurations(
     ) {
         composable(BottomNavigationScreens.HOME.route) {
 
-            HomeScreen(viewModel, fileClickListener, storageRequestLauncher,ad)
+            HomeScreen(viewModel, fileClickListener, storageRequestLauncher,ad,dynamicModuleDownloadUtil)
         }
         composable(BottomNavigationScreens.PDF.route) {
             FileListScreen(
