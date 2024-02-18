@@ -82,6 +82,12 @@ class MainViewModel @Inject constructor(
                     getAllFilesUsingMediaStore(context!!)
                 }.await()
             } else {
+                allOfficeFile.clear()
+                allPdfFiles.clear()
+                allExcelFiles.clear()
+                allWordFiles.clear()
+                allPptFiles.clear()
+                allTextFiles.clear()
                 async {
                     getAllFilesLegacy(Constant.dir)
                 }.await()
@@ -155,28 +161,32 @@ class MainViewModel @Inject constructor(
 
 
     private fun handleSupportedFile(file: File) {
-        allOfficeFile.add(file)
         when {
             file.name.endsWith(".pdf") -> {
                 allPdfFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".xls") || file.name.endsWith(".xlsx") -> {
                 allExcelFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".ppt") || file.name.endsWith(".pptx") -> {
                 allPptFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".docb") || file.name.endsWith(".docx") || file.name.endsWith(".doc") || file.name.endsWith(
                 ".dotx"
             ) -> {
                 allWordFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".txt") -> {
                 allTextFiles.add(file)
+                //not adding texts to all files now
             }
         }
     }

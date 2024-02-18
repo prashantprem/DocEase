@@ -6,7 +6,9 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,6 +34,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -189,46 +192,54 @@ fun LandingScreen(
 
                     },
                     actions = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_main_remove_ad),
-                            contentDescription = "Search Button",
-                            tint = if (isSystemInDarkTheme()) colorResource(id = R.color.na_button_default) else Color.Red,
-                            modifier = Modifier
-                                .noRippleClickable {
-                                    AnalyticsManager.logEvent(FirebaseEvents.removeAdsOpened)
-                                    navigationController.navigate(Routes.REMOVE_ADS) {
-                                        popUpTo(navigationController.graph.findStartDestination().id) {
-                                            saveState = true
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_main_remove_ad),
+                                contentDescription = "Search Button",
+                                tint = if (isSystemInDarkTheme()) colorResource(id = R.color.na_button_default) else Color.Red,
+                                modifier = Modifier
+                                    .noRippleClickable {
+                                        AnalyticsManager.logEvent(FirebaseEvents.removeAdsOpened)
+                                        navigationController.navigate(Routes.REMOVE_ADS) {
+                                            popUpTo(navigationController.graph.findStartDestination().id) {
+                                                saveState = true
+                                            }
+                                            launchSingleTop = true
+                                            restoreState = true
                                         }
-                                        launchSingleTop = true
-                                        restoreState = true
+                                        Log.d("TestingCLick", "CLicked")
                                     }
-                                    Log.d("TestingCLick", "CLicked")
-                                }
-                                .size(40.dp)
-                                .fillMaxWidth(0.2f)
-                                .padding(end = 8.dp)
-                        )
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = "Search Button",
-                            tint = colorResource(id = R.color.primary),
-                            modifier = Modifier
-                                .noRippleClickable {
-                                    navigationController.navigate(Routes.SEARCH) {
-                                        AnalyticsManager.logEvent(FirebaseEvents.fileSearch)
-                                        popUpTo(navigationController.graph.findStartDestination().id) {
-                                            saveState = true
+                                    .size(40.dp)
+                                    .fillMaxWidth(0.2f)
+                                    .padding(end = 8.dp)
+                            )
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_search),
+                                contentDescription = "Search Button",
+                                tint = colorResource(id = R.color.primary),
+                                modifier = Modifier
+                                    .noRippleClickable {
+                                        navigationController.navigate(Routes.SEARCH) {
+                                            AnalyticsManager.logEvent(FirebaseEvents.fileSearch)
+                                            popUpTo(navigationController.graph.findStartDestination().id) {
+                                                saveState = true
+                                            }
+                                            launchSingleTop = true
+                                            restoreState = true
                                         }
-                                        launchSingleTop = true
-                                        restoreState = true
+                                        Log.d("TestingCLick", "CLicked")
                                     }
-                                    Log.d("TestingCLick", "CLicked")
-                                }
-                                .size(80.dp)
-                                .fillMaxWidth(0.2f)
-                                .padding(end = 8.dp)
-                        )
+                                    .size(100.dp)
+                                    .fillMaxWidth(0.22f)
+                                    .padding(end = 8.dp)
+                            )
+
+                        }
+
+
                     }
                 )
             },

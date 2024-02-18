@@ -211,8 +211,6 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     override fun onDownloading() {
-        Toast.makeText(this@MainActivity, "Downloading PDF Sign Module", Toast.LENGTH_LONG)
-            .show()
         showLoadingDialog()
     }
 
@@ -220,8 +218,8 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     override fun onInstallSuccess() {
-        hideModuleLoading()
         Toast.makeText(this@MainActivity, "PDF Sign is ready for use!", Toast.LENGTH_LONG).show()
+        hideModuleLoading()
     }
 
     override fun onFailed(errorMessage: String) {
@@ -231,6 +229,9 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     private fun showLoadingDialog() {
+        if (moduleLoading != null && moduleLoading!!.isShowing) {
+            return
+        }
         val builder = AlertDialog.Builder(this@MainActivity)
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.module_loading_dialog, null)
@@ -238,12 +239,14 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
         builder.setCancelable(false)
         moduleLoading = builder.create()
         moduleLoading?.show()
+        Toast.makeText(this@MainActivity, "Downloading PDF Sign Module", Toast.LENGTH_LONG)
+            .show()
     }
 
     private fun hideModuleLoading() {
         moduleLoading?.apply {
             if (isShowing) {
-                hide()
+                dismiss()
             }
         }
     }
