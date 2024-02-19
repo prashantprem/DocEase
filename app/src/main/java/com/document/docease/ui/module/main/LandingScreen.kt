@@ -303,11 +303,13 @@ fun LandingScreen(
 
                                     override fun onWhatsAppShare(file: File) {
                                         Utility.shareToWhatsApp(file, mContext)
+                                        showFileActionBottomSheet = false
                                     }
 
                                     override fun onShare(file: File) {
                                         AnalyticsManager.logEvent(FirebaseEvents.fileShareBottomSheet)
                                         Utility.shareToAny(file, mContext)
+                                        showFileActionBottomSheet = false
                                     }
 
                                     override fun onPrint(file: File) {
@@ -324,6 +326,7 @@ fun LandingScreen(
                                     }
 
                                     override fun onSignPdf(file: File) {
+                                        showFileActionBottomSheet = false
                                         if (hasPermission) {
                                             if (dynamicModuleDownloadUtil.isModuleDownloaded(
                                                     Constant.DYNAMIC_MODULE_PDF_SIGN
