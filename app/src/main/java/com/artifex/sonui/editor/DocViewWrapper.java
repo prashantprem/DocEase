@@ -27,7 +27,9 @@ public class DocViewWrapper extends DocView {
 
     public void onSelectionChanged() {
         super.onSelectionChanged();
-        NUIDocView.currentNUIDocView().handleSelectionPopup(posX, posY);
+        if (NUIDocView.currentNUIDocView() != null) {
+            NUIDocView.currentNUIDocView().handleSelectionPopup(posX, posY);
+        }
     }
 
     @Override
