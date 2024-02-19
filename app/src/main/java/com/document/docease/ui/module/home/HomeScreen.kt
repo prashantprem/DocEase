@@ -90,7 +90,7 @@ fun HomeScreen(
                     AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
                     Utility.launchSignatureModule(mContext)
                 } else {
-                    dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                    dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN,mContext)
                 }
             } else {
                 Toast.makeText(

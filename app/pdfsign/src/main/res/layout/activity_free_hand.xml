@@ -75,6 +75,7 @@
 
             <com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureView
                 android:id="@+id/inkSignatureOverlayView"
+                android:background="@color/sodk_editor_palette_white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>

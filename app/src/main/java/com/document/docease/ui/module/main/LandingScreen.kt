@@ -154,7 +154,10 @@ fun LandingScreen(
                                     AnalyticsManager.logEvent(FirebaseEvents.pdfSignDrawer)
                                     Utility.launchSignatureModule(mContext)
                                 } else {
-                                    dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                                    dynamicModuleDownloadUtil.downloadDynamicModule(
+                                        Constant.DYNAMIC_MODULE_PDF_SIGN,
+                                        mContext
+                                    )
                                 }
                             } else {
                                 Toast.makeText(
@@ -336,7 +339,8 @@ fun LandingScreen(
                                                 signPdf(file, mContext)
                                             } else {
                                                 dynamicModuleDownloadUtil.downloadDynamicModule(
-                                                    Constant.DYNAMIC_MODULE_PDF_SIGN
+                                                    Constant.DYNAMIC_MODULE_PDF_SIGN,
+                                                    mContext
                                                 )
                                             }
                                         } else {

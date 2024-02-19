@@ -16,6 +16,7 @@ import com.docease.pdfsign.pdfdigitalsignature.Adapter.MainRecycleViewAdapter;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureActivity;
 import com.docease.pdfsign.pdfdigitalsignature.utils.RecyclerViewEmptySupport;
 import com.document.docease.BuildConfig;
+import com.document.docease.ui.base.BaseActivity;
 import com.document.docease.utils.AnalyticsManager;
 import com.document.docease.utils.FirebaseEvents;
 import com.document.docease.utils.Utility;
@@ -61,7 +62,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final int Merge_Request_CODE = 43;
     private RecyclerViewEmptySupport recyclerView;
     List<File> items = null;

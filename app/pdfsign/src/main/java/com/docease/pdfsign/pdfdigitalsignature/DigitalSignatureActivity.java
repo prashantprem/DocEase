@@ -47,6 +47,7 @@ import com.docease.pdfsign.pdfdigitalsignature.PDSModel.PDSElement;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureActivity;
 import com.docease.pdfsign.pdfdigitalsignature.Signature.SignatureUtils;
 import com.docease.pdfsign.pdfdigitalsignature.imageviewer.PDSPageAdapter;
+import com.document.docease.ui.base.BaseActivity;
 import com.document.docease.utils.AnalyticsManager;
 import com.document.docease.utils.FirebaseEvents;
 
@@ -61,7 +62,7 @@ import java.security.Security;
 import java.util.ArrayList;
 
 
-public class DigitalSignatureActivity extends AppCompatActivity {
+public class DigitalSignatureActivity extends BaseActivity {
     private static final int READ_REQUEST_CODE = 42;
     private static final int SIGNATURE_Request_CODE = 43;
     private static final int IMAGE_REQUEST_CODE = 45;

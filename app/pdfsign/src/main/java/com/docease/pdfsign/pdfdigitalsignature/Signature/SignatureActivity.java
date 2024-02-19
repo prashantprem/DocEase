@@ -8,6 +8,7 @@ import android.content.Intent;
 import com.docease.pdfsign.R;
 import com.docease.pdfsign.pdfdigitalsignature.Adapter.SignatureRecycleViewAdapter;
 import com.docease.pdfsign.pdfdigitalsignature.utils.RecyclerViewEmptySupport;
+import com.document.docease.ui.base.BaseActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class SignatureActivity extends AppCompatActivity {
+public class SignatureActivity extends BaseActivity {
     private static final int FREEHAND_Request_CODE = 43;
     private RecyclerViewEmptySupport mRecyclerView;
     List<File> items = null;

@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
@@ -18,12 +19,13 @@ import android.widget.SeekBar;
 
 
 import com.docease.pdfsign.R;
+import com.document.docease.ui.base.BaseActivity;
 import com.document.docease.utils.AnalyticsManager;
 import com.document.docease.utils.FirebaseEvents;
 
 import java.util.ArrayList;
 
-public class FreeHandActivity extends AppCompatActivity {
+public class FreeHandActivity extends BaseActivity {
     private boolean isFreeHandCreated = false;
     private SignatureView signatureView;
     private SeekBar inkWidth;

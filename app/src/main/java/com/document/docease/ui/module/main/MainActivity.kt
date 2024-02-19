@@ -45,6 +45,7 @@ import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.Utility
+import com.google.android.play.core.splitcompat.SplitCompat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -84,6 +85,11 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
                 }
             }
         }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+        SplitCompat.installActivity(this)
+    }
 
 
     @OptIn(ExperimentalMaterialApi::class)

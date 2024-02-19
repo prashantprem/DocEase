@@ -2,6 +2,7 @@ package com.document.docease.utils
 
 import android.content.Context
 import android.util.Log
+import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallException
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
@@ -36,12 +37,12 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
         return splitInstallManager.installedModules.contains(moduleName)
     }
 
-    fun downloadDynamicModule(moduleName: String) {
+    fun downloadDynamicModule(moduleName: String, context: Context) {
         val request = SplitInstallRequest.newBuilder()
             .addModule(moduleName)
             .build()
 
-        listener = SplitInstallStateUpdatedListener { state -> handleInstallStates(state) }
+        listener = SplitInstallStateUpdatedListener { state -> handleInstallStates(state, context) }
         listener?.let {
             splitInstallManager.registerListener(listener!!)
         }
@@ -84,7 +85,7 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
         }
     }
 
-    private fun handleInstallStates(state: SplitInstallSessionState) {
+    private fun handleInstallStates(state: SplitInstallSessionState, context: Context) {
         if (state.sessionId() == mySessionId) {
             when (state.status()) {
                 SplitInstallSessionStatus.DOWNLOADING -> {
@@ -98,6 +99,7 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
 
                 SplitInstallSessionStatus.INSTALLED -> {
                     Log.d(TAG, "Dynamic Module downloaded")
+                    SplitCompat.installActivity(context)
                     callback.onInstallSuccess()
                     listener?.let {
                         splitInstallManager.unregisterListener(listener!!)
