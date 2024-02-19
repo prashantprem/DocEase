@@ -2,6 +2,7 @@ package com.document.docease.ui.module.home
 
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -84,11 +85,19 @@ fun HomeScreen(
             .padding(horizontal = 4.dp)
     ) {
         SignPdfBanner {
-            if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
-                Utility.launchSignatureModule(mContext)
+            if (hasPermission) {
+                if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                    AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
+                    Utility.launchSignatureModule(mContext)
+                } else {
+                    dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                }
             } else {
-                dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                Toast.makeText(
+                    mContext,
+                    "Allow storage permission to use this feature!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         var tabIndex by remember { mutableIntStateOf(0) }

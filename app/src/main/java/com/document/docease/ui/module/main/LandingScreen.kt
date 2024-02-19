@@ -2,6 +2,7 @@ package com.document.docease.ui.module.main
 
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.background
@@ -66,10 +67,10 @@ import com.document.docease.utils.Constant
 import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.FirebaseEvents
+import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.Utility
 import com.document.docease.utils.Utility.giveFeedback
 import com.document.docease.utils.Utility.inviteFriends
-import com.document.docease.utils.Utility.launchSignatureModule
 import com.document.docease.utils.Utility.rateOnPlayStore
 import com.document.docease.utils.Utility.signPdf
 import com.google.android.gms.ads.nativead.NativeAd
@@ -99,6 +100,8 @@ fun LandingScreen(
     val bottomNavigationController = rememberNavController()
     var clickCount = 0
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val hasPermission = PermissionUtils.storagePermissionState.value
+
 //    val drawerNativeState = rememberNativeAdState(
 //        context = LocalContext.current, adUnitId = AdUnits.drawerNative,
 //        refreshInterval = Constant.nativeAdRefreshInterval
@@ -146,12 +149,21 @@ fun LandingScreen(
                     AppDrawerItemType.signpdf -> {
                         scope.launch {
                             drawerState.close()
-                            if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                                AnalyticsManager.logEvent(FirebaseEvents.pdfSignDrawer)
-                                launchSignatureModule(mContext)
+                            if (hasPermission) {
+                                if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                                    AnalyticsManager.logEvent(FirebaseEvents.pdfSignDrawer)
+                                    Utility.launchSignatureModule(mContext)
+                                } else {
+                                    dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                                }
                             } else {
-                                dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                                Toast.makeText(
+                                    mContext,
+                                    "Allow storage permission to use this feature!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
+
                         }
 
                     }
@@ -312,12 +324,26 @@ fun LandingScreen(
                                     }
 
                                     override fun onSignPdf(file: File) {
-                                        if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                                            AnalyticsManager.logEvent(FirebaseEvents.pdfSignBottomSheet)
-                                            signPdf(file, mContext)
+                                        if (hasPermission) {
+                                            if (dynamicModuleDownloadUtil.isModuleDownloaded(
+                                                    Constant.DYNAMIC_MODULE_PDF_SIGN
+                                                )
+                                            ) {
+                                                AnalyticsManager.logEvent(FirebaseEvents.pdfSignBottomSheet)
+                                                signPdf(file, mContext)
+                                            } else {
+                                                dynamicModuleDownloadUtil.downloadDynamicModule(
+                                                    Constant.DYNAMIC_MODULE_PDF_SIGN
+                                                )
+                                            }
                                         } else {
-                                            dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN)
+                                            Toast.makeText(
+                                                mContext,
+                                                "Allow storage permission to use this feature!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
+
                                     }
 
                                 })
