@@ -2951,7 +2951,9 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
             if (var1 == this.mShareButton || var1 == this.editorToolbarShare) {
                 AnalyticsManager.INSTANCE.logEvent(FirebaseEvents.fileShareEdit);
-                if (f != null) {
+                if (documentHasBeenModified() && f != null) {
+                    saveCacheThenShare();
+                } else if (f != null) {
                     shareDocument(new File(f.getOpenedPath()));
                 } else {
                     this.onShareButton();
@@ -3226,6 +3228,31 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         } else {
             shareDocument(file);
         }
+    }
+
+    public void saveCacheThenShare() {
+        SODocSession mSession = NUIDocView.currentNUIDocView().getSession();
+        final SOFileState fileState = mSession.getFileState();
+        final boolean var4 = mSession.getDoc().getHasBeenModified();
+        File file;
+        if (fileState.getUserPath() != null) {
+            file = new File(fileState.getUserPath());
+        } else {
+            file = new File(fileState.getOpenedPath());
+        }
+        String cachePath = activity().getExternalCacheDir() +
+                File.separator +
+                "dataleak" +
+                File.separator + file;
+
+        (new File(cachePath)).mkdirs();
+        mSession.getDoc().a(fileState.getInternalPath(), (var1x, var2) -> {
+            if (var1x == 0) {
+                com.artifex.solib.a.a(fileState.getInternalPath(), cachePath, true);
+                fileState.setHasChanges(var4);
+                shareDocument(new File(cachePath));
+            }
+        });
     }
 
     public void shareDocument(File file) {
