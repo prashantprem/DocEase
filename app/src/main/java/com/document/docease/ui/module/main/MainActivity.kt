@@ -211,7 +211,6 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     }
 
     override fun onDownloading() {
-        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadStarted)
         showLoadingDialog()
     }
 
@@ -235,6 +234,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
         if (moduleLoading != null && moduleLoading!!.isShowing) {
             return
         }
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadStarted)
         val builder = AlertDialog.Builder(this@MainActivity)
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.module_loading_dialog, null)
