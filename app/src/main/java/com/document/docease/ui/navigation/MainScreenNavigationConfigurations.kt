@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.document.docease.ui.module.create.CreateFile
 import com.document.docease.ui.module.main.LandingScreen
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.removeads.RemoveAds
@@ -38,10 +39,19 @@ fun MainNavigationConfiguration(
             SearchScreen(viewModel, navController)
         }
         composable(Routes.LANDING) {
-            LandingScreen(viewModel, navController, storageRequestLauncher,homeNativeAdState,dynamicModuleDownloadUtil)
+            LandingScreen(
+                viewModel,
+                navController,
+                storageRequestLauncher,
+                homeNativeAdState,
+                dynamicModuleDownloadUtil
+            )
         }
         composable(Routes.REMOVE_ADS) {
             RemoveAds(navController)
+        }
+        composable(Routes.CREATE_DOCUMENTS) {
+            CreateFile()
         }
     }
 }

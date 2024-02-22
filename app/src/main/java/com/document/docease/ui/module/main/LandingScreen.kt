@@ -422,6 +422,7 @@ fun LandingScreen(
                     navController = bottomNavigationController,
                     items = bottomNavigationItems,
                 ) {
+
                     clickCount += 1
                     showInterstitialOnClick(
                         mContext,
@@ -431,8 +432,7 @@ fun LandingScreen(
                         }
                     ) {}
                 }
-            }
-
+            },
         )
 
     }
