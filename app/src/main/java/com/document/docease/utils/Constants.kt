@@ -237,14 +237,14 @@ object AdUnits {
 
 
     //prod
-    const val homeNative = "ca-app-pub-7642879603256855/5233946502"
-    const val filesNative = "ca-app-pub-7642879603256855/8961438520"
-    const val exitNative = "ca-app-pub-7642879603256855/2607783165"
-    const val splashInterstitial = "ca-app-pub-7642879603256855/6035343549"
-    const val appOpen = "ca-app-pub-7642879603256855/1454483590"
-    const val buyMeCoffee = "ca-app-pub-7642879603256855/8507015090"
-    const val fileEditInterstitial = "ca-app-pub-7642879603256855/7843249236"
-    const val flowInterstitial = "ca-app-pub-7642879603256855/7860109843"
+    const val homeNative = "ca-app-pub-5810646146446064/6965812065"
+    const val filesNative = "ca-app-pub-5810646146446064/4451329369"
+    const val exitNative = "ca-app-pub-5810646146446064/3138247694"
+    const val splashInterstitial = "ca-app-pub-5810646146446064/5652730392"
+    const val appOpen = "ca-app-pub-5810646146446064/6718400057"
+    const val buyMeCoffee = "ca-app-pub-5810646146446064/3026567053"
+    const val fileEditInterstitial = "ca-app-pub-5810646146446064/1029398600"
+    const val flowInterstitial = "ca-app-pub-5810646146446064/3964244202"
     const val fileBanner = "ca-app-pub-7642879603256855/8890158470"
     const val drawerNative = "ca-app-pub-7642879603256855~7054294630"
 }

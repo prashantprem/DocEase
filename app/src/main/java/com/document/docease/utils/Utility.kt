@@ -253,7 +253,7 @@ object Utility {
             Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:")
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(Constant.supportMail))
-                putExtra(Intent.EXTRA_SUBJECT, "DocEase Support")
+                putExtra(Intent.EXTRA_SUBJECT, "Doc Master Support")
                 putExtra(Intent.EXTRA_TEXT, eMailBody)
             }
         )
