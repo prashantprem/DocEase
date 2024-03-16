@@ -17,6 +17,7 @@ import com.document.docease.ui.components.piechart.DocumentCount
 import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.utils.Constant
 import com.document.docease.utils.StorageUtils
+import com.document.docease.utils.Utility
 import com.document.docease.utils.Utility.isSupportedFileType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -335,6 +336,12 @@ class MainViewModel @Inject constructor(
     fun refresh(context: Context) {
         isRefreshing = true
         getAllFiles(context)
+    }
+
+    fun saveScannedPdf(uri: Uri, context: Context, fileName: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            Utility.savePdfInDocumentDirectory(context, uri, fileName)
+        }
     }
 
 }

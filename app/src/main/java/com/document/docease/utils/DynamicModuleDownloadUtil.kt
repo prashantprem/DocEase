@@ -37,6 +37,14 @@ class DynamicModuleDownloadUtil(context: Context, private val callback: DynamicD
         return splitInstallManager.installedModules.contains(moduleName)
     }
 
+    fun checkIfModuleDownloaded(moduleName: String, onFound: () -> Unit, onNotFound: () -> Unit) {
+        if (splitInstallManager.installedModules.contains(moduleName)) {
+            onFound()
+        } else {
+            onNotFound()
+        }
+    }
+
     fun downloadDynamicModule(moduleName: String, context: Context) {
         val request = SplitInstallRequest.newBuilder()
             .addModule(moduleName)

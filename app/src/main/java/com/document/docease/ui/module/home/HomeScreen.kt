@@ -1,9 +1,13 @@
 package com.document.docease.ui.module.home
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,6 +15,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -39,8 +46,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toFile
 import com.document.docease.R
 import com.document.docease.data.Resource
+import com.document.docease.ui.common.CustomCard
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.common.SignPdfBanner
@@ -60,6 +69,9 @@ import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
 import com.document.docease.utils.Utility
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -77,29 +89,90 @@ fun HomeScreen(
 
     val hasPermission = PermissionUtils.storagePermissionState.value
 
+    val scanner = remember {
+        val options =
+            GmsDocumentScannerOptions.Builder().setGalleryImportAllowed(true)
+                .setResultFormats(
+                    GmsDocumentScannerOptions.RESULT_FORMAT_JPEG,
+                    GmsDocumentScannerOptions.RESULT_FORMAT_PDF
+                )
+                .setScannerMode(GmsDocumentScannerOptions.SCANNER_MODE_FULL).build()
+        GmsDocumentScanning.getClient(options)
+    }
 
+    val scannerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val gmsResult = GmsDocumentScanningResult.fromActivityResultIntent(result.data)
+            gmsResult?.pdf?.let { pdf ->
+                pdf.uri.let { uri ->
+                    val mFile = uri.toFile()
+                    Utility.openFileWithLocalContext(context = mContext, mFile)
+                }
+            }
+        }
 
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 4.dp)
     ) {
-        SignPdfBanner {
-            if (hasPermission) {
-                if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                    AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
-                    Utility.launchSignatureModule(mContext)
-                } else {
-                    dynamicModuleDownloadUtil.downloadDynamicModule(Constant.DYNAMIC_MODULE_PDF_SIGN,mContext)
+        if (hasPermission) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                CustomCard(
+                    title = "Convert to PDF",
+                    image = R.drawable.ic_main_scan_pdf,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+
+                ) {
+                    mActivity?.let {
+                        scanner.getStartScanIntent(mActivity)
+                            .addOnSuccessListener { intentSender ->
+                                scannerLauncher.launch(
+                                    IntentSenderRequest.Builder(intentSender).build()
+                                )
+                            }.addOnFailureListener {
+                                Toast.makeText(
+                                    mContext,
+                                    "Oops! Something went wrong",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
                 }
-            } else {
-                Toast.makeText(
-                    mContext,
-                    "Allow storage permission to use this feature!",
-                    Toast.LENGTH_SHORT
-                ).show()
+
+                Spacer(modifier = Modifier.width(16.dp))
+                CustomCard(
+                    title = "Sign PDF",
+                    image = R.drawable.ic_main_sign_pdf,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+
+                ) {
+                    if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                        AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
+                        Utility.launchSignatureModule(mContext)
+                    } else {
+                        dynamicModuleDownloadUtil.downloadDynamicModule(
+                            Constant.DYNAMIC_MODULE_PDF_SIGN,
+                            mContext
+                        )
+                    }
+                }
+
             }
         }
+
+
         var tabIndex by remember { mutableIntStateOf(0) }
         val pagerState = rememberPagerState(initialPage = 0, pageCount = {
             tabs.size

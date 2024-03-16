@@ -47,11 +47,6 @@ fun AppDrawer(
     ) {
         val drawerItem = listOf(
             DrawerItemData(
-                AppDrawerItemType.signpdf,
-                "Sign PDFs",
-                R.drawable.ic_sigining_main
-            ),
-            DrawerItemData(
                 AppDrawerItemType.removeAds,
                 "Remove ads",
                 R.drawable.ic_main_drawer_ads
@@ -72,7 +67,6 @@ fun AppDrawer(
                 "Contact us",
                 R.drawable.ic_main_drawer_contact
             )
-
         )
 //        Row(
 //            modifier = Modifier
@@ -193,5 +187,5 @@ fun previewDrawer() {
 }
 
 enum class AppDrawerItemType {
-    share, rate, removeAds, faq, feedback, signpdf
+    share, rate, removeAds, faq, feedback, signpdf, scan
 }

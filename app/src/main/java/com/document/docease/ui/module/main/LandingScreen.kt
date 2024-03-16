@@ -146,31 +146,6 @@ fun LandingScreen(
                         }
                     }
 
-                    AppDrawerItemType.signpdf -> {
-                        scope.launch {
-                            drawerState.close()
-                            if (hasPermission) {
-                                if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
-                                    AnalyticsManager.logEvent(FirebaseEvents.pdfSignDrawer)
-                                    Utility.launchSignatureModule(mContext)
-                                } else {
-                                    dynamicModuleDownloadUtil.downloadDynamicModule(
-                                        Constant.DYNAMIC_MODULE_PDF_SIGN,
-                                        mContext
-                                    )
-                                }
-                            } else {
-                                Toast.makeText(
-                                    mContext,
-                                    "Allow storage permission to use this feature!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-
-                        }
-
-                    }
-
                     else -> {}
                 }
             }, mContext)

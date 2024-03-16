@@ -15,8 +15,8 @@ android {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 24
         targetSdk = 34
-        versionCode = 19
-        versionName = "2.2"
+        versionCode = 3
+        versionName = "3"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -154,6 +154,9 @@ dependencies {
 
     implementation("com.google.android.play:feature-delivery:2.1.0")
     implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
+
+    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
+
 
 
 }

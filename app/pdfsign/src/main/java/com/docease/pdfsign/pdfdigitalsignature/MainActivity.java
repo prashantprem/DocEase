@@ -260,7 +260,7 @@ public class MainActivity extends BaseActivity {
             items = new ArrayList<File>();
 
             File root = getFilesDir();
-            File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath() + File.separator + "DocEaseSignedPDFs");
+            File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath() + File.separator + "DocMasterSignedPDFs");
 //            File myDir = new File(root + File.separator + "DocEaseSignedPDFs");
             if (!myDir.exists()) {
                 myDir.mkdirs();

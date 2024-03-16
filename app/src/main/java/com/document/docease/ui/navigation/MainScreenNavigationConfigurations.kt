@@ -38,7 +38,13 @@ fun MainNavigationConfiguration(
             SearchScreen(viewModel, navController)
         }
         composable(Routes.LANDING) {
-            LandingScreen(viewModel, navController, storageRequestLauncher,homeNativeAdState,dynamicModuleDownloadUtil)
+            LandingScreen(
+                viewModel,
+                navController,
+                storageRequestLauncher,
+                homeNativeAdState,
+                dynamicModuleDownloadUtil
+            )
         }
         composable(Routes.REMOVE_ADS) {
             RemoveAds(navController)

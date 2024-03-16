@@ -136,11 +136,11 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
                 val pullRefreshState = rememberPullRefreshState(
                     viewModel.isRefreshing,
                     { viewModel.refresh(this@MainActivity) })
-                val homeNativeAdState = rememberNativeAdState(
-                    context = LocalContext.current,
-                    adUnitId = AdUnits.homeNative,
-                    refreshInterval = Constant.nativeAdRefreshInterval
-                )
+//                val homeNativeAdState = rememberNativeAdState(
+//                    context = LocalContext.current,
+//                    adUnitId = AdUnits.homeNative,
+//                    refreshInterval = Constant.nativeAdRefreshInterval
+//                )
                 Box(
                     Modifier
                         .safeDrawingPadding()
@@ -150,7 +150,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
                         navController = navController,
                         viewModel = viewModel,
                         requestPermissionResultLauncher,
-                        homeNativeAdState,
+                        null,
                         dynamicModuleDownloadUtil
                     )
                     if (PermissionUtils.storagePermissionState.value) {
