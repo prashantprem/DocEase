@@ -62,6 +62,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
     private var hasRequestedReviewFlowInSession = false
     private lateinit var dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
     private var moduleLoading: AlertDialog? = null
+    private var isSplashAdTimedOut = false
 
 
     companion object {
@@ -104,23 +105,29 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
             }
         }
         Utility.checkIfHasToShowAds(this)
-        if (Constant.showAdsState.value) {
-            initSplashAdCountDownTimer()
-            loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
-                showInterstitial(this@MainActivity, onAdDismissed = {
-                    AnalyticsManager.logEvent(FirebaseEvents.shownAdOnSPlash)
-                    viewModel.showSplash = false
-                }, adUnit = AdUnits.splashInterstitial)
+//        if (Constant.showAdsState.value) {
+//            initSplashAdCountDownTimer()
+//            loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
+//                if (!isSplashAdTimedOut) {
+//                    showInterstitial(this@MainActivity, onAdDismissed = {
+//                        AnalyticsManager.logEvent(FirebaseEvents.shownAdOnSPlash)
+//                        viewModel.showSplash = false
+//                    }, adUnit = AdUnits.splashInterstitial)
+//                }
+//            }, onAdFailed = {
+//                AnalyticsManager.logEvent(FirebaseEvents.notShownAdOnSPlash)
+//                viewModel.showSplash = false
+//            })
+//        } else {
+//            CoroutineScope(Dispatchers.IO).launch {
+//                delay(3000)
+//                viewModel.showSplash = false
+//            }
+//        }
 
-            }, onAdFailed = {
-                AnalyticsManager.logEvent(FirebaseEvents.notShownAdOnSPlash)
-                viewModel.showSplash = false
-            })
-        } else {
-            CoroutineScope(Dispatchers.IO).launch {
-                delay(3000)
-                viewModel.showSplash = false
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(2500)
+            viewModel.showSplash = false
         }
         if (PermissionUtils.hasPermission(this@MainActivity)) {
             viewModel.getAllFiles(this@MainActivity)
@@ -210,6 +217,7 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
             }
 
             override fun onFinish() {
+                isSplashAdTimedOut = true
                 viewModel.showSplash = false
                 println("Countdown finished!")
             }

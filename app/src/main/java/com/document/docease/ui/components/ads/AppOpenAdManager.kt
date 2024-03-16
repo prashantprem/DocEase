@@ -27,6 +27,8 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
 
     private var currentActivity: Activity? = null
     private val TAG = "AppOpenAd"
+    private var isAfterOnStop = false
+    private var appBackgroundStartTime = 0L
 
     private val lifecycleEventObserver = LifecycleEventObserver { source, event ->
         if (event == Lifecycle.Event.ON_RESUME) {
@@ -37,7 +39,10 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
                 Log.e(TAG, "Cannot show Ad")
             }
         } else if (event == Lifecycle.Event.ON_PAUSE) {
-            Log.e("APP", "paused")
+            Log.e(TAG, "paused")
+        } else if (event == Lifecycle.Event.ON_STOP) {
+            appBackgroundStartTime = System.currentTimeMillis()
+            Log.e(TAG, "STOP")
         }
     }
 
@@ -119,7 +124,7 @@ class AppOpenAdManager(application: Application, private val adUnit: String) :
         if (!Constant.showAdsState.value) return false
         if (isInterstitialAdShowing) return false
         val currentTimeInMillis = System.currentTimeMillis()
-        val dateDifference: Long = currentTimeInMillis - loadTime
+        val dateDifference: Long = currentTimeInMillis - appBackgroundStartTime
         return dateDifference > Constant.appOpenTimeout
 
     }
