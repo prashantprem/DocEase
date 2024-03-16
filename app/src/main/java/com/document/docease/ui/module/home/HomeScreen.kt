@@ -111,9 +111,10 @@ fun HomeScreen(
                                     IntentSenderRequest.Builder(intentSender).build()
                                 )
                             }.addOnFailureListener {
+                                Log.d("TestingScan", it.toString())
                                 Toast.makeText(
                                     mContext,
-                                    "Oops! Something went wrong",
+                                    it.localizedMessage,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }

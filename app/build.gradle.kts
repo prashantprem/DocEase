@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.all.document.reader.pdf.doc.docease"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 3
         versionName = "3"
