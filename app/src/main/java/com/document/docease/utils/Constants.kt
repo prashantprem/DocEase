@@ -275,4 +275,10 @@ object FirebaseEvents {
     const val savedSignature = "SavedSignature"
     const val signedPdfShared = "signedPdfShared"
     const val signedPdfRenamed = "signedPdfRenamed"
+    const val clickAllowPermission = "ClickAllowPermission"
+    const val permissionGranted = "PermissionGranted"
+    const val permissionDenied = "PermissionDenied"
+    const val clickConvertToPdf = "ClickConvertToPdf"
+    const val clickTopBarScanner = "ClickTopBarScanner"
+
 }

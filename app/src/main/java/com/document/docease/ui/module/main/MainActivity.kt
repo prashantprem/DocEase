@@ -79,7 +79,9 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
                 if (Environment.isExternalStorageManager()) {
                     PermissionUtils.storagePermissionState.value = true
                     viewModel.getAllFiles(this@MainActivity)
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionGranted)
                 } else {
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionDenied)
                     Toast.makeText(
                         this,
                         getString(R.string.allow_permission_for_storage_access),
@@ -189,7 +191,9 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     PermissionUtils.storagePermissionState.value = true
                     viewModel.getAllFiles(this@MainActivity)
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionGranted)
                 } else {
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionDenied)
                     PermissionUtils.isPermission(
                         PERMISSION_EXTERNAL,
                         this,

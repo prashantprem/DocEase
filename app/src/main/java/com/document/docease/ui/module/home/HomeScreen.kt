@@ -105,6 +105,7 @@ fun HomeScreen(
 
                 ) {
                     mActivity?.let {
+                        AnalyticsManager.logEvent(FirebaseEvents.clickConvertToPdf)
                         scanner.getStartScanIntent(mActivity)
                             .addOnSuccessListener { intentSender ->
                                 scannerLauncher.launch(
@@ -158,6 +159,7 @@ fun HomeScreen(
         }
         if (mActivity != null && !hasPermission) {
             StoragePermissionScreen {
+                AnalyticsManager.logEvent(FirebaseEvents.clickAllowPermission)
                 PermissionUtils.isPermission(
                     MainActivity.PERMISSION_EXTERNAL,
                     activity = mActivity,

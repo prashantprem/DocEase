@@ -229,6 +229,7 @@ fun LandingScreen(
                                 tint = colorResource(id = R.color.primary),
                                 modifier = Modifier
                                     .noRippleClickable {
+                                        AnalyticsManager.logEvent(FirebaseEvents.clickTopBarScanner)
                                         mActivity?.let {
                                             if (hasPermission) {
                                                 scanner
