@@ -1,13 +1,12 @@
 package com.document.docease.ui.module.home
 
-import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,7 +16,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -46,13 +44,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toFile
 import com.document.docease.R
 import com.document.docease.data.Resource
 import com.document.docease.ui.common.CustomCard
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
-import com.document.docease.ui.common.SignPdfBanner
 import com.document.docease.ui.common.StoragePermissionScreen
 import com.document.docease.ui.components.ads.NativeAdAdmobSmall
 import com.document.docease.ui.components.piechart.FileDistributionChart
@@ -69,9 +65,7 @@ import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
 import com.document.docease.utils.Utility
 import com.google.android.gms.ads.nativead.NativeAd
-import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
-import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
-import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanner
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -81,6 +75,8 @@ fun HomeScreen(
     storageRequestLauncher: ActivityResultLauncher<Intent>,
     ad: NativeAd?,
     dynamicModuleDownloadUtil: DynamicModuleDownloadUtil,
+    scannerLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
+    scanner: GmsDocumentScanner,
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
     val mContext = LocalContext.current
@@ -89,31 +85,6 @@ fun HomeScreen(
 
     val hasPermission = PermissionUtils.storagePermissionState.value
 
-    val scanner = remember {
-        val options =
-            GmsDocumentScannerOptions.Builder().setGalleryImportAllowed(true)
-                .setResultFormats(
-                    GmsDocumentScannerOptions.RESULT_FORMAT_JPEG,
-                    GmsDocumentScannerOptions.RESULT_FORMAT_PDF
-                )
-                .setScannerMode(GmsDocumentScannerOptions.SCANNER_MODE_FULL).build()
-        GmsDocumentScanning.getClient(options)
-    }
-
-    val scannerLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartIntentSenderForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val gmsResult = GmsDocumentScanningResult.fromActivityResultIntent(result.data)
-            gmsResult?.pdf?.let { pdf ->
-                pdf.uri.let { uri ->
-                    val mFile = uri.toFile()
-                    Utility.openFileWithLocalContext(context = mContext, mFile)
-                }
-            }
-        }
-
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()
