@@ -156,7 +156,7 @@ dependencies {
     implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
 
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
-
+    implementation("com.microsoft.clarity:clarity:2.1.1")
 
 
 }

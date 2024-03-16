@@ -46,6 +46,8 @@ import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.Utility
 import com.google.android.play.core.splitcompat.SplitCompat
+import com.microsoft.clarity.Clarity
+import com.microsoft.clarity.ClarityConfig
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -98,6 +100,8 @@ class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
         super.onCreate(savedInstanceState)
         dynamicModuleDownloadUtil = DynamicModuleDownloadUtil(baseContext, this@MainActivity)
         isInterstitialAdShowing = true
+        val config = ClarityConfig("lhiio4voun")
+        Clarity.initialize(applicationContext, config)
         installSplashScreen().apply {
             AnalyticsManager.logEvent(FirebaseEvents.splashLaunch)
             this.setKeepOnScreenCondition {
