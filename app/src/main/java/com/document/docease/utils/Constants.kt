@@ -9,7 +9,7 @@ object Constant {
     var hasOpenedAFileInSession = false
 
     //    var showAds = true
-    var showAdsState = mutableStateOf(true)
+    var showAdsState = mutableStateOf(false)
     var appOpenTimeout = 6000
     var adPerClickCount = 3
     var nativeAdRefreshInterval = 30000L
