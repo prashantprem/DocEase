@@ -64,7 +64,7 @@ fun AppDrawer(
             ),
             DrawerItemData(
                 AppDrawerItemType.feedback,
-                "Contact us",
+                "Give us Feedback",
                 R.drawable.ic_main_drawer_contact
             )
         )
