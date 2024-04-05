@@ -11,6 +11,15 @@ android {
     namespace = "com.document.docease"
     compileSdk = 34
 
+    signingConfigs {
+        create("release"){
+            keyAlias = "key0"
+            keyPassword = "docease3127"
+            storeFile = file("docMaster.jks")
+            storePassword = "docease3127"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.all.document.reader.pdf.doc.docease"
         minSdk = 28
@@ -31,6 +40,7 @@ android {
             isShrinkResources = false
         }
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
