@@ -137,6 +137,10 @@ fun FileInfoBottomSheetUI(
         HorizontalDivider()
         Spacer(modifier = Modifier.height(10.dp))
         val options = if (file.FileType() != FileType.PDF) listOf(
+            FIleInfoBottomSheetData(
+                stringResource(id = R.string.read_pdf),
+                R.drawable.ic_read_main
+            ),
             FIleInfoBottomSheetData(stringResource(id = R.string.edit), R.drawable.ic_edit_main),
             FIleInfoBottomSheetData(stringResource(id = R.string.whatsapp), R.drawable.ic_whatsapp),
             FIleInfoBottomSheetData(stringResource(id = R.string.share), R.drawable.ic_share_main),
@@ -144,6 +148,11 @@ fun FileInfoBottomSheetUI(
 
         ) else
             listOf(
+                FIleInfoBottomSheetData(
+                    stringResource(id = R.string.read_pdf),
+                    R.drawable.ic_read_main
+                ),
+
                 FIleInfoBottomSheetData(
                     stringResource(id = R.string.edit),
                     R.drawable.ic_edit_main
@@ -171,11 +180,12 @@ fun FileInfoBottomSheetUI(
                     .clickable {
                         fIleInfoBottomSheetClickListener.apply {
                             when (index) {
-                                0 -> onEditClick(file)
-                                1 -> onWhatsAppShare(file)
-                                2 -> onShare(file)
-                                3 -> onPrint(file)
-                                4 -> onSignPdf(file)
+                                0 -> onReadClick(file)
+                                1 -> onEditClick(file)
+                                2 -> onWhatsAppShare(file)
+                                3 -> onShare(file)
+                                4 -> onPrint(file)
+                                5 -> onSignPdf(file)
                             }
                         }
                     }

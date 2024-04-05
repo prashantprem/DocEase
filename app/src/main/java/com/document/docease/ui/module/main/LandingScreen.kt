@@ -128,6 +128,7 @@ fun LandingScreen(
             val gmsResult = GmsDocumentScanningResult.fromActivityResultIntent(result.data)
             gmsResult?.pdf?.let { pdf ->
                 pdf.uri.let { uri ->
+                    AnalyticsManager.logEvent(FirebaseEvents.successfullyScanned)
                     val mFile = uri.toFile()
                     Utility.openFileWithLocalContext(context = mContext, mFile)
                 }
@@ -332,6 +333,13 @@ fun LandingScreen(
                                 file,
                                 viewModel.isFavourite(file),
                                 object : FIleInfoBottomSheetClickListener {
+
+                                    override fun onReadClick(file: File) {
+                                        Utility.previewFileWithLocalContext(mContext, file)
+                                        showFileActionBottomSheet = false
+                                    }
+
+
                                     override fun onEditClick(file: File) {
                                         Utility.openFileWithLocalContext(mContext, file)
                                         showFileActionBottomSheet = false

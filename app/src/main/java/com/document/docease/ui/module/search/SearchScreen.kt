@@ -111,6 +111,11 @@ fun SearchScreen(
                                 file,
                                 viewModel.isFavourite(file),
                                 object : FIleInfoBottomSheetClickListener {
+
+                                    override fun onReadClick(file: File) {
+                                        Utility.previewFileWithLocalContext(mContext, file)
+                                    }
+
                                     override fun onEditClick(file: File) {
                                         Utility.openFileWithLocalContext(mContext, file)
                                     }

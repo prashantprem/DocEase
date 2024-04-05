@@ -280,5 +280,6 @@ object FirebaseEvents {
     const val permissionDenied = "PermissionDenied"
     const val clickConvertToPdf = "ClickConvertToPdf"
     const val clickTopBarScanner = "ClickTopBarScanner"
+    const val successfullyScanned = "SuccessfullyScanned"
 
 }

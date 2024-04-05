@@ -4,7 +4,7 @@
     <string name="pdf">PDF</string>
     <string name="word">Word</string>
     <string name="excel">Excel</string>
-    <string name="ppt">PPoint</string>
+    <string name="ppt">PPT</string>
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
     <string name="save_cta">Save</string>
 
