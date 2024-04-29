@@ -1,12 +1,18 @@
 package com.document.docease.ui.module.main
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,13 +38,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.net.toFile
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -59,13 +67,20 @@ import com.document.docease.ui.navigation.Routes
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
+import com.document.docease.utils.DynamicModuleDownloadUtil
+import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.Extensions.noRippleClickable
 import com.document.docease.utils.FirebaseEvents
+import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.Utility
 import com.document.docease.utils.Utility.giveFeedback
 import com.document.docease.utils.Utility.inviteFriends
 import com.document.docease.utils.Utility.rateOnPlayStore
+import com.document.docease.utils.Utility.signPdf
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
 import kotlinx.coroutines.launch
 import java.io.File
 import kotlin.system.exitProcess
@@ -76,7 +91,8 @@ fun LandingScreen(
     viewModel: MainViewModel,
     navigationController: NavHostController,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
-    homeNativeAdState: NativeAd?
+    homeNativeAdState: NativeAd?,
+    dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
 ) {
     val bottomNavigationItems = listOf(
         BottomNavigationScreens.HOME,
@@ -88,9 +104,39 @@ fun LandingScreen(
     val scope = rememberCoroutineScope()
     var mFile: File? = null
     val mContext = LocalContext.current
+    val mActivity = LocalContext.current.findActivity()
     val bottomNavigationController = rememberNavController()
     var clickCount = 0
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val hasPermission = PermissionUtils.storagePermissionState.value
+
+    val scanner = remember {
+        val options =
+            GmsDocumentScannerOptions.Builder().setGalleryImportAllowed(true)
+                .setResultFormats(
+                    GmsDocumentScannerOptions.RESULT_FORMAT_JPEG,
+                    GmsDocumentScannerOptions.RESULT_FORMAT_PDF
+                )
+                .setScannerMode(GmsDocumentScannerOptions.SCANNER_MODE_FULL).build()
+        GmsDocumentScanning.getClient(options)
+    }
+
+    val scannerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val gmsResult = GmsDocumentScanningResult.fromActivityResultIntent(result.data)
+            gmsResult?.pdf?.let { pdf ->
+                pdf.uri.let { uri ->
+                    AnalyticsManager.logEvent(FirebaseEvents.successfullyScanned)
+                    val mFile = uri.toFile()
+                    Utility.openFileWithLocalContext(context = mContext, mFile)
+                }
+            }
+        }
+
+    }
+
 //    val drawerNativeState = rememberNativeAdState(
 //        context = LocalContext.current, adUnitId = AdUnits.drawerNative,
 //        refreshInterval = Constant.nativeAdRefreshInterval
@@ -153,7 +199,8 @@ fun LandingScreen(
                             style = MaterialTheme.typography.titleLarge.copy(
                                 color = colorResource(
                                     id = R.color.primary
-                                )
+                                ),
+                                fontSize = 16.sp
                             )
                         )
                     },
@@ -173,46 +220,78 @@ fun LandingScreen(
 
                     },
                     actions = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_main_remove_ad),
-                            contentDescription = "Search Button",
-                            tint = if (isSystemInDarkTheme()) colorResource(id = R.color.na_button_default) else Color.Red,
-                            modifier = Modifier
-                                .noRippleClickable {
-                                    AnalyticsManager.logEvent(FirebaseEvents.removeAdsOpened)
-                                    navigationController.navigate(Routes.REMOVE_ADS) {
-                                        popUpTo(navigationController.graph.findStartDestination().id) {
-                                            saveState = true
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_main_scanner),
+                                contentDescription = "PDF Scanner",
+                                tint = colorResource(id = R.color.primary),
+                                modifier = Modifier
+                                    .noRippleClickable {
+                                        AnalyticsManager.logEvent(FirebaseEvents.clickTopBarScanner)
+                                        mActivity?.let {
+                                            if (hasPermission) {
+                                                scanner
+                                                    .getStartScanIntent(mActivity)
+                                                    .addOnSuccessListener { intentSender ->
+                                                        scannerLauncher.launch(
+                                                            IntentSenderRequest
+                                                                .Builder(intentSender)
+                                                                .build()
+                                                        )
+                                                    }
+                                                    .addOnFailureListener {
+                                                        Toast
+                                                            .makeText(
+                                                                mContext,
+                                                                "Oops! Something went wrong",
+                                                                Toast.LENGTH_SHORT
+                                                            )
+                                                            .show()
+                                                    }
+                                            } else {
+                                                Toast
+                                                    .makeText(
+                                                        mContext,
+                                                        "Allow storage permission to use this feature!",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                    .show()
+                                            }
+
                                         }
-                                        launchSingleTop = true
-                                        restoreState = true
+
                                     }
-                                    Log.d("TestingCLick", "CLicked")
-                                }
-                                .size(40.dp)
-                                .fillMaxWidth(0.2f)
-                                .padding(end = 8.dp)
-                        )
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = "Search Button",
-                            tint = colorResource(id = R.color.primary),
-                            modifier = Modifier
-                                .noRippleClickable {
-                                    navigationController.navigate(Routes.SEARCH) {
-                                        AnalyticsManager.logEvent(FirebaseEvents.fileSearch)
-                                        popUpTo(navigationController.graph.findStartDestination().id) {
-                                            saveState = true
+                                    .size(35.dp)
+                                    .fillMaxWidth(0.2f)
+                                    .padding(end = 8.dp)
+                            )
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_search),
+                                contentDescription = "Search Button",
+                                tint = colorResource(id = R.color.primary),
+                                modifier = Modifier
+                                    .noRippleClickable {
+                                        navigationController.navigate(Routes.SEARCH) {
+                                            AnalyticsManager.logEvent(FirebaseEvents.fileSearch)
+                                            popUpTo(navigationController.graph.findStartDestination().id) {
+                                                saveState = true
+                                            }
+                                            launchSingleTop = true
+                                            restoreState = true
                                         }
-                                        launchSingleTop = true
-                                        restoreState = true
+                                        Log.d("TestingCLick", "CLicked")
                                     }
-                                    Log.d("TestingCLick", "CLicked")
-                                }
-                                .size(80.dp)
-                                .fillMaxWidth(0.2f)
-                                .padding(end = 8.dp)
-                        )
+                                    .size(100.dp)
+                                    .fillMaxWidth(0.22f)
+                                    .padding(end = 8.dp)
+                            )
+
+                        }
+
+
                     }
                 )
             },
@@ -254,6 +333,13 @@ fun LandingScreen(
                                 file,
                                 viewModel.isFavourite(file),
                                 object : FIleInfoBottomSheetClickListener {
+
+                                    override fun onReadClick(file: File) {
+                                        Utility.previewFileWithLocalContext(mContext, file)
+                                        showFileActionBottomSheet = false
+                                    }
+
+
                                     override fun onEditClick(file: File) {
                                         Utility.openFileWithLocalContext(mContext, file)
                                         showFileActionBottomSheet = false
@@ -261,11 +347,13 @@ fun LandingScreen(
 
                                     override fun onWhatsAppShare(file: File) {
                                         Utility.shareToWhatsApp(file, mContext)
+                                        showFileActionBottomSheet = false
                                     }
 
                                     override fun onShare(file: File) {
                                         AnalyticsManager.logEvent(FirebaseEvents.fileShareBottomSheet)
                                         Utility.shareToAny(file, mContext)
+                                        showFileActionBottomSheet = false
                                     }
 
                                     override fun onPrint(file: File) {
@@ -279,6 +367,31 @@ fun LandingScreen(
 
                                     override fun onAddToFavourite(file: File) {
                                         viewModel.addToFavourites(file)
+                                    }
+
+                                    override fun onSignPdf(file: File) {
+                                        showFileActionBottomSheet = false
+                                        if (hasPermission) {
+                                            if (dynamicModuleDownloadUtil.isModuleDownloaded(
+                                                    Constant.DYNAMIC_MODULE_PDF_SIGN
+                                                )
+                                            ) {
+                                                AnalyticsManager.logEvent(FirebaseEvents.pdfSignBottomSheet)
+                                                signPdf(file, mContext)
+                                            } else {
+                                                dynamicModuleDownloadUtil.downloadDynamicModule(
+                                                    Constant.DYNAMIC_MODULE_PDF_SIGN,
+                                                    mContext
+                                                )
+                                            }
+                                        } else {
+                                            Toast.makeText(
+                                                mContext,
+                                                "Allow storage permission to use this feature!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+
                                     }
 
                                 })
@@ -340,7 +453,10 @@ fun LandingScreen(
                         },
                         bottomBarNativeState,
                         storageRequestLauncher,
-                        homeNativeAdState
+                        homeNativeAdState,
+                        dynamicModuleDownloadUtil,
+                        scanner,
+                        scannerLauncher
                     )
                 }
             },

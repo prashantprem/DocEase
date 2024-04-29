@@ -2,9 +2,10 @@
 <resources>
     <color name="primary">#b2c5ff</color>
     <color name="bg_color_main">#1b1a1f</color>
-    <color name="bg_file_list_item_color_main">#1e1e1e</color>
+    <color name="bg_file_list_item_color_main">#302f34</color>
     <color name="text_color">#FFFFFF</color>
     <color name="greyDayNight">#3D4043</color>
     <color name="bar_color">#262930</color>
     <color name="bottom_sheet_bg">#262930</color>
+    <color name="sign_bg">#3f4659</color>
 </resources>

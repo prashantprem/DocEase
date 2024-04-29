@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">DocEase</string>
+    <string name="app_name">Doc Master</string>
     <string name="home">Home</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>
     <string name="excel">Excel</string>
-    <string name="ppt">PPoint</string>
+    <string name="ppt">PPT</string>
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
     <string name="save_cta">Save</string>
 
@@ -1084,4 +1084,5 @@ CHANGES"</string>
     <string name="have_a_coupon_code">Have a coupon code?</string>
     <string name="enter_coupon_code">Enter code</string>
     <string name="redeem">Redeem Code</string>
+    <string name="title_pdfsign">Module Title</string>
 </resources>

@@ -10,6 +10,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.document.docease.R
 import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.ui.theme.excelSelected
@@ -108,4 +111,8 @@ object Extensions {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+    fun NavController.canGoBack(): Boolean {
+        return this.currentBackStackEntry?.lifecycle?.currentState == Lifecycle.State.RESUMED
+    }
 }

@@ -17,6 +17,7 @@ import com.document.docease.ui.components.piechart.DocumentCount
 import com.document.docease.ui.module.filescreen.FileType
 import com.document.docease.utils.Constant
 import com.document.docease.utils.StorageUtils
+import com.document.docease.utils.Utility
 import com.document.docease.utils.Utility.isSupportedFileType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +38,7 @@ class MainViewModel @Inject constructor(
     var showSplash by mutableStateOf(true)
 
     var isRefreshing by mutableStateOf(false)
+
 
     private val _allFiles = MutableLiveData<Resource<List<File>>>()
     val allFiles: LiveData<Resource<List<File>>> get() = _allFiles
@@ -81,6 +83,12 @@ class MainViewModel @Inject constructor(
                     getAllFilesUsingMediaStore(context!!)
                 }.await()
             } else {
+                allOfficeFile.clear()
+                allPdfFiles.clear()
+                allExcelFiles.clear()
+                allWordFiles.clear()
+                allPptFiles.clear()
+                allTextFiles.clear()
                 async {
                     getAllFilesLegacy(Constant.dir)
                 }.await()
@@ -154,28 +162,32 @@ class MainViewModel @Inject constructor(
 
 
     private fun handleSupportedFile(file: File) {
-        allOfficeFile.add(file)
         when {
             file.name.endsWith(".pdf") -> {
                 allPdfFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".xls") || file.name.endsWith(".xlsx") -> {
                 allExcelFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".ppt") || file.name.endsWith(".pptx") -> {
                 allPptFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".docb") || file.name.endsWith(".docx") || file.name.endsWith(".doc") || file.name.endsWith(
                 ".dotx"
             ) -> {
                 allWordFiles.add(file)
+                allOfficeFile.add(file)
             }
 
             file.name.endsWith(".txt") -> {
                 allTextFiles.add(file)
+                //not adding texts to all files now
             }
         }
     }
@@ -233,7 +245,7 @@ class MainViewModel @Inject constructor(
                     MediaStore.Files.FileColumns.MIME_TYPE,
                     MediaStore.Files.FileColumns.SIZE
                 )
-            val sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC"
+            val sortOrder = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
             val selectionArgs = when (fileType) {
                 FileType.PDF -> arrayOf(MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"))
                 FileType.WORD -> {
@@ -324,6 +336,12 @@ class MainViewModel @Inject constructor(
     fun refresh(context: Context) {
         isRefreshing = true
         getAllFiles(context)
+    }
+
+    fun saveScannedPdf(uri: Uri, context: Context, fileName: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            Utility.savePdfInDocumentDirectory(context, uri, fileName)
+        }
     }
 
 }

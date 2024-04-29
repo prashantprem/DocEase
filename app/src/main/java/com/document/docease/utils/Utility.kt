@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.util.Log
 import androidx.core.content.FileProvider
 import com.document.docease.BuildConfig
@@ -20,6 +21,9 @@ import com.document.docease.ui.module.preview.PreviewActivity
 import com.document.docease.utils.Extensions.findActivity
 import com.document.docease.utils.Extensions.tryCatch
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -189,7 +193,7 @@ object Utility {
         context.startActivity(sharingIntent)
     }.tryCatch()
 
-    fun shareToAny(file: File, context: Context) = {
+    fun shareToAny(file: File, context: Context, isEmail: Boolean = false) = {
 
         val shareIntent = Intent()
         shareIntent.action = Intent.ACTION_SEND
@@ -203,6 +207,9 @@ object Utility {
         shareIntent.addFlags(
             Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
         )
+        if (isEmail) {
+            shareIntent.data = Uri.parse("mailto:")
+        }
         val resInfoList: List<ResolveInfo> = context.packageManager
             .queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
         for (resolveInfo in resInfoList) {
@@ -250,7 +257,7 @@ object Utility {
             Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:")
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(Constant.supportMail))
-                putExtra(Intent.EXTRA_SUBJECT, "DocEase Support")
+                putExtra(Intent.EXTRA_SUBJECT, "Doc Master Support")
                 putExtra(Intent.EXTRA_TEXT, eMailBody)
             }
         )
@@ -303,6 +310,45 @@ object Utility {
             return ""
         }
     }
+
+    fun signPdf(file: File, context: Context) = {
+        val list = ArrayList<Uri>()
+        list.add(Uri.fromFile(file))
+        val intent = Intent()
+        intent.setClassName(
+            BuildConfig.APPLICATION_ID,
+            Constant.PDF_SIGN_Digital_SIGNATURE_ACTIVITY
+        )
+        intent.putExtra("ActivityAction", "PDFOpen")
+        intent.putExtra("PDFOpen", list)
+        context.startActivity(intent)
+    }.tryCatch()
+
+    fun launchSignatureModule(context: Context) = {
+        val intent = Intent()
+        intent.setClassName(
+            BuildConfig.APPLICATION_ID,
+            Constant.PDF_SIGN_MAIN_ACTIVITY
+        )
+        context.startActivity(intent)
+    }.tryCatch()
+
+    fun savePdfInDocumentDirectory(context: Context, sourceFileUri: Uri, fileName: String) = {
+        val myDir =
+            File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).absolutePath + File.separator + "DocMaster")
+        if (!myDir.exists()) {
+            myDir.mkdirs()
+        }
+        val file = File(myDir.absolutePath, "$fileName.pdf")
+        if (file.exists()) file.delete()
+
+        val resolver = context.contentResolver
+        resolver.openInputStream(sourceFileUri)?.use { inputStream ->
+            FileOutputStream(file).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+        } ?: throw IOException("Failed to open input stream for source file")
+    }.tryCatch()
 
 
 }

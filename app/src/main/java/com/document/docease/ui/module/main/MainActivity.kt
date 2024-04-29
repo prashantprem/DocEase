@@ -2,12 +2,15 @@ package com.document.docease.ui.module.main
 
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Environment
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -36,23 +39,33 @@ import com.document.docease.ui.theme.DocEaseTheme
 import com.document.docease.utils.AdUnits
 import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
+import com.document.docease.utils.DynamicDeliveryCallback
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.InAppReviewUtil
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.Utility
+import com.google.android.play.core.splitcompat.SplitCompat
+import com.microsoft.clarity.Clarity
+import com.microsoft.clarity.ClarityConfig
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), DynamicDeliveryCallback {
 
 
     private val viewModel by viewModels<MainViewModel>()
     private var inAppReviewUtil: InAppReviewUtil? = null
     private var hasRequestedReviewFlowInSession = false
+    private lateinit var dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
+    private var moduleLoading: AlertDialog? = null
+    private var isSplashAdTimedOut = false
+
 
     companion object {
         const val CODE_RESULT_BOOKMARK = 2
@@ -66,7 +79,9 @@ class MainActivity : ComponentActivity() {
                 if (Environment.isExternalStorageManager()) {
                     PermissionUtils.storagePermissionState.value = true
                     viewModel.getAllFiles(this@MainActivity)
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionGranted)
                 } else {
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionDenied)
                     Toast.makeText(
                         this,
                         getString(R.string.allow_permission_for_storage_access),
@@ -76,11 +91,19 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+        SplitCompat.installActivity(this)
+    }
+
 
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        dynamicModuleDownloadUtil = DynamicModuleDownloadUtil(baseContext, this@MainActivity)
         isInterstitialAdShowing = true
+        val config = ClarityConfig("lhiio4voun")
+        Clarity.initialize(applicationContext, config)
         installSplashScreen().apply {
             AnalyticsManager.logEvent(FirebaseEvents.splashLaunch)
             this.setKeepOnScreenCondition {
@@ -88,23 +111,29 @@ class MainActivity : ComponentActivity() {
             }
         }
         Utility.checkIfHasToShowAds(this)
-        if (Constant.showAdsState.value) {
-            initSplashAdCountDownTimer()
-            loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
-                showInterstitial(this@MainActivity, onAdDismissed = {
-                    AnalyticsManager.logEvent(FirebaseEvents.shownAdOnSPlash)
-                    viewModel.showSplash = false
-                }, adUnit = AdUnits.splashInterstitial)
+//        if (Constant.showAdsState.value) {
+//            initSplashAdCountDownTimer()
+//            loadInterstitial(this@MainActivity, AdUnits.splashInterstitial, onAdLoaded = {
+//                if (!isSplashAdTimedOut) {
+//                    showInterstitial(this@MainActivity, onAdDismissed = {
+//                        AnalyticsManager.logEvent(FirebaseEvents.shownAdOnSPlash)
+//                        viewModel.showSplash = false
+//                    }, adUnit = AdUnits.splashInterstitial)
+//                }
+//            }, onAdFailed = {
+//                AnalyticsManager.logEvent(FirebaseEvents.notShownAdOnSPlash)
+//                viewModel.showSplash = false
+//            })
+//        } else {
+//            CoroutineScope(Dispatchers.IO).launch {
+//                delay(3000)
+//                viewModel.showSplash = false
+//            }
+//        }
 
-            }, onAdFailed = {
-                AnalyticsManager.logEvent(FirebaseEvents.notShownAdOnSPlash)
-                viewModel.showSplash = false
-            })
-        } else {
-            CoroutineScope(Dispatchers.IO).launch {
-                delay(3000)
-                viewModel.showSplash = false
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(2500)
+            viewModel.showSplash = false
         }
         if (PermissionUtils.hasPermission(this@MainActivity)) {
             viewModel.getAllFiles(this@MainActivity)
@@ -120,11 +149,11 @@ class MainActivity : ComponentActivity() {
                 val pullRefreshState = rememberPullRefreshState(
                     viewModel.isRefreshing,
                     { viewModel.refresh(this@MainActivity) })
-                val homeNativeAdState = rememberNativeAdState(
-                    context = LocalContext.current,
-                    adUnitId = AdUnits.homeNative,
-                    refreshInterval = Constant.nativeAdRefreshInterval
-                )
+//                val homeNativeAdState = rememberNativeAdState(
+//                    context = LocalContext.current,
+//                    adUnitId = AdUnits.homeNative,
+//                    refreshInterval = Constant.nativeAdRefreshInterval
+//                )
                 Box(
                     Modifier
                         .safeDrawingPadding()
@@ -134,7 +163,8 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         viewModel = viewModel,
                         requestPermissionResultLauncher,
-                        homeNativeAdState
+                        null,
+                        dynamicModuleDownloadUtil
                     )
                     if (PermissionUtils.storagePermissionState.value) {
                         PullRefreshIndicator(
@@ -161,7 +191,9 @@ class MainActivity : ComponentActivity() {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     PermissionUtils.storagePermissionState.value = true
                     viewModel.getAllFiles(this@MainActivity)
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionGranted)
                 } else {
+                    AnalyticsManager.logEvent(FirebaseEvents.permissionDenied)
                     PermissionUtils.isPermission(
                         PERMISSION_EXTERNAL,
                         this,
@@ -193,10 +225,55 @@ class MainActivity : ComponentActivity() {
             }
 
             override fun onFinish() {
+                isSplashAdTimedOut = true
                 viewModel.showSplash = false
                 println("Countdown finished!")
             }
         }.start()
+    }
+
+    override fun onDownloading() {
+        showLoadingDialog()
+    }
+
+    override fun onDownloadCompleted() {
+    }
+
+    override fun onInstallSuccess() {
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadCompleted)
+        Toast.makeText(this@MainActivity, "PDF Sign is ready for use!", Toast.LENGTH_LONG).show()
+        hideModuleLoading()
+    }
+
+    override fun onFailed(errorMessage: String) {
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadFailed)
+        hideModuleLoading()
+        Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    private fun showLoadingDialog() {
+        if (moduleLoading != null && moduleLoading!!.isShowing) {
+            return
+        }
+        AnalyticsManager.logEvent(FirebaseEvents.pdfModuleDownloadStarted)
+        val builder = AlertDialog.Builder(this@MainActivity)
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.module_loading_dialog, null)
+        builder.setView(view)
+        builder.setCancelable(false)
+        moduleLoading = builder.create()
+        moduleLoading?.show()
+        Toast.makeText(this@MainActivity, "Downloading PDF Sign Module", Toast.LENGTH_LONG)
+            .show()
+    }
+
+    private fun hideModuleLoading() {
+        moduleLoading?.apply {
+            if (isShowing) {
+                dismiss()
+            }
+        }
     }
 }
 

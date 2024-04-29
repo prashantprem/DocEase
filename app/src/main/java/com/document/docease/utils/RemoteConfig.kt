@@ -28,7 +28,7 @@ class RemoteConfigUtil {
         hashMapOf(
             APP_OPEN_THRESHOLD to 5000,
             FLOW_AD_CLICK_THRESHOLD to 4,
-            ADS_ENABLED to true,
+            ADS_ENABLED to false,
             NATIVE_AD_REFRESH_TIME_IN_MILLIS to 10000L,
             SPLASH_TIME to 6000L,
             SUPPORT_MAIL to "premifsb@gmail.com"
@@ -67,6 +67,9 @@ class RemoteConfigUtil {
                     } else {
                         this
                     }
+                }
+                getBoolean(ADS_ENABLED).apply {
+                    Constant.showAdsState.value = this
                 }
 
                 log(

@@ -9,7 +9,7 @@ object Constant {
     var hasOpenedAFileInSession = false
 
     //    var showAds = true
-    var showAdsState = mutableStateOf(true)
+    var showAdsState = mutableStateOf(false)
     var appOpenTimeout = 6000
     var adPerClickCount = 3
     var nativeAdRefreshInterval = 30000L
@@ -61,6 +61,12 @@ object Constant {
     const val REWARD_AD_COUNT = "REWARD_AD_COUNT"
     const val REWARD_DAYS = "REWARD_DAYS"
     const val SUPPORT_MAIL = "SUPPORT_MAIL"
+
+    //pdfSign module
+    const val DYNAMIC_MODULE_PDF_SIGN = "pdfsign"
+    const val PDF_SIGN_Digital_SIGNATURE_ACTIVITY =
+        "com.docease.pdfsign.pdfdigitalsignature.DigitalSignatureActivity"
+    const val PDF_SIGN_MAIN_ACTIVITY = "com.docease.pdfsign.pdfdigitalsignature.MainActivity"
 
 
     const val platform = "android"
@@ -231,14 +237,14 @@ object AdUnits {
 
 
     //prod
-    const val homeNative = "ca-app-pub-7642879603256855/5233946502"
-    const val filesNative = "ca-app-pub-7642879603256855/8961438520"
-    const val exitNative = "ca-app-pub-7642879603256855/2607783165"
-    const val splashInterstitial = "ca-app-pub-7642879603256855/6035343549"
-    const val appOpen = "ca-app-pub-7642879603256855/1454483590"
-    const val buyMeCoffee = "ca-app-pub-7642879603256855/8507015090"
-    const val fileEditInterstitial = "ca-app-pub-7642879603256855/7843249236"
-    const val flowInterstitial = "ca-app-pub-7642879603256855/7860109843"
+    const val homeNative = "ca-app-pub-5810646146446064/6965812065"
+    const val filesNative = "ca-app-pub-5810646146446064/4451329369"
+    const val exitNative = "ca-app-pub-5810646146446064/3138247694"
+    const val splashInterstitial = "ca-app-pub-5810646146446064/5652730392"
+    const val appOpen = "ca-app-pub-5810646146446064/6718400057"
+    const val buyMeCoffee = "ca-app-pub-5810646146446064/3026567053"
+    const val fileEditInterstitial = "ca-app-pub-5810646146446064/1029398600"
+    const val flowInterstitial = "ca-app-pub-5810646146446064/3964244202"
     const val fileBanner = "ca-app-pub-7642879603256855/8890158470"
     const val drawerNative = "ca-app-pub-7642879603256855~7054294630"
 }
@@ -259,4 +265,21 @@ object FirebaseEvents {
     const val fileInfoBottomSheetOpened = "FileInfoBottomSheetOpened"
     const val sharedApp = "SharedApp"
     const val removeAdsOpened = "RemoveAdOpened"
+    const val pdfSignBottomSheet = "PDFSignBottomSheet"
+    const val pdfSignHomeBanner = "PDFSignHomeBanner"
+    const val pdfSignDrawer = "PDFSignDrawer"
+    const val pdfModuleDownloadStarted = "PDFModuleDownloadStarted"
+    const val pdfModuleDownloadCompleted = "PDFModuleDownloadCompleted"
+    const val pdfModuleDownloadFailed = "PDFModuleDownloadFailed"
+    const val signedPDFSaved = "SignedPDFSaved"
+    const val savedSignature = "SavedSignature"
+    const val signedPdfShared = "signedPdfShared"
+    const val signedPdfRenamed = "signedPdfRenamed"
+    const val clickAllowPermission = "ClickAllowPermission"
+    const val permissionGranted = "PermissionGranted"
+    const val permissionDenied = "PermissionDenied"
+    const val clickConvertToPdf = "ClickConvertToPdf"
+    const val clickTopBarScanner = "ClickTopBarScanner"
+    const val successfullyScanned = "SuccessfullyScanned"
+
 }

@@ -11,12 +11,21 @@ android {
     namespace = "com.document.docease"
     compileSdk = 34
 
+    signingConfigs {
+        create("release"){
+            keyAlias = "key0"
+            keyPassword = "docease3127"
+            storeFile = file("docMaster.jks")
+            storePassword = "docease3127"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.all.document.reader.pdf.doc.docease"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
-        versionCode = 8
-        versionName = "1.5"
+        versionCode = 22
+        versionName = "2.5"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -31,6 +40,7 @@ android {
             isShrinkResources = false
         }
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -77,6 +87,7 @@ android {
         ignoreAssetsPattern = "!mips64"
         ignoreAssetsPattern = "!armeabi"
     }
+    dynamicFeatures += setOf(":app:pdfsign")
 
 
 }
@@ -150,6 +161,12 @@ dependencies {
     //review
     implementation("com.google.android.play:review:2.0.1")
     implementation("com.google.android.play:review-ktx:2.0.1")
+
+    implementation("com.google.android.play:feature-delivery:2.1.0")
+    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
+
+    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
+    implementation("com.microsoft.clarity:clarity:2.2.0")
 
 
 }

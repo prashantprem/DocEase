@@ -2,7 +2,11 @@ package com.document.docease.ui.module.home
 
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -10,6 +14,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -40,20 +46,26 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.document.docease.R
 import com.document.docease.data.Resource
+import com.document.docease.ui.common.CustomCard
 import com.document.docease.ui.common.FileCountScreen
 import com.document.docease.ui.common.FileListWrapper
 import com.document.docease.ui.common.StoragePermissionScreen
-import com.document.docease.ui.components.ads.NativeAdAdmobMedium
+import com.document.docease.ui.components.ads.NativeAdAdmobSmall
 import com.document.docease.ui.components.piechart.FileDistributionChart
 import com.document.docease.ui.components.piechart.PieChartData
 import com.document.docease.ui.module.filescreen.FileClickListener
 import com.document.docease.ui.module.main.MainActivity
 import com.document.docease.ui.module.main.MainViewModel
+import com.document.docease.utils.AnalyticsManager
 import com.document.docease.utils.Constant
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.document.docease.utils.Extensions.findActivity
+import com.document.docease.utils.FirebaseEvents
 import com.document.docease.utils.PermissionUtils
 import com.document.docease.utils.ScreenType
+import com.document.docease.utils.Utility
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.mlkit.vision.documentscanner.GmsDocumentScanner
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -62,20 +74,78 @@ fun HomeScreen(
     fileClickListener: FileClickListener,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
     ad: NativeAd?,
+    dynamicModuleDownloadUtil: DynamicModuleDownloadUtil,
+    scannerLauncher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>,
+    scanner: GmsDocumentScanner,
 ) {
     val tabs = intArrayOf(R.drawable.ic_history, R.drawable.ic_favourites, R.drawable.ic_settings)
+    val mContext = LocalContext.current
     val mActivity = LocalContext.current.findActivity()
     val documentCountState = viewModel.documentCount.observeAsState()
 
     val hasPermission = PermissionUtils.storagePermissionState.value
-
-
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 4.dp)
     ) {
+        if (hasPermission) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                CustomCard(
+                    title = "Convert to PDF",
+                    image = R.drawable.ic_main_scan_pdf,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+
+                ) {
+                    mActivity?.let {
+                        AnalyticsManager.logEvent(FirebaseEvents.clickConvertToPdf)
+                        scanner.getStartScanIntent(mActivity)
+                            .addOnSuccessListener { intentSender ->
+                                scannerLauncher.launch(
+                                    IntentSenderRequest.Builder(intentSender).build()
+                                )
+                            }.addOnFailureListener {
+                                Log.d("TestingScan", it.toString())
+                                Toast.makeText(
+                                    mContext,
+                                    it.localizedMessage,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                }
+
+                Spacer(modifier = Modifier.width(16.dp))
+                CustomCard(
+                    title = "Sign PDF",
+                    image = R.drawable.ic_main_sign_pdf,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+
+                ) {
+                    if (dynamicModuleDownloadUtil.isModuleDownloaded(Constant.DYNAMIC_MODULE_PDF_SIGN)) {
+                        AnalyticsManager.logEvent(FirebaseEvents.pdfSignHomeBanner)
+                        Utility.launchSignatureModule(mContext)
+                    } else {
+                        dynamicModuleDownloadUtil.downloadDynamicModule(
+                            Constant.DYNAMIC_MODULE_PDF_SIGN,
+                            mContext
+                        )
+                    }
+                }
+
+            }
+        }
+
+
         var tabIndex by remember { mutableIntStateOf(0) }
         val pagerState = rememberPagerState(initialPage = 0, pageCount = {
             tabs.size
@@ -89,6 +159,7 @@ fun HomeScreen(
         }
         if (mActivity != null && !hasPermission) {
             StoragePermissionScreen {
+                AnalyticsManager.logEvent(FirebaseEvents.clickAllowPermission)
                 PermissionUtils.isPermission(
                     MainActivity.PERMISSION_EXTERNAL,
                     activity = mActivity,
@@ -97,7 +168,7 @@ fun HomeScreen(
 
             }
         } else if (Constant.showAdsState.value) {
-            NativeAdAdmobMedium(
+            NativeAdAdmobSmall(
                 context = LocalContext.current,
                 loadedAd = ad,
                 isDarkTheme = isSystemInDarkTheme()

@@ -12,6 +12,7 @@ import com.document.docease.ui.module.main.LandingScreen
 import com.document.docease.ui.module.main.MainViewModel
 import com.document.docease.ui.module.removeads.RemoveAds
 import com.document.docease.ui.module.search.SearchScreen
+import com.document.docease.utils.DynamicModuleDownloadUtil
 import com.google.android.gms.ads.nativead.NativeAd
 
 @Composable
@@ -19,7 +20,8 @@ fun MainNavigationConfiguration(
     navController: NavHostController,
     viewModel: MainViewModel,
     storageRequestLauncher: ActivityResultLauncher<Intent>,
-    homeNativeAdState: NativeAd?
+    homeNativeAdState: NativeAd?,
+    dynamicModuleDownloadUtil: DynamicModuleDownloadUtil
 ) {
     NavHost(navController, startDestination = Routes.LANDING,
         enterTransition = {
@@ -36,7 +38,13 @@ fun MainNavigationConfiguration(
             SearchScreen(viewModel, navController)
         }
         composable(Routes.LANDING) {
-            LandingScreen(viewModel, navController, storageRequestLauncher,homeNativeAdState)
+            LandingScreen(
+                viewModel,
+                navController,
+                storageRequestLauncher,
+                homeNativeAdState,
+                dynamicModuleDownloadUtil
+            )
         }
         composable(Routes.REMOVE_ADS) {
             RemoveAds(navController)
